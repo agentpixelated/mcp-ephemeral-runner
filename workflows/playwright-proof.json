@@ -1,0 +1,4 @@
+[
+  { "tool": "browser_navigate", "arguments": { "url": "https://example.com" } },
+  { "tool": "browser_snapshot", "arguments": {} }
+]

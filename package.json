@@ -1,0 +1,19 @@
+{
+  "name": "mcp-ephemeral-runner",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Zero-dependency ephemeral stdio MCP runner: initialize, inspect tools, call tools, teardown.",
+  "bin": {
+    "mcp-runner": "./src/cli.mjs"
+  },
+  "scripts": {
+    "test": "node test/smoke.mjs",
+    "inspect:mock": "node src/cli.mjs inspect examples/mock.json",
+    "workflow:mock": "node src/cli.mjs workflow examples/mock.json workflows/mock-proof.json"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "license": "MIT"
+}

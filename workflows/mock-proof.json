@@ -1,0 +1,5 @@
+[
+  { "tool": "echo", "arguments": { "text": "hello via MCP" } },
+  { "tool": "counter_increment", "arguments": { "by": 2 } },
+  { "tool": "counter_increment", "arguments": { "by": 3 } }
+]

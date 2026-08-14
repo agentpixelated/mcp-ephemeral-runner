@@ -1,0 +1,5 @@
+{
+  "command": "npx",
+  "args": ["-y", "@playwright/mcp", "--headless"],
+  "timeoutMs": 60000
+}
