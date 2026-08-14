@@ -1,0 +1,5 @@
+{
+  "transport": "http",
+  "url": "https://mcp.context7.com/mcp",
+  "timeoutMs": 30000
+}
