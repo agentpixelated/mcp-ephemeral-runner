@@ -49,7 +49,6 @@ jobs:
 
       - name: Fetch mods
         env:
-          CONFIG_NAME: ${{ matrix.name }}
           MOD_GROUPS: ${{ matrix.mods }}
         run: |
           mkdir -p "$HOME/.minecraft/mods" modcache
@@ -58,7 +57,7 @@ jobs:
           mc='26.1.2'; groups=os.environ['MOD_GROUPS'].split(','); out='modcache'
           aliases={'fabric-api':'fabric-api','sodium':'sodium','immediatelyfast':'immediatelyfast','entityculling':'entityculling'}
           def get(u):
-              r=urllib.request.Request(u,headers={'User-Agent':'isolated-fps-bench/1.0'})
+              r=urllib.request.Request(u,headers={'User-Agent':'isolated-fps-bench/2.0'})
               return json.load(urllib.request.urlopen(r,timeout=30))
           seen=set()
           def add(slug):
@@ -94,7 +93,7 @@ jobs:
           EOF
           cat > src/client/java/bench/FrameBenchClient.java <<'JAVA'
           package bench;
-          import java.io.*; import java.nio.file.*; import java.util.*;
+          import java.nio.file.*; import java.util.*;
           import net.fabricmc.api.ClientModInitializer;
           import net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents;
           import net.fabricmc.loader.api.FabricLoader;
@@ -173,9 +172,13 @@ jobs:
           [ -n "$wid" ] || { echo 'NO WINDOW'; tail -200 client.log; exit 21; }
           xdotool windowactivate "$wid" || true
           sleep 10
+          # Main menu -> Singleplayer
           xdotool mousemove 427 235 click 1
           sleep 5
-          xdotool mousemove 425 93 click --repeat 2 --delay 180 1
+          # Select the known benchmark world, then use the explicit Play button.
+          xdotool mousemove 315 120 click 1
+          sleep 1
+          xdotool mousemove 270 395 click 1
           sleep 45
           import -window root world-loaded.png || true
           touch "$HOME/.minecraft/benchmark.trigger"
@@ -184,7 +187,10 @@ jobs:
             xdotool mousemove_relative -- 100 0; sleep .8
             xdotool keydown d; sleep .7; xdotool keyup d; sleep .3
           done
-          for i in $(seq 1 25); do [ -f "$HOME/.minecraft/bench-result.json" ] && break; sleep 1; done
+          for i in $(seq 1 30); do [ -f "$HOME/.minecraft/bench-result.json" ] && break; sleep 1; done
+          if [ ! -f "$HOME/.minecraft/bench-result.json" ]; then
+            echo 'NO BENCH RESULT'; tail -250 client.log; exit 22
+          fi
           cat "$HOME/.minecraft/bench-result.json"
           cp "$HOME/.minecraft/bench-result.json" result.json
           kill -TERM $p 2>/dev/null || true
