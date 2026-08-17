@@ -153,7 +153,7 @@ jobs:
 
       - name: Configure deterministic client options
         run: |
-          mkdir -p "$HOME/.minecraft/saves" "$GITHUB_WORKSPACE/mangologs" "$GITHUB_WORKSPACE/screens"
+          mkdir -p "$HOME/.minecraft/saves" "$HOME/.config/MangoHud" "$GITHUB_WORKSPACE/mangologs" "$GITHUB_WORKSPACE/screens"
           rm -rf "$HOME/.minecraft/saves/benchworld"
           cp -a "$GITHUB_WORKSPACE/world-template" "$HOME/.minecraft/saves/benchworld"
           cat > "$HOME/.minecraft/options.txt" <<'EOF'
@@ -196,18 +196,12 @@ jobs:
           xdotool windowactivate "$WID" || true
           sleep 15
           import -window root "$GITHUB_WORKSPACE/screens/01-main-26.png" || true
-
-          # Title screen -> Singleplayer
           xdotool mousemove 427 235 click 1
           sleep 6
           import -window root "$GITHUB_WORKSPACE/screens/02-world-list-26.png" || true
-
-          # First world -> play by double-clicking the top world row.
           xdotool mousemove 425 93 click --repeat 2 --delay 180 1
           sleep 70
           import -window root "$GITHUB_WORKSPACE/screens/03-world-loaded-26.png" || true
-
-          # Start MangoHud frame logging, then perform a fixed 45-second camera/movement route.
           xdotool key shift+F2
           sleep 2
           for n in $(seq 1 6); do
@@ -218,7 +212,6 @@ jobs:
           xdotool key shift+F2
           sleep 4
           import -window root "$GITHUB_WORKSPACE/screens/04-after-bench-26.png" || true
-
           echo 'MangoHud logs:'
           find "$GITHUB_WORKSPACE/mangologs" -maxdepth 1 -type f -print -exec sh -c 'echo --- $1; head -n 8 "$1"; tail -n 8 "$1"' _ {} \; | tee "$GITHUB_WORKSPACE/mangohud-summary.txt"
           COUNT=$(find "$GITHUB_WORKSPACE/mangologs" -maxdepth 1 -type f | wc -l)
