@@ -19,7 +19,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Find and wait for latest combo matrix run
+      - name: Find latest combo matrix run
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -27,6 +27,24 @@ jobs:
           RUN_ID=$(gh run list --workflow mc-fps-combos.yml --limit 1 --json databaseId --jq '.[0].databaseId')
           echo "Matrix run: $RUN_ID"
           echo "RUN_ID=$RUN_ID" >> "$GITHUB_ENV"
+
+      - name: Publish matrix run ID
+        run: |
+          mkdir -p benchmark-results
+          printf '{\n  "matrix_run_id": "%s",\n  "state": "collecting"\n}\n' "$RUN_ID" > benchmark-results/status.json
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git pull --rebase
+          git add benchmark-results/status.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Publish Minecraft FPS matrix run status'
+            git push
+          fi
+
+      - name: Wait for combo matrix run
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
           gh run watch "$RUN_ID" || true
 
       - name: Download matrix artifacts
@@ -77,6 +95,8 @@ jobs:
           with open('benchmark-results/mc-26.1.2-combos.csv','w',newline='') as f:
               w=csv.DictWriter(f,fieldnames=fields); w.writeheader()
               for r in rows:w.writerow({k:r.get(k,'') for k in fields})
+          with open('benchmark-results/status.json','w') as f:
+              json.dump({'matrix_run_id':os.environ.get('RUN_ID'),'state':'complete','successful_results':len(rows)},f,indent=2)
           print(json.dumps(payload,indent=2))
           PY
 
@@ -85,7 +105,7 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git pull --rebase
-          git add benchmark-results/mc-26.1.2-combos.json benchmark-results/mc-26.1.2-combos.csv
+          git add benchmark-results/status.json benchmark-results/mc-26.1.2-combos.json benchmark-results/mc-26.1.2-combos.csv
           if git diff --cached --quiet; then
             echo 'No result changes to commit.'
           else
