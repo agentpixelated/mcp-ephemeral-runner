@@ -14,6 +14,7 @@ env:
   DISPLAY: ':99'
   LIBGL_ALWAYS_SOFTWARE: '1'
   MESA_GL_VERSION_OVERRIDE: '4.6'
+  ALSOFT_DRIVERS: 'null'
 
 jobs:
   benchmark:
@@ -25,16 +26,15 @@ jobs:
       - name: Install runtime
         run: |
           sudo apt-get update
-          sudo apt-get install -y openjdk-21-jre xvfb xdotool mesa-utils jq curl python3-pip imagemagick libgl1-mesa-dri libglx-mesa0 libasound2t64
+          sudo apt-get install -y openjdk-21-jre xvfb xdotool mesa-utils jq curl python3-pip imagemagick libgl1-mesa-dri libglx-mesa0
           python3 -m pip install --break-system-packages 'portablemc==4.4.1'
           echo 'JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64' >> "$GITHUB_ENV"
           echo '/usr/lib/jvm/java-21-openjdk-amd64/bin' >> "$GITHUB_PATH"
           /usr/lib/jvm/java-21-openjdk-amd64/bin/java -version
 
-      - name: Start virtual display and show renderer
+      - name: Start virtual display
         run: |
           Xvfb :99 -screen 0 854x480x24 -ac +extension GLX +render -noreset >xvfb.log 2>&1 &
-          echo $! > xvfb.pid
           sleep 2
           glxinfo -B | tee glxinfo.txt
           java -version
@@ -46,109 +46,61 @@ jobs:
           mkdir -p "$HOME/.minecraft/mods" "$GITHUB_WORKSPACE/modcache"
           cat > /tmp/modfetch.py <<'PY'
           import json, os, urllib.parse, urllib.request
-          MC='1.21.1'; LOADER='fabric'
-          out=os.environ['GITHUB_WORKSPACE']+'/modcache'
+          MC='1.21.1'; LOADER='fabric'; out=os.environ['GITHUB_WORKSPACE']+'/modcache'
           os.makedirs(out, exist_ok=True)
-          aliases={
-            'fpstest':'Cfyw5WXC', 'fabric-api':'fabric-api', 'sodium':'sodium',
-            'immediatelyfast':'immediatelyfast', 'entityculling':'entityculling',
-            'moreculling':'moreculling', 'lithium':'lithium',
-            'ferritecore':'ferrite-core', 'c2me':'c2me-fabric',
-          }
+          aliases={'fpstest':'Cfyw5WXC','fabric-api':'fabric-api','sodium':'sodium','immediatelyfast':'immediatelyfast','entityculling':'entityculling','moreculling':'moreculling','lithium':'lithium','ferritecore':'ferrite-core','c2me':'c2me-fabric'}
           def get(url):
-              req=urllib.request.Request(url, headers={'User-Agent':'mc-fps-bench/1.0 (github actions)'})
-              with urllib.request.urlopen(req, timeout=30) as r: return json.load(r)
+              req=urllib.request.Request(url,headers={'User-Agent':'mc-fps-bench/1.0'})
+              with urllib.request.urlopen(req,timeout=30) as r:return json.load(r)
           def project(key):
               ident=aliases.get(key,key)
-              try: return get('https://api.modrinth.com/v2/project/'+urllib.parse.quote(ident, safe=''))
+              try:return get('https://api.modrinth.com/v2/project/'+urllib.parse.quote(ident,safe=''))
               except Exception:
                   data=get('https://api.modrinth.com/v2/search?'+urllib.parse.urlencode({'query':ident,'limit':10}))
                   for h in data.get('hits',[]):
-                      if h.get('slug','').lower()==ident.lower() or h.get('title','').lower()==key.lower(): return h
+                      if h.get('slug','').lower()==ident.lower() or h.get('title','').lower()==key.lower():return h
                   raise
-          def compatible_versions(project_id):
-              qs=urllib.parse.urlencode({'loaders':json.dumps([LOADER]),'game_versions':json.dumps([MC])})
-              return get(f'https://api.modrinth.com/v2/project/{project_id}/version?{qs}')
-          def resolve(key, bucket):
-              p=project(key); pid=p['id']
-              if pid in bucket: return
-              vers=compatible_versions(pid)
-              if not vers: raise RuntimeError(f'No Fabric {MC} version for {key} ({pid})')
-              v=next((x for x in vers if x.get('version_type')=='release'), vers[0])
-              primary=next((f for f in v['files'] if f.get('primary')), v['files'][0])
-              fn=primary['filename']; url=primary['url']; path=os.path.join(out,fn)
+          def versions(pid):
+              q=urllib.parse.urlencode({'loaders':json.dumps([LOADER]),'game_versions':json.dumps([MC])})
+              return get(f'https://api.modrinth.com/v2/project/{pid}/version?{q}')
+          def resolve(key,bucket):
+              p=project(key);pid=p['id']
+              if pid in bucket:return
+              vs=versions(pid)
+              if not vs:raise RuntimeError(f'No Fabric {MC} version for {key}')
+              v=next((x for x in vs if x.get('version_type')=='release'),vs[0])
+              f=next((x for x in v['files'] if x.get('primary')),v['files'][0]);fn=f['filename'];path=os.path.join(out,fn)
               if not os.path.exists(path):
-                  print('DOWNLOAD', key, v.get('version_number'), fn, flush=True)
-                  req=urllib.request.Request(url, headers={'User-Agent':'mc-fps-bench/1.0'})
-                  with urllib.request.urlopen(req, timeout=120) as r, open(path,'wb') as w: w.write(r.read())
+                  print('DOWNLOAD',key,v.get('version_number'),fn,flush=True)
+                  req=urllib.request.Request(f['url'],headers={'User-Agent':'mc-fps-bench/1.0'})
+                  with urllib.request.urlopen(req,timeout=120) as r,open(path,'wb') as w:w.write(r.read())
               bucket[pid]={'key':key,'project_id':pid,'version_id':v['id'],'version':v.get('version_number'),'file':fn}
               for d in v.get('dependencies',[]):
-                  if d.get('dependency_type')!='required': continue
+                  if d.get('dependency_type')!='required':continue
                   if d.get('version_id'):
-                      dv=get('https://api.modrinth.com/v2/version/'+d['version_id'])
-                      dp=get('https://api.modrinth.com/v2/project/'+dv['project_id'])
-                      resolve(dp['slug'], bucket)
+                      dv=get('https://api.modrinth.com/v2/version/'+d['version_id']);dp=get('https://api.modrinth.com/v2/project/'+dv['project_id']);resolve(dp['slug'],bucket)
                   elif d.get('project_id'):
-                      dp=get('https://api.modrinth.com/v2/project/'+d['project_id'])
-                      resolve(dp['slug'], bucket)
-          roots=['fabric-api','fpstest','sodium','immediatelyfast','entityculling','moreculling','lithium','ferritecore','c2me']
-          manifests={}
+                      dp=get('https://api.modrinth.com/v2/project/'+d['project_id']);resolve(dp['slug'],bucket)
+          roots=['fabric-api','fpstest','sodium','immediatelyfast','entityculling','moreculling','lithium','ferritecore','c2me']; manifests={}
           for root in roots:
-              bucket={}; resolve(root,bucket); manifests[root]=list(bucket.values())
-          with open(out+'/manifest.json','w') as f: json.dump(manifests,f,indent=2)
+              b={};resolve(root,b);manifests[root]=list(b.values())
+          with open(out+'/manifest.json','w') as f:json.dump(manifests,f,indent=2)
           print(json.dumps(manifests,indent=2))
           PY
           python3 /tmp/modfetch.py
 
-      - name: Prepare baseline mods
+      - name: Prepare Sodium-only control
         run: |
-          set -e
           rm -f "$HOME/.minecraft/mods"/*.jar
           python3 - <<'PY'
-          import json, os, shutil
-          root=os.environ['GITHUB_WORKSPACE']+'/modcache'
-          m=json.load(open(root+'/manifest.json')); names={}
+          import json,os,shutil
+          root=os.environ['GITHUB_WORKSPACE']+'/modcache';m=json.load(open(root+'/manifest.json'));files={}
           for group in ('fabric-api','fpstest','sodium'):
-              for x in m[group]: names[x['file']]=x
-          for fn in names:
-              shutil.copy2(root+'/'+fn, os.path.expanduser('~/.minecraft/mods/'+fn)); print('USE',fn)
+              for x in m[group]:files[x['file']]=x
+          for fn in files:
+              shutil.copy2(root+'/'+fn,os.path.expanduser('~/.minecraft/mods/'+fn));print('USE',fn)
           PY
           ls -lh "$HOME/.minecraft/mods"
-
-      - name: Generate a reusable 1.21.1 world
-        run: |
-          set -euo pipefail
-          mkdir -p "$GITHUB_WORKSPACE/servergen"
-          cd "$GITHUB_WORKSPACE/servergen"
-          python3 - <<'PY'
-          import json, urllib.request
-          manifest=json.load(urllib.request.urlopen('https://piston-meta.mojang.com/mc/game/version_manifest_v2.json'))
-          u=next(x['url'] for x in manifest['versions'] if x['id']=='1.21.1')
-          v=json.load(urllib.request.urlopen(u)); url=v['downloads']['server']['url']
-          print(url); urllib.request.urlretrieve(url,'server.jar')
-          PY
-          echo 'eula=true' > eula.txt
-          cat > server.properties <<'EOF'
-          level-name=benchworld
-          online-mode=false
-          view-distance=6
-          simulation-distance=6
-          spawn-protection=0
-          EOF
-          java -Xms512M -Xmx1G -jar server.jar nogui > server.log 2>&1 &
-          SPID=$!
-          for i in $(seq 1 120); do
-            if grep -q 'Done (' server.log; then break; fi
-            if ! kill -0 "$SPID" 2>/dev/null; then cat server.log; exit 1; fi
-            sleep 1
-          done
-          grep 'Done (' server.log || { cat server.log; exit 1; }
-          kill -TERM "$SPID" || true
-          wait "$SPID" || true
-          mkdir -p "$HOME/.minecraft/saves"
-          rm -rf "$HOME/.minecraft/saves/benchworld"
-          cp -a benchworld "$HOME/.minecraft/saves/benchworld"
-          du -sh "$HOME/.minecraft/saves/benchworld"
 
       - name: Configure deterministic client options
         run: |
@@ -161,77 +113,73 @@ jobs:
           simulationDistance:8
           guiScale:2
           pauseOnLostFocus:false
-          graphicsMode:fast
+          graphicsMode:0
           clouds:false
           entityDistanceScaling:1.0
           mipmapLevels:4
+          narrator:0
           EOF
 
-      - name: Baseline smoke benchmark (Sodium only)
+      - name: Sodium-only benchmark smoke test
         shell: bash
         run: |
           set +e
           mkdir -p "$GITHUB_WORKSPACE/screens" "$GITHUB_WORKSPACE/results/baseline"
           rm -rf "$HOME/.minecraft/fpstest-reports"
+          find "$HOME/.minecraft" -name report.json -delete 2>/dev/null || true
           portablemc start -u BenchUser fabric:1.21.1 > "$GITHUB_WORKSPACE/client-baseline.log" 2>&1 &
           MC_PID=$!
           WID=''
           for i in $(seq 1 240); do
             WID=$(xdotool search --onlyvisible --name 'Minecraft' 2>/dev/null | head -n1)
             [ -n "$WID" ] && break
-            if ! kill -0 "$MC_PID" 2>/dev/null; then echo 'Minecraft exited early'; break; fi
-            sleep 1
-          done
-          if [ -z "$WID" ]; then
-            echo 'No Minecraft window found'; tail -n 250 "$GITHUB_WORKSPACE/client-baseline.log"; exit 2
-          fi
-          echo "Minecraft window=$WID"
-          sleep 12
-          import -window root "$GITHUB_WORKSPACE/screens/01-main.png" || true
-          xdotool mousemove 427 198 click 1
-          sleep 5
-          import -window root "$GITHUB_WORKSPACE/screens/02-world-list.png" || true
-          xdotool mousemove 427 95 click --repeat 2 --delay 180 1
-          sleep 55
-          import -window root "$GITHUB_WORKSPACE/screens/03-world.png" || true
-          xdotool key Escape
-          sleep 3
-          import -window root "$GITHUB_WORKSPACE/screens/04-pause.png" || true
-          xdotool mousemove 805 20 click 1
-          sleep 4
-          import -window root "$GITHUB_WORKSPACE/screens/05-fpstest-menu.png" || true
-          xdotool key Tab
-          sleep 1
-          xdotool key Return
-          sleep 8
-          import -window root "$GITHUB_WORKSPACE/screens/06-after-start.png" || true
-          FOUND=''
-          for i in $(seq 1 360); do
-            FOUND=$(find "$HOME/.minecraft/fpstest-reports" -name report.json -type f 2>/dev/null | head -n1)
-            [ -n "$FOUND" ] && break
             if ! kill -0 "$MC_PID" 2>/dev/null; then break; fi
             sleep 1
           done
-          import -window root "$GITHUB_WORKSPACE/screens/07-final.png" || true
+          if [ -z "$WID" ]; then echo 'No Minecraft window'; tail -n 300 "$GITHUB_WORKSPACE/client-baseline.log"; exit 2; fi
+          sleep 15
+          import -window root "$GITHUB_WORKSPACE/screens/01-main.png" || true
+
+          # Open FPS Test directly from the title screen.
+          xdotool mousemove 735 28 click 1
+          sleep 4
+          import -window root "$GITHUB_WORKSPACE/screens/02-fpstest-menu.png" || true
+
+          # Click the visible TEST MY FPS / Base FPS Benchmark button.
+          xdotool mousemove 426 310 click 1
+          sleep 10
+          import -window root "$GITHUB_WORKSPACE/screens/03-benchmark-start.png" || true
+
+          FOUND=''
+          for i in $(seq 1 420); do
+            FOUND=$(find "$HOME/.minecraft" -name report.json -type f 2>/dev/null | head -n1)
+            [ -n "$FOUND" ] && break
+            if ! kill -0 "$MC_PID" 2>/dev/null; then break; fi
+            if [ $((i%60)) -eq 0 ]; then import -window root "$GITHUB_WORKSPACE/screens/progress-$i.png" || true; fi
+            sleep 1
+          done
+          import -window root "$GITHUB_WORKSPACE/screens/04-final.png" || true
+          find "$HOME/.minecraft" -maxdepth 4 -type f \( -name 'report*' -o -name 'fps.csv' -o -name 'session.csv' -o -name 'system.json' \) -print | tee "$GITHUB_WORKSPACE/report-files.txt"
           if [ -n "$FOUND" ]; then
             echo "REPORT=$FOUND"; cp -a "$(dirname "$FOUND")"/. "$GITHUB_WORKSPACE/results/baseline/"; cat "$FOUND"; RC=0
           else
-            echo 'Benchmark report not produced.'; tail -n 300 "$GITHUB_WORKSPACE/client-baseline.log"; RC=3
+            echo 'Benchmark report not produced.'; tail -n 400 "$GITHUB_WORKSPACE/client-baseline.log"; RC=3
           fi
           kill -TERM "$MC_PID" 2>/dev/null || true; sleep 3; kill -KILL "$MC_PID" 2>/dev/null || true
           exit $RC
 
-      - name: Upload smoke diagnostics
+      - name: Upload diagnostics
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: mc-fps-smoke
+          name: mc-fps-smoke-v2
           path: |
             screens/
             results/
             client-baseline.log
             glxinfo.txt
             xvfb.log
+            report-files.txt
             modcache/manifest.json
           if-no-files-found: warn
           retention-days: 2
