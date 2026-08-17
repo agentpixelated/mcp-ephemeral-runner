@@ -27,7 +27,7 @@ jobs:
           RUN_ID=$(gh run list --workflow mc-fps-combos.yml --limit 1 --json databaseId --jq '.[0].databaseId')
           echo "Matrix run: $RUN_ID"
           echo "RUN_ID=$RUN_ID" >> "$GITHUB_ENV"
-          gh run watch "$RUN_ID" --exit-status
+          gh run watch "$RUN_ID" || true
 
       - name: Download matrix artifacts
         env:
@@ -41,7 +41,7 @@ jobs:
         run: |
           mkdir -p benchmark-results
           python3 - <<'PY'
-          import csv, glob, json, os, re
+          import csv, glob, json, os
           rows=[]
           for p in sorted(glob.glob('combo-artifacts/combo-*/result.json')):
               try:
@@ -84,6 +84,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git pull --rebase
           git add benchmark-results/mc-26.1.2-combos.json benchmark-results/mc-26.1.2-combos.csv
           if git diff --cached --quiet; then
             echo 'No result changes to commit.'
