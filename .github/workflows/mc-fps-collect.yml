@@ -1,0 +1,93 @@
+name: Collect Minecraft FPS combo results
+
+on:
+  push:
+    paths:
+      - '.github/workflows/mc-fps-collect.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  collect:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Find and wait for latest combo matrix run
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          RUN_ID=$(gh run list --workflow mc-fps-combos.yml --limit 1 --json databaseId --jq '.[0].databaseId')
+          echo "Matrix run: $RUN_ID"
+          echo "RUN_ID=$RUN_ID" >> "$GITHUB_ENV"
+          gh run watch "$RUN_ID" --exit-status
+
+      - name: Download matrix artifacts
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p combo-artifacts
+          gh run download "$RUN_ID" -D combo-artifacts
+          find combo-artifacts -maxdepth 2 -type f -print | sort
+
+      - name: Aggregate benchmark results
+        run: |
+          mkdir -p benchmark-results
+          python3 - <<'PY'
+          import csv, glob, json, os, re
+          rows=[]
+          for p in sorted(glob.glob('combo-artifacts/combo-*/result.json')):
+              try:
+                  d=json.load(open(p))
+              except Exception as e:
+                  print('SKIP',p,e); continue
+              folder=os.path.basename(os.path.dirname(p))
+              d['artifact']=folder
+              mp=os.path.join(os.path.dirname(p),'mods.txt')
+              d['mods']=open(mp).read().strip() if os.path.exists(mp) else ''
+              rows.append(d)
+          sodium=next((r for r in rows if r.get('config')=='sodium'),None)
+          fabric=next((r for r in rows if r.get('config')=='fabric_baseline'),None)
+          for r in rows:
+              if sodium and r.get('mean_fps') is not None:
+                  r['mean_vs_sodium_pct']=round((r['mean_fps']/sodium['mean_fps']-1)*100,3)
+                  r['median_vs_sodium_pct']=round((r['median_fps']/sodium['median_fps']-1)*100,3)
+                  r['one_percent_low_vs_sodium_pct']=round((r['one_percent_low_fps']/sodium['one_percent_low_fps']-1)*100,3)
+              if fabric and r.get('mean_fps') is not None:
+                  r['mean_vs_fabric_pct']=round((r['mean_fps']/fabric['mean_fps']-1)*100,3)
+          rows.sort(key=lambda r:r.get('mean_fps',-1), reverse=True)
+          payload={
+              'minecraft':'26.1.2',
+              'java':25,
+              'renderer':'Mesa llvmpipe software renderer on GitHub Actions',
+              'workload':'fixed seed, render distance 8, simulation distance 6, 20 s direct Fabric frame-time recording',
+              'source_run_id':os.environ.get('RUN_ID'),
+              'successful_results':len(rows),
+              'results_ranked_by_mean_fps':rows
+          }
+          with open('benchmark-results/mc-26.1.2-combos.json','w') as f: json.dump(payload,f,indent=2)
+          fields=['config','mods','samples','mean_fps','median_fps','one_percent_low_fps','zero_point_one_percent_low_fps','p99_frame_ms','mean_vs_sodium_pct','median_vs_sodium_pct','one_percent_low_vs_sodium_pct','mean_vs_fabric_pct']
+          with open('benchmark-results/mc-26.1.2-combos.csv','w',newline='') as f:
+              w=csv.DictWriter(f,fieldnames=fields); w.writeheader()
+              for r in rows:w.writerow({k:r.get(k,'') for k in fields})
+          print(json.dumps(payload,indent=2))
+          PY
+
+      - name: Commit aggregated results
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add benchmark-results/mc-26.1.2-combos.json benchmark-results/mc-26.1.2-combos.csv
+          if git diff --cached --quiet; then
+            echo 'No result changes to commit.'
+          else
+            git commit -m 'Add Minecraft 26.1.2 extended FPS benchmark results'
+            git push
+          fi
