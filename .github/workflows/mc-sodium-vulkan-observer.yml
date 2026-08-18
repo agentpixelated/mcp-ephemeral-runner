@@ -1,0 +1,42 @@
+name: Record Sodium Vulkan smoke result
+
+on:
+  workflow_run:
+    workflows: ["Minecraft 26.2 Sodium Vulkan smoke benchmark"]
+    types: [completed]
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  record:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Download smoke artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_ID: ${{ github.event.workflow_run.id }}
+        run: |
+          mkdir -p out benchmark-results
+          gh run download "$RUN_ID" -n sodium-vulkan-smoke -D out || true
+          if [ -f out/result.json ]; then
+            cp out/result.json benchmark-results/mc-26.2-sodium-vulkan-smoke.json
+            cp out/vulkaninfo.txt benchmark-results/mc-26.2-sodium-vulkaninfo.txt || true
+            printf '{"sodium_vulkan_run_id":"%s","state":"complete","result":true}\n' "$RUN_ID" > benchmark-results/sodium-vulkan-status.json
+          else
+            printf '{"sodium_vulkan_run_id":"%s","state":"complete","result":false}\n' "$RUN_ID" > benchmark-results/sodium-vulkan-status.json
+            cp out/client.log benchmark-results/mc-26.2-sodium-vulkan-client.log || true
+            cp out/vulkaninfo.txt benchmark-results/mc-26.2-sodium-vulkaninfo.txt || true
+          fi
+      - name: Commit result
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git pull --rebase || true
+          git add benchmark-results/
+          git commit -m 'Record Minecraft 26.2 Sodium Vulkan smoke result' || true
+          git push || true
