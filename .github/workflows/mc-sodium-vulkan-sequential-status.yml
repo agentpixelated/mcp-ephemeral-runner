@@ -1,4 +1,4 @@
-name: Track sequential Sodium Vulkan benchmark
+name: Track Sodium Vulkan benchmark runs
 
 on:
   push:
@@ -23,10 +23,12 @@ jobs:
         run: |
           mkdir -p benchmark-results
           gh run list --workflow mc-sodium-vulkan-sequential.yml --limit 1 --json databaseId,status,conclusion,createdAt,headSha > benchmark-results/sodium-vulkan-sequential-live.json
+          gh run list --workflow mc-sodium-vulkan-forced-matrix.yml --limit 1 --json databaseId,status,conclusion,createdAt,headSha > benchmark-results/sodium-vulkan-strict-matrix-live.json
           cat benchmark-results/sodium-vulkan-sequential-live.json
+          cat benchmark-results/sodium-vulkan-strict-matrix-live.json
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git pull --rebase
-          git add benchmark-results/sodium-vulkan-sequential-live.json
-          git commit -m 'Record Sodium Vulkan sequential live status' || true
+          git add benchmark-results/sodium-vulkan-sequential-live.json benchmark-results/sodium-vulkan-strict-matrix-live.json
+          git commit -m 'Record Sodium Vulkan benchmark live status' || true
           git push || true
