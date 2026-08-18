@@ -1,4 +1,4 @@
-name: Collect Minecraft Vulkan benchmark
+name: Collect Minecraft VulkanMod benchmark
 
 on:
   push:
@@ -13,46 +13,60 @@ permissions:
 jobs:
   collect:
     runs-on: ubuntu-24.04
-    timeout-minutes: 20
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Find smoke run
+      - name: Find VulkanMod matrix run
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          RUN_ID=$(gh run list --workflow mc-vulkan-smoke.yml --limit 1 --json databaseId --jq '.[0].databaseId')
+          RUN_ID=$(gh run list --workflow mc-vulkan-combos.yml --limit 1 --json databaseId --jq '.[0].databaseId')
           echo "RUN_ID=$RUN_ID" >> "$GITHUB_ENV"
           mkdir -p benchmark-results
-          printf '{"vulkan_smoke_run_id":"%s","state":"collecting"}\n' "$RUN_ID" > benchmark-results/vulkan-status.json
+          printf '{"vulkanmod_run_id":"%s","state":"collecting"}\n' "$RUN_ID" > benchmark-results/vulkanmod-status.json
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add benchmark-results/vulkan-status.json
-          git commit -m 'Record Vulkan smoke benchmark run' || true
+          git add benchmark-results/vulkanmod-status.json
+          git commit -m "Record VulkanMod benchmark run $RUN_ID" || true
           git push || true
           gh run watch "$RUN_ID" || true
-      - name: Download result
+      - name: Download available results
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          rm -rf vulkan-artifact
-          mkdir vulkan-artifact
-          gh run download "$RUN_ID" -n vulkan-smoke -D vulkan-artifact || true
-          find vulkan-artifact -maxdepth 2 -type f -print
-          mkdir -p benchmark-results
-          if [ -f vulkan-artifact/result.json ]; then
-            cp vulkan-artifact/result.json benchmark-results/mc-26.1.2-vulkan-smoke.json
-            cp vulkan-artifact/vulkaninfo.txt benchmark-results/mc-26.1.2-vulkaninfo.txt || true
-            printf '{"vulkan_smoke_run_id":"%s","state":"complete","result":true}\n' "$RUN_ID" > benchmark-results/vulkan-status.json
-          else
-            printf '{"vulkan_smoke_run_id":"%s","state":"complete","result":false}\n' "$RUN_ID" > benchmark-results/vulkan-status.json
-          fi
-      - name: Commit result
+          rm -rf vulkanmod-artifacts && mkdir vulkanmod-artifacts
+          gh run download "$RUN_ID" -D vulkanmod-artifacts || true
+      - name: Aggregate
+        run: |
+          python3 - <<'PY'
+          import csv,glob,json,os
+          rows=[]
+          for p in sorted(glob.glob('vulkanmod-artifacts/vulkan-*/result.json')):
+              try:d=json.load(open(p))
+              except:continue
+              mp=os.path.join(os.path.dirname(p),'mods.txt');d['mods']=open(mp).read().strip() if os.path.exists(mp) else ''
+              rows.append(d)
+          base=next((r for r in rows if r.get('config')=='vulkan'),None)
+          for r in rows:
+              if base:
+                  r['mean_vs_vulkanmod_pct']=round((r['mean_fps']/base['mean_fps']-1)*100,3)
+                  r['low1_vs_vulkanmod_pct']=round((r['one_percent_low_fps']/base['one_percent_low_fps']-1)*100,3)
+          rows.sort(key=lambda x:x.get('mean_fps',-1),reverse=True)
+          os.makedirs('benchmark-results',exist_ok=True)
+          payload={'suite':'VulkanMod','minecraft':'26.1.2','source_run_id':os.environ.get('RUN_ID'),'valid_results':len(rows),'results':rows}
+          json.dump(payload,open('benchmark-results/mc-26.1.2-vulkanmod.json','w'),indent=2)
+          fields=['config','mods','samples','mean_fps','median_fps','one_percent_low_fps','zero_point_one_percent_low_fps','p99_frame_ms','mean_vs_vulkanmod_pct','low1_vs_vulkanmod_pct']
+          with open('benchmark-results/mc-26.1.2-vulkanmod.csv','w',newline='') as f:
+              w=csv.DictWriter(f,fieldnames=fields);w.writeheader();[w.writerow({k:r.get(k,'') for k in fields}) for r in rows]
+          json.dump({'vulkanmod_run_id':os.environ.get('RUN_ID'),'state':'complete','valid_results':len(rows)},open('benchmark-results/vulkanmod-status.json','w'),indent=2)
+          PY
+      - name: Commit
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git pull --rebase || true
-          git add benchmark-results/vulkan-status.json benchmark-results/mc-26.1.2-vulkan-smoke.json benchmark-results/mc-26.1.2-vulkaninfo.txt 2>/dev/null || true
-          git commit -m 'Add Minecraft 26.1.2 Vulkan smoke benchmark result' || true
+          git add benchmark-results/vulkanmod-status.json benchmark-results/mc-26.1.2-vulkanmod.json benchmark-results/mc-26.1.2-vulkanmod.csv
+          git commit -m 'Add VulkanMod benchmark results' || true
           git push || true
