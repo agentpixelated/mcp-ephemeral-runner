@@ -25,17 +25,16 @@ jobs:
         with:
           distribution: temurin
           java-version: '25'
-      - name: Prepare minimal runtime
+      - name: Prepare Vulkan runtime
         run: |
-          set -x
-          which Xvfb || true
-          ls -l /usr/share/vulkan/icd.d 2>/dev/null || true
-          ldconfig -p | grep -i vulkan || true
+          set -e
           python3 -m pip install --break-system-packages -q 'portablemc==4.4.1'
-          if ! command -v Xvfb >/dev/null; then
-            sudo apt-get update -qq
-            sudo apt-get install -y -qq xvfb mesa-vulkan-drivers libvulkan1
-          fi
+          # Xvfb and libvulkan loader are already present on the runner, but the
+          # Mesa Vulkan ICD is not. Install the actual software Vulkan device.
+          sudo apt-get install -y -qq mesa-vulkan-drivers libvulkan1
+          test -d /usr/share/vulkan/icd.d
+          ls -la /usr/share/vulkan/icd.d
+          ldconfig -p | grep -i vulkan
           Xvfb :99 -screen 0 854x480x24 -ac -noreset >xvfb.log 2>&1 &
           sleep 2
       - name: Fetch Fabric API and Sodium
@@ -45,7 +44,7 @@ jobs:
           import json,urllib.request,urllib.parse
           mc='26.2';seen=set()
           def get(u):
-              return json.load(urllib.request.urlopen(urllib.request.Request(u,headers={'User-Agent':'svk-fastprobe/1'}),timeout=30))
+              return json.load(urllib.request.urlopen(urllib.request.Request(u,headers={'User-Agent':'svk-fastprobe/2'}),timeout=30))
           def add(slug):
               p=get('https://api.modrinth.com/v2/project/'+urllib.parse.quote(slug,safe=''))
               if p['id'] in seen:return
@@ -62,7 +61,7 @@ jobs:
           add('fabric-api');add('sodium')
           PY
           cp modcache/*.jar "$HOME/.minecraft/mods/"
-      - name: Resolve Fabric version metadata
+      - name: Resolve and patch Fabric metadata
         run: |
           set +e
           timeout 40s portablemc start -u BenchUser fabric:26.2 >resolve.log 2>&1 & p=$!
@@ -74,33 +73,32 @@ jobs:
           pkill -f 'KnotClient|net.minecraft.client.main.Main' 2>/dev/null || true
           sleep 2
           set -e
-      - name: Inject graphicsBackend Vulkan
-        run: |
           python3 - <<'PY'
           import glob,json,os
-          ps=glob.glob(os.path.expanduser('~/.minecraft/versions/**/*26.2*.json'),recursive=True)
-          print('candidates',ps)
-          n=0
+          ps=glob.glob(os.path.expanduser('~/.minecraft/versions/**/*26.2*.json'),recursive=True);n=0
           for p in ps:
               try:d=json.load(open(p))
               except:continue
               a=d.setdefault('arguments',{}).setdefault('game',[])
               if '--graphicsBackend' not in a:a.extend(['--graphicsBackend','vulkan'])
-              json.dump(d,open(p,'w'),indent=2);print('PATCHED',p,a);n+=1
+              json.dump(d,open(p,'w'),indent=2);print('PATCHED',p);n+=1
           if not n:raise SystemExit('no metadata patched')
           PY
-      - name: Launch and classify backend
+      - name: Launch and strictly classify backend
         run: |
           set +e
           timeout 90s portablemc start -u BenchUser fabric:26.2 >client.log 2>&1 & p=$!
           classification=unknown
           for i in $(seq 1 75); do
+            if grep -qi 'Failed to create backend Vulkan' client.log; then classification=vulkan_failed; break; fi
             if grep -qi 'Using graphics backend OpenGL' client.log; then classification=opengl; break; fi
-            if grep -qiE 'Using graphics backend Vulkan|graphics backend.*Vulkan' client.log; then classification=vulkan; break; fi
+            if grep -qi 'Using graphics backend Vulkan' client.log; then classification=vulkan; break; fi
             kill -0 $p 2>/dev/null || break
             sleep 1
           done
-          grep -Ei 'graphics backend|Vulkan|OpenGL|graphics device|renderer|failed|error' client.log | tail -160 > backend-proof.txt || true
+          sleep 2
+          if grep -qi 'Failed to create backend Vulkan' client.log; then classification=vulkan_failed; fi
+          grep -Ei 'graphics backend|Vulkan|OpenGL|graphics device|renderer|failed|error' client.log | tail -200 > backend-proof.txt || true
           cat backend-proof.txt
           kill -TERM $p 2>/dev/null || true
           mkdir -p benchmark-results
@@ -113,5 +111,5 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git pull --rebase
           git add benchmark-results/sodium-vulkan-fastprobe.json benchmark-results/sodium-vulkan-fastprobe-proof.txt
-          git commit -m 'Record Sodium 26.2 Vulkan fast probe' || true
+          git commit -m 'Record Sodium 26.2 Vulkan ICD probe' || true
           git push || true
