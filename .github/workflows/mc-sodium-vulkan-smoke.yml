@@ -1,4 +1,4 @@
-name: Minecraft 26.2 Sodium Vulkan smoke benchmark
+name: Minecraft 26.2 Sodium forced Vulkan smoke benchmark
 
 on:
   push:
@@ -12,6 +12,7 @@ permissions:
 env:
   DISPLAY: ':99'
   ALSOFT_DRIVERS: 'null'
+  VK_LOADER_DEBUG: 'error'
 
 jobs:
   smoke:
@@ -40,7 +41,7 @@ jobs:
           import json, urllib.parse, urllib.request
           mc='26.2'
           def get(u):
-              r=urllib.request.Request(u,headers={'User-Agent':'mc-sodium-vulkan-smoke/1.0'})
+              r=urllib.request.Request(u,headers={'User-Agent':'mc-sodium-vulkan-forced-smoke/2.0'})
               return json.load(urllib.request.urlopen(r,timeout=30))
           seen=set()
           def add(slug):
@@ -59,7 +60,6 @@ jobs:
           add('fabric-api'); add('sodium')
           PY
           cp modcache/*.jar "$HOME/.minecraft/mods/"
-          ls -lh "$HOME/.minecraft/mods"
 
       - name: Build frame logger
         run: |
@@ -83,7 +83,7 @@ jobs:
             public void onInitializeClient(){Path g=FabricLoader.getInstance().getGameDir();trigger=g.resolve("benchmark.trigger");result=g.resolve("bench-result.json");try{Files.deleteIfExists(trigger);Files.deleteIfExists(result);}catch(Exception ignored){}System.out.println("FRAMEBENCH READY");LevelRenderEvents.END_MAIN.register(c->frame());}
             static void frame(){if(done)return;long n=System.nanoTime();if(!active){if(Files.exists(trigger)){active=true;start=last=n;f.clear();System.out.println("FRAMEBENCH START");}return;}if(n-start<DUR){long d=n-last;last=n;if(d>0&&d<2_000_000_000L)f.add(d);return;}done=true;write();}
             static long p(List<Long>s,double q){int i=(int)Math.ceil(q*s.size())-1;return s.get(Math.max(0,Math.min(s.size()-1,i)));}
-            static void write(){try{List<Long>s=new ArrayList<>(f);Collections.sort(s);long sum=0;for(long x:f)sum+=x;double mean=f.size()*1e9/sum,med=1e9/p(s,.5),low1=1e9/p(s,.99),low01=1e9/p(s,.999);String j=String.format(Locale.ROOT,"{\"config\":\"sodium_vulkan\",\"samples\":%d,\"mean_fps\":%.4f,\"median_fps\":%.4f,\"one_percent_low_fps\":%.4f,\"zero_point_one_percent_low_fps\":%.4f,\"p99_frame_ms\":%.4f}\n",f.size(),mean,med,low1,low01,p(s,.99)/1e6);Files.writeString(result,j);System.out.println("FRAMEBENCH DONE "+j);}catch(Exception e){e.printStackTrace();}}
+            static void write(){try{List<Long>s=new ArrayList<>(f);Collections.sort(s);long sum=0;for(long x:f)sum+=x;double mean=f.size()*1e9/sum,med=1e9/p(s,.5),low1=1e9/p(s,.99),low01=1e9/p(s,.999);String j=String.format(Locale.ROOT,"{\"config\":\"sodium_forced_vulkan\",\"samples\":%d,\"mean_fps\":%.4f,\"median_fps\":%.4f,\"one_percent_low_fps\":%.4f,\"zero_point_one_percent_low_fps\":%.4f,\"p99_frame_ms\":%.4f}\n",f.size(),mean,med,low1,low01,p(s,.99)/1e6);Files.writeString(result,j);System.out.println("FRAMEBENCH DONE "+j);}catch(Exception e){e.printStackTrace();}}
           }
           JAVA
           ./gradlew build --no-daemon -q
@@ -107,7 +107,43 @@ jobs:
           mkdir -p "$HOME/.minecraft/saves/benchworld"
           cp -a benchworld/. "$HOME/.minecraft/saves/benchworld/"
 
-      - name: Run Sodium Vulkan benchmark
+      - name: Install client metadata then inject forced Vulkan argument
+        run: |
+          set +e
+          # First invocation is only to make PortableMC resolve/download the Fabric metadata.
+          timeout 55s portablemc start -u BenchUser fabric:26.2 >install-pass.log 2>&1 & ip=$!
+          for i in $(seq 1 55); do
+            ls "$HOME/.minecraft/versions"/*26.2*/*.json >/dev/null 2>&1 && break
+            sleep 1
+          done
+          sleep 5
+          kill -TERM $ip 2>/dev/null || true
+          pkill -f 'net.fabricmc.loader.impl.launch.knot.KnotClient' 2>/dev/null || true
+          pkill -f 'net.minecraft.client.main.Main' 2>/dev/null || true
+          sleep 2
+          set -e
+          python3 - <<'PY'
+          import glob,json,os
+          paths=glob.glob(os.path.expanduser('~/.minecraft/versions/*26.2*/*.json'))
+          print('VERSION JSONS',*paths,sep='\n')
+          patched=[]
+          for p in paths:
+              try:d=json.load(open(p))
+              except Exception:continue
+              args=d.setdefault('arguments',{})
+              game=args.setdefault('game',[])
+              # Avoid duplicates when the file is inherited/rewritten.
+              if '--graphicsBackend' not in game:
+                  game += ['--graphicsBackend','vulkan']
+              with open(p,'w') as f:json.dump(d,f,indent=2)
+              patched.append(p)
+          if not patched: raise SystemExit('No 26.2 metadata JSON was patched')
+          print('PATCHED',*patched,sep='\n')
+          for p in patched:
+              d=json.load(open(p)); print(p, d.get('arguments',{}).get('game'))
+          PY
+
+      - name: Run and validate forced Vulkan
         run: |
           cat > "$HOME/.minecraft/options.txt" <<'EOF'
           fullscreen:false
@@ -129,9 +165,21 @@ jobs:
           timeout 220s portablemc start -u BenchUser fabric:26.2 >client.log 2>&1 & p=$!
           wid=''
           for i in $(seq 1 120); do wid=$(xdotool search --onlyvisible --name Minecraft 2>/dev/null | head -1); [ -n "$wid" ] && break; kill -0 $p 2>/dev/null || break; sleep 1; done
+          sleep 6
+          grep -Ei 'graphics backend|Vulkan|OpenGL|graphics device|renderer' client.log | tail -100 | tee backend-proof.txt || true
+          if grep -qi 'Using graphics backend OpenGL' client.log; then
+            echo 'INVALID: Minecraft fell back to OpenGL despite --graphicsBackend vulkan'
+            kill -TERM $p 2>/dev/null || true
+            exit 31
+          fi
+          if ! grep -qiE 'Using graphics backend Vulkan|Vulkan.*(device|backend)|graphics backend.*Vulkan' client.log; then
+            echo 'INVALID: no proof of Vulkan backend'
+            kill -TERM $p 2>/dev/null || true
+            exit 32
+          fi
           [ -n "$wid" ] || { echo 'NO WINDOW'; tail -300 client.log; exit 21; }
           xdotool windowactivate "$wid" || true
-          sleep 10
+          sleep 6
           xdotool mousemove 427 235 click 1
           sleep 5
           xdotool mousemove 315 120 click 1
@@ -142,8 +190,6 @@ jobs:
           touch "$HOME/.minecraft/benchmark.trigger"
           for n in $(seq 1 6); do xdotool keydown w; sleep 1.2; xdotool keyup w; xdotool mousemove_relative -- 100 0; sleep .8; xdotool keydown d; sleep .7; xdotool keyup d; sleep .3; done
           for i in $(seq 1 25); do [ -f "$HOME/.minecraft/bench-result.json" ] && break; sleep 1; done
-          echo '--- GRAPHICS BACKEND LINES ---'
-          grep -Ei 'vulkan|graphics backend|renderer|device' client.log | tail -100 || true
           [ -f "$HOME/.minecraft/bench-result.json" ] || { echo 'NO RESULT'; tail -300 client.log; exit 22; }
           cat "$HOME/.minecraft/bench-result.json"
           cp "$HOME/.minecraft/bench-result.json" result.json
@@ -153,10 +199,12 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: sodium-vulkan-smoke
+          name: sodium-forced-vulkan-smoke
           path: |
             result.json
             client.log
+            install-pass.log
+            backend-proof.txt
             world-loaded.png
             vulkaninfo.txt
             xvfb.log
