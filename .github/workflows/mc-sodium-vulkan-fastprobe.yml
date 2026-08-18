@@ -1,0 +1,117 @@
+name: Fast probe Sodium 26.2 Vulkan backend
+
+on:
+  push:
+    paths:
+      - '.github/workflows/mc-sodium-vulkan-fastprobe.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+env:
+  DISPLAY: ':99'
+  ALSOFT_DRIVERS: 'null'
+
+jobs:
+  probe:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '25'
+      - name: Prepare minimal runtime
+        run: |
+          set -x
+          which Xvfb || true
+          ls -l /usr/share/vulkan/icd.d 2>/dev/null || true
+          ldconfig -p | grep -i vulkan || true
+          python3 -m pip install --break-system-packages -q 'portablemc==4.4.1'
+          if ! command -v Xvfb >/dev/null; then
+            sudo apt-get update -qq
+            sudo apt-get install -y -qq xvfb mesa-vulkan-drivers libvulkan1
+          fi
+          Xvfb :99 -screen 0 854x480x24 -ac -noreset >xvfb.log 2>&1 &
+          sleep 2
+      - name: Fetch Fabric API and Sodium
+        run: |
+          mkdir -p "$HOME/.minecraft/mods" modcache
+          python3 - <<'PY'
+          import json,urllib.request,urllib.parse
+          mc='26.2';seen=set()
+          def get(u):
+              return json.load(urllib.request.urlopen(urllib.request.Request(u,headers={'User-Agent':'svk-fastprobe/1'}),timeout=30))
+          def add(slug):
+              p=get('https://api.modrinth.com/v2/project/'+urllib.parse.quote(slug,safe=''))
+              if p['id'] in seen:return
+              seen.add(p['id'])
+              q=urllib.parse.urlencode({'loaders':json.dumps(['fabric']),'game_versions':json.dumps([mc])})
+              vs=get(f"https://api.modrinth.com/v2/project/{p['id']}/version?{q}")
+              if not vs: raise SystemExit('no version '+slug)
+              v=next((x for x in vs if x.get('version_type')=='release'),vs[0])
+              f=next((x for x in v['files'] if x.get('primary')),v['files'][0])
+              urllib.request.urlretrieve(f['url'],'modcache/'+f['filename']);print('USE',slug,v['version_number'])
+              for d in v.get('dependencies',[]):
+                  if d.get('dependency_type')=='required' and d.get('project_id'):
+                      add(get('https://api.modrinth.com/v2/project/'+d['project_id'])['slug'])
+          add('fabric-api');add('sodium')
+          PY
+          cp modcache/*.jar "$HOME/.minecraft/mods/"
+      - name: Resolve Fabric version metadata
+        run: |
+          set +e
+          timeout 40s portablemc start -u BenchUser fabric:26.2 >resolve.log 2>&1 & p=$!
+          for i in $(seq 1 40); do
+            find "$HOME/.minecraft/versions" -type f -name '*.json' 2>/dev/null | grep -q '26.2' && break
+            sleep 1
+          done
+          kill -TERM $p 2>/dev/null || true
+          pkill -f 'KnotClient|net.minecraft.client.main.Main' 2>/dev/null || true
+          sleep 2
+          set -e
+      - name: Inject graphicsBackend Vulkan
+        run: |
+          python3 - <<'PY'
+          import glob,json,os
+          ps=glob.glob(os.path.expanduser('~/.minecraft/versions/**/*26.2*.json'),recursive=True)
+          print('candidates',ps)
+          n=0
+          for p in ps:
+              try:d=json.load(open(p))
+              except:continue
+              a=d.setdefault('arguments',{}).setdefault('game',[])
+              if '--graphicsBackend' not in a:a.extend(['--graphicsBackend','vulkan'])
+              json.dump(d,open(p,'w'),indent=2);print('PATCHED',p,a);n+=1
+          if not n:raise SystemExit('no metadata patched')
+          PY
+      - name: Launch and classify backend
+        run: |
+          set +e
+          timeout 90s portablemc start -u BenchUser fabric:26.2 >client.log 2>&1 & p=$!
+          classification=unknown
+          for i in $(seq 1 75); do
+            if grep -qi 'Using graphics backend OpenGL' client.log; then classification=opengl; break; fi
+            if grep -qiE 'Using graphics backend Vulkan|graphics backend.*Vulkan' client.log; then classification=vulkan; break; fi
+            kill -0 $p 2>/dev/null || break
+            sleep 1
+          done
+          grep -Ei 'graphics backend|Vulkan|OpenGL|graphics device|renderer|failed|error' client.log | tail -160 > backend-proof.txt || true
+          cat backend-proof.txt
+          kill -TERM $p 2>/dev/null || true
+          mkdir -p benchmark-results
+          printf '{"classification":"%s"}\n' "$classification" > benchmark-results/sodium-vulkan-fastprobe.json
+          cp backend-proof.txt benchmark-results/sodium-vulkan-fastprobe-proof.txt
+          set -e
+      - name: Commit classification
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git pull --rebase
+          git add benchmark-results/sodium-vulkan-fastprobe.json benchmark-results/sodium-vulkan-fastprobe-proof.txt
+          git commit -m 'Record Sodium 26.2 Vulkan fast probe' || true
+          git push || true
