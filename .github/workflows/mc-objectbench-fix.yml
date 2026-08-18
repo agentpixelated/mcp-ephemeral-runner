@@ -1,0 +1,35 @@
+name: Patch ObjectBench JVM cleanup
+on:
+  push:
+    paths:
+      - '.github/workflows/mc-objectbench-fix.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Add hard Minecraft child-process cleanup
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('.github/workflows/mc-sodium-opengl-vulkan-objectbench.yml')
+          s=p.read_text()
+          old="""          for backend,rep in order:\n              tag=f'{backend}_{rep}'; print('\\n===== '+tag+' =====',flush=True); patch(backend)\n              save=home+'/saves/benchworld'; shutil.rmtree(save,ignore_errors=True); shutil.copytree('world-template',save)\n"""
+          new="""          for backend,rep in order:\n              tag=f'{backend}_{rep}'; print('\\n===== '+tag+' =====',flush=True)\n              subprocess.run(\"pkill -TERM -f 'net.minecraft.client.main.Main|KnotClient' || true\",shell=True)\n              time.sleep(2)\n              subprocess.run(\"pkill -KILL -f 'net.minecraft.client.main.Main|KnotClient' || true\",shell=True)\n              time.sleep(1)\n              patch(backend)\n              save=home+'/saves/benchworld'; shutil.rmtree(save,ignore_errors=True); shutil.copytree('world-template',save)\n"""
+          if old not in s: raise SystemExit('start pattern not found')
+          s=s.replace(old,new,1)
+          old2="""              p.terminate()\n              try:p.wait(timeout=8)\n              except: p.kill()\n              log.close();time.sleep(3)\n"""
+          new2="""              p.terminate()\n              try:p.wait(timeout=8)\n              except: p.kill()\n              subprocess.run(\"pkill -TERM -f 'net.minecraft.client.main.Main|KnotClient' || true\",shell=True)\n              time.sleep(3)\n              subprocess.run(\"pkill -KILL -f 'net.minecraft.client.main.Main|KnotClient' || true\",shell=True)\n              time.sleep(2)\n              log.close()\n"""
+          if old2 not in s: raise SystemExit('end pattern not found')
+          p.write_text(s.replace(old2,new2,1))
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .github/workflows/mc-sodium-opengl-vulkan-objectbench.yml
+          git commit -m 'Hard-clean Minecraft JVM between ObjectBench repetitions'
+          git push
