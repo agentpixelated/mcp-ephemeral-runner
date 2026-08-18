@@ -14,11 +14,12 @@ jobs:
   cleanup:
     runs-on: ubuntu-24.04
     steps:
-      - name: Cancel invalid or obsolete runs
+      - name: Cancel obsolete runs
         env:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
         run: |
           gh run cancel 32090408886 || true
           gh run cancel 32091261533 || true
-          echo 'Cancelled old OpenGL-fallback Sodium matrix and stuck forced smoke.'
+          gh run cancel 32090256219 || true
+          echo 'Freed runners from old Sodium fallback and completed-enough VulkanMod matrix.'
