@@ -1,8 +1,0 @@
-{
-  "id": "github-actions-proof-20260818",
-  "kind": "exec",
-  "payload": {
-    "argv": ["python3", "-c", "import platform; print('github-long-job-ok', platform.system())"],
-    "timeout_ms": 30000
-  }
-}
