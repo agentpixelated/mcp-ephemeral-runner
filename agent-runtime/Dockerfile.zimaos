@@ -1,0 +1,17 @@
+FROM node:22-bookworm-slim
+
+ENV DEBIAN_FRONTEND=noninteractive \
+    AGENT_DATA_DIR=/data \
+    AGENT_PYTHON=/opt/agent-runtime-venv/bin/python
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+      ca-certificates curl python3 python3-venv xvfb openbox chromium x11vnc websockify scrot \
+    && python3 -m venv /opt/agent-runtime-venv \
+    && /opt/agent-runtime-venv/bin/pip install --no-cache-dir pyautogui pillow python-xlib \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+COPY . /app
+
+VOLUME ["/data"]
+CMD ["node", "agent-runtime/worker.mjs"]
