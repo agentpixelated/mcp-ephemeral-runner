@@ -41,12 +41,14 @@ function lanAddresses() {
 }
 
 async function tailscaleMetadata() {
+  const configured = String(process.env.AGENT_TAILSCALE_IP || '').trim();
+  if (configured) return { available: true, ipv4: configured, source: 'environment' };
   try {
     const { stdout } = await execFileAsync('tailscale', ['ip', '-4'], { timeout: 5000 });
     const ipv4 = stdout.trim().split(/\s+/)[0] || null;
-    return { available: Boolean(ipv4), ipv4 };
+    return { available: Boolean(ipv4), ipv4, source: 'cli' };
   } catch {
-    return { available: false, ipv4: null };
+    return { available: false, ipv4: null, source: null };
   }
 }
 
@@ -61,6 +63,7 @@ async function heartbeat() {
       node: process.version,
       pid: process.pid,
       hostname: os.hostname(),
+      containerized: process.env.AGENT_CONTAINERIZED === '1',
       tailscale,
       lan_ipv4: lanAddresses(),
     },
