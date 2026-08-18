@@ -1,0 +1,10 @@
+	   |-- fabric-renderer-api-v1 14.1.3+2b0d8a229e
+	   |-- fabric-renderer-indigo 9.1.3+2b0d8a229e
+[02:23:34] [main] [WARN] Sodium has applied one or more workarounds to prevent crashes or other issues on your system: [NO_ERROR_CONTEXT_UNSUPPORTED]
+[02:23:39] [Download-2] [ERROR] Failed to fetch user properties
+Caused by: MinecraftClientHttpException[type=HTTP_ERROR, status=401, response=ErrorResponse[path=/player/attributes, error=null, errorMessage=null, details=null]]
+[02:23:40] [Render thread] [WARN] Graphics backend forced to vulkan by launch argument, in-game preferred graphics backend setting is ignored
+[02:23:40] [Render thread] [ERROR] Failed to create backend Vulkan
+com.mojang.blaze3d.systems.BackendCreationException: Failed to find the GLFW platform surface extensions
+	at knot//com.mojang.blaze3d.vulkan.VulkanInstance.<init>(VulkanInstance.java:64)
+	at knot//com.mojang.blaze3d.vulkan.VulkanBackend.createDevice(VulkanBackend.java:148)
