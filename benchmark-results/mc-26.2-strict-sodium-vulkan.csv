@@ -1,0 +1,15 @@
+config,mods,samples,mean_fps,median_fps,one_percent_low_fps,zero_point_one_percent_low_fps,p99_frame_ms,vs_sodium_vulkan_pct,vulkan_proven
+sodium_vulkan_immediatelyfast,"fabric-api,sodium,immediatelyfast",320,21.3443,23.7039,8.9285,7.8156,112.0004,50.037,True
+sodium_vulkan_if_lithium,"fabric-api,sodium,immediatelyfast,lithium",299,19.9702,20.4385,14.0714,10.8075,71.066,40.378,True
+sodium_vulkan_mc_lithium,"fabric-api,sodium,moreculling,lithium",298,19.8915,20.4983,13.6809,9.8618,73.0946,39.825,True
+sodium_vulkan_if_mc,"fabric-api,sodium,immediatelyfast,moreculling",293,19.5417,20.8043,9.516,6.6082,105.0866,37.366,True
+sodium_vulkan_lithium,"fabric-api,sodium,lithium",220,14.7096,17.4046,5.0805,4.1412,196.8329,3.399,True
+sodium_vulkan_ec_mc_lithium,"fabric-api,sodium,entityculling,moreculling,lithium",215,14.359,16.9602,5.8387,5.2372,171.2713,0.935,True
+sodium_vulkan_moreculling,"fabric-api,sodium,moreculling",213,14.2469,16.288,5.48,4.968,182.483,0.147,True
+sodium_vulkan,"fabric-api,sodium",212,14.226,16.6187,6.356,5.8806,157.3312,0.0,True
+sodium_vulkan_full_no_c2me,"fabric-api,sodium,immediatelyfast,entityculling,moreculling,lithium,ferritecore",204,13.651,16.5952,5.4756,4.9911,182.6287,-4.042,True
+sodium_vulkan_c2me,"fabric-api,sodium,c2me",203,13.5614,16.4127,7.0168,6.0754,142.5159,-4.672,True
+sodium_vulkan_entityculling,"fabric-api,sodium,entityculling",203,13.5601,15.4235,6.2454,5.0012,160.1178,-4.681,True
+sodium_vulkan_ferritecore,"fabric-api,sodium,ferritecore",202,13.5112,16.2486,4.4133,3.6427,226.5865,-5.025,True
+sodium_vulkan_if_mc_lithium,"fabric-api,sodium,immediatelyfast,moreculling,lithium",176,11.7498,13.5493,5.1258,4.7855,195.0899,-17.406,True
+sodium_vulkan_full,"fabric-api,sodium,immediatelyfast,entityculling,moreculling,lithium,ferritecore,c2me",173,11.5557,13.7398,5.2745,4.8258,189.5918,-18.771,True
