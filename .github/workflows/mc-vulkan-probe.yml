@@ -1,4 +1,4 @@
-name: Probe Vulkan benchmark runs
+name: Probe Minecraft 26.2 graphics arguments
 
 on:
   push:
@@ -8,7 +8,6 @@ on:
 
 permissions:
   contents: write
-  actions: read
 
 jobs:
   probe:
@@ -17,17 +16,46 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Record run IDs
-        env:
-          GH_TOKEN: ${{ github.token }}
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '25'
+      - name: Inspect official 26.2 client Main
         run: |
-          mkdir -p benchmark-results
-          VM=$(gh run list --workflow mc-vulkan-smoke.yml --limit 1 --json databaseId,status,conclusion --jq '.[0]')
-          SV=$(gh run list --workflow mc-sodium-vulkan-smoke.yml --limit 1 --json databaseId,status,conclusion --jq '.[0]')
-          printf '{"vulkanmod":%s,"sodium_vulkan":%s}\n' "$VM" "$SV" > benchmark-results/vulkan-runs.json
-          cat benchmark-results/vulkan-runs.json
+          set -euo pipefail
+          mkdir -p probe benchmark-results
+          python3 - <<'PY'
+          import json, urllib.request
+          m=json.load(urllib.request.urlopen('https://piston-meta.mojang.com/mc/game/version_manifest_v2.json'))
+          u=next(x['url'] for x in m['versions'] if x['id']=='26.2')
+          v=json.load(urllib.request.urlopen(u))
+          print('metadata',u)
+          print('client',v['downloads']['client']['url'])
+          urllib.request.urlretrieve(v['downloads']['client']['url'],'probe/client.jar')
+          if 'client_mappings' in v.get('downloads',{}):
+              urllib.request.urlretrieve(v['downloads']['client_mappings']['url'],'probe/client_mappings.txt')
+          PY
+          {
+            echo '=== MAIN CLASS STRINGS ==='
+            unzip -p probe/client.jar net/minecraft/client/main/Main.class 2>/dev/null | strings | grep -Ei -C3 'vulkan|graphics|validation|backend|api' || true
+            echo
+            echo '=== JAVAP MAIN ==='
+            javap -classpath probe/client.jar -p -c -verbose net.minecraft.client.main.Main 2>&1 | grep -Ei -C8 'vulkan|graphics|validation|backend|accepts|force' || true
+            echo
+            echo '=== ALL RELEVANT CLASS STRINGS ==='
+            for c in net/minecraft/client/main/Main.class net/minecraft/client/Options.class net/minecraft/client/PreferredGraphicsApi.class; do
+              echo "--- $c"
+              unzip -p probe/client.jar "$c" 2>/dev/null | strings | grep -Ei -C3 'vulkan|graphics|validation|backend|opengl|force' || true
+            done
+            echo
+            echo '=== MAPPING HINTS ==='
+            grep -Ei -C2 'Main|PreferredGraphicsApi|forcedGraphicsApi|vulkanValidation|preferredGraphicsBackend' probe/client_mappings.txt 2>/dev/null | head -400 || true
+          } | tee benchmark-results/mc-26.2-graphics-probe.txt
+      - name: Commit probe
+        run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add benchmark-results/vulkan-runs.json
-          git commit -m 'Record Vulkan benchmark run IDs' || true
+          git pull --rebase
+          git add benchmark-results/mc-26.2-graphics-probe.txt
+          git commit -m 'Record Minecraft 26.2 graphics argument probe' || true
           git push || true
