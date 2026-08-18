@@ -1,0 +1,197 @@
+name: Minecraft 26.2 strict Sodium Vulkan matrix
+
+on:
+  push:
+    paths:
+      - '.github/workflows/mc-sodium-vulkan-forced-matrix.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  DISPLAY: ':99'
+  ALSOFT_DRIVERS: 'null'
+
+jobs:
+  bench:
+    strategy:
+      fail-fast: false
+      max-parallel: 6
+      matrix:
+        include:
+          - { name: sodium_vulkan, mods: 'fabric-api,sodium' }
+          - { name: sodium_vulkan_immediatelyfast, mods: 'fabric-api,sodium,immediatelyfast' }
+          - { name: sodium_vulkan_entityculling, mods: 'fabric-api,sodium,entityculling' }
+          - { name: sodium_vulkan_moreculling, mods: 'fabric-api,sodium,moreculling' }
+          - { name: sodium_vulkan_lithium, mods: 'fabric-api,sodium,lithium' }
+          - { name: sodium_vulkan_ferritecore, mods: 'fabric-api,sodium,ferritecore' }
+          - { name: sodium_vulkan_c2me, mods: 'fabric-api,sodium,c2me' }
+          - { name: sodium_vulkan_if_mc, mods: 'fabric-api,sodium,immediatelyfast,moreculling' }
+          - { name: sodium_vulkan_if_lithium, mods: 'fabric-api,sodium,immediatelyfast,lithium' }
+          - { name: sodium_vulkan_mc_lithium, mods: 'fabric-api,sodium,moreculling,lithium' }
+          - { name: sodium_vulkan_if_mc_lithium, mods: 'fabric-api,sodium,immediatelyfast,moreculling,lithium' }
+          - { name: sodium_vulkan_ec_mc_lithium, mods: 'fabric-api,sodium,entityculling,moreculling,lithium' }
+          - { name: sodium_vulkan_full_no_c2me, mods: 'fabric-api,sodium,immediatelyfast,entityculling,moreculling,lithium,ferritecore' }
+          - { name: sodium_vulkan_full, mods: 'fabric-api,sodium,immediatelyfast,entityculling,moreculling,lithium,ferritecore,c2me' }
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '25'
+
+      - name: Prepare Vulkan runtime
+        run: |
+          set -e
+          python3 -m pip install --break-system-packages -q 'portablemc==4.4.1'
+          sudo apt-get install -y -qq mesa-vulkan-drivers libvulkan1 xdotool
+          test -d /usr/share/vulkan/icd.d
+          ls -la /usr/share/vulkan/icd.d
+          Xvfb :99 -screen 0 854x480x24 -ac -noreset >xvfb.log 2>&1 &
+          sleep 2
+
+      - name: Fetch mods
+        env:
+          MOD_GROUPS: ${{ matrix.mods }}
+        run: |
+          mkdir -p "$HOME/.minecraft/mods" modcache
+          python3 - <<'PY'
+          import json,os,urllib.parse,urllib.request
+          mc='26.2'; groups=os.environ['MOD_GROUPS'].split(','); seen=set()
+          aliases={'fabric-api':'fabric-api','sodium':'sodium','immediatelyfast':'immediatelyfast','entityculling':'entityculling','moreculling':'moreculling','lithium':'lithium','ferritecore':'ferrite-core','c2me':'c2me-fabric'}
+          def get(u):
+              return json.load(urllib.request.urlopen(urllib.request.Request(u,headers={'User-Agent':'strict-sodium-vulkan/1'}),timeout=30))
+          def add(slug):
+              p=get('https://api.modrinth.com/v2/project/'+urllib.parse.quote(slug,safe=''))
+              if p['id'] in seen:return
+              q=urllib.parse.urlencode({'loaders':json.dumps(['fabric']),'game_versions':json.dumps([mc])})
+              vs=get(f"https://api.modrinth.com/v2/project/{p['id']}/version?{q}")
+              if not vs:raise RuntimeError('No 26.2 Fabric build for '+slug)
+              v=next((x for x in vs if x.get('version_type')=='release'),vs[0]);seen.add(p['id'])
+              f=next((x for x in v['files'] if x.get('primary')),v['files'][0])
+              urllib.request.urlretrieve(f['url'],'modcache/'+f['filename']);print('USE',p['slug'],v['version_number'])
+              for d in v.get('dependencies',[]):
+                  if d.get('dependency_type')=='required' and d.get('project_id'):
+                      add(get('https://api.modrinth.com/v2/project/'+d['project_id'])['slug'])
+          for g in groups:add(aliases[g])
+          PY
+          cp modcache/*.jar "$HOME/.minecraft/mods/"
+
+      - name: Build direct FrameBench logger
+        run: |
+          git clone -q --depth 1 --branch 26.2 https://github.com/FabricMC/fabric-example-mod.git framebench
+          cd framebench
+          rm -rf src/main/java src/client/java src/main/resources/* src/client/resources/*
+          mkdir -p src/client/java/bench src/main/resources
+          sed -i 's/"modid"/"framebench"/g' build.gradle
+          cat > src/main/resources/fabric.mod.json <<'EOF'
+          {"schemaVersion":1,"id":"framebench","version":"1.0.0","name":"FrameBench","environment":"client","entrypoints":{"client":["bench.FrameBenchClient"]},"depends":{"fabricloader":">=0.19.3","minecraft":"~26.2","java":">=25","fabric-api":"*"}}
+          EOF
+          cat > src/client/java/bench/FrameBenchClient.java <<'JAVA'
+          package bench;
+          import java.nio.file.*;import java.util.*;
+          import net.fabricmc.api.ClientModInitializer;
+          import net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents;
+          import net.fabricmc.loader.api.FabricLoader;
+          public final class FrameBenchClient implements ClientModInitializer{
+            static final long DUR=15_000_000_000L;static final List<Long> f=new ArrayList<>();static boolean a=false,d=false;static long s,l;static Path t,r;static String c;
+            public void onInitializeClient(){Path g=FabricLoader.getInstance().getGameDir();c=System.getenv().getOrDefault("BENCH_CONFIG","unknown");t=g.resolve("benchmark.trigger");r=g.resolve("bench-result.json");try{Files.deleteIfExists(t);Files.deleteIfExists(r);}catch(Exception e){}LevelRenderEvents.END_MAIN.register(x->frame());System.out.println("FRAMEBENCH READY "+c);}
+            static void frame(){if(d)return;long n=System.nanoTime();if(!a){if(Files.exists(t)){a=true;s=l=n;f.clear();System.out.println("FRAMEBENCH START");}return;}if(n-s<DUR){long q=n-l;l=n;if(q>0&&q<2_000_000_000L)f.add(q);return;}d=true;write();}
+            static long p(List<Long>x,double q){int i=(int)Math.ceil(q*x.size())-1;return x.get(Math.max(0,Math.min(x.size()-1,i)));}
+            static void write(){try{List<Long>x=new ArrayList<>(f);Collections.sort(x);long z=0;for(long q:f)z+=q;double m=f.size()*1e9/z,med=1e9/p(x,.5),lo=1e9/p(x,.99),lo01=1e9/p(x,.999);String j=String.format(Locale.ROOT,"{\"config\":\"%s\",\"samples\":%d,\"mean_fps\":%.4f,\"median_fps\":%.4f,\"one_percent_low_fps\":%.4f,\"zero_point_one_percent_low_fps\":%.4f,\"p99_frame_ms\":%.4f}\n",c,f.size(),m,med,lo,lo01,p(x,.99)/1e6);Files.writeString(r,j);System.out.println("FRAMEBENCH DONE "+j);}catch(Exception e){e.printStackTrace();}}
+          }
+          JAVA
+          ./gradlew build --no-daemon -q
+          cp $(find build/libs -maxdepth 1 -type f -name '*.jar' ! -name '*sources*' | head -1) "$HOME/.minecraft/mods/framebench.jar"
+
+      - name: Make fixed world
+        run: |
+          mkdir worldgen && cd worldgen
+          python3 - <<'PY'
+          import json,urllib.request
+          m=json.load(urllib.request.urlopen('https://piston-meta.mojang.com/mc/game/version_manifest_v2.json'));u=next(x['url'] for x in m['versions'] if x['id']=='26.2');v=json.load(urllib.request.urlopen(u));urllib.request.urlretrieve(v['downloads']['server']['url'],'server.jar')
+          PY
+          echo eula=true > eula.txt
+          printf 'level-name=benchworld\nlevel-seed=7608123456789\ngamemode=creative\ndifficulty=peaceful\nonline-mode=false\nview-distance=8\nsimulation-distance=6\n' > server.properties
+          java -Xms1G -Xmx2G -jar server.jar nogui >server.log 2>&1 & pid=$!
+          for i in $(seq 1 90);do grep -q 'Done (' server.log&&break;sleep 1;done
+          grep 'Done (' server.log;kill -TERM $pid||true;sleep 2
+          mkdir -p "$HOME/.minecraft/saves/benchworld";cp -a benchworld/. "$HOME/.minecraft/saves/benchworld/"
+
+      - name: Resolve metadata and force Vulkan
+        run: |
+          set +e
+          timeout 45s portablemc start -u BenchUser fabric:26.2 >resolve.log 2>&1 & p=$!
+          for i in $(seq 1 45);do find "$HOME/.minecraft/versions" -name '*26.2*.json' 2>/dev/null|grep -q .&&break;sleep 1;done
+          kill -TERM $p 2>/dev/null||true;pkill -f 'KnotClient|net.minecraft.client.main.Main' 2>/dev/null||true;sleep 2;set -e
+          python3 - <<'PY'
+          import glob,json,os
+          ps=glob.glob(os.path.expanduser('~/.minecraft/versions/**/*26.2*.json'),recursive=True);n=0
+          for p in ps:
+              try:d=json.load(open(p))
+              except:continue
+              a=d.setdefault('arguments',{}).setdefault('game',[])
+              if '--graphicsBackend' not in a:a+=['--graphicsBackend','vulkan']
+              json.dump(d,open(p,'w'),indent=2);n+=1
+          if not n:raise SystemExit('No metadata patched')
+          PY
+
+      - name: Run strict Vulkan benchmark
+        env:
+          BENCH_CONFIG: ${{ matrix.name }}
+        run: |
+          cat > "$HOME/.minecraft/options.txt" <<'EOF'
+          fullscreen:false
+          enableVsync:false
+          maxFps:260
+          renderDistance:8
+          simulationDistance:6
+          guiScale:2
+          pauseOnLostFocus:false
+          graphicsMode:0
+          clouds:false
+          entityDistanceScaling:1.0
+          mipmapLevels:2
+          narrator:0
+          bobView:false
+          EOF
+          set +e
+          timeout 210s portablemc start -u BenchUser fabric:26.2 >client.log 2>&1 & p=$!
+          wid=''
+          for i in $(seq 1 110);do
+            if grep -qi 'Failed to create backend Vulkan' client.log;then echo INVALID_VULKAN;grep -Ei 'graphics backend|Vulkan|OpenGL|failed' client.log|tail -80;exit 31;fi
+            if grep -qi 'Using graphics backend OpenGL' client.log;then echo INVALID_OPENGL;exit 32;fi
+            wid=$(xdotool search --onlyvisible --name Minecraft 2>/dev/null|head -1);[ -n "$wid" ]&&break
+            kill -0 $p 2>/dev/null||break;sleep 1
+          done
+          grep -Ei 'graphics backend|Vulkan|OpenGL|graphics device|renderer|failed' client.log|tail -120 >backend-proof.txt||true
+          if ! grep -qi 'Using graphics backend Vulkan' client.log;then echo 'NO SUCCESSFUL VULKAN BACKEND';cat backend-proof.txt;exit 33;fi
+          [ -n "$wid" ]||{ echo NO_WINDOW;tail -250 client.log;exit 21; }
+          xdotool windowactivate "$wid"||true;sleep 8
+          xdotool mousemove 427 235 click 1;sleep 5
+          xdotool mousemove 315 120 click 1;sleep 1
+          xdotool mousemove 270 395 click 1;sleep 42
+          touch "$HOME/.minecraft/benchmark.trigger"
+          for n in $(seq 1 6);do xdotool keydown w;sleep 1.2;xdotool keyup w;xdotool mousemove_relative -- 100 0;sleep .8;xdotool keydown d;sleep .7;xdotool keyup d;sleep .3;done
+          for i in $(seq 1 25);do [ -f "$HOME/.minecraft/bench-result.json" ]&&break;sleep 1;done
+          [ -f "$HOME/.minecraft/bench-result.json" ]||{ echo NO_RESULT;tail -250 client.log;exit 22; }
+          cp "$HOME/.minecraft/bench-result.json" result.json;cat result.json
+          printf '%s\n' '${{ matrix.mods }}' >mods.txt
+          kill -TERM $p 2>/dev/null||true
+
+      - name: Upload result
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: strict-sodium-vulkan-${{ matrix.name }}
+          path: |
+            result.json
+            mods.txt
+            client.log
+            backend-proof.txt
+            xvfb.log
+          if-no-files-found: warn
+          retention-days: 2
