@@ -1,6 +1,10 @@
 #!/usr/bin/env node
+import os from 'node:os';
+import { execFile } from 'node:child_process';
+import { promisify } from 'node:util';
 import { executeJob } from './lib.mjs';
 
+const execFileAsync = promisify(execFile);
 const URL = process.env.AGENT_RUNTIME_URL;
 const TOKEN = process.env.AGENT_WORKER_TOKEN;
 const WORKER_ID = process.env.AGENT_WORKER_ID || 'worker';
@@ -25,8 +29,42 @@ async function call(body) {
   return data;
 }
 
+function lanAddresses() {
+  const addresses = [];
+  for (const [name, rows] of Object.entries(os.networkInterfaces())) {
+    if (name === 'tailscale0' || !rows) continue;
+    for (const row of rows) {
+      if (row.family === 'IPv4' && !row.internal) addresses.push({ interface: name, address: row.address });
+    }
+  }
+  return addresses;
+}
+
+async function tailscaleMetadata() {
+  try {
+    const { stdout } = await execFileAsync('tailscale', ['ip', '-4'], { timeout: 5000 });
+    const ipv4 = stdout.trim().split(/\s+/)[0] || null;
+    return { available: Boolean(ipv4), ipv4 };
+  } catch {
+    return { available: false, ipv4: null };
+  }
+}
+
 async function heartbeat() {
-  return call({ action: 'heartbeat', capabilities: { exec: true, gui: process.platform === 'linux', mcp: true }, metadata: { platform: process.platform, arch: process.arch, node: process.version, pid: process.pid } });
+  const tailscale = await tailscaleMetadata();
+  return call({
+    action: 'heartbeat',
+    capabilities: { exec: true, gui: process.platform === 'linux', mcp: true, lan: true, tailscale: tailscale.available },
+    metadata: {
+      platform: process.platform,
+      arch: process.arch,
+      node: process.version,
+      pid: process.pid,
+      hostname: os.hostname(),
+      tailscale,
+      lan_ipv4: lanAddresses(),
+    },
+  });
 }
 
 async function handle(job) {
