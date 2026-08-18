@@ -1,0 +1,56 @@
+name: Collect strict Sodium Vulkan results
+
+on:
+  workflow_run:
+    workflows: ["Minecraft 26.2 strict Sodium Vulkan matrix"]
+    types: [completed]
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  collect:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Download and aggregate valid artifacts
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_ID: ${{ github.event.workflow_run.id }}
+        run: |
+          mkdir -p out benchmark-results
+          gh run download "$RUN_ID" -D out || true
+          python3 - <<'PY'
+          import csv,glob,json,os
+          rows=[]
+          for p in glob.glob('out/strict-sodium-vulkan-*/result.json'):
+              try:d=json.load(open(p))
+              except:continue
+              folder=os.path.basename(os.path.dirname(p));d['artifact']=folder
+              mp=os.path.join(os.path.dirname(p),'mods.txt');d['mods']=open(mp).read().strip() if os.path.exists(mp) else ''
+              proof=os.path.join(os.path.dirname(p),'backend-proof.txt')
+              text=open(proof,errors='ignore').read() if os.path.exists(proof) else ''
+              d['vulkan_proven']=('Using graphics backend Vulkan' in text and 'Using graphics backend OpenGL' not in text and 'Failed to create backend Vulkan' not in text)
+              if d['vulkan_proven']:rows.append(d)
+          base=next((r for r in rows if r.get('config')=='sodium_vulkan'),None)
+          for r in rows:
+              if base:r['vs_sodium_vulkan_pct']=round((r['mean_fps']/base['mean_fps']-1)*100,3)
+          rows.sort(key=lambda x:x.get('mean_fps',0),reverse=True)
+          payload={'minecraft':'26.2','renderer':'Sodium native Vulkan forced with --graphicsBackend vulkan','source_run_id':os.environ['RUN_ID'],'valid_results':len(rows),'results':rows}
+          json.dump(payload,open('benchmark-results/mc-26.2-strict-sodium-vulkan.json','w'),indent=2)
+          fields=['config','mods','samples','mean_fps','median_fps','one_percent_low_fps','zero_point_one_percent_low_fps','p99_frame_ms','vs_sodium_vulkan_pct','vulkan_proven']
+          with open('benchmark-results/mc-26.2-strict-sodium-vulkan.csv','w',newline='') as f:
+              w=csv.DictWriter(f,fieldnames=fields);w.writeheader();[w.writerow({k:r.get(k,'') for k in fields}) for r in rows]
+          print(json.dumps(payload,indent=2))
+          PY
+      - name: Commit results
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git pull --rebase || true
+          git add benchmark-results/mc-26.2-strict-sodium-vulkan.json benchmark-results/mc-26.2-strict-sodium-vulkan.csv
+          git commit -m 'Record strict Sodium Vulkan benchmark results' || true
+          git push || true
