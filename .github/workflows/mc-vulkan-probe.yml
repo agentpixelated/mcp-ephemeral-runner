@@ -1,0 +1,33 @@
+name: Probe Vulkan benchmark runs
+
+on:
+  push:
+    paths:
+      - '.github/workflows/mc-vulkan-probe.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Record run IDs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p benchmark-results
+          VM=$(gh run list --workflow mc-vulkan-smoke.yml --limit 1 --json databaseId,status,conclusion --jq '.[0]')
+          SV=$(gh run list --workflow mc-sodium-vulkan-smoke.yml --limit 1 --json databaseId,status,conclusion --jq '.[0]')
+          printf '{"vulkanmod":%s,"sodium_vulkan":%s}\n' "$VM" "$SV" > benchmark-results/vulkan-runs.json
+          cat benchmark-results/vulkan-runs.json
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add benchmark-results/vulkan-runs.json
+          git commit -m 'Record Vulkan benchmark run IDs' || true
+          git push || true
