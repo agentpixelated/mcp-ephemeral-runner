@@ -25,12 +25,11 @@ jobs:
           mkdir -p benchmark-results
           gh run list --workflow mc-sodium-vulkan-smoke.yml --limit 1 --json databaseId,status,conclusion,headSha,createdAt > benchmark-results/sodium-forced-vulkan-live.json
           gh run list --workflow mc-sodium-vulkan-fastprobe.yml --limit 1 --json databaseId,status,conclusion,headSha,createdAt > benchmark-results/sodium-vulkan-fastprobe-live.json
-          cat benchmark-results/sodium-forced-vulkan-live.json
-          cat benchmark-results/sodium-vulkan-fastprobe-live.json
+          gh run list --workflow mc-sodium-vulkan-forced-matrix.yml --limit 1 --json databaseId,status,conclusion,headSha,createdAt > benchmark-results/sodium-vulkan-strict-matrix-live.json
+          cat benchmark-results/sodium-vulkan-strict-matrix-live.json
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git pull --rebase
-          git add benchmark-results/sodium-forced-vulkan-live.json benchmark-results/sodium-vulkan-fastprobe-live.json
-          git commit -m 'Refresh Sodium Vulkan live run status' || true
+          git add benchmark-results/sodium-forced-vulkan-live.json benchmark-results/sodium-vulkan-fastprobe-live.json benchmark-results/sodium-vulkan-strict-matrix-live.json
+          git commit -m 'Track strict Sodium Vulkan live status' || true
           git push || true
-          # status refresh 2
