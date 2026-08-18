@@ -1,0 +1,188 @@
+name: Clean Sodium 26.2 OpenGL vs Vulkan ObjectBench v2
+
+on:
+  push:
+    paths:
+      - '.github/workflows/mc-sodium-opengl-vulkan-objectbench-v2.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+env:
+  DISPLAY: ':99'
+  ALSOFT_DRIVERS: 'null'
+
+jobs:
+  benchmark:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-java@v4
+        with: {distribution: temurin, java-version: '25'}
+
+      - name: Runtime and mods
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq xvfb mesa-vulkan-drivers libvulkan1 vulkan-tools mesa-utils
+          python3 -m pip install --break-system-packages -q 'portablemc==4.4.1'
+          Xvfb :99 -screen 0 960x540x24 -ac -noreset >xvfb.log 2>&1 & sleep 2
+          vulkaninfo --summary >vulkaninfo.txt; glxinfo -B >glxinfo.txt
+          mkdir -p modcache
+          python3 - <<'PY'
+          import json,urllib.request,urllib.parse
+          mc='26.2';seen={}
+          def get(u):return json.load(urllib.request.urlopen(urllib.request.Request(u,headers={'User-Agent':'objectbench-v2/1'}),timeout=30))
+          def add(slug):
+              p=get('https://api.modrinth.com/v2/project/'+urllib.parse.quote(slug,safe=''))
+              if p['id'] in seen:return
+              q=urllib.parse.urlencode({'loaders':json.dumps(['fabric']),'game_versions':json.dumps([mc])});vs=get(f"https://api.modrinth.com/v2/project/{p['id']}/version?{q}")
+              v=next((x for x in vs if x.get('version_type')=='release'),vs[0]);f=next((x for x in v['files'] if x.get('primary')),v['files'][0]);urllib.request.urlretrieve(f['url'],'modcache/'+f['filename']);seen[p['id']]={'slug':p['slug'],'version':v['version_number'],'file':f['filename']}
+              for d in v.get('dependencies',[]):
+                  if d.get('dependency_type')=='required' and d.get('project_id'):add(get('https://api.modrinth.com/v2/project/'+d['project_id'])['slug'])
+          add('fabric-api');add('sodium');json.dump(list(seen.values()),open('modcache/manifest.json','w'),indent=2)
+          PY
+
+      - name: Build deterministic ObjectBench client
+        run: |
+          set -euo pipefail
+          git clone -q --depth 1 --branch 26.2 https://github.com/FabricMC/fabric-example-mod.git objectbench
+          cd objectbench; rm -rf src/main/java src/client/java src/main/resources/* src/client/resources/*; mkdir -p src/client/java/bench src/main/resources
+          sed -i 's/"modid"/"objectbench"/g' build.gradle
+          cat >src/main/resources/fabric.mod.json <<'EOF'
+          {"schemaVersion":1,"id":"objectbench","version":"2.1.0","name":"ObjectBench","environment":"client","entrypoints":{"client":["bench.ObjectBenchClient"]},"depends":{"fabricloader":">=0.19.3","minecraft":"~26.2","java":">=25","fabric-api":"*"}}
+          EOF
+          cat >src/client/java/bench/ObjectBenchClient.java <<'JAVA'
+          package bench;
+          import java.nio.file.*;import java.util.*;
+          import net.fabricmc.api.ClientModInitializer;import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;import net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents;import net.fabricmc.loader.api.FabricLoader;
+          public final class ObjectBenchClient implements ClientModInitializer{
+            static final String[] N={"geometry_transparency","occlusion_entities","mixed_block_entities"};static final double[][] A={{-36,12,-40},{124,11,-40},{284,12,-40}},B={{36,12,-40},{196,11,-40},{356,12,-40}};
+            static final long INITIAL=7_000_000_000L,WARM=3_000_000_000L,MEASURE=8_000_000_000L,SCENE=WARM+MEASURE;
+            @SuppressWarnings("unchecked") static final List<Long>[] S=new List[]{new ArrayList<>(),new ArrayList<>(),new ArrayList<>()};static final List<Long> ALL=new ArrayList<>();static long boot,last;static boolean done;static Path out;static String run;
+            public void onInitializeClient(){out=FabricLoader.getInstance().getGameDir().resolve("objectbench-result.json");run=System.getenv().getOrDefault("BENCH_RUN","unknown");try{Files.deleteIfExists(out);}catch(Exception e){}
+              ClientTickEvents.END_CLIENT_TICK.register(c->{if(done||c.player==null||c.level==null)return;long n=System.nanoTime();if(boot==0){boot=n;System.out.println("OBJECTBENCH WORLD READY "+run);return;}long e=n-boot;if(e<INITIAL)return;long q=e-INITIAL;int s=(int)(q/SCENE);if(s>=N.length){done=true;write();return;}double p=(q%SCENE)/(double)SCENE;c.player.setPos(A[s][0]+(B[s][0]-A[s][0])*p,A[s][1],A[s][2]);c.player.setYRot((float)(Math.sin(p*Math.PI*2)*7));c.player.setXRot(-3f);});
+              LevelRenderEvents.END_MAIN.register(x->frame());System.out.println("OBJECTBENCH READY "+run);}
+            static void frame(){long n=System.nanoTime();if(last==0){last=n;return;}long d=n-last;last=n;if(done||boot==0||d<=0||d>=2_000_000_000L)return;long e=n-boot;if(e<INITIAL)return;long q=e-INITIAL;int s=(int)(q/SCENE);if(s>=0&&s<N.length&&q%SCENE>=WARM){S[s].add(d);ALL.add(d);}}
+            static long p(List<Long>x,double q){int i=(int)Math.ceil(q*x.size())-1;return x.get(Math.max(0,Math.min(x.size()-1,i)));}
+            static String m(List<Long>v){if(v.isEmpty())return "{\"samples\":0}";List<Long>x=new ArrayList<>(v);Collections.sort(x);long sum=0;for(long d:v)sum+=d;return String.format(Locale.ROOT,"{\"samples\":%d,\"mean_fps\":%.5f,\"median_fps\":%.5f,\"one_percent_low_fps\":%.5f,\"zero_point_one_percent_low_fps\":%.5f,\"p99_frame_ms\":%.5f}",v.size(),v.size()*1e9/sum,1e9/p(x,.5),1e9/p(x,.99),1e9/p(x,.999),p(x,.99)/1e6);}
+            static void write(){try{StringBuilder b=new StringBuilder("{\"run\":\"").append(run).append("\",\"overall\":").append(m(ALL)).append(",\"scenes\":{");for(int i=0;i<N.length;i++){if(i>0)b.append(',');b.append('\"').append(N[i]).append("\":").append(m(S[i]));}b.append("}}\n");Files.writeString(out,b.toString());System.out.println("OBJECTBENCH DONE "+b);}catch(Exception e){e.printStackTrace();}}
+          }
+          JAVA
+          ./gradlew build --no-daemon -q
+          cp $(find build/libs -maxdepth 1 -type f -name '*.jar' ! -name '*sources*'|head -1) ../modcache/objectbench.jar
+
+      - name: Build controlled object world
+        run: |
+          set -euo pipefail
+          mkdir worldgen;cd worldgen
+          python3 - <<'PY'
+          import json,urllib.request
+          m=json.load(urllib.request.urlopen('https://piston-meta.mojang.com/mc/game/version_manifest_v2.json'));u=next(x['url'] for x in m['versions'] if x['id']=='26.2');v=json.load(urllib.request.urlopen(u));urllib.request.urlretrieve(v['downloads']['server']['url'],'server.jar')
+          PY
+          echo eula=true >eula.txt;printf 'level-name=benchworld\nlevel-seed=7608123456789\nlevel-type=minecraft:flat\ngamemode=creative\ndifficulty=peaceful\nonline-mode=false\nview-distance=12\nsimulation-distance=8\nspawn-protection=0\n' >server.properties
+          coproc MC { java -Xms1G -Xmx2G -jar server.jar nogui >server.log 2>&1; };for i in $(seq 1 90);do grep -q 'Done (' server.log&&break;sleep 1;done;grep 'Done (' server.log;exec 3>&${MC[1]};cmd(){ printf '%s\n' "$1" >&3;sleep .04; }
+          cmd 'gamerule randomTickSpeed 0';cmd 'gamerule doMobSpawning false';cmd 'gamerule doWeatherCycle false';cmd 'gamerule doDaylightCycle false';cmd 'time set noon';cmd 'weather clear'
+          cmd 'fill -48 3 -48 48 3 48 smooth_stone';cmd 'fill -40 4 -5 40 15 -3 oak_leaves';cmd 'fill -40 4 2 40 15 4 glass';cmd 'fill -40 4 9 40 12 11 oak_fence';cmd 'fill -40 4 16 40 12 18 iron_bars';cmd 'fill -40 4 23 40 12 25 cobblestone_wall';cmd 'fill -40 4 30 40 10 32 stone_stairs';cmd 'fill -40 4 37 40 8 39 oak_trapdoor'
+          cmd 'fill 112 3 -48 208 3 48 smooth_stone';cmd 'fill 120 4 -5 200 20 -3 stone';cmd 'fill 136 8 -5 143 14 -3 air';cmd 'fill 160 8 -5 167 14 -3 air';cmd 'fill 184 8 -5 191 14 -3 air';cmd 'fill 132 4 22 188 9 24 barrel'
+          cmd 'fill 272 3 -48 368 3 48 smooth_stone';cmd 'fill 280 4 3 360 10 5 glass';cmd 'fill 280 4 10 360 12 12 oak_leaves';cmd 'fill 280 4 17 360 10 19 iron_bars';cmd 'fill 288 4 27 352 9 29 barrel';cmd 'fill 288 4 35 352 8 37 oak_fence'
+          for x in $(seq 126 6 198);do for z in $(seq 4 4 32);do cmd "summon cow $x 4 $z {NoAI:1b,Silent:1b,Invulnerable:1b,PersistenceRequired:1b}";done;done
+          for x in $(seq 286 8 358);do for z in $(seq -2 5 23);do cmd "summon cow $x 4 $z {NoAI:1b,Silent:1b,Invulnerable:1b,PersistenceRequired:1b}";done;done
+          cmd 'forceload add -64 -64 64 64';cmd 'forceload add 96 -64 224 64';cmd 'forceload add 256 -64 384 64';cmd 'save-all flush';sleep 8;cmd 'stop';wait ${MC_PID}||true
+          cd ..;mkdir world-template;cp -a worldgen/benchworld/. world-template/
+
+      - name: Resolve launcher and run clean ABBA
+        run: |
+          set -euo pipefail
+          mkdir -p "$HOME/.minecraft/mods" "$HOME/.minecraft/saves" raw-results logs;cp modcache/*.jar "$HOME/.minecraft/mods/"
+          set +e;timeout 35s portablemc start -u BenchUser fabric:26.2 >resolve.log 2>&1 & p=$!;for i in $(seq 1 35);do find "$HOME/.minecraft/versions" -name '*fabric*26.2*.json' 2>/dev/null|grep -q .&&break;sleep 1;done;kill -TERM $p 2>/dev/null||true;pkill -TERM -f 'KnotClient|net.minecraft.client.main.Main' 2>/dev/null||true;sleep 2;pkill -KILL -f 'KnotClient|net.minecraft.client.main.Main' 2>/dev/null||true;set -e
+          cat >"$HOME/.minecraft/options.txt" <<'EOF'
+          fullscreen:false
+          enableVsync:false
+          maxFps:260
+          renderDistance:10
+          simulationDistance:8
+          guiScale:2
+          pauseOnLostFocus:false
+          graphicsMode:1
+          clouds:false
+          entityDistanceScaling:1.0
+          mipmapLevels:2
+          narrator:0
+          bobView:false
+          EOF
+          python3 - <<'PY'
+          import os,glob,json,shutil,subprocess,time
+          home=os.path.expanduser('~/.minecraft');vf=glob.glob(home+'/versions/**/*fabric*26.2*.json',recursive=True)[0];rows=[];order=[('opengl',1),('vulkan',1),('vulkan',2),('opengl',2)]
+          def killmc():
+              subprocess.run("pkill -TERM -f 'net.minecraft.client.main.Main|KnotClient' || true",shell=True);time.sleep(2);subprocess.run("pkill -KILL -f 'net.minecraft.client.main.Main|KnotClient' || true",shell=True);time.sleep(2)
+          def patch(b):
+              d=json.load(open(vf));a=d.setdefault('arguments',{}).setdefault('game',[]);o=[];i=0
+              while i<len(a):
+                  if isinstance(a[i],str) and a[i] in ('--graphicsBackend','--quickPlaySingleplayer'):i+=2;continue
+                  o.append(a[i]);i+=1
+              o+=['--graphicsBackend',b,'--quickPlaySingleplayer','benchworld'];d['arguments']['game']=o;json.dump(d,open(vf,'w'),indent=2)
+          for b,r in order:
+              tag=f'{b}_{r}';print('===',tag,'===',flush=True);killmc();patch(b);save=home+'/saves/benchworld';shutil.rmtree(save,ignore_errors=True);shutil.copytree('world-template',save);res=home+'/objectbench-result.json'
+              try:os.remove(res)
+              except:pass
+              env=os.environ.copy();env['BENCH_RUN']=tag;lp='logs/'+tag+'.log';log=open(lp,'w');p=subprocess.Popen(['portablemc','start','-u','BenchUser','fabric:26.2'],stdout=log,stderr=subprocess.STDOUT,env=env);valid=False;deadline=time.time()+80
+              while time.time()<deadline:
+                  txt=open(lp,errors='ignore').read() if os.path.exists(lp) else ''
+                  if b=='vulkan' and ('Failed to create backend Vulkan' in txt or 'Using graphics backend OpenGL' in txt):break
+                  if b=='opengl' and 'Using graphics backend Vulkan' in txt:break
+                  if ('Using graphics backend Vulkan' in txt if b=='vulkan' else 'Using graphics backend OpenGL' in txt):valid=True
+                  if os.path.exists(res) or p.poll() is not None:break
+                  time.sleep(1)
+              if os.path.exists(res) and valid:
+                  d=json.load(open(res));d.update({'backend':b,'rep':r,'backend_proven':True});rows.append(d);json.dump(d,open('raw-results/'+tag+'.json','w'),indent=2);print('RESULT',json.dumps(d),flush=True)
+              else:rows.append({'run':tag,'backend':b,'rep':r,'status':'invalid'});print('INVALID',tag,flush=True)
+              p.terminate();
+              try:p.wait(timeout=5)
+              except:p.kill()
+              log.close();killmc()
+          json.dump(rows,open('raw-results/all.json','w'),indent=2)
+          PY
+
+      - name: Aggregate and commit
+        run: |
+          set -euo pipefail
+          mkdir -p benchmark-results
+          python3 - <<'PY'
+          import json,statistics,csv
+          rows=json.load(open('raw-results/all.json'));good=[x for x in rows if 'overall' in x]
+          if len([x for x in good if x['backend']=='opengl'])<2 or len([x for x in good if x['backend']=='vulkan'])<2:raise SystemExit('need 2 valid runs/backend: '+json.dumps(rows))
+          names=['overall','geometry_transparency','occlusion_entities','mixed_block_entities'];agg={};cmp={}
+          def m(r,s):return r['overall'] if s=='overall' else r['scenes'][s]
+          for b in ['opengl','vulkan']:
+              rs=[r for r in good if r['backend']==b];agg[b]={'runs':len(rs),'scenes':{}}
+              for s in names:
+                  f=[m(r,s)['mean_fps'] for r in rs];l=[m(r,s)['one_percent_low_fps'] for r in rs];p=[m(r,s)['p99_frame_ms'] for r in rs];agg[b]['scenes'][s]={'mean_fps':statistics.mean(f),'fps_range':[min(f),max(f)],'mean_1pct_low_fps':statistics.mean(l),'mean_p99_frame_ms':statistics.mean(p)}
+          for s in names:
+              o=agg['opengl']['scenes'][s]['mean_fps'];v=agg['vulkan']['scenes'][s]['mean_fps'];cmp[s]={'opengl_fps':o,'vulkan_fps':v,'vulkan_vs_opengl_pct':(v/o-1)*100}
+          out={'minecraft':'26.2','sodium':'0.9.1','method':'ObjectBench v2; controlled 3 scenes; programmatic camera; pregenerated chunks; same runner; clean JVM ABBA','aggregate':agg,'comparison':cmp,'raw_runs':good};json.dump(out,open('benchmark-results/mc-26.2-sodium-opengl-vs-vulkan-objectbench-v2.json','w'),indent=2)
+          with open('benchmark-results/mc-26.2-sodium-opengl-vs-vulkan-objectbench-v2.csv','w',newline='') as f:
+              w=csv.writer(f);w.writerow(['scene','opengl_fps','vulkan_fps','vulkan_vs_opengl_pct']);[w.writerow([s,c['opengl_fps'],c['vulkan_fps'],c['vulkan_vs_opengl_pct']]) for s,c in cmp.items()]
+          print(json.dumps(cmp,indent=2))
+          PY
+          git config user.name 'github-actions[bot]';git config user.email '41898282+github-actions[bot]@users.noreply.github.com';git pull --rebase;git add benchmark-results/mc-26.2-sodium-opengl-vs-vulkan-objectbench-v2.*;git commit -m 'Record clean Sodium OpenGL vs Vulkan ObjectBench v2' || true;git push || true
+
+      - name: Upload diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sodium-opengl-vulkan-objectbench-v2
+          path: |
+            raw-results/
+            logs/
+            benchmark-results/mc-26.2-sodium-opengl-vs-vulkan-objectbench-v2.*
+            modcache/manifest.json
+            glxinfo.txt
+            vulkaninfo.txt
+            xvfb.log
+            worldgen/server.log
+          if-no-files-found: warn
+          retention-days: 3
