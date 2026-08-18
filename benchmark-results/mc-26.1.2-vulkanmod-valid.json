@@ -1,0 +1,21 @@
+{
+  "minecraft": "26.1.2",
+  "renderer": "VulkanMod 0.6.8+26.1.2",
+  "valid_results": 13,
+  "results": [
+    {"config":"vulkan_c2me","samples":429,"mean_fps":21.4784,"median_fps":22.5077,"one_percent_low_fps":9.581,"zero_point_one_percent_low_fps":8.2082,"p99_frame_ms":104.3732,"vs_vulkanmod_pct":58.727},
+    {"config":"vulkan_immediatelyfast","samples":404,"mean_fps":20.2123,"median_fps":21.168,"one_percent_low_fps":10.7237,"zero_point_one_percent_low_fps":6.7004,"p99_frame_ms":93.251,"vs_vulkanmod_pct":49.37},
+    {"config":"vulkan_ferritecore","samples":372,"mean_fps":18.6398,"median_fps":19.8673,"one_percent_low_fps":7.8397,"zero_point_one_percent_low_fps":6.4734,"p99_frame_ms":127.5562,"vs_vulkanmod_pct":37.749},
+    {"config":"vulkan_ec_lithium","samples":362,"mean_fps":18.1866,"median_fps":19.7838,"one_percent_low_fps":8.4598,"zero_point_one_percent_low_fps":5.272,"p99_frame_ms":118.2057,"vs_vulkanmod_pct":34.4},
+    {"config":"vulkan_lithium_ferrite","samples":339,"mean_fps":16.9607,"median_fps":17.3388,"one_percent_low_fps":11.3005,"zero_point_one_percent_low_fps":7.9189,"p99_frame_ms":88.4915,"vs_vulkanmod_pct":25.34},
+    {"config":"vulkan_mc_lithium","samples":338,"mean_fps":16.9336,"median_fps":17.8087,"one_percent_low_fps":7.8292,"zero_point_one_percent_low_fps":5.0795,"p99_frame_ms":127.7268,"vs_vulkanmod_pct":25.14},
+    {"config":"vulkan_entityculling","samples":324,"mean_fps":16.2061,"median_fps":17.0424,"one_percent_low_fps":8.6933,"zero_point_one_percent_low_fps":6.9324,"p99_frame_ms":115.031,"vs_vulkanmod_pct":19.764},
+    {"config":"vulkan_full_no_if","samples":310,"mean_fps":15.5201,"median_fps":17.6434,"one_percent_low_fps":8.1642,"zero_point_one_percent_low_fps":7.1329,"p99_frame_ms":122.4865,"vs_vulkanmod_pct":14.694},
+    {"config":"vulkan_ec_mc","samples":304,"mean_fps":15.2002,"median_fps":16.387,"one_percent_low_fps":6.5154,"zero_point_one_percent_low_fps":5.6163,"p99_frame_ms":153.4831,"vs_vulkanmod_pct":12.33},
+    {"config":"vulkan_lithium","samples":288,"mean_fps":14.4059,"median_fps":16.2963,"one_percent_low_fps":6.5983,"zero_point_one_percent_low_fps":5.2456,"p99_frame_ms":151.5551,"vs_vulkanmod_pct":6.46},
+    {"config":"vulkan_if_lithium","samples":276,"mean_fps":13.8176,"median_fps":14.6489,"one_percent_low_fps":6.9683,"zero_point_one_percent_low_fps":6.5793,"p99_frame_ms":143.5067,"vs_vulkanmod_pct":2.113},
+    {"config":"vulkanmod","samples":202,"mean_fps":13.5317,"median_fps":15.3435,"one_percent_low_fps":5.8552,"zero_point_one_percent_low_fps":4.6895,"p99_frame_ms":170.787,"vs_vulkanmod_pct":0.0},
+    {"config":"vulkan_ec_mc_lithium","samples":250,"mean_fps":12.5422,"median_fps":15.3603,"one_percent_low_fps":4.5384,"zero_point_one_percent_low_fps":3.5936,"p99_frame_ms":220.3442,"vs_vulkanmod_pct":-7.312}
+  ],
+  "cancelled_or_unavailable":["vulkan_moreculling","vulkan_lithium_c2me","vulkan_if_mc_lithium","vulkan_full"]
+}
