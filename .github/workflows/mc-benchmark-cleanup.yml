@@ -22,4 +22,5 @@ jobs:
           gh run cancel 32090408886 || true
           gh run cancel 32091261533 || true
           gh run cancel 32090256219 || true
-          echo 'Freed runners from old Sodium fallback and completed-enough VulkanMod matrix.'
+          gh run cancel 32092628476 || true
+          echo 'Stopped obsolete/fallback runs and redundant sequential validation.'
