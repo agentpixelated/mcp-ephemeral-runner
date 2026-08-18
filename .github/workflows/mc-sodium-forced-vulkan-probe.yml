@@ -1,0 +1,33 @@
+name: Probe forced Sodium Vulkan run
+
+on:
+  push:
+    paths:
+      - '.github/workflows/mc-sodium-forced-vulkan-probe.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Record latest forced Vulkan smoke
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p benchmark-results
+          gh run list --workflow mc-sodium-vulkan-smoke.yml --limit 1 --json databaseId,status,conclusion,headSha,createdAt > benchmark-results/sodium-forced-vulkan-live.json
+          cat benchmark-results/sodium-forced-vulkan-live.json
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git pull --rebase
+          git add benchmark-results/sodium-forced-vulkan-live.json
+          git commit -m 'Record forced Sodium Vulkan live run status' || true
+          git push || true
