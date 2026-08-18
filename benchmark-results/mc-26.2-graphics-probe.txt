@@ -1,0 +1,794 @@
+=== MAIN CLASS STRINGS ===
+fullscreen
+checkGlErrors
+renderDebugLabels
+vulkanValidation
+graphicsBackend
+joptsimple/OptionSpecBuilder
+withRequiredArg
+*()Ljoptsimple/ArgumentAcceptingOptionSpec;
+ net/minecraft/client/main/Main$1
+)net/minecraft/client/PreferredGraphicsApi
+(Ljava/lang/Class;)V
+&joptsimple/ArgumentAcceptingOptionSpec
+withValuesConvertedBy
+--
+/net/minecraft/client/main/GameConfig$FolderData
+?(Ljava/io/File;Ljava/io/File;Ljava/io/File;Ljava/lang/String;)V
+-net/minecraft/client/main/GameConfig$GameData
+Y(ZLjava/lang/String;Ljava/lang/String;ZZZZZLnet/minecraft/client/PreferredGraphicsApi;Z)V
+2net/minecraft/client/main/GameConfig$QuickPlayData
+L(Ljava/lang/String;Lnet/minecraft/client/main/GameConfig$QuickPlayVariant;)V
+(Lnet/minecraft/client/main/GameConfig$UserData;Lcom/mojang/blaze3d/platform/DisplayData;Lnet/minecraft/client/main/GameConfig$FolderData;Lnet/minecraft/client/main/GameConfig$GameData;Lnet/minecraft/client/main/GameConfig$QuickPlayData;)V
+--
+isFullscreen
+isDemo
+captureTracyImages
+forcedGraphicsApi
++Lnet/minecraft/client/PreferredGraphicsApi;
+Ljava/util/UUID;
+quickPlayLogPath
+quickPlayVariant
+--
+[Ljava/lang/String;
+renderDebugLabelsOption
+Ljoptsimple/OptionSpec;
+vulkanValidationOption
+graphicsBackendOption
+jfrProfilingOption
+tracyProfilingOption
+tracyNoImageOption
+--
++Ljava/util/concurrent/CompletableFuture<*>;
+$Ljava/util/List<Ljava/lang/String;>;
+)Ljoptsimple/OptionSpec<Ljava/lang/Void;>;
+DLjoptsimple/OptionSpec<Lnet/minecraft/client/PreferredGraphicsApi;>;
++Ljoptsimple/OptionSpec<Ljava/lang/String;>;
+'Ljoptsimple/OptionSpec<Ljava/io/File;>;
+,Ljoptsimple/OptionSpec<Ljava/lang/Integer;>;
+
+=== JAVAP MAIN ===
+   #28 = Class              #29           // joptsimple/OptionParser
+   #29 = Utf8               joptsimple/OptionParser
+   #30 = Methodref          #28.#3        // joptsimple/OptionParser."<init>":()V
+   #31 = Methodref          #28.#32       // joptsimple/OptionParser.allowsUnrecognizedOptions:()V
+   #32 = NameAndType        #33:#6        // allowsUnrecognizedOptions:()V
+   #33 = Utf8               allowsUnrecognizedOptions
+   #34 = String             #35           // demo
+   #35 = Utf8               demo
+   #36 = Methodref          #28.#37       // joptsimple/OptionParser.accepts:(Ljava/lang/String;)Ljoptsimple/OptionSpecBuilder;
+   #37 = NameAndType        #38:#39       // accepts:(Ljava/lang/String;)Ljoptsimple/OptionSpecBuilder;
+   #38 = Utf8               accepts
+   #39 = Utf8               (Ljava/lang/String;)Ljoptsimple/OptionSpecBuilder;
+   #40 = String             #41           // disableMultiplayer
+   #41 = Utf8               disableMultiplayer
+   #42 = String             #43           // disableChat
+   #43 = Utf8               disableChat
+   #44 = String             #45           // fullscreen
+   #45 = Utf8               fullscreen
+   #46 = String             #47           // checkGlErrors
+   #47 = Utf8               checkGlErrors
+   #48 = String             #49           // renderDebugLabels
+   #49 = Utf8               renderDebugLabels
+   #50 = String             #51           // vulkanValidation
+   #51 = Utf8               vulkanValidation
+   #52 = String             #53           // graphicsBackend
+   #53 = Utf8               graphicsBackend
+   #54 = Methodref          #55.#56       // joptsimple/OptionSpecBuilder.withRequiredArg:()Ljoptsimple/ArgumentAcceptingOptionSpec;
+   #55 = Class              #57           // joptsimple/OptionSpecBuilder
+   #56 = NameAndType        #58:#59       // withRequiredArg:()Ljoptsimple/ArgumentAcceptingOptionSpec;
+   #57 = Utf8               joptsimple/OptionSpecBuilder
+   #58 = Utf8               withRequiredArg
+   #59 = Utf8               ()Ljoptsimple/ArgumentAcceptingOptionSpec;
+   #60 = Class              #61           // net/minecraft/client/main/Main$1
+   #61 = Utf8               net/minecraft/client/main/Main$1
+   #62 = Class              #63           // net/minecraft/client/PreferredGraphicsApi
+   #63 = Utf8               net/minecraft/client/PreferredGraphicsApi
+   #64 = Methodref          #60.#65       // net/minecraft/client/main/Main$1."<init>":(Ljava/lang/Class;)V
+   #65 = NameAndType        #5:#66        // "<init>":(Ljava/lang/Class;)V
+   #66 = Utf8               (Ljava/lang/Class;)V
+   #67 = Methodref          #68.#69       // joptsimple/ArgumentAcceptingOptionSpec.withValuesConvertedBy:(Ljoptsimple/ValueConverter;)Ljoptsimple/ArgumentAcceptingOptionSpec;
+   #68 = Class              #70           // joptsimple/ArgumentAcceptingOptionSpec
+   #69 = NameAndType        #71:#72       // withValuesConvertedBy:(Ljoptsimple/ValueConverter;)Ljoptsimple/ArgumentAcceptingOptionSpec;
+   #70 = Utf8               joptsimple/ArgumentAcceptingOptionSpec
+   #71 = Utf8               withValuesConvertedBy
+--
+  #471 = Utf8               (IILjava/util/OptionalInt;Ljava/util/OptionalInt;Z)V
+  #472 = Class              #473          // net/minecraft/client/main/GameConfig$FolderData
+  #473 = Utf8               net/minecraft/client/main/GameConfig$FolderData
+  #474 = Methodref          #472.#475     // net/minecraft/client/main/GameConfig$FolderData."<init>":(Ljava/io/File;Ljava/io/File;Ljava/io/File;Ljava/lang/String;)V
+  #475 = NameAndType        #5:#476       // "<init>":(Ljava/io/File;Ljava/io/File;Ljava/io/File;Ljava/lang/String;)V
+  #476 = Utf8               (Ljava/io/File;Ljava/io/File;Ljava/io/File;Ljava/lang/String;)V
+  #477 = Class              #478          // net/minecraft/client/main/GameConfig$GameData
+  #478 = Utf8               net/minecraft/client/main/GameConfig$GameData
+  #479 = Methodref          #477.#480     // net/minecraft/client/main/GameConfig$GameData."<init>":(ZLjava/lang/String;Ljava/lang/String;ZZZZZLnet/minecraft/client/PreferredGraphicsApi;Z)V
+  #480 = NameAndType        #5:#481       // "<init>":(ZLjava/lang/String;Ljava/lang/String;ZZZZZLnet/minecraft/client/PreferredGraphicsApi;Z)V
+  #481 = Utf8               (ZLjava/lang/String;Ljava/lang/String;ZZZZZLnet/minecraft/client/PreferredGraphicsApi;Z)V
+  #482 = Class              #483          // net/minecraft/client/main/GameConfig$QuickPlayData
+  #483 = Utf8               net/minecraft/client/main/GameConfig$QuickPlayData
+  #484 = Methodref          #482.#485     // net/minecraft/client/main/GameConfig$QuickPlayData."<init>":(Ljava/lang/String;Lnet/minecraft/client/main/GameConfig$QuickPlayVariant;)V
+  #485 = NameAndType        #5:#486       // "<init>":(Ljava/lang/String;Lnet/minecraft/client/main/GameConfig$QuickPlayVariant;)V
+  #486 = Utf8               (Ljava/lang/String;Lnet/minecraft/client/main/GameConfig$QuickPlayVariant;)V
+  #487 = Methodref          #460.#488     // net/minecraft/client/main/GameConfig."<init>":(Lnet/minecraft/client/main/GameConfig$UserData;Lcom/mojang/blaze3d/platform/DisplayData;Lnet/minecraft/client/main/GameConfig$FolderData;Lnet/minecraft/client/main/GameConfig$GameData;Lnet/minecraft/client/main/GameConfig$QuickPlayData;)V
+  #488 = NameAndType        #5:#489       // "<init>":(Lnet/minecraft/client/main/GameConfig$UserData;Lcom/mojang/blaze3d/platform/DisplayData;Lnet/minecraft/client/main/GameConfig$FolderData;Lnet/minecraft/client/main/GameConfig$GameData;Lnet/minecraft/client/main/GameConfig$QuickPlayData;)V
+  #489 = Utf8               (Lnet/minecraft/client/main/GameConfig$UserData;Lcom/mojang/blaze3d/platform/DisplayData;Lnet/minecraft/client/main/GameConfig$FolderData;Lnet/minecraft/client/main/GameConfig$GameData;Lnet/minecraft/client/main/GameConfig$QuickPlayData;)V
+--
+  #715 = Utf8               hostName
+  #716 = Utf8               proxy
+  #717 = Utf8               I
+  #718 = Utf8               Ljava/util/OptionalInt;
+  #719 = Utf8               isFullscreen
+  #720 = Utf8               Z
+  #721 = Utf8               isDemo
+  #722 = Utf8               captureTracyImages
+  #723 = Utf8               forcedGraphicsApi
+  #724 = Utf8               Lnet/minecraft/client/PreferredGraphicsApi;
+  #725 = Utf8               Ljava/util/UUID;
+  #726 = Utf8               quickPlayLogPath
+  #727 = Utf8               quickPlayVariant
+  #728 = Utf8               user
+  #729 = Utf8               Lnet/minecraft/client/User;
+  #730 = Utf8               logger
+  #731 = Utf8               Lorg/slf4j/Logger;
+  #732 = Utf8               gameConfig
+  #733 = Utf8               Lnet/minecraft/client/main/GameConfig;
+  #734 = Utf8               e
+  #735 = Utf8               Lnet/minecraft/client/main/SilentInitException;
+  #736 = Utf8               args
+  #737 = Utf8               [Ljava/lang/String;
+  #738 = Utf8               renderDebugLabelsOption
+  #739 = Utf8               Ljoptsimple/OptionSpec;
+  #740 = Utf8               vulkanValidationOption
+  #741 = Utf8               graphicsBackendOption
+  #742 = Utf8               jfrProfilingOption
+  #743 = Utf8               tracyProfilingOption
+  #744 = Utf8               tracyNoImageOption
+  #745 = Utf8               quickPlayPathOption
+  #746 = Utf8               quickPlaySingleplayerOption
+  #747 = Utf8               quickPlayMultiplayerOption
+  #748 = Utf8               quickPlayRealmsOption
+  #749 = Utf8               gameDirOption
+--
+  #771 = Utf8               shutdownThread
+  #772 = Utf8               Ljava/lang/Thread;
+  #773 = Utf8               minecraft
+  #774 = Utf8               Lnet/minecraft/client/Minecraft;
+  #775 = Utf8               LocalVariableTypeTable
+  #776 = Utf8               Ljava/util/concurrent/CompletableFuture<*>;
+  #777 = Utf8               Ljava/util/List<Ljava/lang/String;>;
+  #778 = Utf8               Ljoptsimple/OptionSpec<Ljava/lang/Void;>;
+  #779 = Utf8               Ljoptsimple/OptionSpec<Lnet/minecraft/client/PreferredGraphicsApi;>;
+  #780 = Utf8               Ljoptsimple/OptionSpec<Ljava/lang/String;>;
+  #781 = Utf8               Ljoptsimple/OptionSpec<Ljava/io/File;>;
+  #782 = Utf8               Ljoptsimple/OptionSpec<Ljava/lang/Integer;>;
+  #783 = Utf8               StackMapTable
+  #784 = Class              #737          // "[Ljava/lang/String;"
+  #785 = Class              #786          // java/util/UUID
+  #786 = Utf8               java/util/UUID
+  #787 = Utf8               MethodParameters
+--
+        30: invokestatic  #14                 // Method logEarlyException:(Ljava/lang/Throwable;)V
+        33: bipush        -4
+        35: invokestatic  #22                 // Method java/lang/System.exit:(I)V
+        38: return
+        39: aload_1
+        40: invokevirtual #31                 // Method joptsimple/OptionParser.allowsUnrecognizedOptions:()V
+        43: aload_1
+        44: ldc           #34                 // String demo
+        46: invokevirtual #36                 // Method joptsimple/OptionParser.accepts:(Ljava/lang/String;)Ljoptsimple/OptionSpecBuilder;
+        49: pop
+        50: aload_1
+        51: ldc           #40                 // String disableMultiplayer
+        53: invokevirtual #36                 // Method joptsimple/OptionParser.accepts:(Ljava/lang/String;)Ljoptsimple/OptionSpecBuilder;
+        56: pop
+        57: aload_1
+        58: ldc           #42                 // String disableChat
+        60: invokevirtual #36                 // Method joptsimple/OptionParser.accepts:(Ljava/lang/String;)Ljoptsimple/OptionSpecBuilder;
+        63: pop
+        64: aload_1
+        65: ldc           #44                 // String fullscreen
+        67: invokevirtual #36                 // Method joptsimple/OptionParser.accepts:(Ljava/lang/String;)Ljoptsimple/OptionSpecBuilder;
+        70: pop
+        71: aload_1
+        72: ldc           #46                 // String checkGlErrors
+        74: invokevirtual #36                 // Method joptsimple/OptionParser.accepts:(Ljava/lang/String;)Ljoptsimple/OptionSpecBuilder;
+        77: pop
+        78: aload_1
+        79: ldc           #48                 // String renderDebugLabels
+        81: invokevirtual #36                 // Method joptsimple/OptionParser.accepts:(Ljava/lang/String;)Ljoptsimple/OptionSpecBuilder;
+        84: astore_2
+        85: aload_1
+        86: ldc           #50                 // String vulkanValidation
+        88: invokevirtual #36                 // Method joptsimple/OptionParser.accepts:(Ljava/lang/String;)Ljoptsimple/OptionSpecBuilder;
+        91: astore_3
+        92: aload_1
+        93: ldc           #52                 // String graphicsBackend
+        95: invokevirtual #36                 // Method joptsimple/OptionParser.accepts:(Ljava/lang/String;)Ljoptsimple/OptionSpecBuilder;
+        98: invokevirtual #54                 // Method joptsimple/OptionSpecBuilder.withRequiredArg:()Ljoptsimple/ArgumentAcceptingOptionSpec;
+       101: new           #60                 // class net/minecraft/client/main/Main$1
+       104: dup
+       105: ldc           #62                 // class net/minecraft/client/PreferredGraphicsApi
+       107: invokespecial #64                 // Method net/minecraft/client/main/Main$1."<init>":(Ljava/lang/Class;)V
+       110: invokevirtual #67                 // Method joptsimple/ArgumentAcceptingOptionSpec.withValuesConvertedBy:(Ljoptsimple/ValueConverter;)Ljoptsimple/ArgumentAcceptingOptionSpec;
+       113: astore        4
+       115: aload_1
+       116: ldc           #73                 // String jfrProfile
+       118: invokevirtual #36                 // Method joptsimple/OptionParser.accepts:(Ljava/lang/String;)Ljoptsimple/OptionSpecBuilder;
+       121: astore        5
+       123: aload_1
+       124: ldc           #75                 // String tracy
+       126: invokevirtual #36                 // Method joptsimple/OptionParser.accepts:(Ljava/lang/String;)Ljoptsimple/OptionSpecBuilder;
+       129: astore        6
+       131: aload_1
+       132: ldc           #77                 // String tracyNoImages
+       134: invokevirtual #36                 // Method joptsimple/OptionParser.accepts:(Ljava/lang/String;)Ljoptsimple/OptionSpecBuilder;
+       137: astore        7
+       139: aload_1
+       140: ldc           #79                 // String quickPlayPath
+       142: invokevirtual #36                 // Method joptsimple/OptionParser.accepts:(Ljava/lang/String;)Ljoptsimple/OptionSpecBuilder;
+       145: invokevirtual #54                 // Method joptsimple/OptionSpecBuilder.withRequiredArg:()Ljoptsimple/ArgumentAcceptingOptionSpec;
+       148: astore        8
+       150: aload_1
+       151: ldc           #81                 // String quickPlaySingleplayer
+       153: invokevirtual #36                 // Method joptsimple/OptionParser.accepts:(Ljava/lang/String;)Ljoptsimple/OptionSpecBuilder;
+       156: invokevirtual #83                 // Method joptsimple/OptionSpecBuilder.withOptionalArg:()Ljoptsimple/ArgumentAcceptingOptionSpec;
+       159: astore        9
+       161: aload_1
+       162: ldc           #86                 // String quickPlayMultiplayer
+       164: invokevirtual #36                 // Method joptsimple/OptionParser.accepts:(Ljava/lang/String;)Ljoptsimple/OptionSpecBuilder;
+       167: invokevirtual #54                 // Method joptsimple/OptionSpecBuilder.withRequiredArg:()Ljoptsimple/ArgumentAcceptingOptionSpec;
+       170: astore        10
+       172: aload_1
+       173: ldc           #88                 // String quickPlayRealms
+       175: invokevirtual #36                 // Method joptsimple/OptionParser.accepts:(Ljava/lang/String;)Ljoptsimple/OptionSpecBuilder;
+       178: invokevirtual #54                 // Method joptsimple/OptionSpecBuilder.withRequiredArg:()Ljoptsimple/ArgumentAcceptingOptionSpec;
+       181: astore        11
+       183: aload_1
+       184: ldc           #90                 // String gameDir
+       186: invokevirtual #36                 // Method joptsimple/OptionParser.accepts:(Ljava/lang/String;)Ljoptsimple/OptionSpecBuilder;
+       189: invokevirtual #54                 // Method joptsimple/OptionSpecBuilder.withRequiredArg:()Ljoptsimple/ArgumentAcceptingOptionSpec;
+       192: ldc           #92                 // class java/io/File
+       194: invokevirtual #94                 // Method joptsimple/ArgumentAcceptingOptionSpec.ofType:(Ljava/lang/Class;)Ljoptsimple/ArgumentAcceptingOptionSpec;
+       197: new           #92                 // class java/io/File
+       200: dup
+       201: ldc           #98                 // String .
+       203: invokespecial #100                // Method java/io/File."<init>":(Ljava/lang/String;)V
+       206: iconst_0
+       207: anewarray     #92                 // class java/io/File
+       210: invokevirtual #103                // Method joptsimple/ArgumentAcceptingOptionSpec.defaultsTo:(Ljava/lang/Object;[Ljava/lang/Object;)Ljoptsimple/ArgumentAcceptingOptionSpec;
+       213: astore        12
+       215: aload_1
+       216: ldc           #107                // String assetsDir
+       218: invokevirtual #36                 // Method joptsimple/OptionParser.accepts:(Ljava/lang/String;)Ljoptsimple/OptionSpecBuilder;
+       221: invokevirtual #54                 // Method joptsimple/OptionSpecBuilder.withRequiredArg:()Ljoptsimple/ArgumentAcceptingOptionSpec;
+       224: ldc           #92                 // class java/io/File
+       226: invokevirtual #94                 // Method joptsimple/ArgumentAcceptingOptionSpec.ofType:(Ljava/lang/Class;)Ljoptsimple/ArgumentAcceptingOptionSpec;
+       229: astore        13
+       231: aload_1
+       232: ldc           #109                // String resourcePackDir
+       234: invokevirtual #36                 // Method joptsimple/OptionParser.accepts:(Ljava/lang/String;)Ljoptsimple/OptionSpecBuilder;
+       237: invokevirtual #54                 // Method joptsimple/OptionSpecBuilder.withRequiredArg:()Ljoptsimple/ArgumentAcceptingOptionSpec;
+       240: ldc           #92                 // class java/io/File
+       242: invokevirtual #94                 // Method joptsimple/ArgumentAcceptingOptionSpec.ofType:(Ljava/lang/Class;)Ljoptsimple/ArgumentAcceptingOptionSpec;
+       245: astore        14
+       247: aload_1
+       248: ldc           #111                // String proxyHost
+       250: invokevirtual #36                 // Method joptsimple/OptionParser.accepts:(Ljava/lang/String;)Ljoptsimple/OptionSpecBuilder;
+       253: invokevirtual #54                 // Method joptsimple/OptionSpecBuilder.withRequiredArg:()Ljoptsimple/ArgumentAcceptingOptionSpec;
+       256: astore        15
+       258: aload_1
+       259: ldc           #113                // String proxyPort
+       261: invokevirtual #36                 // Method joptsimple/OptionParser.accepts:(Ljava/lang/String;)Ljoptsimple/OptionSpecBuilder;
+       264: invokevirtual #54                 // Method joptsimple/OptionSpecBuilder.withRequiredArg:()Ljoptsimple/ArgumentAcceptingOptionSpec;
+       267: ldc           #115                // String 8080
+       269: iconst_0
+       270: anewarray     #117                // class java/lang/String
+       273: invokevirtual #103                // Method joptsimple/ArgumentAcceptingOptionSpec.defaultsTo:(Ljava/lang/Object;[Ljava/lang/Object;)Ljoptsimple/ArgumentAcceptingOptionSpec;
+       276: ldc           #119                // class java/lang/Integer
+       278: invokevirtual #94                 // Method joptsimple/ArgumentAcceptingOptionSpec.ofType:(Ljava/lang/Class;)Ljoptsimple/ArgumentAcceptingOptionSpec;
+       281: astore        16
+       283: aload_1
+       284: ldc           #121                // String proxyUser
+       286: invokevirtual #36                 // Method joptsimple/OptionParser.accepts:(Ljava/lang/String;)Ljoptsimple/OptionSpecBuilder;
+       289: invokevirtual #54                 // Method joptsimple/OptionSpecBuilder.withRequiredArg:()Ljoptsimple/ArgumentAcceptingOptionSpec;
+       292: astore        17
+       294: aload_1
+       295: ldc           #123                // String proxyPass
+       297: invokevirtual #36                 // Method joptsimple/OptionParser.accepts:(Ljava/lang/String;)Ljoptsimple/OptionSpecBuilder;
+       300: invokevirtual #54                 // Method joptsimple/OptionSpecBuilder.withRequiredArg:()Ljoptsimple/ArgumentAcceptingOptionSpec;
+       303: astore        18
+       305: aload_1
+       306: ldc           #125                // String username
+       308: invokevirtual #36                 // Method joptsimple/OptionParser.accepts:(Ljava/lang/String;)Ljoptsimple/OptionSpecBuilder;
+       311: invokevirtual #54                 // Method joptsimple/OptionSpecBuilder.withRequiredArg:()Ljoptsimple/ArgumentAcceptingOptionSpec;
+       314: invokestatic  #127                // Method java/lang/System.currentTimeMillis:()J
+       317: ldc2_w        #131                // long 1000l
+       320: lrem
+       321: invokedynamic #133,  0            // InvokeDynamic #0:makeConcatWithConstants:(J)Ljava/lang/String;
+       326: iconst_0
+       327: anewarray     #117                // class java/lang/String
+       330: invokevirtual #103                // Method joptsimple/ArgumentAcceptingOptionSpec.defaultsTo:(Ljava/lang/Object;[Ljava/lang/Object;)Ljoptsimple/ArgumentAcceptingOptionSpec;
+       333: astore        19
+       335: aload_1
+       336: ldc           #137                // String offlineDeveloperMode
+       338: invokevirtual #36                 // Method joptsimple/OptionParser.accepts:(Ljava/lang/String;)Ljoptsimple/OptionSpecBuilder;
+       341: astore        20
+       343: aload_1
+       344: ldc           #139                // String uuid
+       346: invokevirtual #36                 // Method joptsimple/OptionParser.accepts:(Ljava/lang/String;)Ljoptsimple/OptionSpecBuilder;
+       349: invokevirtual #54                 // Method joptsimple/OptionSpecBuilder.withRequiredArg:()Ljoptsimple/ArgumentAcceptingOptionSpec;
+       352: astore        21
+       354: aload_1
+       355: ldc           #141                // String xuid
+       357: invokevirtual #36                 // Method joptsimple/OptionParser.accepts:(Ljava/lang/String;)Ljoptsimple/OptionSpecBuilder;
+       360: invokevirtual #83                 // Method joptsimple/OptionSpecBuilder.withOptionalArg:()Ljoptsimple/ArgumentAcceptingOptionSpec;
+       363: ldc           #143                // String
+       365: iconst_0
+       366: anewarray     #117                // class java/lang/String
+       369: invokevirtual #103                // Method joptsimple/ArgumentAcceptingOptionSpec.defaultsTo:(Ljava/lang/Object;[Ljava/lang/Object;)Ljoptsimple/ArgumentAcceptingOptionSpec;
+       372: astore        22
+       374: aload_1
+       375: ldc           #145                // String clientId
+       377: invokevirtual #36                 // Method joptsimple/OptionParser.accepts:(Ljava/lang/String;)Ljoptsimple/OptionSpecBuilder;
+       380: invokevirtual #83                 // Method joptsimple/OptionSpecBuilder.withOptionalArg:()Ljoptsimple/ArgumentAcceptingOptionSpec;
+       383: ldc           #143                // String
+       385: iconst_0
+       386: anewarray     #117                // class java/lang/String
+       389: invokevirtual #103                // Method joptsimple/ArgumentAcceptingOptionSpec.defaultsTo:(Ljava/lang/Object;[Ljava/lang/Object;)Ljoptsimple/ArgumentAcceptingOptionSpec;
+       392: astore        23
+       394: aload_1
+       395: ldc           #147                // String accessToken
+       397: invokevirtual #36                 // Method joptsimple/OptionParser.accepts:(Ljava/lang/String;)Ljoptsimple/OptionSpecBuilder;
+       400: invokevirtual #54                 // Method joptsimple/OptionSpecBuilder.withRequiredArg:()Ljoptsimple/ArgumentAcceptingOptionSpec;
+       403: invokevirtual #149                // Method joptsimple/ArgumentAcceptingOptionSpec.required:()Ljoptsimple/ArgumentAcceptingOptionSpec;
+       406: astore        24
+       408: aload_1
+       409: ldc           #152                // String version
+       411: invokevirtual #36                 // Method joptsimple/OptionParser.accepts:(Ljava/lang/String;)Ljoptsimple/OptionSpecBuilder;
+       414: invokevirtual #54                 // Method joptsimple/OptionSpecBuilder.withRequiredArg:()Ljoptsimple/ArgumentAcceptingOptionSpec;
+       417: invokevirtual #149                // Method joptsimple/ArgumentAcceptingOptionSpec.required:()Ljoptsimple/ArgumentAcceptingOptionSpec;
+       420: astore        25
+       422: aload_1
+       423: ldc           #154                // String width
+       425: invokevirtual #36                 // Method joptsimple/OptionParser.accepts:(Ljava/lang/String;)Ljoptsimple/OptionSpecBuilder;
+       428: invokevirtual #54                 // Method joptsimple/OptionSpecBuilder.withRequiredArg:()Ljoptsimple/ArgumentAcceptingOptionSpec;
+       431: ldc           #119                // class java/lang/Integer
+       433: invokevirtual #94                 // Method joptsimple/ArgumentAcceptingOptionSpec.ofType:(Ljava/lang/Class;)Ljoptsimple/ArgumentAcceptingOptionSpec;
+       436: sipush        854
+       439: invokestatic  #156                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+       442: iconst_0
+       443: anewarray     #119                // class java/lang/Integer
+       446: invokevirtual #103                // Method joptsimple/ArgumentAcceptingOptionSpec.defaultsTo:(Ljava/lang/Object;[Ljava/lang/Object;)Ljoptsimple/ArgumentAcceptingOptionSpec;
+       449: astore        26
+       451: aload_1
+       452: ldc           #160                // String height
+       454: invokevirtual #36                 // Method joptsimple/OptionParser.accepts:(Ljava/lang/String;)Ljoptsimple/OptionSpecBuilder;
+       457: invokevirtual #54                 // Method joptsimple/OptionSpecBuilder.withRequiredArg:()Ljoptsimple/ArgumentAcceptingOptionSpec;
+       460: ldc           #119                // class java/lang/Integer
+       462: invokevirtual #94                 // Method joptsimple/ArgumentAcceptingOptionSpec.ofType:(Ljava/lang/Class;)Ljoptsimple/ArgumentAcceptingOptionSpec;
+       465: sipush        480
+       468: invokestatic  #156                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+       471: iconst_0
+       472: anewarray     #119                // class java/lang/Integer
+       475: invokevirtual #103                // Method joptsimple/ArgumentAcceptingOptionSpec.defaultsTo:(Ljava/lang/Object;[Ljava/lang/Object;)Ljoptsimple/ArgumentAcceptingOptionSpec;
+       478: astore        27
+       480: aload_1
+       481: ldc           #162                // String fullscreenWidth
+       483: invokevirtual #36                 // Method joptsimple/OptionParser.accepts:(Ljava/lang/String;)Ljoptsimple/OptionSpecBuilder;
+       486: invokevirtual #54                 // Method joptsimple/OptionSpecBuilder.withRequiredArg:()Ljoptsimple/ArgumentAcceptingOptionSpec;
+       489: ldc           #119                // class java/lang/Integer
+       491: invokevirtual #94                 // Method joptsimple/ArgumentAcceptingOptionSpec.ofType:(Ljava/lang/Class;)Ljoptsimple/ArgumentAcceptingOptionSpec;
+       494: astore        28
+       496: aload_1
+       497: ldc           #164                // String fullscreenHeight
+       499: invokevirtual #36                 // Method joptsimple/OptionParser.accepts:(Ljava/lang/String;)Ljoptsimple/OptionSpecBuilder;
+       502: invokevirtual #54                 // Method joptsimple/OptionSpecBuilder.withRequiredArg:()Ljoptsimple/ArgumentAcceptingOptionSpec;
+       505: ldc           #119                // class java/lang/Integer
+       507: invokevirtual #94                 // Method joptsimple/ArgumentAcceptingOptionSpec.ofType:(Ljava/lang/Class;)Ljoptsimple/ArgumentAcceptingOptionSpec;
+       510: astore        29
+       512: aload_1
+       513: ldc           #166                // String assetIndex
+       515: invokevirtual #36                 // Method joptsimple/OptionParser.accepts:(Ljava/lang/String;)Ljoptsimple/OptionSpecBuilder;
+       518: invokevirtual #54                 // Method joptsimple/OptionSpecBuilder.withRequiredArg:()Ljoptsimple/ArgumentAcceptingOptionSpec;
+       521: astore        30
+       523: aload_1
+       524: ldc           #168                // String versionType
+       526: invokevirtual #36                 // Method joptsimple/OptionParser.accepts:(Ljava/lang/String;)Ljoptsimple/OptionSpecBuilder;
+       529: invokevirtual #54                 // Method joptsimple/OptionSpecBuilder.withRequiredArg:()Ljoptsimple/ArgumentAcceptingOptionSpec;
+       532: ldc           #170                // String release
+       534: iconst_0
+       535: anewarray     #117                // class java/lang/String
+       538: invokevirtual #103                // Method joptsimple/ArgumentAcceptingOptionSpec.defaultsTo:(Ljava/lang/Object;[Ljava/lang/Object;)Ljoptsimple/ArgumentAcceptingOptionSpec;
+       541: astore        31
+       543: aload_1
+       544: invokevirtual #172                // Method joptsimple/OptionParser.nonOptions:()Ljoptsimple/NonOptionArgumentSpec;
+--
+      1076: astore        57
+      1078: aload         33
+      1080: aload_3
+      1081: invokevirtual #221                // Method joptsimple/OptionSet.has:(Ljoptsimple/OptionSpec;)Z
+      1084: istore        58
+      1086: aload         33
+      1088: aload         4
+      1090: invokestatic  #180                // Method parseArgument:(Ljoptsimple/OptionSet;Ljoptsimple/OptionSpec;)Ljava/lang/Object;
+      1093: checkcast     #62                 // class net/minecraft/client/PreferredGraphicsApi
+      1096: astore        59
+      1098: aload         33
+      1100: aload         13
+      1102: invokevirtual #221                // Method joptsimple/OptionSet.has:(Ljoptsimple/OptionSpec;)Z
+      1105: ifeq          1121
+      1108: aload         33
+      1110: aload         13
+      1112: invokestatic  #180                // Method parseArgument:(Ljoptsimple/OptionSet;Ljoptsimple/OptionSpec;)Ljava/lang/Object;
+--
+      1400: iload         54
+      1402: iload         55
+      1404: iload         58
+      1406: iload         56
+      1408: aload         59
+      1410: aload         33
+      1412: aload         20
+      1414: invokevirtual #221                // Method joptsimple/OptionSet.has:(Ljoptsimple/OptionSpec;)Z
+      1417: invokespecial #479                // Method net/minecraft/client/main/GameConfig$GameData."<init>":(ZLjava/lang/String;Ljava/lang/String;ZZZZZLnet/minecraft/client/PreferredGraphicsApi;Z)V
+      1420: new           #482                // class net/minecraft/client/main/GameConfig$QuickPlayData
+      1423: dup
+      1424: aload         66
+      1426: aload         67
+      1428: invokespecial #484                // Method net/minecraft/client/main/GameConfig$QuickPlayData."<init>":(Ljava/lang/String;Lnet/minecraft/client/main/GameConfig$QuickPlayVariant;)V
+      1431: invokespecial #487                // Method net/minecraft/client/main/GameConfig."<init>":(Lnet/minecraft/client/main/GameConfig$UserData;Lcom/mojang/blaze3d/platform/DisplayData;Lnet/minecraft/client/main/GameConfig$FolderData;Lnet/minecraft/client/main/GameConfig$GameData;Lnet/minecraft/client/main/GameConfig$QuickPlayData;)V
+      1434: astore        37
+      1436: invokestatic  #490                // Method net/minecraft/util/Util.startTimerHackThread:()V
+--
+         1005     440    50 fullscreenHeight   Ljava/util/OptionalInt;
+         1014     431    51 isFullscreen   Z
+         1023     422    52 isDemo   Z
+         1032     413    53 disableMultiplayer   Z
+         1041     404    54 disableChat   Z
+         1058     387    55 captureTracyImages   Z
+         1066     379    56 renderDebugLabels   Z
+         1078     367    57 versionType   Ljava/lang/String;
+         1086     359    58 vulkanValidation   Z
+         1098     347    59 forcedGraphicsApi   Lnet/minecraft/client/PreferredGraphicsApi;
+         1135     310    60 assetsDir   Ljava/io/File;
+         1172     273    61 resourcePackDir   Ljava/io/File;
+         1219     226    62  uuid   Ljava/util/UUID;
+         1247     198    63 assetIndex   Ljava/lang/String;
+         1259     186    64  xuid   Ljava/lang/String;
+         1271     174    65 clientId   Ljava/lang/String;
+         1283     162    66 quickPlayLogPath   Ljava/lang/String;
+         1296     149    67 quickPlayVariant   Lnet/minecraft/client/main/GameConfig$QuickPlayVariant;
+--
+         1586      48    42 report   Lnet/minecraft/CrashReport;
+         1595      39    43 initialization   Lnet/minecraft/CrashReportCategory;
+         1576      58    41     t   Ljava/lang/Throwable;
+         1659      21    42 report   Lnet/minecraft/CrashReport;
+         1649      31    41     t   Ljava/lang/Throwable;
+            0    1697     0  args   [Ljava/lang/String;
+           39    1658     1 parser   Ljoptsimple/OptionParser;
+           85    1612     2 renderDebugLabelsOption   Ljoptsimple/OptionSpec;
+           92    1605     3 vulkanValidationOption   Ljoptsimple/OptionSpec;
+          115    1582     4 graphicsBackendOption   Ljoptsimple/OptionSpec;
+          123    1574     5 jfrProfilingOption   Ljoptsimple/OptionSpec;
+          131    1566     6 tracyProfilingOption   Ljoptsimple/OptionSpec;
+          139    1558     7 tracyNoImageOption   Ljoptsimple/OptionSpec;
+          150    1547     8 quickPlayPathOption   Ljoptsimple/OptionSpec;
+          161    1536     9 quickPlaySingleplayerOption   Ljoptsimple/OptionSpec;
+          172    1525    10 quickPlayMultiplayerOption   Ljoptsimple/OptionSpec;
+          183    1514    11 quickPlayRealmsOption   Ljoptsimple/OptionSpec;
+          215    1482    12 gameDirOption   Ljoptsimple/OptionSpec;
+--
+          652    1045    38 stage   Ljava/lang/String;
+         1505     192    39 shutdownThread   Ljava/lang/Thread;
+         1530     167    40 minecraft   Lnet/minecraft/client/Minecraft;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+          749     696    41 dataFixerOptimization   Ljava/util/concurrent/CompletableFuture<*>;
+          797     648    42 leftoverArgs   Ljava/util/List<Ljava/lang/String;>;
+           85    1612     2 renderDebugLabelsOption   Ljoptsimple/OptionSpec<Ljava/lang/Void;>;
+           92    1605     3 vulkanValidationOption   Ljoptsimple/OptionSpec<Ljava/lang/Void;>;
+          115    1582     4 graphicsBackendOption   Ljoptsimple/OptionSpec<Lnet/minecraft/client/PreferredGraphicsApi;>;
+          123    1574     5 jfrProfilingOption   Ljoptsimple/OptionSpec<Ljava/lang/Void;>;
+          131    1566     6 tracyProfilingOption   Ljoptsimple/OptionSpec<Ljava/lang/Void;>;
+          139    1558     7 tracyNoImageOption   Ljoptsimple/OptionSpec<Ljava/lang/Void;>;
+          150    1547     8 quickPlayPathOption   Ljoptsimple/OptionSpec<Ljava/lang/String;>;
+          161    1536     9 quickPlaySingleplayerOption   Ljoptsimple/OptionSpec<Ljava/lang/String;>;
+          172    1525    10 quickPlayMultiplayerOption   Ljoptsimple/OptionSpec<Ljava/lang/String;>;
+          183    1514    11 quickPlayRealmsOption   Ljoptsimple/OptionSpec<Ljava/lang/String;>;
+          215    1482    12 gameDirOption   Ljoptsimple/OptionSpec<Ljava/io/File;>;
+--
+        frame_type = 255 /* full_frame */
+          offset_delta = 109
+          locals = [ class "[Ljava/lang/String;", class joptsimple/OptionParser, class joptsimple/OptionSpec, class joptsimple/OptionSpec, class joptsimple/OptionSpec, class joptsimple/OptionSpec, class joptsimple/OptionSpec, class joptsimple/OptionSpec, class joptsimple/OptionSpec, class joptsimple/OptionSpec, class joptsimple/OptionSpec, class joptsimple/OptionSpec, class joptsimple/OptionSpec, class joptsimple/OptionSpec, class joptsimple/OptionSpec, class joptsimple/OptionSpec, class joptsimple/OptionSpec, class joptsimple/OptionSpec, class joptsimple/OptionSpec, class joptsimple/OptionSpec, class joptsimple/OptionSpec, class joptsimple/OptionSpec, class joptsimple/OptionSpec, class joptsimple/OptionSpec, class joptsimple/OptionSpec, class joptsimple/OptionSpec, class joptsimple/OptionSpec, class joptsimple/OptionSpec, class joptsimple/OptionSpec, class joptsimple/OptionSpec, class joptsimple/OptionSpec, class joptsimple/OptionSpec, class joptsimple/OptionSpec, class joptsimple/OptionSet, class java/io/File, class java/lang/String, class org/slf4j/Logger, top, class java/lang/String, class com/google/common/base/Stopwatch, class com/google/common/base/Stopwatch, class java/util/concurrent/CompletableFuture, class java/util/List, class java/lang/String, class java/net/Proxy, class java/lang/String, class java/lang/String, int, int, class java/util/OptionalInt, class java/util/OptionalInt, int, int, int, int ]
+          stack = []
+        frame_type = 64 /* same_locals_1_stack_item */
+          stack = [ int ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 64
+          locals = [ class "[Ljava/lang/String;", class joptsimple/OptionParser, class joptsimple/OptionSpec, class joptsimple/OptionSpec, class joptsimple/OptionSpec, class joptsimple/OptionSpec, class joptsimple/OptionSpec, class joptsimple/OptionSpec, class joptsimple/OptionSpec, class joptsimple/OptionSpec, class joptsimple/OptionSpec, class joptsimple/OptionSpec, class joptsimple/OptionSpec, class joptsimple/OptionSpec, class joptsimple/OptionSpec, class joptsimple/OptionSpec, class joptsimple/OptionSpec, class joptsimple/OptionSpec, class joptsimple/OptionSpec, class joptsimple/OptionSpec, class joptsimple/OptionSpec, class joptsimple/OptionSpec, class joptsimple/OptionSpec, class joptsimple/OptionSpec, class joptsimple/OptionSpec, class joptsimple/OptionSpec, class joptsimple/OptionSpec, class joptsimple/OptionSpec, class joptsimple/OptionSpec, class joptsimple/OptionSpec, class joptsimple/OptionSpec, class joptsimple/OptionSpec, class joptsimple/OptionSpec, class joptsimple/OptionSet, class java/io/File, class java/lang/String, class org/slf4j/Logger, top, class java/lang/String, class com/google/common/base/Stopwatch, class com/google/common/base/Stopwatch, class java/util/concurrent/CompletableFuture, class java/util/List, class java/lang/String, class java/net/Proxy, class java/lang/String, class java/lang/String, int, int, class java/util/OptionalInt, class java/util/OptionalInt, int, int, int, int, int, int, class java/lang/String, int, class net/minecraft/client/PreferredGraphicsApi ]
+          stack = []
+        frame_type = 75 /* same_locals_1_stack_item */
+          stack = [ class java/io/File ]
+        frame_type = 252 /* append */
+          offset_delta = 24
+          locals = [ class java/io/File ]
+        frame_type = 75 /* same_locals_1_stack_item */
+          stack = [ class java/io/File ]
+
+=== ALL RELEVANT CLASS STRINGS ===
+--- net/minecraft/client/main/Main.class
+fullscreen
+checkGlErrors
+renderDebugLabels
+vulkanValidation
+graphicsBackend
+joptsimple/OptionSpecBuilder
+withRequiredArg
+*()Ljoptsimple/ArgumentAcceptingOptionSpec;
+ net/minecraft/client/main/Main$1
+)net/minecraft/client/PreferredGraphicsApi
+(Ljava/lang/Class;)V
+&joptsimple/ArgumentAcceptingOptionSpec
+withValuesConvertedBy
+--
+/net/minecraft/client/main/GameConfig$FolderData
+?(Ljava/io/File;Ljava/io/File;Ljava/io/File;Ljava/lang/String;)V
+-net/minecraft/client/main/GameConfig$GameData
+Y(ZLjava/lang/String;Ljava/lang/String;ZZZZZLnet/minecraft/client/PreferredGraphicsApi;Z)V
+2net/minecraft/client/main/GameConfig$QuickPlayData
+L(Ljava/lang/String;Lnet/minecraft/client/main/GameConfig$QuickPlayVariant;)V
+(Lnet/minecraft/client/main/GameConfig$UserData;Lcom/mojang/blaze3d/platform/DisplayData;Lnet/minecraft/client/main/GameConfig$FolderData;Lnet/minecraft/client/main/GameConfig$GameData;Lnet/minecraft/client/main/GameConfig$QuickPlayData;)V
+--
+isFullscreen
+isDemo
+captureTracyImages
+forcedGraphicsApi
++Lnet/minecraft/client/PreferredGraphicsApi;
+Ljava/util/UUID;
+quickPlayLogPath
+quickPlayVariant
+--
+[Ljava/lang/String;
+renderDebugLabelsOption
+Ljoptsimple/OptionSpec;
+vulkanValidationOption
+graphicsBackendOption
+jfrProfilingOption
+tracyProfilingOption
+tracyNoImageOption
+--
++Ljava/util/concurrent/CompletableFuture<*>;
+$Ljava/util/List<Ljava/lang/String;>;
+)Ljoptsimple/OptionSpec<Ljava/lang/Void;>;
+DLjoptsimple/OptionSpec<Lnet/minecraft/client/PreferredGraphicsApi;>;
++Ljoptsimple/OptionSpec<Ljava/lang/String;>;
+'Ljoptsimple/OptionSpec<Ljava/io/File;>;
+,Ljoptsimple/OptionSpec<Ljava/lang/Integer;>;
+--- net/minecraft/client/Options.class
+simulationDistance	
+entityDistanceScaling	
+framerateLimit	
+preferredGraphicsBackend
+#net/minecraft/client/OptionInstance
+()Ljava/lang/Object;	
+#preferredGraphicsBackendFromStartup
++Lnet/minecraft/client/PreferredGraphicsApi;	
+exclusiveFullscreen
+java/lang/Boolean
+booleanValue
+()Z	
+exclusiveFullscreenFromStartup
+isApplyingGraphicsPreset	
+	minecraft
+ Lnet/minecraft/client/Minecraft;
+#net/minecraft/client/GraphicsPreset
+apply
+#(Lnet/minecraft/client/Minecraft;)V	
+graphicsPreset	
+inactivityFpsLimit	
+cloudStatus	
+cloudRange	
+--
+&()Lcom/mojang/blaze3d/platform/Window;
+updateFontOptions
+	resizeGui	
+forceUnicodeFont
+java/util/Locale
+getDefault
+()Ljava/util/Locale;
+--
+onlyShowSecureChat	
+saveChatDrafts	
+CUSTOM
+%Lnet/minecraft/client/GraphicsPreset;
+set	
+Lnet/minecraft/client/gui/Gui;
+net/minecraft/client/gui/Gui
+--
+$(II)Lcom/mojang/serialization/Codec;
+(I)Ljava/lang/Integer;
+;()Lnet/minecraft/client/OptionInstance$ValueUpdateListener;	
+)net/minecraft/client/PreferredGraphicsApi
+DEFAULT
+options.graphicsApi
+U(Lnet/minecraft/client/Options;)Lnet/minecraft/client/OptionInstance$TooltipSupplier;
+(net/minecraft/client/OptionInstance$Enum
+values
+.()[Lnet/minecraft/client/PreferredGraphicsApi;
+%([Ljava/lang/Object;)Ljava/util/List;	
+CODEC
+ Lcom/mojang/serialization/Codec;
+3(Ljava/util/List;Lcom/mojang/serialization/Codec;)V
+options.graphics.preset
+options.graphics.preset.tooltip
+$net/minecraft/network/chat/Component
+translatable
+A(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+2net/minecraft/client/OptionInstance$SliderableEnum
+(()[Lnet/minecraft/client/GraphicsPreset;	
+FANCY
+options.inactivityFpsLimit
+'net/minecraft/client/InactivityFpsLimit
+--
+options.renderCloudsDistance
+(IIZ)V
+options.weatherRadius	
+GRAPHICS_TOOLTIP_WEATHER_RADIUS
+options.cutoutLeaves	
+GRAPHICS_TOOLTIP_CUTOUT_LEAVES
+(Ljava/lang/String;Lnet/minecraft/client/OptionInstance$TooltipSupplier;ZLnet/minecraft/client/OptionInstance$ValueUpdateListener;)Lnet/minecraft/client/OptionInstance;
+options.vignette	
+GRAPHICS_TOOLTIP_VIGNETTE
+options.improvedTransparency	
+&GRAPHICS_TOOLTIP_IMPROVED_TRANSPARENCY
+options.ao
+s(Ljava/lang/String;ZLnet/minecraft/client/OptionInstance$ValueUpdateListener;)Lnet/minecraft/client/OptionInstance;
+options.chunkFade	
+GRAPHICS_TOOLTIP_CHUNK_FADE
+options.prioritizeChunkUpdates
++net/minecraft/client/PrioritizeChunkUpdates
+0()[Lnet/minecraft/client/PrioritizeChunkUpdates;	
+--
+/ACCESSIBILITY_TOOLTIP_NOTIFICATION_DISPLAY_TIME
+options.mipmapLevels
+options.maxAnisotropy	
+&GRAPHICS_TOOLTIP_ANISOTROPIC_FILTERING
+options.textureFiltering
++net/minecraft/client/TextureFilteringMethod
+0()[Lnet/minecraft/client/TextureFilteringMethod;	
+--
+options.chat.links.prompt
+options.vsync
+options.entityShadows
+options.forceUnicodeFont
+options.japaneseGlyphVariants
+%options.japaneseGlyphVariants.tooltip
+japaneseGlyphVariantsDefault
+--
+	putString
+'(Ljava/lang/String;Ljava/lang/String;)V
+Skipping bad option: {}
+setGraphicsPresetToCustom
+options.chunks
+	F	G
+toastManager
+--
+((Lnet/minecraft/client/NarratorStatus;)V
+isActive
+options.narrator.notavailable
+isEnforceUnicode
+calculateScale
+(IZ)I
+options.guiScale.auto
+--
+2$SwitchMap$net$minecraft$client$InactivityFpsLimit
+&INACTIVITY_FPS_LIMIT_TOOLTIP_MINIMIZED	
+ INACTIVITY_FPS_LIMIT_TOOLTIP_AFK
+GRAPHICS_API_TOOLTIP	
+VULKAN	
+GRAPHICS_API_TOOLTIP_VULKAN
+getFramerateLimitTracker
+5()Lcom/mojang/blaze3d/platform/FramerateLimitTracker;
+1com/mojang/blaze3d/platform/FramerateLimitTracker
+--
+0options.darkMojangStudiosBackgroundColor.tooltip
+$options.hideLightningFlashes.tooltip
+options.hideSplashTexts.tooltip
+options.graphicsApi.tooltip
+"options.graphicsApi.tooltip.vulkan
+,options.inactivityFpsLimit.minimized.tooltip
+&options.inactivityFpsLimit.afk.tooltip
+options.weatherRadius.tooltip
+--
+9Lnet/minecraft/client/OptionInstance<Ljava/lang/Double;>;
+:Lnet/minecraft/client/OptionInstance<Ljava/lang/Integer;>;
+UNLIMITED_FRAMERATE_CUTOFF
+RLnet/minecraft/client/OptionInstance<Lnet/minecraft/client/PreferredGraphicsApi;>;
+LLnet/minecraft/client/OptionInstance<Lnet/minecraft/client/GraphicsPreset;>;
+PLnet/minecraft/client/OptionInstance<Lnet/minecraft/client/InactivityFpsLimit;>;
+ILnet/minecraft/client/OptionInstance<Lnet/minecraft/client/CloudStatus;>;
+TLnet/minecraft/client/OptionInstance<Lnet/minecraft/client/PrioritizeChunkUpdates;>;
+--
+<()Lnet/minecraft/client/OptionInstance<Ljava/lang/Boolean;>;
+;()Lnet/minecraft/client/OptionInstance<Ljava/lang/Double;>;
+<()Lnet/minecraft/client/OptionInstance<Ljava/lang/Integer;>;
+T()Lnet/minecraft/client/OptionInstance<Lnet/minecraft/client/PreferredGraphicsApi;>;
+%isRestartRequiredToApplyVideoSettings
+applyGraphicsPreset
+((Lnet/minecraft/client/GraphicsPreset;)V
+value
+N()Lnet/minecraft/client/OptionInstance<Lnet/minecraft/client/GraphicsPreset;>;
+R()Lnet/minecraft/client/OptionInstance<Lnet/minecraft/client/InactivityFpsLimit;>;
+K()Lnet/minecraft/client/OptionInstance<Lnet/minecraft/client/CloudStatus;>;
+V()Lnet/minecraft/client/OptionInstance<Lnet/minecraft/client/PrioritizeChunkUpdates;>;
+--
+lambda$new$11
+X(Lnet/minecraft/client/InactivityFpsLimit;)Lnet/minecraft/client/gui/components/Tooltip;
+lambda$new$10
+s(Lnet/minecraft/network/chat/Component;Lnet/minecraft/client/GraphicsPreset;)Lnet/minecraft/network/chat/Component;
+lambda$new$9
+y(Lnet/minecraft/network/chat/Component;Lnet/minecraft/client/PreferredGraphicsApi;)Lnet/minecraft/network/chat/Component;
+lambda$new$8
+Z(Lnet/minecraft/client/PreferredGraphicsApi;)Lnet/minecraft/client/gui/components/Tooltip;
+lambda$new$7
+lambda$new$6
+(Ljava/lang/Integer;)I
+--- net/minecraft/client/PreferredGraphicsApi.class
+)net/minecraft/client/PreferredGraphicsApi	
+DEFAULT
++Lnet/minecraft/client/PreferredGraphicsApi;	
+OPENGL	
+VULKAN	
+$VALUES
+,[Lnet/minecraft/client/PreferredGraphicsApi;
+clone
+()Ljava/lang/Object;
+java/lang/Enum
+--
+translatable
+A(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;	
+&Lnet/minecraft/network/chat/Component;
+#com/mojang/blaze3d/opengl/GlBackend
+'com/mojang/blaze3d/vulkan/VulkanBackend
+%com/mojang/blaze3d/systems/GpuBackend
+default
+options.graphicsApi.default
+:(Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)V
+opengl
+options.graphicsApi.opengl
+vulkan
+options.graphicsApi.vulkan
+$values
+.()[Lnet/minecraft/client/PreferredGraphicsApi;
+()Ljava/util/function/Supplier;
+&net/minecraft/util/StringRepresentable
+fromEnum
+--
+CODEC
+ Lcom/mojang/serialization/Codec;
+	Signature
+MLcom/mojang/serialization/Codec<Lnet/minecraft/client/PreferredGraphicsApi;>;
+values
+Code
+LineNumberTable
+?(Ljava/lang/String;)Lnet/minecraft/client/PreferredGraphicsApi;
+LocalVariableTable
+name
+MethodParameters
+--
+(()Lnet/minecraft/network/chat/Component;
+getSerializedName
+()Ljava/lang/String;
+getBackendsToTry
+*()[Lcom/mojang/blaze3d/systems/GpuBackend;
+%Lcom/mojang/blaze3d/opengl/GlBackend;
+)Lcom/mojang/blaze3d/vulkan/VulkanBackend;
+StackMapTable
+<clinit>
+eLjava/lang/Enum<Lnet/minecraft/client/PreferredGraphicsApi;>;Lnet/minecraft/util/StringRepresentable;
+SourceFile
+PreferredGraphicsApi.java
+BootstrapMethods
+"java/lang/invoke/LambdaMetafactory
+metafactory
+
+=== MAPPING HINTS ===
