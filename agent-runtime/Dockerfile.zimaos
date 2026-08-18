@@ -12,6 +12,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 WORKDIR /app
 COPY . /app
+RUN chmod +x /app/agent-runtime/docker-start-worker.sh
 
 VOLUME ["/data"]
-CMD ["node", "agent-runtime/worker.mjs"]
+CMD ["/app/agent-runtime/docker-start-worker.sh"]
