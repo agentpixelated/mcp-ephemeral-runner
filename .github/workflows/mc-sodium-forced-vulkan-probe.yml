@@ -1,4 +1,4 @@
-name: Probe forced Sodium Vulkan run
+name: Probe Sodium Vulkan runs
 
 on:
   push:
@@ -17,17 +17,19 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Record latest forced Vulkan smoke
+      - name: Record latest Vulkan probes
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
           mkdir -p benchmark-results
           gh run list --workflow mc-sodium-vulkan-smoke.yml --limit 1 --json databaseId,status,conclusion,headSha,createdAt > benchmark-results/sodium-forced-vulkan-live.json
+          gh run list --workflow mc-sodium-vulkan-fastprobe.yml --limit 1 --json databaseId,status,conclusion,headSha,createdAt > benchmark-results/sodium-vulkan-fastprobe-live.json
           cat benchmark-results/sodium-forced-vulkan-live.json
+          cat benchmark-results/sodium-vulkan-fastprobe-live.json
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git pull --rebase
-          git add benchmark-results/sodium-forced-vulkan-live.json
-          git commit -m 'Record forced Sodium Vulkan live run status' || true
+          git add benchmark-results/sodium-forced-vulkan-live.json benchmark-results/sodium-vulkan-fastprobe-live.json
+          git commit -m 'Record Sodium Vulkan live run status' || true
           git push || true
