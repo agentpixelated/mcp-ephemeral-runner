@@ -1,0 +1,58 @@
+name: Collect Minecraft Vulkan benchmark
+
+on:
+  push:
+    paths:
+      - '.github/workflows/mc-vulkan-collect.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  collect:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Find smoke run
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          RUN_ID=$(gh run list --workflow mc-vulkan-smoke.yml --limit 1 --json databaseId --jq '.[0].databaseId')
+          echo "RUN_ID=$RUN_ID" >> "$GITHUB_ENV"
+          mkdir -p benchmark-results
+          printf '{"vulkan_smoke_run_id":"%s","state":"collecting"}\n' "$RUN_ID" > benchmark-results/vulkan-status.json
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add benchmark-results/vulkan-status.json
+          git commit -m 'Record Vulkan smoke benchmark run' || true
+          git push || true
+          gh run watch "$RUN_ID" || true
+      - name: Download result
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          rm -rf vulkan-artifact
+          mkdir vulkan-artifact
+          gh run download "$RUN_ID" -n vulkan-smoke -D vulkan-artifact || true
+          find vulkan-artifact -maxdepth 2 -type f -print
+          mkdir -p benchmark-results
+          if [ -f vulkan-artifact/result.json ]; then
+            cp vulkan-artifact/result.json benchmark-results/mc-26.1.2-vulkan-smoke.json
+            cp vulkan-artifact/vulkaninfo.txt benchmark-results/mc-26.1.2-vulkaninfo.txt || true
+            printf '{"vulkan_smoke_run_id":"%s","state":"complete","result":true}\n' "$RUN_ID" > benchmark-results/vulkan-status.json
+          else
+            printf '{"vulkan_smoke_run_id":"%s","state":"complete","result":false}\n' "$RUN_ID" > benchmark-results/vulkan-status.json
+          fi
+      - name: Commit result
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git pull --rebase || true
+          git add benchmark-results/vulkan-status.json benchmark-results/mc-26.1.2-vulkan-smoke.json benchmark-results/mc-26.1.2-vulkaninfo.txt 2>/dev/null || true
+          git commit -m 'Add Minecraft 26.1.2 Vulkan smoke benchmark result' || true
+          git push || true
