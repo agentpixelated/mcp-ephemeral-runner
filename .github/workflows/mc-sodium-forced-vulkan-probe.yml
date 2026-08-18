@@ -31,5 +31,6 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git pull --rebase
           git add benchmark-results/sodium-forced-vulkan-live.json benchmark-results/sodium-vulkan-fastprobe-live.json
-          git commit -m 'Record Sodium Vulkan live run status' || true
+          git commit -m 'Refresh Sodium Vulkan live run status' || true
           git push || true
+          # status refresh 2
