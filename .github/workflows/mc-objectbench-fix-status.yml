@@ -1,0 +1,29 @@
+name: Track ObjectBench cleanup patch
+on:
+  push:
+    paths:
+      - '.github/workflows/mc-objectbench-fix-status.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+jobs:
+  status:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Record patch run
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p benchmark-results
+          gh run list --workflow mc-objectbench-fix.yml --limit 1 --json databaseId,status,conclusion,headSha,createdAt > benchmark-results/objectbench-fix-live.json
+          cat benchmark-results/objectbench-fix-live.json
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git pull --rebase
+          git add benchmark-results/objectbench-fix-live.json
+          git commit -m 'Record ObjectBench cleanup patch status' || true
+          git push || true
