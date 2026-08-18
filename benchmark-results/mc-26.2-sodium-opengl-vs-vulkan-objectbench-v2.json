@@ -1,0 +1,273 @@
+{
+  "minecraft": "26.2",
+  "sodium": "0.9.1",
+  "method": "ObjectBench v2; controlled 3 scenes; programmatic camera; pregenerated chunks; same runner; clean JVM ABBA",
+  "aggregate": {
+    "opengl": {
+      "runs": 2,
+      "scenes": {
+        "overall": {
+          "mean_fps": 42.10539,
+          "fps_range": [
+            41.82327,
+            42.38751
+          ],
+          "mean_1pct_low_fps": 22.298955,
+          "mean_p99_frame_ms": 44.872265
+        },
+        "geometry_transparency": {
+          "mean_fps": 41.566745,
+          "fps_range": [
+            40.44519,
+            42.6883
+          ],
+          "mean_1pct_low_fps": 22.058889999999998,
+          "mean_p99_frame_ms": 45.349095
+        },
+        "occlusion_entities": {
+          "mean_fps": 38.14201,
+          "fps_range": [
+            37.59998,
+            38.68404
+          ],
+          "mean_1pct_low_fps": 20.672235,
+          "mean_p99_frame_ms": 48.426805
+        },
+        "mixed_block_entities": {
+          "mean_fps": 46.62616,
+          "fps_range": [
+            45.79977,
+            47.45255
+          ],
+          "mean_1pct_low_fps": 30.628075000000003,
+          "mean_p99_frame_ms": 32.690025
+        }
+      }
+    },
+    "vulkan": {
+      "runs": 2,
+      "scenes": {
+        "overall": {
+          "mean_fps": 36.664455000000004,
+          "fps_range": [
+            36.39591,
+            36.933
+          ],
+          "mean_1pct_low_fps": 17.343584999999997,
+          "mean_p99_frame_ms": 57.77842
+        },
+        "geometry_transparency": {
+          "mean_fps": 36.360429999999994,
+          "fps_range": [
+            36.03583,
+            36.68503
+          ],
+          "mean_1pct_low_fps": 16.8729,
+          "mean_p99_frame_ms": 59.267105
+        },
+        "occlusion_entities": {
+          "mean_fps": 33.346925,
+          "fps_range": [
+            32.53265,
+            34.1612
+          ],
+          "mean_1pct_low_fps": 16.43488,
+          "mean_p99_frame_ms": 61.18902
+        },
+        "mixed_block_entities": {
+          "mean_fps": 40.29019,
+          "fps_range": [
+            39.9665,
+            40.61388
+          ],
+          "mean_1pct_low_fps": 26.9028,
+          "mean_p99_frame_ms": 37.206935
+        }
+      }
+    }
+  },
+  "comparison": {
+    "overall": {
+      "opengl_fps": 42.10539,
+      "vulkan_fps": 36.664455000000004,
+      "vulkan_vs_opengl_pct": -12.922181696927627
+    },
+    "geometry_transparency": {
+      "opengl_fps": 41.566745,
+      "vulkan_fps": 36.360429999999994,
+      "vulkan_vs_opengl_pct": -12.525192915634854
+    },
+    "occlusion_entities": {
+      "opengl_fps": 38.14201,
+      "vulkan_fps": 33.346925,
+      "vulkan_vs_opengl_pct": -12.571663108472785
+    },
+    "mixed_block_entities": {
+      "opengl_fps": 46.62616,
+      "vulkan_fps": 40.29019,
+      "vulkan_vs_opengl_pct": -13.588873713812156
+    }
+  },
+  "raw_runs": [
+    {
+      "run": "opengl_1",
+      "overall": {
+        "samples": 1018,
+        "mean_fps": 42.38751,
+        "median_fps": 44.49807,
+        "one_percent_low_fps": 22.84718,
+        "zero_point_one_percent_low_fps": 18.17231,
+        "p99_frame_ms": 43.76907
+      },
+      "scenes": {
+        "geometry_transparency": {
+          "samples": 342,
+          "mean_fps": 42.6883,
+          "median_fps": 45.2835,
+          "one_percent_low_fps": 22.47189,
+          "zero_point_one_percent_low_fps": 18.17231,
+          "p99_frame_ms": 44.50004
+        },
+        "occlusion_entities": {
+          "samples": 310,
+          "mean_fps": 38.68404,
+          "median_fps": 40.78202,
+          "one_percent_low_fps": 19.98999,
+          "zero_point_one_percent_low_fps": 18.19205,
+          "p99_frame_ms": 50.02504
+        },
+        "mixed_block_entities": {
+          "samples": 366,
+          "mean_fps": 45.79977,
+          "median_fps": 48.14147,
+          "one_percent_low_fps": 31.70269,
+          "zero_point_one_percent_low_fps": 14.86262,
+          "p99_frame_ms": 31.54306
+        }
+      },
+      "backend": "opengl",
+      "rep": 1,
+      "backend_proven": true
+    },
+    {
+      "run": "vulkan_1",
+      "overall": {
+        "samples": 886,
+        "mean_fps": 36.933,
+        "median_fps": 38.47853,
+        "one_percent_low_fps": 18.1347,
+        "zero_point_one_percent_low_fps": 13.85368,
+        "p99_frame_ms": 55.1429
+      },
+      "scenes": {
+        "geometry_transparency": {
+          "samples": 293,
+          "mean_fps": 36.68503,
+          "median_fps": 39.86758,
+          "one_percent_low_fps": 16.92032,
+          "zero_point_one_percent_low_fps": 13.85368,
+          "p99_frame_ms": 59.10053
+        },
+        "occlusion_entities": {
+          "samples": 274,
+          "mean_fps": 34.1612,
+          "median_fps": 35.9496,
+          "one_percent_low_fps": 17.66502,
+          "zero_point_one_percent_low_fps": 15.34183,
+          "p99_frame_ms": 56.60906
+        },
+        "mixed_block_entities": {
+          "samples": 319,
+          "mean_fps": 39.9665,
+          "median_fps": 41.99186,
+          "one_percent_low_fps": 27.74057,
+          "zero_point_one_percent_low_fps": 21.13366,
+          "p99_frame_ms": 36.04829
+        }
+      },
+      "backend": "vulkan",
+      "rep": 1,
+      "backend_proven": true
+    },
+    {
+      "run": "vulkan_2",
+      "overall": {
+        "samples": 873,
+        "mean_fps": 36.39591,
+        "median_fps": 38.81907,
+        "one_percent_low_fps": 16.55247,
+        "zero_point_one_percent_low_fps": 9.36753,
+        "p99_frame_ms": 60.41394
+      },
+      "scenes": {
+        "geometry_transparency": {
+          "samples": 288,
+          "mean_fps": 36.03583,
+          "median_fps": 38.64853,
+          "one_percent_low_fps": 16.82548,
+          "zero_point_one_percent_low_fps": 14.77822,
+          "p99_frame_ms": 59.43368
+        },
+        "occlusion_entities": {
+          "samples": 260,
+          "mean_fps": 32.53265,
+          "median_fps": 36.47485,
+          "one_percent_low_fps": 15.20474,
+          "zero_point_one_percent_low_fps": 9.36753,
+          "p99_frame_ms": 65.76898
+        },
+        "mixed_block_entities": {
+          "samples": 325,
+          "mean_fps": 40.61388,
+          "median_fps": 42.8123,
+          "one_percent_low_fps": 26.06503,
+          "zero_point_one_percent_low_fps": 23.3617,
+          "p99_frame_ms": 38.36558
+        }
+      },
+      "backend": "vulkan",
+      "rep": 2,
+      "backend_proven": true
+    },
+    {
+      "run": "opengl_2",
+      "overall": {
+        "samples": 1005,
+        "mean_fps": 41.82327,
+        "median_fps": 44.19858,
+        "one_percent_low_fps": 21.75073,
+        "zero_point_one_percent_low_fps": 17.99033,
+        "p99_frame_ms": 45.97546
+      },
+      "scenes": {
+        "geometry_transparency": {
+          "samples": 324,
+          "mean_fps": 40.44519,
+          "median_fps": 43.13582,
+          "one_percent_low_fps": 21.64589,
+          "zero_point_one_percent_low_fps": 17.99033,
+          "p99_frame_ms": 46.19815
+        },
+        "occlusion_entities": {
+          "samples": 302,
+          "mean_fps": 37.59998,
+          "median_fps": 39.96795,
+          "one_percent_low_fps": 21.35448,
+          "zero_point_one_percent_low_fps": 17.18507,
+          "p99_frame_ms": 46.82857
+        },
+        "mixed_block_entities": {
+          "samples": 379,
+          "mean_fps": 47.45255,
+          "median_fps": 49.05944,
+          "one_percent_low_fps": 29.55346,
+          "zero_point_one_percent_low_fps": 22.27294,
+          "p99_frame_ms": 33.83699
+        }
+      },
+      "backend": "opengl",
+      "rep": 2,
+      "backend_proven": true
+    }
+  ]
+}
