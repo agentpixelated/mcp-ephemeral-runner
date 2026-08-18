@@ -1,0 +1,8 @@
+{
+  "id": "hello-proof",
+  "kind": "exec",
+  "payload": {
+    "argv": ["python3", "-c", "import platform; print('agent-runtime-ok', platform.platform())"],
+    "timeout_ms": 30000
+  }
+}

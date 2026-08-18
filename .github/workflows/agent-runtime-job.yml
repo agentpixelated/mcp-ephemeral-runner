@@ -1,0 +1,49 @@
+name: Universal agent runtime job
+
+on:
+  push:
+    paths:
+      - 'agent-runtime/dispatch/*.json'
+  workflow_dispatch:
+    inputs:
+      job_file:
+        description: 'Path to a JSON job file'
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  run:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Resolve job file
+        id: job
+        shell: bash
+        env:
+          INPUT_JOB_FILE: ${{ inputs.job_file }}
+        run: |
+          set -euo pipefail
+          if [[ -n "${INPUT_JOB_FILE:-}" ]]; then
+            file="$INPUT_JOB_FILE"
+          else
+            file="$(git diff-tree --no-commit-id --name-only -r "$GITHUB_SHA" | grep '^agent-runtime/dispatch/.*\.json$' | tail -n 1)"
+          fi
+          [[ "$file" =~ ^agent-runtime/dispatch/[A-Za-z0-9._-]+\.json$ ]] || { echo 'Invalid job path' >&2; exit 2; }
+          test -f "$file"
+          echo "file=$file" >> "$GITHUB_OUTPUT"
+      - name: Run job
+        run: node agent-runtime/run-job-file.mjs "${{ steps.job.outputs.file }}"
+      - name: Upload result
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: agent-runtime-result-${{ github.run_id }}
+          path: agent-runtime/results/
+          if-no-files-found: error
+          retention-days: 30
