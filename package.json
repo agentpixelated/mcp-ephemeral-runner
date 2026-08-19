@@ -1,16 +1,18 @@
 {
   "name": "mcp-ephemeral-runner",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
-  "description": "Zero-dependency ephemeral stdio MCP runner: initialize, inspect tools, call tools, teardown.",
+  "description": "Zero-dependency ephemeral MCP runner for stdio and Streamable HTTP transports.",
   "bin": {
     "mcp-runner": "./src/cli.mjs"
   },
   "scripts": {
-    "test": "node test/smoke.mjs",
+    "test": "node test/smoke.mjs && node test/http-smoke.mjs",
     "inspect:mock": "node src/cli.mjs inspect examples/mock.json",
-    "workflow:mock": "node src/cli.mjs workflow examples/mock.json workflows/mock-proof.json"
+    "workflow:mock": "node src/cli.mjs workflow examples/mock.json workflows/mock-proof.json",
+    "inspect:context7": "node src/cli.mjs inspect examples/context7.json",
+    "workflow:context7": "node src/cli.mjs workflow examples/context7.json workflows/context7-nextjs-example.json"
   },
   "engines": {
     "node": ">=20"
