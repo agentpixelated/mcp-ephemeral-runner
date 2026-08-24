@@ -1,0 +1,41 @@
+{
+  "initialize": {
+    "protocolVersion": "2025-06-18",
+    "capabilities": {
+      "tools": {
+        "listChanged": true
+      }
+    },
+    "serverInfo": {
+      "name": "tokopedia-mcp",
+      "version": "2.1.0"
+    }
+  },
+  "results": [
+    {
+      "step": 1,
+      "tool": "get_product_detail",
+      "error": "Timed out after 26000 ms waiting for tools/call."
+    },
+    {
+      "step": 2,
+      "tool": "get_product_detail",
+      "error": "Timed out after 26000 ms waiting for tools/call."
+    },
+    {
+      "step": 3,
+      "tool": "get_product_detail",
+      "error": "Timed out after 26000 ms waiting for tools/call."
+    },
+    {
+      "step": 4,
+      "tool": "get_product_detail",
+      "error": "Timed out after 26000 ms waiting for tools/call."
+    },
+    {
+      "step": 5,
+      "tool": "get_product_detail",
+      "error": "Timed out after 26000 ms waiting for tools/call."
+    }
+  ]
+}
