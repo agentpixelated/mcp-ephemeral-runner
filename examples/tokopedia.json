@@ -1,0 +1,5 @@
+{
+  "command": "npx",
+  "args": ["-y", "@bintangtimurlangit/tokopedia-mcp"],
+  "timeoutMs": 60000
+}
