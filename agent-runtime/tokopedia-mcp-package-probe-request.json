@@ -1,5 +1,8 @@
 {
-  "query": "iphone 11 second",
+  "query": "iphone 11 64gb second",
+  "priceMin": 1500000,
   "priceMax": 3000000,
-  "requestedAt": "2026-08-24T21:15:00+07:00"
+  "rows": 20,
+  "orderBy": 23,
+  "requestedAt": "2026-08-24T21:17:00+07:00"
 }
