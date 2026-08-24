@@ -22,9 +22,11 @@ jobs:
         run: |
           set +e
           mkdir -p tokopedia-results
-          args="$(node -e "const fs=require('fs'); const r=JSON.parse(fs.readFileSync('agent-runtime/tokopedia-mcp-package-probe-request.json','utf8')); const a={query:r.query,rows:r.rows??20,orderBy:r.orderBy??23}; if(r.priceMin!=null)a.priceMin=r.priceMin; if(r.priceMax!=null)a.priceMax=r.priceMax; if(r.filters)a.filters=r.filters; process.stdout.write(JSON.stringify(a));")"
+          tool="$(node -e "const fs=require('fs'); const r=JSON.parse(fs.readFileSync('agent-runtime/tokopedia-mcp-package-probe-request.json','utf8')); process.stdout.write(r.tool || 'search_products');")"
+          args="$(node -e "const fs=require('fs'); const r=JSON.parse(fs.readFileSync('agent-runtime/tokopedia-mcp-package-probe-request.json','utf8')); if(r.arguments){process.stdout.write(JSON.stringify(r.arguments));} else {const a={query:r.query,rows:r.rows??20,orderBy:r.orderBy??23}; if(r.priceMin!=null)a.priceMin=r.priceMin; if(r.priceMax!=null)a.priceMax=r.priceMax; if(r.filters)a.filters=r.filters; process.stdout.write(JSON.stringify(a));}")"
+          printf '%s\n' "$tool" > tokopedia-results/mcp-package-tool.txt
           printf '%s\n' "$args" > tokopedia-results/mcp-package-request.json
-          timeout --signal=TERM 90s node src/cli.mjs call examples/tokopedia.json search_products "$args" > tokopedia-results/mcp-package-stdout.txt 2> tokopedia-results/mcp-package-stderr.txt
+          timeout --signal=TERM 90s node src/cli.mjs call examples/tokopedia.json "$tool" "$args" > tokopedia-results/mcp-package-stdout.txt 2> tokopedia-results/mcp-package-stderr.txt
           code=$?
           printf '%s\n' "$code" > tokopedia-results/mcp-package-exit-code.txt
           exit 0
@@ -34,6 +36,6 @@ jobs:
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add tokopedia-results/mcp-package-request.json tokopedia-results/mcp-package-stdout.txt tokopedia-results/mcp-package-stderr.txt tokopedia-results/mcp-package-exit-code.txt
+          git add tokopedia-results/mcp-package-tool.txt tokopedia-results/mcp-package-request.json tokopedia-results/mcp-package-stdout.txt tokopedia-results/mcp-package-stderr.txt tokopedia-results/mcp-package-exit-code.txt
           git commit -m 'chore: update Tokopedia MCP package probe' || exit 0
           git push
