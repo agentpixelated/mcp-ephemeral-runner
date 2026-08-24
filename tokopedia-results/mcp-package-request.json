@@ -2,28 +2,8 @@
   {
     "tool": "search_products",
     "arguments": {
-      "query": "samsung a55 5g second",
-      "rows": 30,
-      "orderBy": 3,
-      "priceMin": 1500000,
-      "priceMax": 3000000
-    }
-  },
-  {
-    "tool": "search_products",
-    "arguments": {
-      "query": "samsung a54 5g second fungsi normal",
-      "rows": 30,
-      "orderBy": 3,
-      "priceMin": 1500000,
-      "priceMax": 3000000
-    }
-  },
-  {
-    "tool": "search_products",
-    "arguments": {
-      "query": "samsung s20 fe 5g second",
-      "rows": 30,
+      "query": "huawei mate 20 pro second",
+      "rows": 40,
       "orderBy": 3,
       "priceMin": 1000000,
       "priceMax": 3000000
@@ -32,8 +12,8 @@
   {
     "tool": "search_products",
     "arguments": {
-      "query": "samsung a52s 5g second",
-      "rows": 30,
+      "query": "huawei p30 pro second",
+      "rows": 40,
       "orderBy": 3,
       "priceMin": 1000000,
       "priceMax": 3000000
@@ -42,10 +22,40 @@
   {
     "tool": "search_products",
     "arguments": {
-      "query": "samsung a73 5g second",
-      "rows": 30,
+      "query": "huawei p40 pro second",
+      "rows": 40,
       "orderBy": 3,
       "priceMin": 1200000,
+      "priceMax": 3000000
+    }
+  },
+  {
+    "tool": "search_products",
+    "arguments": {
+      "query": "huawei mate 30 pro second",
+      "rows": 40,
+      "orderBy": 3,
+      "priceMin": 1200000,
+      "priceMax": 3000000
+    }
+  },
+  {
+    "tool": "search_products",
+    "arguments": {
+      "query": "huawei nova 9 second",
+      "rows": 40,
+      "orderBy": 3,
+      "priceMin": 1000000,
+      "priceMax": 3000000
+    }
+  },
+  {
+    "tool": "search_products",
+    "arguments": {
+      "query": "huawei nova 10 second",
+      "rows": 40,
+      "orderBy": 3,
+      "priceMin": 1000000,
       "priceMax": 3000000
     }
   }
