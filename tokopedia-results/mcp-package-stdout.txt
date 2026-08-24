@@ -14,72 +14,84 @@
   "results": [
     {
       "step": 1,
-      "tool": "search_products",
+      "tool": "get_product_reviews",
       "result": {
         "content": [
           {
             "type": "text",
-            "text": "No products found for \"samsung s21 fe 5g second mulus original\". Try a different keyword or loosen the filters."
+            "text": "This product has no reviews yet."
           }
         ]
       }
     },
     {
       "step": 2,
-      "tool": "search_products",
+      "tool": "get_product_reviews",
       "result": {
         "content": [
           {
             "type": "text",
-            "text": "🛒 Search Results for \"0\"\n📊 1 total products | Page 1/1\n\n1. **Samsung Galaxy Note 10 Plus Second 12/256 GB NFC Eks Resmi Sein Mulus Original**\n   💰 Rp2.300.000\n   ⭐ N/A | 🏪 Three Phoint (Kab. Bogor) | 🆔 103488528042\n   🔗 https://www.tokopedia.com/archive-raishacomp-16306/samsung-galaxy-note-10-plus-second-12-256-gb-nfc-eks-resmi-sein-mulus-original-1736096492081284814?extParam=ivf%3Dfalse%26keyword%3Dsamsung+note+10+plus+second+mulus+original+sein%26search_id%3D20260824145049226B5767496D0A0F3UI7%26src%3Dsearch"
+            "text": "This product has no reviews yet."
           }
         ]
       }
     },
     {
       "step": 3,
-      "tool": "search_products",
+      "tool": "get_product_reviews",
       "result": {
         "content": [
           {
             "type": "text",
-            "text": "No products found for \"huawei p30 pro second mulus original\". Try a different keyword or loosen the filters."
+            "text": "📝 **Reviews for Storegadget12's product**\n⭐ 1 total reviews | Page 1 | sorted by lowest_rating\n\n1. ★★★★★ — **Wawan**\n   sesuai dengan pesanan Semogah kedepannya ya tdk ada masalah Aamiin cepet pengiriman dan respon,\n   🖼 1 photo(s) attached\n   ↳ 🏪 Seller: Terima kasih telah berbelanja di gadgetstore98. Bagikan link toko kami https://www.tokopedia.com/gadgetstore98 kepada teman-teman kamu. Jangan lupa follow toko kami untuk tahu update terbaru tentang s…\n   📅 1739813290"
           }
         ]
       }
     },
     {
       "step": 4,
-      "tool": "search_products",
+      "tool": "get_product_reviews",
       "result": {
         "content": [
           {
             "type": "text",
-            "text": "No products found for \"huawei mate 20 pro second mulus original\". Try a different keyword or loosen the filters."
+            "text": "This product has no reviews yet."
           }
         ]
       }
     },
     {
       "step": 5,
-      "tool": "search_products",
+      "tool": "get_product_reviews",
       "result": {
         "content": [
           {
             "type": "text",
-            "text": "No products found for \"huawei p40 pro second mulus original\". Try a different keyword or loosen the filters."
+            "text": "This product has no reviews yet."
           }
         ]
       }
     },
     {
       "step": 6,
-      "tool": "search_products",
+      "tool": "get_product_reviews",
       "result": {
         "content": [
           {
             "type": "text",
-            "text": "🛒 Search Results for \"0\"\n📊 2 total products | Page 1/1\n\n1. **iphone second normal 12 11 xr xs max x 7 plus 256gb 128gb 64gb 32gb no minus original 100% all sim mulus like new murah**\n   💰 Rp2.359.000\n   ⭐ N/A | 🏪 Aimu Phonecell (Jakarta Utara) | 🆔 15096772802\n   🔗 https://www.tokopedia.com/aimuphonecell/iphone-second-normal-12-11-xr-xs-max-x-7-plus-256gb-128gb-64gb-32gb-no-minus-original-100-all-sim-mulus-like-new-murah-1729965187690562610?extParam=ivf%3Dfalse%26keyword%3Diphone+11+64gb+second+no+minus%26search_id%3D2026082414505040008B9A5380FC247OQW%26src%3Dsearch\n\n2. **iPhone 11 64gb no minus Second**\n   💰 Rp2.500.000\n   ⭐ N/A | 🏪 LordGent Shop (Kab. Pacitan) | 🆔 16702303985\n   🔗 https://www.tokopedia.com/lordgent/iphone-11-64gb-no-minus-second-1731626193011312383?extParam=ivf%3Dfalse%26keyword%3Diphone+11+64gb+second+no+minus%26search_id%3D2026082414505040008B9A5380FC247OQW%26src%3Dsearch"
+            "text": "This product has no reviews yet."
+          }
+        ]
+      }
+    },
+    {
+      "step": 7,
+      "tool": "get_product_reviews",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "This product has no reviews yet."
           }
         ]
       }

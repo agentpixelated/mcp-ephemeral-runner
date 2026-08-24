@@ -1,62 +1,72 @@
 [
   {
-    "tool": "search_products",
+    "tool": "get_product_reviews",
     "arguments": {
-      "query": "samsung s21 fe 5g second mulus original",
-      "rows": 10,
-      "orderBy": 3,
-      "priceMin": 1200000,
-      "priceMax": 3000000
+      "productId": "100604614491",
+      "page": 1,
+      "limit": 5,
+      "sort": "lowest_rating",
+      "filter": "all"
     }
   },
   {
-    "tool": "search_products",
+    "tool": "get_product_reviews",
     "arguments": {
-      "query": "samsung note 10 plus second mulus original sein",
-      "rows": 10,
-      "orderBy": 3,
-      "priceMin": 1200000,
-      "priceMax": 3000000
+      "productId": "103488528042",
+      "page": 1,
+      "limit": 5,
+      "sort": "lowest_rating",
+      "filter": "all"
     }
   },
   {
-    "tool": "search_products",
+    "tool": "get_product_reviews",
     "arguments": {
-      "query": "huawei p30 pro second mulus original",
-      "rows": 10,
-      "orderBy": 3,
-      "priceMin": 700000,
-      "priceMax": 3000000
+      "productId": "16184149672",
+      "page": 1,
+      "limit": 5,
+      "sort": "lowest_rating",
+      "filter": "all"
     }
   },
   {
-    "tool": "search_products",
+    "tool": "get_product_reviews",
     "arguments": {
-      "query": "huawei mate 20 pro second mulus original",
-      "rows": 10,
-      "orderBy": 3,
-      "priceMin": 700000,
-      "priceMax": 3000000
+      "productId": "100771923841",
+      "page": 1,
+      "limit": 5,
+      "sort": "lowest_rating",
+      "filter": "all"
     }
   },
   {
-    "tool": "search_products",
+    "tool": "get_product_reviews",
     "arguments": {
-      "query": "huawei p40 pro second mulus original",
-      "rows": 10,
-      "orderBy": 3,
-      "priceMin": 1000000,
-      "priceMax": 3000000
+      "productId": "16661609540",
+      "page": 1,
+      "limit": 5,
+      "sort": "lowest_rating",
+      "filter": "all"
     }
   },
   {
-    "tool": "search_products",
+    "tool": "get_product_reviews",
     "arguments": {
-      "query": "iphone 11 64gb second no minus",
-      "rows": 10,
-      "orderBy": 3,
-      "priceMin": 1500000,
-      "priceMax": 3000000
+      "productId": "16702303985",
+      "page": 1,
+      "limit": 5,
+      "sort": "lowest_rating",
+      "filter": "all"
+    }
+  },
+  {
+    "tool": "get_product_reviews",
+    "arguments": {
+      "productId": "15096772802",
+      "page": 1,
+      "limit": 5,
+      "sort": "lowest_rating",
+      "filter": "all"
     }
   }
 ]
