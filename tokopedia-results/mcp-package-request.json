@@ -1,92 +1,50 @@
 [
   {
-    "tool": "search_products",
+    "tool": "get_shop_info",
     "arguments": {
-      "query": "samsung a54 5g second fungsi normal",
-      "rows": 20,
-      "orderBy": 3,
-      "priceMin": 1500000,
-      "priceMax": 3000000
+      "shopDomain": "dannystorebjn"
     }
   },
   {
-    "tool": "search_products",
+    "tool": "get_shop_info",
     "arguments": {
-      "query": "samsung s22 second no minus",
-      "rows": 20,
-      "orderBy": 3,
-      "priceMin": 1800000,
-      "priceMax": 3000000
+      "shopDomain": "lordgent"
     }
   },
   {
-    "tool": "search_products",
+    "tool": "get_shop_info",
     "arguments": {
-      "query": "samsung s22 second fungsi normal",
-      "rows": 20,
-      "orderBy": 3,
-      "priceMin": 1800000,
-      "priceMax": 3000000
+      "shopDomain": "playfone"
     }
   },
   {
-    "tool": "search_products",
+    "tool": "get_product_reviews",
     "arguments": {
-      "query": "samsung s21 fe second no minus",
-      "rows": 20,
-      "orderBy": 3,
-      "priceMin": 1500000,
-      "priceMax": 3000000
+      "productId": "103772191706",
+      "page": 1,
+      "limit": 10,
+      "sort": "lowest_rating",
+      "filter": "all"
     }
   },
   {
-    "tool": "search_products",
+    "tool": "get_product_reviews",
     "arguments": {
-      "query": "samsung a52s 5g second no minus",
-      "rows": 20,
-      "orderBy": 3,
-      "priceMin": 1000000,
-      "priceMax": 3000000
+      "productId": "16702303985",
+      "page": 1,
+      "limit": 10,
+      "sort": "lowest_rating",
+      "filter": "all"
     }
   },
   {
-    "tool": "search_products",
+    "tool": "get_product_reviews",
     "arguments": {
-      "query": "samsung a73 5g second no minus",
-      "rows": 20,
-      "orderBy": 3,
-      "priceMin": 1200000,
-      "priceMax": 3000000
-    }
-  },
-  {
-    "tool": "search_products",
-    "arguments": {
-      "query": "iphone 11 second no minus",
-      "rows": 20,
-      "orderBy": 3,
-      "priceMin": 1800000,
-      "priceMax": 3000000
-    }
-  },
-  {
-    "tool": "search_products",
-    "arguments": {
-      "query": "huawei mate 20 pro second normal original",
-      "rows": 20,
-      "orderBy": 3,
-      "priceMin": 1200000,
-      "priceMax": 3000000
-    }
-  },
-  {
-    "tool": "search_products",
-    "arguments": {
-      "query": "huawei p30 pro second normal original",
-      "rows": 20,
-      "orderBy": 3,
-      "priceMin": 1200000,
-      "priceMax": 3000000
+      "productId": "100261538807",
+      "page": 1,
+      "limit": 10,
+      "sort": "lowest_rating",
+      "filter": "all"
     }
   }
 ]
