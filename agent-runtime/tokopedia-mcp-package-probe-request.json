@@ -1,17 +1,15 @@
 {
   "workflow": [
-    {"tool":"search_products","arguments":{"query":"samsung s22 5g second","rows":30,"orderBy":3,"priceMin":1800000,"priceMax":3000000}},
-    {"tool":"search_products","arguments":{"query":"samsung a54 5g second","rows":30,"orderBy":3,"priceMin":1500000,"priceMax":3000000}},
-    {"tool":"search_products","arguments":{"query":"samsung s21 fe 5g second","rows":30,"orderBy":3,"priceMin":1500000,"priceMax":3000000}},
-    {"tool":"search_products","arguments":{"query":"samsung note 10 plus second","rows":30,"orderBy":3,"priceMin":1400000,"priceMax":3000000}},
-    {"tool":"search_products","arguments":{"query":"iphone 11 64gb second","rows":30,"orderBy":3,"priceMin":1800000,"priceMax":3000000}},
-    {"tool":"search_products","arguments":{"query":"iphone 11 pro 64gb second","rows":30,"orderBy":3,"priceMin":2000000,"priceMax":3000000}},
-    {"tool":"search_products","arguments":{"query":"iphone se 2022 second","rows":30,"orderBy":3,"priceMin":1700000,"priceMax":3000000}},
-    {"tool":"search_products","arguments":{"query":"iphone 12 64gb second","rows":30,"orderBy":3,"priceMin":2200000,"priceMax":3000000}},
-    {"tool":"search_products","arguments":{"query":"huawei mate 20 pro second","rows":30,"orderBy":3,"priceMin":1200000,"priceMax":3000000}},
-    {"tool":"search_products","arguments":{"query":"huawei p30 pro second","rows":30,"orderBy":3,"priceMin":1200000,"priceMax":3000000}},
-    {"tool":"search_products","arguments":{"query":"huawei p40 pro second","rows":30,"orderBy":3,"priceMin":1500000,"priceMax":3000000}},
-    {"tool":"search_products","arguments":{"query":"huawei mate 30 pro second","rows":30,"orderBy":3,"priceMin":1500000,"priceMax":3000000}}
+    {"tool":"search_products","arguments":{"query":"iphone 11 second fungsi normal all operator","rows":30,"orderBy":3,"priceMin":1800000,"priceMax":3000000}},
+    {"tool":"search_products","arguments":{"query":"iphone 11 second no minus all sim","rows":30,"orderBy":3,"priceMin":1800000,"priceMax":3000000}},
+    {"tool":"search_products","arguments":{"query":"iphone 11 64gb second fullset all operator","rows":30,"orderBy":3,"priceMin":1800000,"priceMax":3000000}},
+    {"tool":"search_products","arguments":{"query":"iphone se 2022 second ibox","rows":30,"orderBy":3,"priceMin":1800000,"priceMax":3000000}},
+    {"tool":"get_shop_info","arguments":{"shopDomain":"macbin"}},
+    {"tool":"get_shop_info","arguments":{"shopDomain":"digacorp508"}},
+    {"tool":"get_shop_info","arguments":{"shopDomain":"lordgent"}},
+    {"tool":"get_product_reviews","arguments":{"productId":"6576791334","page":1,"limit":20,"sort":"lowest_rating","filter":"all"}},
+    {"tool":"get_product_reviews","arguments":{"productId":"102131471624","page":1,"limit":20,"sort":"lowest_rating","filter":"all"}},
+    {"tool":"get_product_reviews","arguments":{"productId":"16702303985","page":1,"limit":20,"sort":"lowest_rating","filter":"all"}}
   ],
-  "requestedAt":"2026-08-24T23:22:00+07:00"
+  "requestedAt":"2026-08-24T23:24:00+07:00"
 }
