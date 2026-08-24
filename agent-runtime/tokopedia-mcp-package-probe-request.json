@@ -1,15 +1,11 @@
 {
   "workflow": [
-    {"tool":"get_shop_info","arguments":{"shopDomain":"triplebeee"}},
-    {"tool":"get_shop_info","arguments":{"shopDomain":"ranniyab"}},
-    {"tool":"get_shop_info","arguments":{"shopDomain":"rastorebyrastore"}},
-    {"tool":"get_shop_info","arguments":{"shopDomain":"archive-raishacomp-16306"}},
-    {"tool":"get_shop_info","arguments":{"shopDomain":"playfone"}},
-    {"tool":"get_product_reviews","arguments":{"productId":"102648504890","page":1,"limit":20,"sort":"lowest_rating","filter":"all"}},
-    {"tool":"get_product_reviews","arguments":{"productId":"103190445204","page":1,"limit":20,"sort":"lowest_rating","filter":"all"}},
-    {"tool":"get_product_reviews","arguments":{"productId":"12803214538","page":1,"limit":20,"sort":"lowest_rating","filter":"all"}},
-    {"tool":"get_product_reviews","arguments":{"productId":"103531609337","page":1,"limit":20,"sort":"lowest_rating","filter":"all"}},
-    {"tool":"get_product_reviews","arguments":{"productId":"100261538807","page":1,"limit":20,"sort":"lowest_rating","filter":"all"}}
+    {"tool":"get_shop_info","arguments":{"shopDomain":"gudanggadgetjkt"}},
+    {"tool":"get_shop_info","arguments":{"shopDomain":"casaloma"}},
+    {"tool":"get_shop_info","arguments":{"shopDomain":"lordgent"}},
+    {"tool":"get_product_reviews","arguments":{"productId":"102936842095","page":1,"limit":20,"sort":"lowest_rating","filter":"all"}},
+    {"tool":"get_product_reviews","arguments":{"productId":"12062582542","page":1,"limit":20,"sort":"lowest_rating","filter":"all"}},
+    {"tool":"get_product_reviews","arguments":{"productId":"16702303985","page":1,"limit":20,"sort":"lowest_rating","filter":"all"}}
   ],
-  "requestedAt":"2026-08-24T23:37:00+07:00"
+  "requestedAt":"2026-08-24T23:40:00+07:00"
 }
