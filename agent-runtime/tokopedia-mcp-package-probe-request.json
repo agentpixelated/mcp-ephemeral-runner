@@ -1,11 +1,15 @@
 {
   "workflow": [
-    {"tool":"search_products","arguments":{"query":"huawei mate 20 pro second","rows":40,"orderBy":3,"priceMin":1000000,"priceMax":3000000}},
-    {"tool":"search_products","arguments":{"query":"huawei p30 pro second","rows":40,"orderBy":3,"priceMin":1000000,"priceMax":3000000}},
-    {"tool":"search_products","arguments":{"query":"huawei p40 pro second","rows":40,"orderBy":3,"priceMin":1200000,"priceMax":3000000}},
-    {"tool":"search_products","arguments":{"query":"huawei mate 30 pro second","rows":40,"orderBy":3,"priceMin":1200000,"priceMax":3000000}},
-    {"tool":"search_products","arguments":{"query":"huawei nova 9 second","rows":40,"orderBy":3,"priceMin":1000000,"priceMax":3000000}},
-    {"tool":"search_products","arguments":{"query":"huawei nova 10 second","rows":40,"orderBy":3,"priceMin":1000000,"priceMax":3000000}}
+    {"tool":"get_shop_info","arguments":{"shopDomain":"gadget2ndstore-88"}},
+    {"tool":"get_shop_info","arguments":{"shopDomain":"wafalin"}},
+    {"tool":"get_shop_info","arguments":{"shopDomain":"gg-store-23-16"}},
+    {"tool":"get_shop_info","arguments":{"shopDomain":"gadgetstore98"}},
+    {"tool":"get_shop_info","arguments":{"shopDomain":"titopol"}},
+    {"tool":"get_product_reviews","arguments":{"productId":"102811404183","page":1,"limit":20,"sort":"lowest_rating","filter":"all"}},
+    {"tool":"get_product_reviews","arguments":{"productId":"103518901985","page":1,"limit":20,"sort":"lowest_rating","filter":"all"}},
+    {"tool":"get_product_reviews","arguments":{"productId":"102403283433","page":1,"limit":20,"sort":"lowest_rating","filter":"all"}},
+    {"tool":"get_product_reviews","arguments":{"productId":"16184149672","page":1,"limit":20,"sort":"lowest_rating","filter":"all"}},
+    {"tool":"get_product_reviews","arguments":{"productId":"16661609540","page":1,"limit":20,"sort":"lowest_rating","filter":"all"}}
   ],
-  "requestedAt":"2026-08-24T23:33:00+07:00"
+  "requestedAt":"2026-08-24T23:35:00+07:00"
 }
