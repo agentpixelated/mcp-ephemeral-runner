@@ -1,50 +1,92 @@
 [
   {
-    "tool": "get_shop_info",
+    "tool": "search_products",
     "arguments": {
-      "shopDomain": "dannystorebjn"
+      "query": "huawei p30 pro second layar normal",
+      "rows": 30,
+      "orderBy": 3,
+      "priceMin": 1000000,
+      "priceMax": 3000000
     }
   },
   {
-    "tool": "get_shop_info",
+    "tool": "search_products",
     "arguments": {
-      "shopDomain": "lordgent"
+      "query": "huawei p30 pro second no shadow",
+      "rows": 30,
+      "orderBy": 3,
+      "priceMin": 1000000,
+      "priceMax": 3000000
     }
   },
   {
-    "tool": "get_shop_info",
+    "tool": "search_products",
     "arguments": {
-      "shopDomain": "playfone"
+      "query": "huawei mate 20 pro second layar normal",
+      "rows": 30,
+      "orderBy": 3,
+      "priceMin": 1000000,
+      "priceMax": 3000000
     }
   },
   {
-    "tool": "get_product_reviews",
+    "tool": "search_products",
     "arguments": {
-      "productId": "103772191706",
-      "page": 1,
-      "limit": 10,
-      "sort": "lowest_rating",
-      "filter": "all"
+      "query": "huawei mate 20 pro second no shadow",
+      "rows": 30,
+      "orderBy": 3,
+      "priceMin": 1000000,
+      "priceMax": 3000000
     }
   },
   {
-    "tool": "get_product_reviews",
+    "tool": "search_products",
     "arguments": {
-      "productId": "16702303985",
-      "page": 1,
-      "limit": 10,
-      "sort": "lowest_rating",
-      "filter": "all"
+      "query": "huawei mate 30 pro second layar normal",
+      "rows": 30,
+      "orderBy": 3,
+      "priceMin": 1200000,
+      "priceMax": 3000000
     }
   },
   {
-    "tool": "get_product_reviews",
+    "tool": "search_products",
     "arguments": {
-      "productId": "100261538807",
-      "page": 1,
-      "limit": 10,
-      "sort": "lowest_rating",
-      "filter": "all"
+      "query": "huawei p40 pro second layar normal",
+      "rows": 30,
+      "orderBy": 3,
+      "priceMin": 1200000,
+      "priceMax": 3000000
+    }
+  },
+  {
+    "tool": "search_products",
+    "arguments": {
+      "query": "huawei nova 9 second layar normal",
+      "rows": 30,
+      "orderBy": 3,
+      "priceMin": 1000000,
+      "priceMax": 3000000
+    }
+  },
+  {
+    "tool": "search_products",
+    "arguments": {
+      "query": "huawei nova 10 second layar normal",
+      "rows": 30,
+      "orderBy": 3,
+      "priceMin": 1000000,
+      "priceMax": 3000000
+    }
+  },
+  {
+    "tool": "search_products",
+    "arguments": {
+      "query": "huawei second no minus layar normal",
+      "rows": 50,
+      "orderBy": 3,
+      "priceMin": 1000000,
+      "priceMax": 3000000
     }
   }
 ]
