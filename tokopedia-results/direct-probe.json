@@ -1,0 +1,13 @@
+{
+  "ok": true,
+  "status": 200,
+  "body": {
+    "errors": [
+      {
+        "message": "Invalid request schema received. Kindly correct it.",
+        "extensions": {}
+      }
+    ],
+    "data": null
+  }
+}
