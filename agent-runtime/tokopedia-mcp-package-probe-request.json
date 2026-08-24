@@ -1,8 +1,7 @@
 {
-  "query": "iphone 11 64gb second",
-  "priceMin": 1500000,
-  "priceMax": 3000000,
-  "rows": 20,
-  "orderBy": 23,
-  "requestedAt": "2026-08-24T21:17:00+07:00"
+  "tool": "get_product_detail",
+  "arguments": {
+    "url": "https://www.tokopedia.com/lordgent/iphone-11-64gb-no-minus-second-1731626193011312383"
+  },
+  "requestedAt": "2026-08-24T21:19:00+07:00"
 }
