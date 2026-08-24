@@ -2,37 +2,25 @@
   {
     "tool": "get_shop_info",
     "arguments": {
-      "shopDomain": "triplebeee"
+      "shopDomain": "gudanggadgetjkt"
     }
   },
   {
     "tool": "get_shop_info",
     "arguments": {
-      "shopDomain": "ranniyab"
+      "shopDomain": "casaloma"
     }
   },
   {
     "tool": "get_shop_info",
     "arguments": {
-      "shopDomain": "rastorebyrastore"
-    }
-  },
-  {
-    "tool": "get_shop_info",
-    "arguments": {
-      "shopDomain": "archive-raishacomp-16306"
-    }
-  },
-  {
-    "tool": "get_shop_info",
-    "arguments": {
-      "shopDomain": "playfone"
+      "shopDomain": "lordgent"
     }
   },
   {
     "tool": "get_product_reviews",
     "arguments": {
-      "productId": "102648504890",
+      "productId": "102936842095",
       "page": 1,
       "limit": 20,
       "sort": "lowest_rating",
@@ -42,7 +30,7 @@
   {
     "tool": "get_product_reviews",
     "arguments": {
-      "productId": "103190445204",
+      "productId": "12062582542",
       "page": 1,
       "limit": 20,
       "sort": "lowest_rating",
@@ -52,27 +40,7 @@
   {
     "tool": "get_product_reviews",
     "arguments": {
-      "productId": "12803214538",
-      "page": 1,
-      "limit": 20,
-      "sort": "lowest_rating",
-      "filter": "all"
-    }
-  },
-  {
-    "tool": "get_product_reviews",
-    "arguments": {
-      "productId": "103531609337",
-      "page": 1,
-      "limit": 20,
-      "sort": "lowest_rating",
-      "filter": "all"
-    }
-  },
-  {
-    "tool": "get_product_reviews",
-    "arguments": {
-      "productId": "100261538807",
+      "productId": "16702303985",
       "page": 1,
       "limit": 20,
       "sort": "lowest_rating",

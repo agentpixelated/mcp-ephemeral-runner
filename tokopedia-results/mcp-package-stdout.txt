@@ -19,7 +19,7 @@
         "content": [
           {
             "type": "text",
-            "text": "🏪 **TripleBeee** ⭐ Power Merchant\n📍 Kota Bitung\n🕐 ✅ Open\n📆 Open since December 2025\n📊 **Shop Stats:**\n  ✅ Successful transactions: 0\n  📦 Products sold: 0\n  🗂 Active products: 1\n  ❤️ Favorites: 0\n  🖼 Showcases: 0\n🔗 https://www.tokopedia.com/triplebeee"
+            "text": "🏪 **Gudanggadgetjkt** ⭐ Power Merchant\n📍 Jakarta Timur\n🕐 ✅ Open\n📆 Open since August 2020\n📊 **Shop Stats:**\n  ✅ Successful transactions: 12\n  📦 Products sold: 12\n  🗂 Active products: 0\n  ❤️ Favorites: 12\n  🖼 Showcases: 0\n🔗 https://www.tokopedia.com/gudanggadgetjkt"
           }
         ]
       }
@@ -31,7 +31,7 @@
         "content": [
           {
             "type": "text",
-            "text": "🏪 **Ranniyab** ⭐ Power Merchant\n📍 Kota Depok\n🕐 ✅ Open\n📆 Open since December 2024\n📊 **Shop Stats:**\n  ✅ Successful transactions: 1\n  📦 Products sold: 1\n  🗂 Active products: 2\n  ❤️ Favorites: 5\n  🖼 Showcases: 0\n🔗 https://www.tokopedia.com/ranniyab"
+            "text": "🏪 **CasalomaShop** ⭐ Power Merchant\n📍 Kota Bandung\n🕐 ✅ Open\n📆 Open since April 2022\n📊 **Shop Stats:**\n  ✅ Successful transactions: 4298\n  📦 Products sold: 6602\n  🗂 Active products: 776\n  ❤️ Favorites: 1.249\n  🖼 Showcases: -1\n🔗 https://www.tokopedia.com/casaloma"
           }
         ]
       }
@@ -43,31 +43,31 @@
         "content": [
           {
             "type": "text",
-            "text": "🏪 **RA store phone** ⭐ Power Merchant\n📍 Kab. Bekasi\n🕐 ✅ Open\n📆 Open since August 2017\n📊 **Shop Stats:**\n  ✅ Successful transactions: 1204\n  📦 Products sold: 1269\n  🗂 Active products: 26\n  ❤️ Favorites: 3.174\n  🖼 Showcases: 20\n🔗 https://www.tokopedia.com/rastorebyrastore"
+            "text": "🏪 **LordGent Shop** ⭐ Power Merchant\n📍 Kab. Pacitan\n🕐 ✅ Open\n📆 Open since April 2025\n📊 **Shop Stats:**\n  ✅ Successful transactions: 0\n  📦 Products sold: 0\n  🗂 Active products: 4\n  ❤️ Favorites: 7\n  🖼 Showcases: 0\n🔗 https://www.tokopedia.com/lordgent"
           }
         ]
       }
     },
     {
       "step": 4,
-      "tool": "get_shop_info",
+      "tool": "get_product_reviews",
       "result": {
         "content": [
           {
             "type": "text",
-            "text": "🏪 **Three Phoint** ⭐ Power Merchant\n📍 Kab. Bogor\n🕐 ✅ Open\n📆 Open since October 2016\n📊 **Shop Stats:**\n  ✅ Successful transactions: 77\n  📦 Products sold: 77\n  🗂 Active products: 64\n  ❤️ Favorites: 329\n  🖼 Showcases: 6\n🔗 https://www.tokopedia.com/archive-raishacomp-16306"
+            "text": "This product has no reviews yet."
           }
         ]
       }
     },
     {
       "step": 5,
-      "tool": "get_shop_info",
+      "tool": "get_product_reviews",
       "result": {
         "content": [
           {
             "type": "text",
-            "text": "🏪 **PlayFone** ⭐ Power Merchant\n📍 Kab. Ponorogo\n🕐 ✅ Open\n📆 Open since January 2025\n📊 **Shop Stats:**\n  ✅ Successful transactions: 465\n  📦 Products sold: 479\n  🗂 Active products: 18\n  ❤️ Favorites: 1.994\n  🖼 Showcases: 1\n🔗 https://www.tokopedia.com/playfone"
+            "text": "This product has no reviews yet."
           }
         ]
       }
@@ -80,54 +80,6 @@
           {
             "type": "text",
             "text": "This product has no reviews yet."
-          }
-        ]
-      }
-    },
-    {
-      "step": 7,
-      "tool": "get_product_reviews",
-      "result": {
-        "content": [
-          {
-            "type": "text",
-            "text": "This product has no reviews yet."
-          }
-        ]
-      }
-    },
-    {
-      "step": 8,
-      "tool": "get_product_reviews",
-      "result": {
-        "content": [
-          {
-            "type": "text",
-            "text": "📝 **Reviews for RA store phone's product**\n⭐ 3 total reviews | Page 1 | sorted by lowest_rating\n\n1. ★★★★★ — **Anonymous** 👍 1\n   Puas beli di sini. mantep barangnya.. harganya ekonomi lagi . Suksse selalu Kakak...\n   🖼 4 photo(s) attached\n   ↳ 🏪 Seller: Terima kasih telah berbelanja di RA store ( Ra store ). Bagikan link toko kami https://www.tokopedia.com/rastorebyrastore kepada teman-teman Anda dan favoritkan Toko kami untuk terus update mengenai s…\n   📅 1719349037\n\n2. ★★★★☆ — **Anonymous**\n   lumayan bagus, cuma bezelnya ada cacat/pecah agakbesar juga\n   🖼 4 photo(s) attached\n   ↳ 🏪 Seller: Terima kasih telah berbelanja di RA store phone. Bagikan link toko kami https://www.tokopedia.com/rastorebyrastore kepada teman-teman Anda dan favoritkan Toko kami untuk terus update mengenai stok dan…\n   📅 1773505938\n\n3. ★★★★★ — **Moch**\n   sesuai dengan deskripsi,  real picture\n   ↳ 🏪 Seller: Terima kasih telah berbelanja di RA store phone. Bagikan link toko kami https://www.tokopedia.com/rastorebyrastore kepada teman-teman Anda dan favoritkan Toko kami untuk terus update mengenai stok dan…\n   📅 1782556982"
-          }
-        ]
-      }
-    },
-    {
-      "step": 9,
-      "tool": "get_product_reviews",
-      "result": {
-        "content": [
-          {
-            "type": "text",
-            "text": "This product has no reviews yet."
-          }
-        ]
-      }
-    },
-    {
-      "step": 10,
-      "tool": "get_product_reviews",
-      "result": {
-        "content": [
-          {
-            "type": "text",
-            "text": "📝 **Reviews for PlayFone's product**\n⭐ 4 total reviews | Page 1 | sorted by lowest_rating\n\n1. ★★★★★ — **Agus** 👍 1\n   🎨 Variant: Black\n   sesuai dng omongan,  jujur dan gercep.......\n   🖼 1 photo(s) attached\n   ↳ 🏪 Seller: Terima kasih telah berbelanja di PlayFone. Bagikan link toko kami www.tokopedia.com/playfone kepada teman-teman kamu. Jangan lupa follow toko kami untuk tahu update terbaru tentang stok dan produk yan…\n   📅 1744349157\n\n2. ★★★★★ — **Agus**\n   🎨 Variant: Green\n   mantap, barang sesuai dengan deskripsi\n   ↳ 🏪 Seller: Terima kasih telah berbelanja di PlayFone. Bagikan link toko kami www.tokopedia.com/playfone kepada teman-teman kamu. Jangan lupa follow toko kami untuk tahu update terbaru tentang stok dan produk yan…\n   📅 1748139415\n\n3. ★★★★★ — **Tejo** 👍 6\n   🎨 Variant: Green\n   best seller ramah baik hati dan tidak sombong\n   🖼 1 photo(s) attached\n   ↳ 🏪 Seller: Terima kasih telah berbelanja di PlayFone. Bagikan link toko kami www.tokopedia.com/playfone kepada teman-teman kamu. Jangan lupa follow toko kami untuk tahu update terbaru tentang stok dan produk yan…\n   📅 1749234793\n\n4. ★★★★★ — **dhani**\n   🎨 Variant: Green\n   sesuai diskripsi dan barang fungsi normal minus nya sesuai gambar yang di kirim\n   ↳ 🏪 Seller: Terima kasih telah berbelanja di PlayFone. Bagikan link toko kami www.tokopedia.com/playfone kepada teman-teman kamu. Jangan lupa follow toko kami untuk tahu update terbaru tentang stok dan produk yan…\n   📅 1761386794"
           }
         ]
       }
