@@ -14,108 +14,96 @@
   "results": [
     {
       "step": 1,
-      "tool": "search_products",
+      "tool": "get_shop_info",
       "result": {
         "content": [
           {
             "type": "text",
-            "text": "No products found for \"huawei p30 pro second layar normal\". Try a different keyword or loosen the filters."
+            "text": "🏪 **Hendrit P** ⭐ Power Merchant\n📍 Kab. Batang\n🕐 ✅ Open\n📆 Open since July 2023\n📊 **Shop Stats:**\n  ✅ Successful transactions: 5\n  📦 Products sold: 5\n  🗂 Active products: 2\n  ❤️ Favorites: 2\n  🖼 Showcases: 0\n🔗 https://www.tokopedia.com/hendrit-p"
           }
         ]
       }
     },
     {
       "step": 2,
-      "tool": "search_products",
+      "tool": "get_shop_info",
       "result": {
         "content": [
           {
             "type": "text",
-            "text": "No products found for \"huawei p30 pro second no shadow\". Try a different keyword or loosen the filters."
+            "text": "🏪 **Storegadget12** ⭐ Power Merchant\n📍 Kota Administrasi Jakarta Barat\n🕐 ✅ Open\n📆 Open since January 2023\n📊 **Shop Stats:**\n  ✅ Successful transactions: 105\n  📦 Products sold: 108\n  🗂 Active products: 103\n  ❤️ Favorites: 1.618\n  🖼 Showcases: 14\n🔗 https://www.tokopedia.com/gadgetstore98"
           }
         ]
       }
     },
     {
       "step": 3,
-      "tool": "search_products",
+      "tool": "get_shop_info",
       "result": {
         "content": [
           {
             "type": "text",
-            "text": "No products found for \"huawei mate 20 pro second layar normal\". Try a different keyword or loosen the filters."
+            "text": "🏪 **titopol** ⭐ Power Merchant\n📍 Kab. Semarang\n🕐 ✅ Open\n📆 Open since February 2026\n📊 **Shop Stats:**\n  ✅ Successful transactions: 13\n  📦 Products sold: 14\n  🗂 Active products: 1\n  ❤️ Favorites: 10\n  🖼 Showcases: 0\n🔗 https://www.tokopedia.com/titopol"
           }
         ]
       }
     },
     {
       "step": 4,
-      "tool": "search_products",
+      "tool": "get_shop_info",
       "result": {
         "content": [
           {
             "type": "text",
-            "text": "No products found for \"huawei mate 20 pro second no shadow\". Try a different keyword or loosen the filters."
+            "text": "🏪 **Arfan Cell 23** ⭐ Power Merchant\n📍 Jakarta Pusat\n🕐 ✅ Open\n📆 Open since June 2025\n📊 **Shop Stats:**\n  ✅ Successful transactions: 4689\n  📦 Products sold: 5539\n  🗂 Active products: 269\n  ❤️ Favorites: 9.204\n  🖼 Showcases: 67\n🔗 https://www.tokopedia.com/gg-store-23-16"
           }
         ]
       }
     },
     {
       "step": 5,
-      "tool": "search_products",
+      "tool": "get_product_reviews",
       "result": {
         "content": [
           {
             "type": "text",
-            "text": "No products found for \"huawei mate 30 pro second layar normal\". Try a different keyword or loosen the filters."
+            "text": "This product has no reviews yet."
           }
         ]
       }
     },
     {
       "step": 6,
-      "tool": "search_products",
+      "tool": "get_product_reviews",
       "result": {
         "content": [
           {
             "type": "text",
-            "text": "No products found for \"huawei p40 pro second layar normal\". Try a different keyword or loosen the filters."
+            "text": "📝 **Reviews for Storegadget12's product**\n⭐ 1 total reviews | Page 1 | sorted by lowest_rating\n\n1. ★★★★★ — **Wawan**\n   sesuai dengan pesanan Semogah kedepannya ya tdk ada masalah Aamiin cepet pengiriman dan respon,\n   🖼 1 photo(s) attached\n   ↳ 🏪 Seller: Terima kasih telah berbelanja di gadgetstore98. Bagikan link toko kami https://www.tokopedia.com/gadgetstore98 kepada teman-teman kamu. Jangan lupa follow toko kami untuk tahu update terbaru tentang s…\n   📅 1739813290"
           }
         ]
       }
     },
     {
       "step": 7,
-      "tool": "search_products",
+      "tool": "get_product_reviews",
       "result": {
         "content": [
           {
             "type": "text",
-            "text": "No products found for \"huawei nova 9 second layar normal\". Try a different keyword or loosen the filters."
+            "text": "This product has no reviews yet."
           }
         ]
       }
     },
     {
       "step": 8,
-      "tool": "search_products",
+      "tool": "get_product_reviews",
       "result": {
         "content": [
           {
             "type": "text",
-            "text": "No products found for \"huawei nova 10 second layar normal\". Try a different keyword or loosen the filters."
-          }
-        ]
-      }
-    },
-    {
-      "step": 9,
-      "tool": "search_products",
-      "result": {
-        "content": [
-          {
-            "type": "text",
-            "text": "No products found for \"huawei second no minus layar normal\". Try a different keyword or loosen the filters."
+            "text": "This product has no reviews yet."
           }
         ]
       }
