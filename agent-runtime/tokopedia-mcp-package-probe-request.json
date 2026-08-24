@@ -1,14 +1,11 @@
 {
   "workflow": [
-    {"tool":"search_products","arguments":{"query":"samsung a54 5g second fungsi normal","rows":20,"orderBy":3,"priceMin":1500000,"priceMax":3000000}},
-    {"tool":"search_products","arguments":{"query":"samsung s22 second no minus","rows":20,"orderBy":3,"priceMin":1800000,"priceMax":3000000}},
-    {"tool":"search_products","arguments":{"query":"samsung s22 second fungsi normal","rows":20,"orderBy":3,"priceMin":1800000,"priceMax":3000000}},
-    {"tool":"search_products","arguments":{"query":"samsung s21 fe second no minus","rows":20,"orderBy":3,"priceMin":1500000,"priceMax":3000000}},
-    {"tool":"search_products","arguments":{"query":"samsung a52s 5g second no minus","rows":20,"orderBy":3,"priceMin":1000000,"priceMax":3000000}},
-    {"tool":"search_products","arguments":{"query":"samsung a73 5g second no minus","rows":20,"orderBy":3,"priceMin":1200000,"priceMax":3000000}},
-    {"tool":"search_products","arguments":{"query":"iphone 11 second no minus","rows":20,"orderBy":3,"priceMin":1800000,"priceMax":3000000}},
-    {"tool":"search_products","arguments":{"query":"huawei mate 20 pro second normal original","rows":20,"orderBy":3,"priceMin":1200000,"priceMax":3000000}},
-    {"tool":"search_products","arguments":{"query":"huawei p30 pro second normal original","rows":20,"orderBy":3,"priceMin":1200000,"priceMax":3000000}}
+    {"tool":"get_shop_info","arguments":{"shopDomain":"dannystorebjn"}},
+    {"tool":"get_shop_info","arguments":{"shopDomain":"lordgent"}},
+    {"tool":"get_shop_info","arguments":{"shopDomain":"playfone"}},
+    {"tool":"get_product_reviews","arguments":{"productId":"103772191706","page":1,"limit":10,"sort":"lowest_rating","filter":"all"}},
+    {"tool":"get_product_reviews","arguments":{"productId":"16702303985","page":1,"limit":10,"sort":"lowest_rating","filter":"all"}},
+    {"tool":"get_product_reviews","arguments":{"productId":"100261538807","page":1,"limit":10,"sort":"lowest_rating","filter":"all"}}
   ],
-  "requestedAt": "2026-08-24T22:26:00+07:00"
+  "requestedAt":"2026-08-24T22:29:00+07:00"
 }
