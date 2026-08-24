@@ -2,37 +2,37 @@
   {
     "tool": "get_shop_info",
     "arguments": {
-      "shopDomain": "gadget2ndstore-88"
+      "shopDomain": "triplebeee"
     }
   },
   {
     "tool": "get_shop_info",
     "arguments": {
-      "shopDomain": "wafalin"
+      "shopDomain": "ranniyab"
     }
   },
   {
     "tool": "get_shop_info",
     "arguments": {
-      "shopDomain": "gg-store-23-16"
+      "shopDomain": "rastorebyrastore"
     }
   },
   {
     "tool": "get_shop_info",
     "arguments": {
-      "shopDomain": "gadgetstore98"
+      "shopDomain": "archive-raishacomp-16306"
     }
   },
   {
     "tool": "get_shop_info",
     "arguments": {
-      "shopDomain": "titopol"
+      "shopDomain": "playfone"
     }
   },
   {
     "tool": "get_product_reviews",
     "arguments": {
-      "productId": "102811404183",
+      "productId": "102648504890",
       "page": 1,
       "limit": 20,
       "sort": "lowest_rating",
@@ -42,7 +42,7 @@
   {
     "tool": "get_product_reviews",
     "arguments": {
-      "productId": "103518901985",
+      "productId": "103190445204",
       "page": 1,
       "limit": 20,
       "sort": "lowest_rating",
@@ -52,7 +52,7 @@
   {
     "tool": "get_product_reviews",
     "arguments": {
-      "productId": "102403283433",
+      "productId": "12803214538",
       "page": 1,
       "limit": 20,
       "sort": "lowest_rating",
@@ -62,7 +62,7 @@
   {
     "tool": "get_product_reviews",
     "arguments": {
-      "productId": "16184149672",
+      "productId": "103531609337",
       "page": 1,
       "limit": 20,
       "sort": "lowest_rating",
@@ -72,7 +72,7 @@
   {
     "tool": "get_product_reviews",
     "arguments": {
-      "productId": "16661609540",
+      "productId": "100261538807",
       "page": 1,
       "limit": 20,
       "sort": "lowest_rating",
