@@ -2,8 +2,8 @@
   {
     "tool": "search_products",
     "arguments": {
-      "query": "samsung s22 5g second",
-      "rows": 50,
+      "query": "samsung a55 5g second",
+      "rows": 30,
       "orderBy": 3,
       "priceMin": 1500000,
       "priceMax": 3000000
@@ -12,30 +12,10 @@
   {
     "tool": "search_products",
     "arguments": {
-      "query": "samsung s22 plus second",
-      "rows": 50,
+      "query": "samsung a54 5g second fungsi normal",
+      "rows": 30,
       "orderBy": 3,
-      "priceMin": 1700000,
-      "priceMax": 3000000
-    }
-  },
-  {
-    "tool": "search_products",
-    "arguments": {
-      "query": "samsung s21 fe 5g second",
-      "rows": 50,
-      "orderBy": 3,
-      "priceMin": 1300000,
-      "priceMax": 3000000
-    }
-  },
-  {
-    "tool": "search_products",
-    "arguments": {
-      "query": "samsung s21 5g second",
-      "rows": 50,
-      "orderBy": 3,
-      "priceMin": 1300000,
+      "priceMin": 1500000,
       "priceMax": 3000000
     }
   },
@@ -43,49 +23,9 @@
     "tool": "search_products",
     "arguments": {
       "query": "samsung s20 fe 5g second",
-      "rows": 50,
+      "rows": 30,
       "orderBy": 3,
       "priceMin": 1000000,
-      "priceMax": 3000000
-    }
-  },
-  {
-    "tool": "search_products",
-    "arguments": {
-      "query": "samsung note 20 second",
-      "rows": 50,
-      "orderBy": 3,
-      "priceMin": 1200000,
-      "priceMax": 3000000
-    }
-  },
-  {
-    "tool": "search_products",
-    "arguments": {
-      "query": "samsung note 10 plus second",
-      "rows": 50,
-      "orderBy": 3,
-      "priceMin": 1000000,
-      "priceMax": 3000000
-    }
-  },
-  {
-    "tool": "search_products",
-    "arguments": {
-      "query": "samsung a54 5g second",
-      "rows": 50,
-      "orderBy": 3,
-      "priceMin": 1200000,
-      "priceMax": 3000000
-    }
-  },
-  {
-    "tool": "search_products",
-    "arguments": {
-      "query": "samsung a55 5g second",
-      "rows": 50,
-      "orderBy": 3,
-      "priceMin": 1500000,
       "priceMax": 3000000
     }
   },
@@ -93,7 +33,7 @@
     "tool": "search_products",
     "arguments": {
       "query": "samsung a52s 5g second",
-      "rows": 50,
+      "rows": 30,
       "orderBy": 3,
       "priceMin": 1000000,
       "priceMax": 3000000
@@ -103,7 +43,7 @@
     "tool": "search_products",
     "arguments": {
       "query": "samsung a73 5g second",
-      "rows": 50,
+      "rows": 30,
       "orderBy": 3,
       "priceMin": 1200000,
       "priceMax": 3000000
