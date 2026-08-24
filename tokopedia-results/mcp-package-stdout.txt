@@ -1,0 +1,8 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "No products found for \"samsung s20 fe 5g second no minus\". Try a different keyword or loosen the filters."
+    }
+  ]
+}
