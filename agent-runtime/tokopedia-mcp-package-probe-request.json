@@ -1,7 +1,11 @@
 {
-  "tool": "get_product_detail",
+  "tool": "search_products",
   "arguments": {
-    "url": "https://www.tokopedia.com/lordgent/iphone-11-64gb-no-minus-second-1731626193011312383"
+    "query": "samsung s20 fe 5g second no minus",
+    "rows": 20,
+    "orderBy": 3,
+    "priceMin": 1000000,
+    "priceMax": 3000000
   },
-  "requestedAt": "2026-08-24T21:19:00+07:00"
+  "requestedAt": "2026-08-24T21:47:30+07:00"
 }
