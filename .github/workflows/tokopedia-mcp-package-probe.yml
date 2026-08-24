@@ -11,7 +11,7 @@ permissions:
 jobs:
   probe:
     runs-on: ubuntu-24.04
-    timeout-minutes: 4
+    timeout-minutes: 8
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -22,11 +22,19 @@ jobs:
         run: |
           set +e
           mkdir -p tokopedia-results
-          tool="$(node -e "const fs=require('fs'); const r=JSON.parse(fs.readFileSync('agent-runtime/tokopedia-mcp-package-probe-request.json','utf8')); process.stdout.write(r.tool || 'search_products');")"
-          args="$(node -e "const fs=require('fs'); const r=JSON.parse(fs.readFileSync('agent-runtime/tokopedia-mcp-package-probe-request.json','utf8')); if(r.arguments){process.stdout.write(JSON.stringify(r.arguments));} else {const a={query:r.query,rows:r.rows??20,orderBy:r.orderBy??23}; if(r.priceMin!=null)a.priceMin=r.priceMin; if(r.priceMax!=null)a.priceMax=r.priceMax; if(r.filters)a.filters=r.filters; process.stdout.write(JSON.stringify(a));}")"
-          printf '%s\n' "$tool" > tokopedia-results/mcp-package-tool.txt
-          printf '%s\n' "$args" > tokopedia-results/mcp-package-request.json
-          timeout --signal=TERM 90s node src/cli.mjs call examples/tokopedia.json "$tool" "$args" > tokopedia-results/mcp-package-stdout.txt 2> tokopedia-results/mcp-package-stderr.txt
+          mode="$(node -e "const fs=require('fs');const r=JSON.parse(fs.readFileSync('agent-runtime/tokopedia-mcp-package-probe-request.json','utf8'));process.stdout.write(Array.isArray(r.workflow)?'workflow':'call')")"
+          printf '%s\n' "$mode" > tokopedia-results/mcp-package-tool.txt
+          if [[ "$mode" == "workflow" ]]; then
+            node -e "const fs=require('fs');const r=JSON.parse(fs.readFileSync('agent-runtime/tokopedia-mcp-package-probe-request.json','utf8'));fs.writeFileSync('/tmp/tokopedia-workflow.json',JSON.stringify(r.workflow,null,2))"
+            cp /tmp/tokopedia-workflow.json tokopedia-results/mcp-package-request.json
+            timeout --signal=TERM 300s node src/cli.mjs workflow examples/tokopedia.json /tmp/tokopedia-workflow.json > tokopedia-results/mcp-package-stdout.txt 2> tokopedia-results/mcp-package-stderr.txt
+          else
+            tool="$(node -e "const fs=require('fs'); const r=JSON.parse(fs.readFileSync('agent-runtime/tokopedia-mcp-package-probe-request.json','utf8')); process.stdout.write(r.tool || 'search_products');")"
+            args="$(node -e "const fs=require('fs'); const r=JSON.parse(fs.readFileSync('agent-runtime/tokopedia-mcp-package-probe-request.json','utf8')); if(r.arguments){process.stdout.write(JSON.stringify(r.arguments));} else {const a={query:r.query,rows:r.rows??20,orderBy:r.orderBy??23}; if(r.priceMin!=null)a.priceMin=r.priceMin; if(r.priceMax!=null)a.priceMax=r.priceMax; if(r.filters)a.filters=r.filters; process.stdout.write(JSON.stringify(a));}")"
+            printf '%s\n' "$tool" > tokopedia-results/mcp-package-tool.txt
+            printf '%s\n' "$args" > tokopedia-results/mcp-package-request.json
+            timeout --signal=TERM 90s node src/cli.mjs call examples/tokopedia.json "$tool" "$args" > tokopedia-results/mcp-package-stdout.txt 2> tokopedia-results/mcp-package-stderr.txt
+          fi
           code=$?
           printf '%s\n' "$code" > tokopedia-results/mcp-package-exit-code.txt
           exit 0
