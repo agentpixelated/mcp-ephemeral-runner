@@ -2,28 +2,8 @@
   {
     "tool": "search_products",
     "arguments": {
-      "query": "samsung s20 fe 5g second",
-      "rows": 20,
-      "orderBy": 3,
-      "priceMin": 900000,
-      "priceMax": 3000000
-    }
-  },
-  {
-    "tool": "search_products",
-    "arguments": {
-      "query": "samsung note 10 plus second",
-      "rows": 20,
-      "orderBy": 3,
-      "priceMin": 900000,
-      "priceMax": 3000000
-    }
-  },
-  {
-    "tool": "search_products",
-    "arguments": {
-      "query": "samsung s21 5g second",
-      "rows": 20,
+      "query": "samsung s21 fe 5g second mulus original",
+      "rows": 10,
       "orderBy": 3,
       "priceMin": 1200000,
       "priceMax": 3000000
@@ -32,8 +12,18 @@
   {
     "tool": "search_products",
     "arguments": {
-      "query": "samsung s10 plus second",
-      "rows": 20,
+      "query": "samsung note 10 plus second mulus original sein",
+      "rows": 10,
+      "orderBy": 3,
+      "priceMin": 1200000,
+      "priceMax": 3000000
+    }
+  },
+  {
+    "tool": "search_products",
+    "arguments": {
+      "query": "huawei p30 pro second mulus original",
+      "rows": 10,
       "orderBy": 3,
       "priceMin": 700000,
       "priceMax": 3000000
@@ -42,8 +32,8 @@
   {
     "tool": "search_products",
     "arguments": {
-      "query": "huawei p30 pro second",
-      "rows": 20,
+      "query": "huawei mate 20 pro second mulus original",
+      "rows": 10,
       "orderBy": 3,
       "priceMin": 700000,
       "priceMax": 3000000
@@ -52,18 +42,8 @@
   {
     "tool": "search_products",
     "arguments": {
-      "query": "huawei mate 20 pro second",
-      "rows": 20,
-      "orderBy": 3,
-      "priceMin": 700000,
-      "priceMax": 3000000
-    }
-  },
-  {
-    "tool": "search_products",
-    "arguments": {
-      "query": "huawei p40 pro second",
-      "rows": 20,
+      "query": "huawei p40 pro second mulus original",
+      "rows": 10,
       "orderBy": 3,
       "priceMin": 1000000,
       "priceMax": 3000000
@@ -72,30 +52,10 @@
   {
     "tool": "search_products",
     "arguments": {
-      "query": "iphone 11 64gb second",
-      "rows": 20,
+      "query": "iphone 11 64gb second no minus",
+      "rows": 10,
       "orderBy": 3,
       "priceMin": 1500000,
-      "priceMax": 3000000
-    }
-  },
-  {
-    "tool": "search_products",
-    "arguments": {
-      "query": "iphone xr 128gb second",
-      "rows": 20,
-      "orderBy": 3,
-      "priceMin": 1000000,
-      "priceMax": 3000000
-    }
-  },
-  {
-    "tool": "search_products",
-    "arguments": {
-      "query": "iphone se 2022 second",
-      "rows": 20,
-      "orderBy": 3,
-      "priceMin": 1000000,
       "priceMax": 3000000
     }
   }
