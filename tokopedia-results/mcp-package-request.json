@@ -1,72 +1,92 @@
 [
   {
-    "tool": "get_product_reviews",
+    "tool": "search_products",
     "arguments": {
-      "productId": "100604614491",
-      "page": 1,
-      "limit": 5,
-      "sort": "lowest_rating",
-      "filter": "all"
+      "query": "samsung s21 fe 5g second",
+      "rows": 30,
+      "orderBy": 3,
+      "priceMin": 1500000,
+      "priceMax": 3000000
     }
   },
   {
-    "tool": "get_product_reviews",
+    "tool": "search_products",
     "arguments": {
-      "productId": "103488528042",
-      "page": 1,
-      "limit": 5,
-      "sort": "lowest_rating",
-      "filter": "all"
+      "query": "samsung s20 fe 5g second",
+      "rows": 30,
+      "orderBy": 3,
+      "priceMin": 1200000,
+      "priceMax": 3000000
     }
   },
   {
-    "tool": "get_product_reviews",
+    "tool": "search_products",
     "arguments": {
-      "productId": "16184149672",
-      "page": 1,
-      "limit": 5,
-      "sort": "lowest_rating",
-      "filter": "all"
+      "query": "samsung a54 5g second",
+      "rows": 30,
+      "orderBy": 3,
+      "priceMin": 1500000,
+      "priceMax": 3000000
     }
   },
   {
-    "tool": "get_product_reviews",
+    "tool": "search_products",
     "arguments": {
-      "productId": "100771923841",
-      "page": 1,
-      "limit": 5,
-      "sort": "lowest_rating",
-      "filter": "all"
+      "query": "samsung s22 5g second",
+      "rows": 30,
+      "orderBy": 3,
+      "priceMin": 1800000,
+      "priceMax": 3000000
     }
   },
   {
-    "tool": "get_product_reviews",
+    "tool": "search_products",
     "arguments": {
-      "productId": "16661609540",
-      "page": 1,
-      "limit": 5,
-      "sort": "lowest_rating",
-      "filter": "all"
+      "query": "samsung note 10 plus second",
+      "rows": 30,
+      "orderBy": 3,
+      "priceMin": 1500000,
+      "priceMax": 3000000
     }
   },
   {
-    "tool": "get_product_reviews",
+    "tool": "search_products",
     "arguments": {
-      "productId": "16702303985",
-      "page": 1,
-      "limit": 5,
-      "sort": "lowest_rating",
-      "filter": "all"
+      "query": "huawei p30 pro second",
+      "rows": 30,
+      "orderBy": 3,
+      "priceMin": 1200000,
+      "priceMax": 3000000
     }
   },
   {
-    "tool": "get_product_reviews",
+    "tool": "search_products",
     "arguments": {
-      "productId": "15096772802",
-      "page": 1,
-      "limit": 5,
-      "sort": "lowest_rating",
-      "filter": "all"
+      "query": "huawei mate 20 pro second",
+      "rows": 30,
+      "orderBy": 3,
+      "priceMin": 1200000,
+      "priceMax": 3000000
+    }
+  },
+  {
+    "tool": "search_products",
+    "arguments": {
+      "query": "iphone 11 second",
+      "rows": 30,
+      "orderBy": 3,
+      "priceMin": 1800000,
+      "priceMax": 3000000
+    }
+  },
+  {
+    "tool": "search_products",
+    "arguments": {
+      "query": "iphone se 2022 second",
+      "rows": 30,
+      "orderBy": 3,
+      "priceMin": 1500000,
+      "priceMax": 3000000
     }
   }
 ]
