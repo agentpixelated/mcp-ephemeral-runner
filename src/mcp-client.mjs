@@ -62,10 +62,10 @@ export class McpStdioClient {
     return init;
   }
 
-  request(method, params = {}) {
+  request(method, params = {}, timeoutOverrideMs = null) {
     if (!this.child?.stdin?.writable) throw new Error('MCP server is not running.');
     const id = this.nextId++;
-    const timeoutMs = Number(this.config.timeoutMs || 30_000);
+    const timeoutMs = Number(timeoutOverrideMs ?? this.config.timeoutMs ?? 30_000);
     const msg = { jsonrpc: '2.0', id, method, params };
     return new Promise((resolve, reject) => {
       const timer = setTimeout(() => {
@@ -86,8 +86,8 @@ export class McpStdioClient {
     return this.request('tools/list', {});
   }
 
-  async callTool(name, args = {}) {
-    return this.request('tools/call', { name, arguments: args });
+  async callTool(name, args = {}, options = {}) {
+    return this.request('tools/call', { name, arguments: args }, options.timeoutMs ?? null);
   }
 
   async close() {
