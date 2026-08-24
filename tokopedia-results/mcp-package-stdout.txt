@@ -19,7 +19,7 @@
         "content": [
           {
             "type": "text",
-            "text": "No products found for \"iphone 11 second fungsi normal all operator\". Try a different keyword or loosen the filters."
+            "text": "No products found for \"iphone 11 64gb second putih fullset\". Try a different keyword or loosen the filters."
           }
         ]
       }
@@ -31,7 +31,7 @@
         "content": [
           {
             "type": "text",
-            "text": "🛒 Search Results for \"0\"\n📊 1 total products | Page 1/1\n\n1. **iphone second normal 12 11 xr xs max x 7 plus 256gb 128gb 64gb 32gb no minus original 100% all sim mulus like new murah**\n   💰 Rp2.359.000\n   ⭐ N/A | 🏪 Aimu Phonecell (Jakarta Utara) | 🆔 15096772802\n   🔗 https://www.tokopedia.com/aimuphonecell/iphone-second-normal-12-11-xr-xs-max-x-7-plus-256gb-128gb-64gb-32gb-no-minus-original-100-all-sim-mulus-like-new-murah-1729965187690562610?extParam=ivf%3Dfalse%26keyword%3Diphone+11+second+no+minus+all+sim%26search_id%3D2026082416253789F0FD5C927D463D7X3N%26src%3Dsearch"
+            "text": "🛒 Search Results for \"0\"\n📊 1 total products | Page 1/1\n\n1. **Iphone 11 64GB All Operator Second**\n   💰 Rp2.900.000\n   ⭐ N/A | 🏪 Gudanggadgetjkt (Kab. Nganjuk) | 🆔 102936842095\n   🔗 https://www.tokopedia.com/gudanggadgetjkt/iphone-11-64gb-all-operator-second-1734209321246950478?extParam=ivf%3Dfalse%26keyword%3Diphone+11+64gb+second+all+operator%26search_id%3D20260824162657DCE632459E4D411DBB16%26src%3Dsearch"
           }
         ]
       }
@@ -43,7 +43,7 @@
         "content": [
           {
             "type": "text",
-            "text": "No products found for \"iphone 11 64gb second fullset all operator\". Try a different keyword or loosen the filters."
+            "text": "🛒 Search Results for \"0\"\n📊 2 total products | Page 1/1\n\n1. **iphone second normal 12 11 xr xs max x 7 plus 256gb 128gb 64gb 32gb no minus original 100% all sim mulus like new murah**\n   💰 Rp2.359.000\n   ⭐ N/A | 🏪 Aimu Phonecell (Jakarta Utara) | 🆔 15096772802\n   🔗 https://www.tokopedia.com/aimuphonecell/iphone-second-normal-12-11-xr-xs-max-x-7-plus-256gb-128gb-64gb-32gb-no-minus-original-100-all-sim-mulus-like-new-murah-1729965187690562610?extParam=ivf%3Dfalse%26keyword%3Diphone+11+64gb+no+minus+second%26search_id%3D2026082416265740008B9A5380FC36FOK8%26src%3Dsearch\n\n2. **iPhone 11 64gb no minus Second**\n   💰 Rp2.500.000\n   ⭐ N/A | 🏪 LordGent Shop (Kab. Pacitan) | 🆔 16702303985\n   🔗 https://www.tokopedia.com/lordgent/iphone-11-64gb-no-minus-second-1731626193011312383?extParam=ivf%3Dfalse%26keyword%3Diphone+11+64gb+no+minus+second%26search_id%3D2026082416265740008B9A5380FC36FOK8%26src%3Dsearch"
           }
         ]
       }
@@ -55,79 +55,7 @@
         "content": [
           {
             "type": "text",
-            "text": "🛒 Search Results for \"0\"\n📊 1 total products | Page 1/1\n\n1. **IBOX| iPhone SE 3 2022 / 2 2020 256GB 256 128GB 128 64GB 64 Second**\n   💰 Rp2.549.000\n   ⭐ 4.8 | 🏪 MACBIN (Tangerang Selatan) | 🆔 6576791334\n   🔗 https://www.tokopedia.com/macbin/ibox-iphone-se-3-2022-2-2020-256gb-256-128gb-128-64gb-64-second-se-2-64gb-fingerprint?extParam=ivf%3Dfalse%26keyword%3Diphone+se+2022+second+ibox%26search_id%3D20260824162539AD13A2A07CA4B715DOM2%26src%3Dsearch"
-          }
-        ]
-      }
-    },
-    {
-      "step": 5,
-      "tool": "get_shop_info",
-      "result": {
-        "content": [
-          {
-            "type": "text",
-            "text": "🏪 **MACBIN** ⭐ Power Merchant\n📍 Kota Tangerang Selatan\n🕐 ✅ Open\n📆 Open since July 2022\n📊 **Shop Stats:**\n  ✅ Successful transactions: 4150\n  📦 Products sold: 6208\n  🗂 Active products: 80\n  ❤️ Favorites: 10.127\n  🖼 Showcases: 5\n🔗 https://www.tokopedia.com/macbin"
-          }
-        ]
-      }
-    },
-    {
-      "step": 6,
-      "tool": "get_shop_info",
-      "result": {
-        "content": [
-          {
-            "type": "text",
-            "text": "🏪 **Diga gadget** ⭐ Power Merchant\n📍 Jakarta Timur\n🕐 ✅ Open\n📆 Open since March 2023\n📊 **Shop Stats:**\n  ✅ Successful transactions: 559\n  📦 Products sold: 658\n  🗂 Active products: 67\n  ❤️ Favorites: 2.397\n  🖼 Showcases: 2\n🔗 https://www.tokopedia.com/digacorp508"
-          }
-        ]
-      }
-    },
-    {
-      "step": 7,
-      "tool": "get_shop_info",
-      "result": {
-        "content": [
-          {
-            "type": "text",
-            "text": "🏪 **LordGent Shop** ⭐ Power Merchant\n📍 Kab. Pacitan\n🕐 ✅ Open\n📆 Open since April 2025\n📊 **Shop Stats:**\n  ✅ Successful transactions: 0\n  📦 Products sold: 0\n  🗂 Active products: 4\n  ❤️ Favorites: 7\n  🖼 Showcases: 0\n🔗 https://www.tokopedia.com/lordgent"
-          }
-        ]
-      }
-    },
-    {
-      "step": 8,
-      "tool": "get_product_reviews",
-      "result": {
-        "content": [
-          {
-            "type": "text",
-            "text": "📝 **Reviews for MACBIN's product**\n⭐ 34 total reviews | Page 1 | sorted by lowest_rating\n\n1. ★★★★★ — **Agus** 👍 6\n   🎨 Variant: SE 2 64GB - Ex-IBOX\n   Sinyal aman Barangnya mulus IMEI terdaftar di Kemenperin Barangnya original 👍 Ada garansi iBox Proses pesanan cepat Penjualnya ramah banget Packaging aman 🙏 Packaging rapi Respon penjualnya top Berfungsi dengan baik\n   🖼 3 photo(s) attached\n   ↳ 🏪 Seller: Terima kasih telah berbelanja di MACBIN. Bagikan link toko kami https://www.tokopedia.com/macbin kepada teman-teman Anda dan favoritkan Toko kami untuk terus update mengenai stok dan produk terbaru\n   📅 1667349451\n\n2. ★★★★★ — **Anonymous** 👍 2\n   🎨 Variant: SE 2 64GB - Ex-Inter\n   Kirain silent cam ternyata region jepang jadi gag bisa silent. Keseluruhan bagus sih barangnya\n   ↳ 🏪 Seller: Terima kasih telah berbelanja di MACBIN. Bagikan link toko kami https://www.tokopedia.com/macbin kepada teman-teman Anda dan favoritkan Toko kami untuk terus update mengenai stok dan produk terbaru\n   📅 1669323804\n\n3. ★★★★★ — **Dhika**\n   🎨 Variant: SE 2 128GB - Ex-IBOX\n   Barangnya original 👍 Sinyal aman Berfungsi dengan baik Barangnya mulus\n   ↳ 🏪 Seller: Terima kasih telah berbelanja di MACBIN. Bagikan link toko kami https://www.tokopedia.com/macbin kepada teman-teman Anda dan favoritkan Toko kami untuk terus update mengenai stok dan produk terbaru\n   📅 1669925111\n\n4. ★★★★★ — **Brian** 👍 4\n   🎨 Variant: SE 2 64GB - Ex-Inter\n   saya pake gosend biar sameday tapi admin lama banget proses nya, akhir nya saya chat dan lngsung di kirim pake kurir toko. overall saya puas dan toko worth buat dikasih bintang 5. untung barangny sendiri cuma kurang du 3utools ny merah. saya org yg ngerti tech jadi saya investigate sendiri. ternyata…\n   🖼 3 photo(s) attached\n   ↳ 🏪 Seller: Terima kasih telah berbelanja di MACBIN. Bagikan link toko kami https://www.tokopedia.com/macbin kepada teman-teman Anda dan favoritkan Toko kami untuk terus update mengenai stok dan produk terbaru\n   📅 1670859058\n\n5. ★★★★★ — **Aditya** 👍 1\n   🎨 Variant: SE 2 64GB - Ex-IBOX\n   Sementara aman dan damai Cuman spesker agak kecil yg buat telpon, makasih gan👍 Tlg dibantu klo perlu nanti2 ya\n   🖼 1 photo(s) attached\n   ↳ 🏪 Seller: Terima kasih telah berbelanja di MACBIN. Bagikan link toko kami https://www.tokopedia.com/macbin kepada teman-teman Anda dan favoritkan Toko kami untuk terus update mengenai stok dan produk terbaru\n   📅 1671839719\n\n6. ★☆☆☆☆ — **wahyu** 👍 36\n   🎨 Variant: SE 2 128GB - Ex-IBOX\n   speaker mati sebelah, not recommended\n   🖼 1 photo(s) attached\n   ↳ 🏪 Seller: Terima kasih telah berbelanja di MACBIN. Bagikan link toko kami https://www.tokopedia.com/macbin kepada teman-teman Anda dan favoritkan Toko kami untuk terus update mengenai stok dan produk terbaru\n   📅 1672946549\n\n7. ★★★★☆ — **Tobias** 👍 15\n   🎨 Variant: SE 2 64GB - Ex-Inter\n   Saya melakukan riset dan iPhone (Ex-Inter) berasal dari AS. Kapasitas baterainya 100%, jadi saya menduga bahwa baterainya baru saja diganti. Selain itu, dengan bantuan 3UTools saya bisa melihat, bahwa kamera (depan dan belakang) mungkin telah ditukar. Kamera belakang memiliki beberapa bantingan pada…\n   ↳ 🏪 Seller: halo gan kami meminta maaf atas kendala yg agan alami harusnya infokan dulu kekami, bisa infokan nomer telpon &amp; invoice via chat yah, agar kami follow-up lebih lanjut terkait kendala agan.\n   📅 1673211867\n\n8. ★★★★★ — **Anonymous** 👍 6\n   🎨 Variant: SE 2 64GB - Ex-Inter\n   Barang sampai dan bekerja sebagai mana mestinya, cuman mic saja agak kecil suaranya.\n   🖼 3 photo(s) attached\n   ↳ 🏪 Seller: Terima kasih telah berbelanja di MACBIN. Bagikan link toko kami https://www.tokopedia.com/macbin kepada teman-teman Anda dan favoritkan Toko kami untuk terus update mengenai stok dan produk terbaru un…\n   📅 1676182982\n\n9. ★★★★★ — **Raden** 👍 12\n   🎨 Variant: SE 2 64GB - Ex-IBOX\n   iPhone y sudah saya terima..packing aman,,iPhone y terasa Baru..masih mulus padahal Beli second tapi terasa iPhone Baru...jangan Ragu Gan beli di toko ini seller y amanah..dan juga pengirimannya Cepat terimakasih seller dan Abang kurir y..\n   🖼 5 photo(s) attached\n   ↳ 🏪 Seller: Thanks ya gan sudah belanja di toko kami dan thanks juga untuk ulasan dan rantingnya, ditunggu orderan selanjutnya ya gan :)\n   📅 1677055033\n\n10. ★★★★★ — **Fithri** 👍 3\n   🎨 Variant: SE 2 64GB - Ex-IBOX\n   kondisi fisik mulus sekali, highly recommended\n   🖼 1 photo(s) attached\n   ↳ 🏪 Seller: Thanks ya gan sudah belanja di toko kami dan thanks juga untuk ulasan dan rantingnya, ditunggu orderan selanjutnya ya gan :)\n   📅 1677593197\n\n11. ★★★★☆ — **Barnes** 👍 7\n   🎨 Variant: SE 2 128GB - Ex-IBOX\n   Bagus, fisik nya kayak baru, batre udag diganti tapi bagus, kamera depan dan belakang udah diganti juga tapi 3 hari ini saya pake gak ada masalah. 1 aja yg agak ganggu, touch id udah diganti dan rada gak kebaca untuk fingerprint yg ketiga. Untuk keseluruhan bagus, tapi karena touch id agak ganggu sa…\n   ↳ 🏪 Seller: Thanks ya gan sudah belanja di toko kami dan thanks juga untuk ulasan dan rantingnya, ditunggu orderan selanjutnya ya gan :)\n   📅 1683995553\n\n12. ★★★★★ — **Anonymous**\n   🎨 Variant: SE 2 128GB - Ex-Inter\n   Barang sesuai, respond seller cepet, top pokoknya\n   ↳ 🏪 Seller: Thanks ya gan sudah belanja di toko kami dan thanks juga untuk ulasan dan rantingnya, ditunggu orderan selanjutnya ya gan :)\n   📅 1687622837\n\n13. ★★★★★ — **Anonymous** 👍 3\n   🎨 Variant: SE 2 64GB - Ex-IBOX\n   Produk sudah tiba dan diterima. Sesuai deskripsi pembelian. Setelah pemakaian beberapa hari, produk berfungsi semua sebagaimana mestinya. Seller fast respon. Sip. Sukses selalu\n   ↳ 🏪 Seller: Thanks ya gan sudah belanja di toko kami dan thanks juga untuk ulasan dan rantingnya, ditunggu orderan selanjutnya ya gan :)\n   📅 1688297142\n\n14. ★★★★★ — **Anonymous** 👍 7\n   🎨 Variant: SE 2 64GB - Ex-IBOX\n   mantap, puas\n   ↳ 🏪 Seller: Terima kasih ya boskuu sudah belanja di toko kami dan terima kasih juga untuk ulasan dan ratingnya, ditunggu orderan selanjutnya boskuuu :)\n   📅 1702313474\n\n15. ★★★★★ — **Ricky** 👍 1\n   🎨 Variant: SE 2 64GB - Ex-IBOX\n   mantap\n   🖼 1 photo(s) attached\n   ↳ 🏪 Seller: Terima kasih ya boskuu sudah belanja di toko kami dan terima kasih juga untuk ulasan dan ratingnya, ditunggu orderan selanjutnya boskuuu :)\n   📅 1702666565\n\n16. ★★★★★ — **Anonymous**\n   🎨 Variant: SE 2 64GB - Ex-Inter\n   keren dan barangnya all fungsi .\n   🖼 1 photo(s) attached\n   ↳ 🏪 Seller: Terima kasih ya boskuu sudah belanja di toko kami dan terima kasih juga untuk ulasan dan ratingnya, ditunggu orderan selanjutnya boskuuu :)\n   📅 1705580732\n\n17. ★★★★★ — **Anonymous** 👍 7\n   🎨 Variant: SE 2 64GB - Ex-IBOX\n   fast response, barang sesuai pesanan. Dapat free tempered glass..\n   🖼 1 photo(s) attached\n   ↳ 🏪 Seller: Terima kasih ya boskuu sudah belanja di toko kami dan terima kasih juga untuk ulasan dan ratingnya, ditunggu orderan selanjutnya boskuuu :)\n   📅 1706004699\n\n18. ★★★★☆ — **Anonymous**\n   🎨 Variant: SE 2 64GB - Ex-IBOX\n   Lumayan kualitasnya, sesuai deskripsi semoga awet\n   ↳ 🏪 Seller: Terima kasih ya boskuu sudah belanja di toko kami dan terima kasih juga untuk ulasan dan ratingnya, ditunggu orderan selanjutnya boskuuu :)\n   📅 1706658985\n\n19. ★★★★★ — **Anonymous**\n   🎨 Variant: SE 2 64GB - Ex-IBOX\n   barang oke, packing aman, all fitur no minus, respon chat gercep, all in very good\n   ↳ 🏪 Seller: Terima kasih ya boskuu sudah belanja di toko kami dan terima kasih juga untuk ulasan dan ratingnya, ditunggu orderan selanjutnya boskuuu :)\n   📅 1709206221\n\n20. ★★★★★ — **Anonymous** 👍 1\n   🎨 Variant: SE 2 256GB - Ex-Inter\n   Sejauh ini aman semoga memang bukan oprekan Saran tolong lokasi sticker garansinya diubah atau diganti bentuknya karena menutupi microphone sehingga suara sangat kecil\n   ↳ 🏪 Seller: Terima kasih ya boskuu sudah belanja di toko kami dan terima kasih juga untuk ulasan dan ratingnya, ditunggu orderan selanjutnya boskuuu :)\n   📅 1709580978\n\n📄 Use page=2 for more reviews."
-          }
-        ]
-      }
-    },
-    {
-      "step": 9,
-      "tool": "get_product_reviews",
-      "result": {
-        "content": [
-          {
-            "type": "text",
-            "text": "📝 **Reviews for Diga gadget's product**\n⭐ 5 total reviews | Page 1 | sorted by lowest_rating\n\n1. ★★★★★ — **Jamil** 👍 2\n   Amanah miminnya,semoga awet\n   🖼 1 photo(s) attached\n   ↳ 🏪 Seller: Terima kasih telah berbelanja di Diga Corp. Bagikan link toko kami www.tokopedia.com/digacorp508 kepada teman-teman kamu. Jangan lupa follow toko kami untuk tahu update terbaru tentang stok dan produk…\n   📅 1688682681\n\n2. ★★★★★ — **Amelia** 👍 2\n   🎨 Variant: 128 gb\n   Recomended toko! Seller gercep, barangpun sampe dengan selamat dan mulus. Semua barang oke dan berfungsi dengan baik.. thankyouu seller👌 next bakal order lagi 😉\n   ↳ 🏪 Seller: Terima kasih telah berbelanja di Diga Corp. Bagikan link toko kami www.tokopedia.com/digacorp508 kepada teman-teman kamu. Jangan lupa follow toko kami untuk tahu update terbaru tentang stok dan produk…\n   📅 1688819053\n\n3. ★☆☆☆☆ — **DNSHOOP** 👍 15\n   🎨 Variant: 128 gb\n   Saya pesan Iphone SE hitam, tapi yang dikirim warna merah. dan janjinya akan ganti TG dan Softcase yg salah kirim tp sampai 1 bulan tidak ada yang dikirim. ini bukan perihal TG dan Softcase, namun kejujuran dan keterbukaan seller. apabila tidak ada warna hitam alangkah baiknya konfirmasi ke buyer. b…\n   🖼 3 photo(s) attached\n   ↳ 🏪 Seller: dicek dulu gan sebelum kasih keputusan!!! makasih\n   📅 1698512386\n\n4. ★★★★★ — **Anonymous** 👍 2\n   🎨 Variant: 128gb Resmi\n   produk bagus, pelayanan bagus, harga lebih murah dibanding yg lain.\n   🖼 2 photo(s) attached\n   ↳ 🏪 Seller: Terima kasih telah berbelanja di Diga Corp. Bagikan link toko kami www.tokopedia.com/digacorp508 kepada teman-teman kamu. Jangan lupa follow toko kami untuk tahu update terbaru tentang stok dan produk…\n   📅 1723648926\n\n5. ★★★☆☆ — **Anonymous** 👍 1\n   🎨 Variant: 64gb Resmi\n   katanya tidak pernah dibongkar, tapi hasil dari 3utoolsnyq kecil bgt\n   ↳ 🏪 Seller: halo ka jangan asal kasih ulasan jelek dlu kakak cari sumber dlu untuk hasil 3utolls iphone se memang rata² semua jelek ,kalo perlu kakak ke store resmi nya langsung bawa juga laptop kakak cek langsun…\n   📅 1753507139"
-          }
-        ]
-      }
-    },
-    {
-      "step": 10,
-      "tool": "get_product_reviews",
-      "result": {
-        "content": [
-          {
-            "type": "text",
-            "text": "This product has no reviews yet."
+            "text": "🛒 Search Results for \"0\"\n📊 4 total products | Page 1/1\n\n1. **iphone second normal 12 11 xr xs max x 7 plus 256gb 128gb 64gb 32gb no minus original 100% all sim mulus like new murah**\n   💰 Rp2.359.000\n   ⭐ N/A | 🏪 Aimu Phonecell (Jakarta Utara) | 🆔 15096772802\n   🔗 https://www.tokopedia.com/aimuphonecell/iphone-second-normal-12-11-xr-xs-max-x-7-plus-256gb-128gb-64gb-32gb-no-minus-original-100-all-sim-mulus-like-new-murah-1729965187690562610?extParam=ivf%3Dfalse%26keyword%3Diphone+11+64gb+second+original%26search_id%3D20260824162658FE73F687E5BC520F7S3R%26src%3Dsearch\n\n2. **Apple iPhone 11 Second Original 64GB -EX INTER**\n   💰 Rp2.950.000\n   ⭐ N/A | 🏪 CasalomaShop (Bandung) | 🆔 12062582542\n   🔗 https://www.tokopedia.com/casaloma/apple-iphone-11-second-original-64gb-ex-inter-1729852970664166604?extParam=ivf%3Dfalse%26keyword%3Diphone+11+64gb+second+original%26search_id%3D20260824162658FE73F687E5BC520F7S3R%26src%3Dsearch\n\n3. **iphone 12 11 xr x 7 plus pro promax bypass 512gb 256gb 128gb 64gb 32gb all sim original second minus**\n   💰 Rp2.999.000\n   ⭐ N/A | 🏪 Smartgear.id (Jakarta Utara) | 🆔 15809650827\n   🔗 https://www.tokopedia.com/smartgearid/iphone-12-11-xr-x-7-plus-pro-promax-bypass-512gb-256gb-128gb-64gb-32gb-all-sim-original-second-minus-11-64gb-wifi-only-6098c?extParam=ivf%3Dfalse%26keyword%3Diphone+11+64gb+second+original%26search_id%3D20260824162658FE73F687E5BC520F7S3R%26src%3Dsearch\n\n4. **iPhone second 12 11 promax xr x 7 plus bisa game live & video 256gb 128gb 64gb 32gb original 100% all sim minus fullset mulus like new murah**\n   💰 Rp2.999.000\n   ⭐ N/A | 🏪 Aimu Phonecell (Jakarta Utara) | 🆔 15542915670\n   🔗 https://www.tokopedia.com/aimuphonecell/iphone-second-12-11-promax-xr-x-7-plus-bisa-game-live-video-256gb-128gb-64gb-32gb-original-100-all-sim-minus-fullset-mulus-like-new-murah-1730303926118745138?extParam=ivf%3Dfalse%26keyword%3Diphone+11+64gb+second+original%26search_id%3D20260824162658FE73F687E5BC520F7S3R%26src%3Dsearch"
           }
         ]
       }

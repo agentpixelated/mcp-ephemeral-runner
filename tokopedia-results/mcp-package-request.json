@@ -2,89 +2,41 @@
   {
     "tool": "search_products",
     "arguments": {
-      "query": "iphone 11 second fungsi normal all operator",
+      "query": "iphone 11 64gb second putih fullset",
       "rows": 30,
       "orderBy": 3,
-      "priceMin": 1800000,
+      "priceMin": 2200000,
       "priceMax": 3000000
     }
   },
   {
     "tool": "search_products",
     "arguments": {
-      "query": "iphone 11 second no minus all sim",
+      "query": "iphone 11 64gb second all operator",
       "rows": 30,
       "orderBy": 3,
-      "priceMin": 1800000,
+      "priceMin": 2200000,
       "priceMax": 3000000
     }
   },
   {
     "tool": "search_products",
     "arguments": {
-      "query": "iphone 11 64gb second fullset all operator",
+      "query": "iphone 11 64gb no minus second",
       "rows": 30,
       "orderBy": 3,
-      "priceMin": 1800000,
+      "priceMin": 2200000,
       "priceMax": 3000000
     }
   },
   {
     "tool": "search_products",
     "arguments": {
-      "query": "iphone se 2022 second ibox",
+      "query": "iphone 11 64gb second original",
       "rows": 30,
       "orderBy": 3,
-      "priceMin": 1800000,
+      "priceMin": 2200000,
       "priceMax": 3000000
-    }
-  },
-  {
-    "tool": "get_shop_info",
-    "arguments": {
-      "shopDomain": "macbin"
-    }
-  },
-  {
-    "tool": "get_shop_info",
-    "arguments": {
-      "shopDomain": "digacorp508"
-    }
-  },
-  {
-    "tool": "get_shop_info",
-    "arguments": {
-      "shopDomain": "lordgent"
-    }
-  },
-  {
-    "tool": "get_product_reviews",
-    "arguments": {
-      "productId": "6576791334",
-      "page": 1,
-      "limit": 20,
-      "sort": "lowest_rating",
-      "filter": "all"
-    }
-  },
-  {
-    "tool": "get_product_reviews",
-    "arguments": {
-      "productId": "102131471624",
-      "page": 1,
-      "limit": 20,
-      "sort": "lowest_rating",
-      "filter": "all"
-    }
-  },
-  {
-    "tool": "get_product_reviews",
-    "arguments": {
-      "productId": "16702303985",
-      "page": 1,
-      "limit": 20,
-      "sort": "lowest_rating",
-      "filter": "all"
     }
   }
 ]
