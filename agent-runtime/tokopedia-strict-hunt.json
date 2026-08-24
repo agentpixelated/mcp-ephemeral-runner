@@ -1,7 +1,3 @@
 [
-  {"tool":"get_product_detail","timeoutMs":26000,"continueOnError":true,"arguments":{"url":"https://www.tokopedia.com/dannystorebjn/samsung-a54-5g-8-256-resmi-sein-bekas-second-full-original-fungsi-normal-1737123655856194769-1737123680374457553"}},
-  {"tool":"get_product_detail","timeoutMs":26000,"continueOnError":true,"arguments":{"url":"https://www.tokopedia.com/playfone/samsung-galaxy-s22-5g-8-128gb-second-garansi-resmi-1731112803688941371"}},
-  {"tool":"get_product_detail","timeoutMs":26000,"continueOnError":true,"arguments":{"url":"https://www.tokopedia.com/hendrit-p/huawei-mate-20-pro-second-original-1731944519576683596"}},
-  {"tool":"get_product_detail","timeoutMs":26000,"continueOnError":true,"arguments":{"url":"https://www.tokopedia.com/lordgent/iphone-11-64gb-no-minus-second-1731626193011312383"}},
-  {"tool":"get_product_detail","timeoutMs":26000,"continueOnError":true,"arguments":{"url":"https://www.tokopedia.com/archive-raishacomp-16306/handphone-samsung-galaxy-s21-fe-5g-second-8-256-gb-nfc-eks-resmi-sein-mulus-original-1731674148901783246"}}
+  {"tool":"search_products","timeoutMs":15000,"continueOnError":true,"arguments":{"query":"samsung a54 5g second fungsi normal","rows":10,"orderBy":3,"priceMin":1500000,"priceMax":3000000}}
 ]
