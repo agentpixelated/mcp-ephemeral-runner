@@ -2,8 +2,8 @@
   {
     "tool": "search_products",
     "arguments": {
-      "query": "samsung s21 fe 5g second",
-      "rows": 30,
+      "query": "samsung a54 5g second fungsi normal",
+      "rows": 20,
       "orderBy": 3,
       "priceMin": 1500000,
       "priceMax": 3000000
@@ -12,28 +12,8 @@
   {
     "tool": "search_products",
     "arguments": {
-      "query": "samsung s20 fe 5g second",
-      "rows": 30,
-      "orderBy": 3,
-      "priceMin": 1200000,
-      "priceMax": 3000000
-    }
-  },
-  {
-    "tool": "search_products",
-    "arguments": {
-      "query": "samsung a54 5g second",
-      "rows": 30,
-      "orderBy": 3,
-      "priceMin": 1500000,
-      "priceMax": 3000000
-    }
-  },
-  {
-    "tool": "search_products",
-    "arguments": {
-      "query": "samsung s22 5g second",
-      "rows": 30,
+      "query": "samsung s22 second no minus",
+      "rows": 20,
       "orderBy": 3,
       "priceMin": 1800000,
       "priceMax": 3000000
@@ -42,38 +22,8 @@
   {
     "tool": "search_products",
     "arguments": {
-      "query": "samsung note 10 plus second",
-      "rows": 30,
-      "orderBy": 3,
-      "priceMin": 1500000,
-      "priceMax": 3000000
-    }
-  },
-  {
-    "tool": "search_products",
-    "arguments": {
-      "query": "huawei p30 pro second",
-      "rows": 30,
-      "orderBy": 3,
-      "priceMin": 1200000,
-      "priceMax": 3000000
-    }
-  },
-  {
-    "tool": "search_products",
-    "arguments": {
-      "query": "huawei mate 20 pro second",
-      "rows": 30,
-      "orderBy": 3,
-      "priceMin": 1200000,
-      "priceMax": 3000000
-    }
-  },
-  {
-    "tool": "search_products",
-    "arguments": {
-      "query": "iphone 11 second",
-      "rows": 30,
+      "query": "samsung s22 second fungsi normal",
+      "rows": 20,
       "orderBy": 3,
       "priceMin": 1800000,
       "priceMax": 3000000
@@ -82,10 +32,60 @@
   {
     "tool": "search_products",
     "arguments": {
-      "query": "iphone se 2022 second",
-      "rows": 30,
+      "query": "samsung s21 fe second no minus",
+      "rows": 20,
       "orderBy": 3,
       "priceMin": 1500000,
+      "priceMax": 3000000
+    }
+  },
+  {
+    "tool": "search_products",
+    "arguments": {
+      "query": "samsung a52s 5g second no minus",
+      "rows": 20,
+      "orderBy": 3,
+      "priceMin": 1000000,
+      "priceMax": 3000000
+    }
+  },
+  {
+    "tool": "search_products",
+    "arguments": {
+      "query": "samsung a73 5g second no minus",
+      "rows": 20,
+      "orderBy": 3,
+      "priceMin": 1200000,
+      "priceMax": 3000000
+    }
+  },
+  {
+    "tool": "search_products",
+    "arguments": {
+      "query": "iphone 11 second no minus",
+      "rows": 20,
+      "orderBy": 3,
+      "priceMin": 1800000,
+      "priceMax": 3000000
+    }
+  },
+  {
+    "tool": "search_products",
+    "arguments": {
+      "query": "huawei mate 20 pro second normal original",
+      "rows": 20,
+      "orderBy": 3,
+      "priceMin": 1200000,
+      "priceMax": 3000000
+    }
+  },
+  {
+    "tool": "search_products",
+    "arguments": {
+      "query": "huawei p30 pro second normal original",
+      "rows": 20,
+      "orderBy": 3,
+      "priceMin": 1200000,
       "priceMax": 3000000
     }
   }
