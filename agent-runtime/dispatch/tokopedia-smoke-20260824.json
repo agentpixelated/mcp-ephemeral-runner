@@ -8,7 +8,7 @@
       "call",
       "examples/tokopedia.json",
       "search_products",
-      "{\"query\":\"iphone 11 second\",\"rows\":10,\"orderBy\":3,\"priceMax\":3000000}"
+      "{\"query\":\"iphone 11 second\",\"rows\":11,\"orderBy\":3,\"priceMax\":3000000}"
     ],
     "cwd": ".",
     "timeout_ms": 120000
