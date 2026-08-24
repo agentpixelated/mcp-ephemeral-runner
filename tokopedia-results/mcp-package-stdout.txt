@@ -14,96 +14,144 @@
   "results": [
     {
       "step": 1,
-      "tool": "get_shop_info",
+      "tool": "search_products",
       "result": {
         "content": [
           {
             "type": "text",
-            "text": "🏪 **Hendrit P** ⭐ Power Merchant\n📍 Kab. Batang\n🕐 ✅ Open\n📆 Open since July 2023\n📊 **Shop Stats:**\n  ✅ Successful transactions: 5\n  📦 Products sold: 5\n  🗂 Active products: 2\n  ❤️ Favorites: 2\n  🖼 Showcases: 0\n🔗 https://www.tokopedia.com/hendrit-p"
+            "text": "🛒 Search Results for \"0\"\n📊 3 total products | Page 1/1\n\n1. **Samsung galaxy S22 5g ram 8gb internal 128gb resmi second**\n   💰 Rp2.500.000\n   ⭐ N/A | 🏪 RA store phone (Kab. Bekasi) | 🆔 8982342685\n   🔗 https://www.tokopedia.com/rastorebyrastore/samsung-galaxy-s22-ultra-5g-ram-1wgb-internal-512gb-resmi-sein-indonesia-1730025750285944815?extParam=ivf%3Dfalse%26keyword%3Dsamsung+s22+5g+second%26search_id%3D2026082416232740008B9A5380FC063SPO%26src%3Dsearch\n\n2. **Samsung Galaxy S22 5G 8/128GB Second Garansi Resmi**\n   💰 Rp2.500.000\n   ⭐ 5.0 | 🏪 PlayFone (Kab. Ponorogo) | 🆔 100261538807\n   🔗 https://www.tokopedia.com/playfone/samsung-galaxy-s22-5g-8-128gb-second-garansi-resmi-1731112803688941371?extParam=ivf%3Dfalse%26keyword%3Dsamsung+s22+5g+second%26search_id%3D2026082416232740008B9A5380FC063SPO%26src%3Dsearch\n\n3. **Samsung S22 Plus 5G 8/256gb second SEIN**\n   💰 Rp2.999.000\n   ⭐ N/A | 🏪 RJP STARPHONE (Jambi) | 🆔 103195157208\n   🔗 https://www.tokopedia.com/rjpstarphone/samsung-s22-plus-5g-8-256gb-second-sein-1734980140705875686?extParam=ivf%3Dfalse%26keyword%3Dsamsung+s22+5g+second%26search_id%3D2026082416232740008B9A5380FC063SPO%26src%3Dsearch"
           }
         ]
       }
     },
     {
       "step": 2,
-      "tool": "get_shop_info",
+      "tool": "search_products",
       "result": {
         "content": [
           {
             "type": "text",
-            "text": "🏪 **Storegadget12** ⭐ Power Merchant\n📍 Kota Administrasi Jakarta Barat\n🕐 ✅ Open\n📆 Open since January 2023\n📊 **Shop Stats:**\n  ✅ Successful transactions: 105\n  📦 Products sold: 108\n  🗂 Active products: 103\n  ❤️ Favorites: 1.618\n  🖼 Showcases: 14\n🔗 https://www.tokopedia.com/gadgetstore98"
+            "text": "🛒 Search Results for \"0\"\n📊 8 total products | Page 1/1\n\n1. **Samsung a54 5g 8/128 GB second**\n   💰 Rp2.150.000\n   ⭐ N/A | 🏪 pu@diberkah (Kab. Pandeglang) | 🆔 16466345457\n   🔗 https://www.tokopedia.com/puadistore/samsung-a54-5g-8-128-gb-second-1731031268575315557?extParam=ivf%3Dfalse%26keyword%3Dsamsung+a54+5g+second%26search_id%3D20260824162327FE73F687E5BC52243PO1%26src%3Dsearch\n\n2. **Samsung Galaxy A33 5G VERSI STORAGE 256GB BUKAN 128GB AWESOME BLUE SECOND LIKE NEW CONDITION 99% HARGA BELI 5.500.000 A34 A35 A53 A54 A55**\n   💰 Rp2.200.000\n   ⭐ N/A | 🏪 Andreas Reynaldo (Jakarta Barat) | 🆔 15649213993\n   🔗 https://www.tokopedia.com/nightfurygaming/samsung-galaxy-a33-5g-versi-storage-256gb-bukan-128gb-awesome-blue-second-like-new-condition-99-harga-beli-5-500-000-a34-a35-a53-a54-a55?extParam=ivf%3Dfalse%26keyword%3Dsamsung+a54+5g+second%26search_id%3D20260824162327FE73F687E5BC52243PO1%26src%3Dsearch\n\n3. **Samsung A54 5G 8/256 Resmi SEIN Bekas Second Full Original Fungsi Normal**\n   💰 Rp2.450.000\n   ⭐ N/A | 🏪 DannyStoreID (Kab. Bojonegoro) | 🆔 103772191706\n   🔗 https://www.tokopedia.com/dannystorebjn/samsung-a54-5g-8-256-resmi-sein-bekas-second-full-original-fungsi-normal-1737123655856194769-1737123680374457553?extParam=ivf%3Dfalse%26keyword%3Dsamsung+a54+5g+second%26search_id%3D20260824162327FE73F687E5BC52243PO1%26src%3Dsearch\n\n4. **SEIN | Samsung Galaxy A54 & A53 5G 8/256GB 8/128GB Second Resmi Indonesia**\n   💰 Rp2.850.000\n   ⭐ 4.0 | 🏪 WAR.CELLULAR (Tangerang Selatan) | 🆔 16032570815\n   🔗 https://www.tokopedia.com/warcellular/sein-samsung-galaxy-a54-a53-5g-8-256gb-8-128gb-second-resmi-indonesia-1730772434617468111?extParam=ivf%3Dfalse%26keyword%3Dsamsung+a54+5g+second%26search_id%3D20260824162327FE73F687E5BC52243PO1%26src%3Dsearch\n\n5. **RESMI | SAMSUNG GALAXY A54 5G & A53 5G 256GB 128GB SECOND SEIN**\n   💰 Rp2.855.000\n   ⭐ 5.0 | 🏪 GrowGadget [Power Store] (Tangerang Selatan) | 🆔 102919795509\n   🔗 https://www.tokopedia.com/growgadget1/resmi-samsung-galaxy-a54-5g-a53-5g-256gb-128gb-second-sein-1734157306067257267?extParam=ivf%3Dfalse%26keyword%3Dsamsung+a54+5g+second%26search_id%3D20260824162327FE73F687E5BC52243PO1%26src%3Dsearch\n\n6. **Samsung galaxy A54 5G / A53 256gb 128gb resmi sein second fullset original**\n   💰 Rp2.870.000\n   ⭐ 4.7 | 🏪 Technospace Jkt (Jakarta Timur) | 🆔 13140636862\n   🔗 https://www.tokopedia.com/technospace-jkt/samsung-galaxy-a54-5g-a53-256gb-128gb-resmi-sein-second-fullset-original-a53-8-128-unit-only-bbb8e?extParam=ivf%3Dfalse%26keyword%3Dsamsung+a54+5g+second%26search_id%3D20260824162327FE73F687E5BC52243PO1%26src%3Dsearch\n\n7. **samsung A54 5G 8/128GB fullset mulus second**\n   💰 Rp2.900.000\n   ⭐ 5.0 | 🏪 pho pho cell (Jakarta Pusat) | 🆔 103764814059\n   🔗 https://www.tokopedia.com/didoalfarezi/samsung-a54-5g-8-128gb-fullset-mulus-second-1737097826522661995?extParam=ivf%3Dfalse%26keyword%3Dsamsung+a54+5g+second%26search_id%3D20260824162327FE73F687E5BC52243PO1%26src%3Dsearch\n\n8. **SAMSUNG A54 5G 8/128 Second Mulus**\n   💰 Rp3.000.000\n   ⭐ N/A | 🏪 Toko 2 end (Bogor) | 🆔 102901355382\n   🔗 https://www.tokopedia.com/amalrasy0202/samsung-a54-5g-8-128-second-mulus-1734119382069445998?extParam=ivf%3Dfalse%26keyword%3Dsamsung+a54+5g+second%26search_id%3D20260824162327FE73F687E5BC52243PO1%26src%3Dsearch"
           }
         ]
       }
     },
     {
       "step": 3,
-      "tool": "get_shop_info",
+      "tool": "search_products",
       "result": {
         "content": [
           {
             "type": "text",
-            "text": "🏪 **titopol** ⭐ Power Merchant\n📍 Kab. Semarang\n🕐 ✅ Open\n📆 Open since February 2026\n📊 **Shop Stats:**\n  ✅ Successful transactions: 13\n  📦 Products sold: 14\n  🗂 Active products: 1\n  ❤️ Favorites: 10\n  🖼 Showcases: 0\n🔗 https://www.tokopedia.com/titopol"
+            "text": "🛒 Search Results for \"0\"\n📊 6 total products | Page 1/1\n\n1. **(Second)Samsung s21 Fe 5G Handphone**\n   💰 Rp1.700.000\n   ⭐ N/A | 🏪 Hafelstore (Palembang) | 🆔 102090625381\n   🔗 https://www.tokopedia.com/hafelstore/second-samsung-s21-fe-5g-handphone-1732193920465732977?extParam=ivf%3Dfalse%26keyword%3Dsamsung+s21+fe+5g+second%26search_id%3D202608241623287750C9BA8365FE033QQV%26src%3Dsearch\n\n2. **Handphone Samsung Galaxy S21 FE 5G 8/128 GB NFC Second Eks Resmi Sein Original**\n   💰 Rp1.800.000\n   ⭐ N/A | 🏪 Three Phoint (Kab. Bogor) | 🆔 102978180331\n   🔗 https://www.tokopedia.com/archive-raishacomp-16306/handphone-samsung-galaxy-s21-fe-5g-8-256-gb-nfc-second-eks-resmi-sein-original-1734298263728129742?extParam=ivf%3Dfalse%26keyword%3Dsamsung+s21+fe+5g+second%26search_id%3D202608241623287750C9BA8365FE033QQV%26src%3Dsearch\n\n3. **Handphone Samsung Galaxy S21 FE 5G Second 8/256 GB NFC Eks Resmi Sein Original**\n   💰 Rp2.100.000\n   ⭐ N/A | 🏪 Three Phoint (Kab. Bogor) | 🆔 100604614491\n   🔗 https://www.tokopedia.com/archive-raishacomp-16306/handphone-samsung-galaxy-s21-fe-5g-second-8-256-gb-nfc-eks-resmi-sein-mulus-original-1731674148901783246?extParam=ivf%3Dfalse%26keyword%3Dsamsung+s21+fe+5g+second%26search_id%3D202608241623287750C9BA8365FE033QQV%26src%3Dsearch\n\n4. **samsung s21 fe 5G 8/256GB fullset second dibaca dulu**\n   💰 Rp2.350.000\n   ⭐ N/A | 🏪 pho pho cell (Jakarta Pusat) | 🆔 16292568152\n   🔗 https://www.tokopedia.com/didoalfarezi/samsung-s21-fe-5g-8-256gb-fullset-second-dibaca-dulu-1730892976626369916?extParam=ivf%3Dfalse%26keyword%3Dsamsung+s21+fe+5g+second%26search_id%3D202608241623287750C9BA8365FE033QQV%26src%3Dsearch\n\n5. **SEIN | Samsung Galaxy S21 Ultra 5G | S20+ Plus FE 12/256GB & 16/512GB | 12/128GB 8/256GB Second Original Resmi**\n   💰 Rp2.625.000\n   ⭐ 5.0 | 🏪 Technospace Jkt (Jakarta Timur) | 🆔 16465883897\n   🔗 https://www.tokopedia.com/technospace-jkt/sein-samsung-galaxy-s21-ultra-5g-s20-plus-fe-12-256gb-16-512gb-12-128gb-8-256gb-second-original-resmi-1731030780119713460?extParam=ivf%3Dfalse%26keyword%3Dsamsung+s21+fe+5g+second%26search_id%3D202608241623287750C9BA8365FE033QQV%26src%3Dsearch\n\n6. **Samsung s21 FE 5G second ram 8/256**\n   💰 Rp2.700.000\n   ⭐ N/A | 🏪 caraka serv (Kab. Lamongan) | 🆔 100765425120\n   🔗 https://www.tokopedia.com/archive-carakaserv-1630752615/samsung-s21-fe-5g-second-ram-8-256-1731934054964430378?extParam=ivf%3Dfalse%26keyword%3Dsamsung+s21+fe+5g+second%26search_id%3D202608241623287750C9BA8365FE033QQV%26src%3Dsearch"
           }
         ]
       }
     },
     {
       "step": 4,
-      "tool": "get_shop_info",
+      "tool": "search_products",
       "result": {
         "content": [
           {
             "type": "text",
-            "text": "🏪 **Arfan Cell 23** ⭐ Power Merchant\n📍 Jakarta Pusat\n🕐 ✅ Open\n📆 Open since June 2025\n📊 **Shop Stats:**\n  ✅ Successful transactions: 4689\n  📦 Products sold: 5539\n  🗂 Active products: 269\n  ❤️ Favorites: 9.204\n  🖼 Showcases: 67\n🔗 https://www.tokopedia.com/gg-store-23-16"
+            "text": "🛒 Search Results for \"0\"\n📊 7 total products | Page 1/1\n\n1. **SEIN | Samsung Note 10 Plus | Note 10 | Note 9 | Second Resmi Fullset**\n   💰 Rp2.075.000\n   ⭐ 4.9 | 🏪 BintaroGadget (Tangerang) | 🆔 11966015993\n   🔗 https://www.tokopedia.com/bintarocellular/sein-samsung-note-10-plus-note-10-note-9-second-resmi-fullset-note-9-6-128-unitonly-541b9?extParam=ivf%3Dfalse%26keyword%3Dsamsung+note+10+plus+second%26search_id%3D20260824162328816B112C6105B31CFVNJ%26src%3Dsearch\n\n2. **SEIN Samsung Galaxy Note 10 Plus & 9 12/512GB 256GB 6/128GB 8/512GB Second Fullset Original**\n   💰 Rp2.225.000\n   ⭐ 4.8 | 🏪 iDeponsell (Tangerang Selatan) | 🆔 14785038462\n   🔗 https://www.tokopedia.com/ideponsel/sein-samsung-galaxy-note-10-plus-9-12-512gb-256gb-6-128gb-8-512gb-second-fullset-original-note-9-6-128gb-unit-charger-12620?extParam=ivf%3Dfalse%26keyword%3Dsamsung+note+10+plus+second%26search_id%3D20260824162328816B112C6105B31CFVNJ%26src%3Dsearch\n\n3. **SEIN | Samsung Note 10 Plus | Note 10 | Note 9 | Second Resmi Fullset**\n   💰 Rp2.225.000\n   ⭐ 4.8 | 🏪 iDeponsell (Tangerang Selatan) | 🆔 13546794095\n   🔗 https://www.tokopedia.com/ideponsel/sein-samsung-note-10-plus-note-10-note-9-second-resmi-fullset-note-9-6-128gb-unit-charger-4bb29?extParam=ivf%3Dfalse%26keyword%3Dsamsung+note+10+plus+second%26search_id%3D20260824162328816B112C6105B31CFVNJ%26src%3Dsearch\n\n4. **Samsung Galaxy Note 10 Plus Second 12/256 GB NFC Eks Resmi Sein Mulus Original**\n   💰 Rp2.300.000\n   ⭐ N/A | 🏪 Three Phoint (Kab. Bogor) | 🆔 103488528042\n   🔗 https://www.tokopedia.com/archive-raishacomp-16306/samsung-galaxy-note-10-plus-second-12-256-gb-nfc-eks-resmi-sein-mulus-original-1736096492081284814?extParam=ivf%3Dfalse%26keyword%3Dsamsung+note+10+plus+second%26search_id%3D20260824162328816B112C6105B31CFVNJ%26src%3Dsearch\n\n5. **Samsung Galaxy Note 10 Plus | Note 9 12/512GB 12/256GB Second Original Resmi SEIN**\n   💰 Rp2.345.000\n   ⭐ 5.0 | 🏪 Technospace Jkt (Jakarta Timur) | 🆔 13455105084\n   🔗 https://www.tokopedia.com/technospace-jkt/samsung-galaxy-note-10-plus-note-9-12-512gb-12-256gb-second-original-resmi-sein-samsung-note-9-6-128-unitonly-931eb?extParam=ivf%3Dfalse%26keyword%3Dsamsung+note+10+plus+second%26search_id%3D20260824162328816B112C6105B31CFVNJ%26src%3Dsearch\n\n6. **SEIN Samsung Galaxy Note 10 Plus 12/512Gb 12/256GB Second Original**\n   💰 Rp2.510.000\n   ⭐ 4.8 | 🏪 BintaroGadget (Tangerang) | 🆔 12628872245\n   🔗 https://www.tokopedia.com/bintarocellular/sein-samsung-galaxy-note-10-plus-12-512gb-12-256gb-second-original-samsung-note-9-6-128-unitonly-f3b17?extParam=ivf%3Dfalse%26keyword%3Dsamsung+note+10+plus+second%26search_id%3D20260824162328816B112C6105B31CFVNJ%26src%3Dsearch\n\n7. **SEIN | Samsung Note 10 Plus | Note 10 | Note 9 | Second Resmi Fullset**\n   💰 Rp2.690.000\n   ⭐ 5.0 | 🏪 WAR.CELLULAR (Tangerang Selatan) | 🆔 11324982057\n   🔗 https://www.tokopedia.com/warcellular/sein-samsung-note-10-plus-note-10-note-9-second-resmi-fullset-samsung-note-9-6-128-unitonly-c3542?extParam=ivf%3Dfalse%26keyword%3Dsamsung+note+10+plus+second%26search_id%3D20260824162328816B112C6105B31CFVNJ%26src%3Dsearch"
           }
         ]
       }
     },
     {
       "step": 5,
-      "tool": "get_product_reviews",
+      "tool": "search_products",
       "result": {
         "content": [
           {
             "type": "text",
-            "text": "This product has no reviews yet."
+            "text": "🛒 Search Results for \"0\"\n📊 15 total products | Page 1/1\n\n1. **Iphone 11 64gb White (second) 64GB batery full 99% Smartphone**\n   💰 Rp1.800.000\n   ⭐ N/A | 🏪 Librelaa (Jakarta Utara) | 🆔 102031161034\n   🔗 https://www.tokopedia.com/librelaa/iphone-11-64gb-white-second-64gb-batery-full-99-smartphone-1732102793979725458?extParam=ivf%3Dfalse%26keyword%3Diphone+11+64gb+second%26search_id%3D20260824162329FE73F687E5BC52141S7V%26src%3Dsearch\n\n2. **Second Iphone 11 64GB Red Ex IBOX**\n   💰 Rp2.000.000\n   ⭐ 5.0 | 🏪 NADRYZSTORE (Jakarta Utara) | 🆔 10336676175\n   🔗 https://www.tokopedia.com/nadryzstore/second-iphone-11-64gb-red-ex-ibox?extParam=ivf%3Dfalse%26keyword%3Diphone+11+64gb+second%26search_id%3D20260824162329FE73F687E5BC52141S7V%26src%3Dsearch\n\n3. **iphone second normal 12 11 xr xs max x 7 plus 256gb 128gb 64gb 32gb no minus original 100% all sim mulus like new murah**\n   💰 Rp2.359.000\n   ⭐ N/A | 🏪 Aimu Phonecell (Jakarta Utara) | 🆔 15096772802\n   🔗 https://www.tokopedia.com/aimuphonecell/iphone-second-normal-12-11-xr-xs-max-x-7-plus-256gb-128gb-64gb-32gb-no-minus-original-100-all-sim-mulus-like-new-murah-1729965187690562610?extParam=ivf%3Dfalse%26keyword%3Diphone+11+64gb+second%26search_id%3D20260824162329FE73F687E5BC52141S7V%26src%3Dsearch\n\n4. **iPhone 11 64gb no minus Second**\n   💰 Rp2.500.000\n   ⭐ N/A | 🏪 LordGent Shop (Kab. Pacitan) | 🆔 16702303985\n   🔗 https://www.tokopedia.com/lordgent/iphone-11-64gb-no-minus-second-1731626193011312383?extParam=ivf%3Dfalse%26keyword%3Diphone+11+64gb+second%26search_id%3D20260824162329FE73F687E5BC52141S7V%26src%3Dsearch\n\n5. **iPhone 11 PRO Second Inter 64GB-512GB [BUY 1 CHECKOUT 2X AGAR BISA COD]**\n   💰 Rp2.757.000\n   ⭐ N/A | 🏪 Ibam.tamle (Batu) | 🆔 102652542640\n   🔗 https://www.tokopedia.com/ibamtamle/iphone-11-pro-second-inter-64gb-512gb-buy-1-checkout-2x-agar-bisa-cod-1733455085043746513?extParam=ivf%3Dfalse%26keyword%3Diphone+11+64gb+second%26search_id%3D20260824162329FE73F687E5BC52141S7V%26src%3Dsearch\n\n6. **IPHONE 11 64GB GREEN SECOND WIFIONLY**\n   💰 Rp2.889.000\n   ⭐ N/A | 🏪 Diahahaha (Kab. Pati) | 🆔 102668390462\n   🔗 https://www.tokopedia.com/archive-qaireenols-1681950825/iphone-11-64gb-green-second-wifionly-1733500671590433971?extParam=ivf%3Dfalse%26keyword%3Diphone+11+64gb+second%26search_id%3D20260824162329FE73F687E5BC52141S7V%26src%3Dsearch\n\n7. **Iphone 11 64GB All Operator Second**\n   💰 Rp2.900.000\n   ⭐ N/A | 🏪 Gudanggadgetjkt (Kab. Nganjuk) | 🆔 102936842095\n   🔗 https://www.tokopedia.com/gudanggadgetjkt/iphone-11-64gb-all-operator-second-1734209321246950478?extParam=ivf%3Dfalse%26keyword%3Diphone+11+64gb+second%26search_id%3D20260824162329FE73F687E5BC52141S7V%26src%3Dsearch\n\n8. **Apple iPhone 11 Second Original 64GB -EX INTER**\n   💰 Rp2.950.000\n   ⭐ N/A | 🏪 CasalomaShop (Bandung) | 🆔 12062582542\n   🔗 https://www.tokopedia.com/casaloma/apple-iphone-11-second-original-64gb-ex-inter-1729852970664166604?extParam=ivf%3Dfalse%26keyword%3Diphone+11+64gb+second%26search_id%3D20260824162329FE73F687E5BC52141S7V%26src%3Dsearch\n\n9. **iPhone 11 PROMAX Second Inter 64GB-512GB [BUY 1 CHECKOUT 2X AGAR BISA COD]**\n   💰 Rp2.975.000\n   ⭐ N/A | 🏪 Ibam.tamle (Batu) | 🆔 102652548512\n   🔗 https://www.tokopedia.com/ibamtamle/iphone-11-promax-second-inter-64gb-512gb-buy-1-checkout-2x-agar-bisa-cod-1733455155192039121?extParam=ivf%3Dfalse%26keyword%3Diphone+11+64gb+second%26search_id%3D20260824162329FE73F687E5BC52141S7V%26src%3Dsearch\n\n10. **iphone 12 11 xr x 7 plus pro promax bypass 512gb 256gb 128gb 64gb 32gb all sim original second minus**\n   💰 Rp2.999.000\n   ⭐ N/A | 🏪 Smartgear.id (Jakarta Utara) | 🆔 15809650827\n   🔗 https://www.tokopedia.com/smartgearid/iphone-12-11-xr-x-7-plus-pro-promax-bypass-512gb-256gb-128gb-64gb-32gb-all-sim-original-second-minus-11-64gb-wifi-only-6098c?extParam=ivf%3Dfalse%26keyword%3Diphone+11+64gb+second%26search_id%3D20260824162329FE73F687E5BC52141S7V%26src%3Dsearch\n\n11. **iPhone second 12 11 promax xr x 7 plus bisa game live & video 256gb 128gb 64gb 32gb original 100% all sim minus fullset mulus like new murah**\n   💰 Rp2.999.000\n   ⭐ N/A | 🏪 Aimu Phonecell (Jakarta Utara) | 🆔 15542915670\n   🔗 https://www.tokopedia.com/aimuphonecell/iphone-second-12-11-promax-xr-x-7-plus-bisa-game-live-video-256gb-128gb-64gb-32gb-original-100-all-sim-minus-fullset-mulus-like-new-murah-1730303926118745138?extParam=ivf%3Dfalse%26keyword%3Diphone+11+64gb+second%26search_id%3D20260824162329FE73F687E5BC52141S7V%26src%3Dsearch\n\n12. **Iphone 11 64GB Second murah**\n   💰 Rp3.000.000\n   ⭐ N/A | 🏪 popocamera (Kab. Garut) | 🆔 103094962629\n   🔗 https://www.tokopedia.com/popocamera/iphone-11-64gb-second-murah-1734596334130463782?extParam=ivf%3Dfalse%26keyword%3Diphone+11+64gb+second%26search_id%3D20260824162329FE73F687E5BC52141S7V%26src%3Dsearch\n\n13. **IPHONE 11 64GB 128GB 256GB SECOND FULLSET MURAH**\n   💰 Rp3.000.000\n   ⭐ N/A | 🏪 Puth store_NEW (Palembang) | 🆔 103462673754\n   🔗 https://www.tokopedia.com/puth-store/iphone-11-64gb-128gb-256gb-second-fullset-murah-1735973875650888937?extParam=ivf%3Dfalse%26keyword%3Diphone+11+64gb+second%26search_id%3D20260824162329FE73F687E5BC52141S7V%26src%3Dsearch\n\n14. **iPhone 11 64gb beacukai white seco, second like new**\n   💰 Rp3.000.000\n   ⭐ N/A | 🏪 Kdl kite (Kab. Pasuruan) | 🆔 102268595972\n   🔗 https://www.tokopedia.com/kdl-kite/iphone-11-64gb-beacukai-white-seco-second-like-new-1732536720321054077?extParam=ivf%3Dfalse%26keyword%3Diphone+11+64gb+second%26search_id%3D20260824162329FE73F687E5BC52141S7V%26src%3Dsearch\n\n15. **iphone 11 inter ram 64gb second**\n   💰 Rp3.000.000\n   ⭐ N/A | 🏪 jenaira celuler (Kab. Tangerang) | 🆔 100716796959\n   🔗 https://www.tokopedia.com/jenairaceluler/iphone-11-inter-ram-64gb-second-1731855954950063783?extParam=ivf%3Dfalse%26keyword%3Diphone+11+64gb+second%26search_id%3D20260824162329FE73F687E5BC52141S7V%26src%3Dsearch"
           }
         ]
       }
     },
     {
       "step": 6,
-      "tool": "get_product_reviews",
+      "tool": "search_products",
       "result": {
         "content": [
           {
             "type": "text",
-            "text": "📝 **Reviews for Storegadget12's product**\n⭐ 1 total reviews | Page 1 | sorted by lowest_rating\n\n1. ★★★★★ — **Wawan**\n   sesuai dengan pesanan Semogah kedepannya ya tdk ada masalah Aamiin cepet pengiriman dan respon,\n   🖼 1 photo(s) attached\n   ↳ 🏪 Seller: Terima kasih telah berbelanja di gadgetstore98. Bagikan link toko kami https://www.tokopedia.com/gadgetstore98 kepada teman-teman kamu. Jangan lupa follow toko kami untuk tahu update terbaru tentang s…\n   📅 1739813290"
+            "text": "🛒 Search Results for \"0\"\n📊 2 total products | Page 1/1\n\n1. **iPhone 11 PRO Second Inter 64GB-512GB [BUY 1 CHECKOUT 2X AGAR BISA COD]**\n   💰 Rp2.757.000\n   ⭐ N/A | 🏪 Ibam.tamle (Batu) | 🆔 102652542640\n   🔗 https://www.tokopedia.com/ibamtamle/iphone-11-pro-second-inter-64gb-512gb-buy-1-checkout-2x-agar-bisa-cod-1733455085043746513?extParam=ivf%3Dfalse%26keyword%3Diphone+11+pro+64gb+second%26search_id%3D2026082416232940008B9A5380FC349NCG%26src%3Dsearch\n\n2. **iphone 12 11 xr x 7 plus pro promax bypass 512gb 256gb 128gb 64gb 32gb all sim original second minus**\n   💰 Rp2.999.000\n   ⭐ N/A | 🏪 Smartgear.id (Jakarta Utara) | 🆔 15809650827\n   🔗 https://www.tokopedia.com/smartgearid/iphone-12-11-xr-x-7-plus-pro-promax-bypass-512gb-256gb-128gb-64gb-32gb-all-sim-original-second-minus-11-64gb-wifi-only-6098c?extParam=ivf%3Dfalse%26keyword%3Diphone+11+pro+64gb+second%26search_id%3D2026082416232940008B9A5380FC349NCG%26src%3Dsearch"
           }
         ]
       }
     },
     {
       "step": 7,
-      "tool": "get_product_reviews",
+      "tool": "search_products",
       "result": {
         "content": [
           {
             "type": "text",
-            "text": "This product has no reviews yet."
+            "text": "🛒 Search Results for \"0\"\n📊 2 total products | Page 1/1\n\n1. **IBOX| iPhone SE 3 2022 / 2 2020 256GB 256 128GB 128 64GB 64 Second**\n   💰 Rp2.549.000\n   ⭐ 4.8 | 🏪 MACBIN (Tangerang Selatan) | 🆔 6576791334\n   🔗 https://www.tokopedia.com/macbin/ibox-iphone-se-3-2022-2-2020-256gb-256-128gb-128-64gb-64-second-se-2-64gb-fingerprint?extParam=ivf%3Dfalse%26keyword%3Diphone+se+2022+second%26search_id%3D20260824162330AD13A2A07CA4B70EAKMS%26src%3Dsearch\n\n2. **iPhone SE 2020 | SE 2022 64GB | 128GB | 256gb Second Fullset Original**\n   💰 Rp2.625.508\n   ⭐ 4.5 | 🏪 Diga gadget (Jakarta Timur) | 🆔 102131471624\n   🔗 https://www.tokopedia.com/digacorp508/iphone-se-2020-se-2022-64gb-128gb-256gb-second-fullset-original-1732262534097700085?extParam=ivf%3Dfalse%26keyword%3Diphone+se+2022+second%26search_id%3D20260824162330AD13A2A07CA4B70EAKMS%26src%3Dsearch"
           }
         ]
       }
     },
     {
       "step": 8,
-      "tool": "get_product_reviews",
+      "tool": "search_products",
       "result": {
         "content": [
           {
             "type": "text",
-            "text": "This product has no reviews yet."
+            "text": "🛒 Search Results for \"0\"\n📊 5 total products | Page 1/1\n\n1. **iphone second normal 12 11 xr xs max x 7 plus 256gb 128gb 64gb 32gb no minus original 100% all sim mulus like new murah**\n   💰 Rp2.359.000\n   ⭐ N/A | 🏪 Aimu Phonecell (Jakarta Utara) | 🆔 15096772802\n   🔗 https://www.tokopedia.com/aimuphonecell/iphone-second-normal-12-11-xr-xs-max-x-7-plus-256gb-128gb-64gb-32gb-no-minus-original-100-all-sim-mulus-like-new-murah-1729965187690562610?extParam=ivf%3Dfalse%26keyword%3Diphone+12+64gb+second%26search_id%3D20260824162330226B5767496D0A255BRS%26src%3Dsearch\n\n2. **IPHONE 8 PLUS 64GB DAN 256GB SECOND LIKE NEW FULLSET GARANSI 12 BULAN!**\n   💰 Rp2.835.000\n   ⭐ 5.0 | 🏪 Ibgadgetstore (Semarang) | 🆔 2474294980\n   🔗 https://www.tokopedia.com/ibgadgetstoresemarang/iphone-8-plus-64gb-dan-256gb-second-like-new-fullset-garansi-12-bulan-64-gb?extParam=ivf%3Dfalse%26keyword%3Diphone+12+64gb+second%26search_id%3D20260824162330226B5767496D0A255BRS%26src%3Dsearch\n\n3. **iphone 12 11 xr x 7 plus pro promax bypass 512gb 256gb 128gb 64gb 32gb all sim original second minus**\n   💰 Rp2.999.000\n   ⭐ N/A | 🏪 Smartgear.id (Jakarta Utara) | 🆔 15809650827\n   🔗 https://www.tokopedia.com/smartgearid/iphone-12-11-xr-x-7-plus-pro-promax-bypass-512gb-256gb-128gb-64gb-32gb-all-sim-original-second-minus-11-64gb-wifi-only-6098c?extParam=ivf%3Dfalse%26keyword%3Diphone+12+64gb+second%26search_id%3D20260824162330226B5767496D0A255BRS%26src%3Dsearch\n\n4. **iPhone second 12 11 promax xr x 7 plus bisa game live & video 256gb 128gb 64gb 32gb original 100% all sim minus fullset mulus like new murah**\n   💰 Rp2.999.000\n   ⭐ N/A | 🏪 Aimu Phonecell (Jakarta Utara) | 🆔 15542915670\n   🔗 https://www.tokopedia.com/aimuphonecell/iphone-second-12-11-promax-xr-x-7-plus-bisa-game-live-video-256gb-128gb-64gb-32gb-original-100-all-sim-minus-fullset-mulus-like-new-murah-1730303926118745138?extParam=ivf%3Dfalse%26keyword%3Diphone+12+64gb+second%26search_id%3D20260824162330226B5767496D0A255BRS%26src%3Dsearch\n\n5. **Second Iphone 12 Mini 64GB - 128GB Garansi 1 Bulan Fullset**\n   💰 Rp3.000.000\n   ⭐ N/A | 🏪 Cahaya Handphone (Jakarta Barat) | 🆔 9158531221\n   🔗 https://www.tokopedia.com/cahayahandphone7/second-iphone-12-mini-64gb-128gb-garansi-1-bulan-fullset-wifi-only-64gb-865c2?extParam=ivf%3Dfalse%26keyword%3Diphone+12+64gb+second%26search_id%3D20260824162330226B5767496D0A255BRS%26src%3Dsearch"
+          }
+        ]
+      }
+    },
+    {
+      "step": 9,
+      "tool": "search_products",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "🛒 Search Results for \"0\"\n📊 6 total products | Page 1/1\n\n1. **HUAWEI MATE 20 PRO 4G 6/128GB SECOND MINUS**\n   💰 Rp1.800.000\n   ⭐ N/A | 🏪 Arfan Cell 23 (Jakarta Pusat) | 🆔 102851615347\n   🔗 https://www.tokopedia.com/gg-store-23-16/huawei-mate-20-pro-4g-6-128gb-second-minus-1734011349277902699?extParam=ivf%3Dfalse%26keyword%3Dhuawei+mate+20+pro+second%26search_id%3D20260824162330B83AAC23B952873D77VG%26src%3Dsearch\n\n2. **Huawei Mate 20 Pro 6/128GB Second Resmi**\n   💰 Rp2.000.000\n   ⭐ N/A | 🏪 Arfan Cell 23 (Jakarta Pusat) | 🆔 102403283433\n   🔗 https://www.tokopedia.com/gg-store-23-16/huawei-mate-20-pro-6-128gb-second-resmi-1732831929311594347?extParam=ivf%3Dfalse%26keyword%3Dhuawei+mate+20+pro+second%26search_id%3D20260824162330B83AAC23B952873D77VG%26src%3Dsearch\n\n3. **ponsel Second Huawei mate 20 pro Ram 6GB Rom 128GB hp second huawei**\n   💰 Rp2.000.000\n   ⭐ N/A | 🏪 Sejahtera NF (Jakarta Barat) | 🆔 103487761423\n   🔗 https://www.tokopedia.com/sejahteranf/ponsel-second-huawei-mate-20-pro-ram-6gb-rom-128gb-hp-second-huawei-1736092101311235520?extParam=ivf%3Dfalse%26keyword%3Dhuawei+mate+20+pro+second%26search_id%3D20260824162330B83AAC23B952873D77VG%26src%3Dsearch\n\n4. **Huawei Mate 20 Pro second original**\n   💰 Rp2.150.000\n   ⭐ 5.0 | 🏪 Hendrit P (Kab. Batang) | 🆔 100771923841\n   🔗 https://www.tokopedia.com/hendrit-p/huawei-mate-20-pro-second-original-1731944519576683596?extParam=ivf%3Dfalse%26keyword%3Dhuawei+mate+20+pro+second%26search_id%3D20260824162330B83AAC23B952873D77VG%26src%3Dsearch\n\n5. **huawei mate 20 pro second**\n   💰 Rp2.250.000\n   ⭐ 3.0 | 🏪 kaylangga (Kab. Purbalingga) | 🆔 7156444118\n   🔗 https://www.tokopedia.com/starkayla168/huawei-mate-20-pro-second?extParam=ivf%3Dfalse%26keyword%3Dhuawei+mate+20+pro+second%26search_id%3D20260824162330B83AAC23B952873D77VG%26src%3Dsearch\n\n6. **Huawei Mate 20 Pro Second Original Resmi Indonesia**\n   💰 Rp2.700.000\n   ⭐ 5.0 | 🏪 Storegadget12 [Power Store] (Jakarta Barat) | 🆔 16184149672\n   🔗 https://www.tokopedia.com/gadgetstore98/huawei-mate-20-pro-second-original-resmi-indonesia-1730834422255814039?extParam=ivf%3Dfalse%26keyword%3Dhuawei+mate+20+pro+second%26search_id%3D20260824162330B83AAC23B952873D77VG%26src%3Dsearch"
+          }
+        ]
+      }
+    },
+    {
+      "step": 10,
+      "tool": "search_products",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "🛒 Search Results for \"0\"\n📊 1 total products | Page 1/1\n\n1. **Huawei P30 Pro Fullset Second**\n   💰 Rp1.500.000\n   ⭐ N/A | 🏪 titopol (Kab. Semarang) | 🆔 16661609540\n   🔗 https://www.tokopedia.com/titopol/huawei-p30-pro-fullset-second-1731386187236214199?extParam=ivf%3Dfalse%26keyword%3Dhuawei+p30+pro+second%26search_id%3D2026082416233189F0FD5C927D4616DT4D%26src%3Dsearch"
+          }
+        ]
+      }
+    },
+    {
+      "step": 11,
+      "tool": "search_products",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "No products found for \"huawei p40 pro second\". Try a different keyword or loosen the filters."
+          }
+        ]
+      }
+    },
+    {
+      "step": 12,
+      "tool": "search_products",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "🛒 Search Results for \"0\"\n📊 1 total products | Page 1/1\n\n1. **Huawei mate 30 pro 5g harmonyos second**\n   💰 Rp1.900.000\n   ⭐ N/A | 🏪 wafalin (Kab. Bantul) | 🆔 103518901985\n   🔗 https://www.tokopedia.com/wafalin/huawei-mate-30-pro-5g-harmonyos-second-1736211012436526747?extParam=ivf%3Dfalse%26keyword%3Dhuawei+mate+30+pro+second%26search_id%3D20260824162332955AF57E494555029X1P%26src%3Dsearch"
           }
         ]
       }
