@@ -57,8 +57,15 @@ try {
     for (let i = 0; i < workflow.length; i++) {
       const step = workflow[i];
       if (!step?.tool) throw new Error(`Workflow step ${i + 1} is missing tool.`);
-      const result = await client.callTool(step.tool, step.arguments || {});
-      results.push({ step: i + 1, tool: step.tool, result });
+      try {
+        const result = await client.callTool(step.tool, step.arguments || {}, {
+          timeoutMs: step.timeoutMs,
+        });
+        results.push({ step: i + 1, tool: step.tool, result });
+      } catch (err) {
+        results.push({ step: i + 1, tool: step.tool, error: String(err?.message || err) });
+        if (!step.continueOnError) throw err;
+      }
     }
     print({ initialize: init, results });
   } else {
