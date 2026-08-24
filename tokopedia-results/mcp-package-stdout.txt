@@ -1,8 +1,112 @@
 {
-  "content": [
+  "initialize": {
+    "protocolVersion": "2025-06-18",
+    "capabilities": {
+      "tools": {
+        "listChanged": true
+      }
+    },
+    "serverInfo": {
+      "name": "tokopedia-mcp",
+      "version": "2.1.0"
+    }
+  },
+  "results": [
     {
-      "type": "text",
-      "text": "No products found for \"samsung s20 fe 5g second no minus\". Try a different keyword or loosen the filters."
+      "step": 1,
+      "tool": "search_products",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "No products found for \"samsung s20 fe 5g second no minus\". Try a different keyword or loosen the filters."
+          }
+        ]
+      }
+    },
+    {
+      "step": 2,
+      "tool": "search_products",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "No products found for \"samsung note 10 plus second no minus\". Try a different keyword or loosen the filters."
+          }
+        ]
+      }
+    },
+    {
+      "step": 3,
+      "tool": "search_products",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "No products found for \"samsung s21 5g second no minus\". Try a different keyword or loosen the filters."
+          }
+        ]
+      }
+    },
+    {
+      "step": 4,
+      "tool": "search_products",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "No products found for \"huawei p30 pro second no minus\". Try a different keyword or loosen the filters."
+          }
+        ]
+      }
+    },
+    {
+      "step": 5,
+      "tool": "search_products",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "No products found for \"huawei mate 20 pro second no minus\". Try a different keyword or loosen the filters."
+          }
+        ]
+      }
+    },
+    {
+      "step": 6,
+      "tool": "search_products",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "🛒 Search Results for \"0\"\n📊 2 total products | Page 1/1\n\n1. **iphone second normal 12 11 xr xs max x 7 plus 256gb 128gb 64gb 32gb no minus original 100% all sim mulus like new murah**\n   💰 Rp2.359.000\n   ⭐ N/A | 🏪 Aimu Phonecell (Jakarta Utara) | 🆔 15096772802\n   🔗 https://www.tokopedia.com/aimuphonecell/iphone-second-normal-12-11-xr-xs-max-x-7-plus-256gb-128gb-64gb-32gb-no-minus-original-100-all-sim-mulus-like-new-murah-1729965187690562610?extParam=ivf%3Dfalse%26keyword%3Diphone+11+64gb+second+no+minus%26search_id%3D2026082414490340008B9A5380FC3DCQTY%26src%3Dsearch\n\n2. **iPhone 11 64gb no minus Second**\n   💰 Rp2.500.000\n   ⭐ N/A | 🏪 LordGent Shop (Kab. Pacitan) | 🆔 16702303985\n   🔗 https://www.tokopedia.com/lordgent/iphone-11-64gb-no-minus-second-1731626193011312383?extParam=ivf%3Dfalse%26keyword%3Diphone+11+64gb+second+no+minus%26search_id%3D2026082414490340008B9A5380FC3DCQTY%26src%3Dsearch"
+          }
+        ]
+      }
+    },
+    {
+      "step": 7,
+      "tool": "search_products",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "🛒 Search Results for \"0\"\n📊 1 total products | Page 1/1\n\n1. **iphone second normal 12 11 xr xs max x 7 plus 256gb 128gb 64gb 32gb no minus original 100% all sim mulus like new murah**\n   💰 Rp2.359.000\n   ⭐ N/A | 🏪 Aimu Phonecell (Jakarta Utara) | 🆔 15096772802\n   🔗 https://www.tokopedia.com/aimuphonecell/iphone-second-normal-12-11-xr-xs-max-x-7-plus-256gb-128gb-64gb-32gb-no-minus-original-100-all-sim-mulus-like-new-murah-1729965187690562610?extParam=ivf%3Dfalse%26keyword%3Diphone+xr+128gb+second+no+minus%26search_id%3D2026082414490440008B9A5380FC195F2F%26src%3Dsearch"
+          }
+        ]
+      }
+    },
+    {
+      "step": 8,
+      "tool": "search_products",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "No products found for \"iphone se 2022 second no minus\". Try a different keyword or loosen the filters."
+          }
+        ]
+      }
     }
   ]
 }
