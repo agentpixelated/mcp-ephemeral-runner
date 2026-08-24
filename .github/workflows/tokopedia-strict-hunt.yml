@@ -1,0 +1,36 @@
+name: Tokopedia strict hunt
+
+on:
+  push:
+    paths:
+      - 'agent-runtime/tokopedia-strict-hunt.json'
+
+permissions:
+  contents: write
+
+jobs:
+  hunt:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run resilient Tokopedia MCP workflow
+        shell: bash
+        run: |
+          set +e
+          mkdir -p tokopedia-results
+          timeout --signal=TERM 240s node src/cli.mjs workflow examples/tokopedia.json agent-runtime/tokopedia-strict-hunt.json > tokopedia-results/strict-hunt.json 2> tokopedia-results/strict-hunt.stderr.txt
+          printf '%s\n' "$?" > tokopedia-results/strict-hunt.exit-code.txt
+          exit 0
+      - name: Persist strict hunt results
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add tokopedia-results/strict-hunt.json tokopedia-results/strict-hunt.stderr.txt tokopedia-results/strict-hunt.exit-code.txt
+          git commit -m 'chore: update Tokopedia strict hunt result' || exit 0
+          git push
