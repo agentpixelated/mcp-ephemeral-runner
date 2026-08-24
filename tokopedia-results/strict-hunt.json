@@ -14,12 +14,108 @@
   "results": [
     {
       "step": 1,
-      "tool": "get_product_detail",
+      "tool": "search_products",
       "result": {
         "content": [
           {
             "type": "text",
-            "text": "❌ Tokopedia API Error: Timed out after 30s calling productPage. Tokopedia may be slow or unreachable."
+            "text": "🛒 Search Results for \"0\"\n📊 1 total products | Page 1/1\n\n1. **Samsung A54 5G 8/256 Resmi SEIN Bekas Second Full Original Fungsi Normal**\n   💰 Rp2.450.000\n   ⭐ N/A | 🏪 DannyStoreID (Kab. Bojonegoro) | 🆔 103772191706\n   🔗 https://www.tokopedia.com/dannystorebjn/samsung-a54-5g-8-256-resmi-sein-bekas-second-full-original-fungsi-normal-1737123655856194769-1737123680374457553?extParam=ivf%3Dfalse%26keyword%3Dsamsung+a54+5g+second+fungsi+normal%26search_id%3D2026082415223940008B9A5380FC3687G7%26src%3Dsearch"
+          }
+        ]
+      }
+    },
+    {
+      "step": 2,
+      "tool": "search_products",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "No products found for \"samsung s22 second no minus\". Try a different keyword or loosen the filters."
+          }
+        ]
+      }
+    },
+    {
+      "step": 3,
+      "tool": "search_products",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "No products found for \"samsung s22 second fungsi normal\". Try a different keyword or loosen the filters."
+          }
+        ]
+      }
+    },
+    {
+      "step": 4,
+      "tool": "search_products",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "No products found for \"samsung s21 fe second no minus\". Try a different keyword or loosen the filters."
+          }
+        ]
+      }
+    },
+    {
+      "step": 5,
+      "tool": "search_products",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "No products found for \"samsung a52s 5g second no minus\". Try a different keyword or loosen the filters."
+          }
+        ]
+      }
+    },
+    {
+      "step": 6,
+      "tool": "search_products",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "No products found for \"samsung a73 5g second no minus\". Try a different keyword or loosen the filters."
+          }
+        ]
+      }
+    },
+    {
+      "step": 7,
+      "tool": "search_products",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "🛒 Search Results for \"0\"\n📊 2 total products | Page 1/1\n\n1. **iphone second normal 12 11 xr xs max x 7 plus 256gb 128gb 64gb 32gb no minus original 100% all sim mulus like new murah**\n   💰 Rp2.359.000\n   ⭐ N/A | 🏪 Aimu Phonecell (Jakarta Utara) | 🆔 15096772802\n   🔗 https://www.tokopedia.com/aimuphonecell/iphone-second-normal-12-11-xr-xs-max-x-7-plus-256gb-128gb-64gb-32gb-no-minus-original-100-all-sim-mulus-like-new-murah-1729965187690562610?extParam=ivf%3Dfalse%26keyword%3Diphone+11+second+no+minus%26search_id%3D20260824152241816B112C6105B33922ND%26src%3Dsearch\n\n2. **iPhone 11 64gb no minus Second**\n   💰 Rp2.500.000\n   ⭐ N/A | 🏪 LordGent Shop (Kab. Pacitan) | 🆔 16702303985\n   🔗 https://www.tokopedia.com/lordgent/iphone-11-64gb-no-minus-second-1731626193011312383?extParam=ivf%3Dfalse%26keyword%3Diphone+11+second+no+minus%26search_id%3D20260824152241816B112C6105B33922ND%26src%3Dsearch"
+          }
+        ]
+      }
+    },
+    {
+      "step": 8,
+      "tool": "search_products",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "No products found for \"huawei mate 20 pro second normal original\". Try a different keyword or loosen the filters."
+          }
+        ]
+      }
+    },
+    {
+      "step": 9,
+      "tool": "search_products",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "No products found for \"huawei p30 pro second normal original\". Try a different keyword or loosen the filters."
           }
         ]
       }
