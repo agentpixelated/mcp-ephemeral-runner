@@ -1,62 +1,82 @@
 [
   {
-    "tool": "search_products",
+    "tool": "get_shop_info",
     "arguments": {
-      "query": "huawei mate 20 pro second",
-      "rows": 40,
-      "orderBy": 3,
-      "priceMin": 1000000,
-      "priceMax": 3000000
+      "shopDomain": "gadget2ndstore-88"
     }
   },
   {
-    "tool": "search_products",
+    "tool": "get_shop_info",
     "arguments": {
-      "query": "huawei p30 pro second",
-      "rows": 40,
-      "orderBy": 3,
-      "priceMin": 1000000,
-      "priceMax": 3000000
+      "shopDomain": "wafalin"
     }
   },
   {
-    "tool": "search_products",
+    "tool": "get_shop_info",
     "arguments": {
-      "query": "huawei p40 pro second",
-      "rows": 40,
-      "orderBy": 3,
-      "priceMin": 1200000,
-      "priceMax": 3000000
+      "shopDomain": "gg-store-23-16"
     }
   },
   {
-    "tool": "search_products",
+    "tool": "get_shop_info",
     "arguments": {
-      "query": "huawei mate 30 pro second",
-      "rows": 40,
-      "orderBy": 3,
-      "priceMin": 1200000,
-      "priceMax": 3000000
+      "shopDomain": "gadgetstore98"
     }
   },
   {
-    "tool": "search_products",
+    "tool": "get_shop_info",
     "arguments": {
-      "query": "huawei nova 9 second",
-      "rows": 40,
-      "orderBy": 3,
-      "priceMin": 1000000,
-      "priceMax": 3000000
+      "shopDomain": "titopol"
     }
   },
   {
-    "tool": "search_products",
+    "tool": "get_product_reviews",
     "arguments": {
-      "query": "huawei nova 10 second",
-      "rows": 40,
-      "orderBy": 3,
-      "priceMin": 1000000,
-      "priceMax": 3000000
+      "productId": "102811404183",
+      "page": 1,
+      "limit": 20,
+      "sort": "lowest_rating",
+      "filter": "all"
+    }
+  },
+  {
+    "tool": "get_product_reviews",
+    "arguments": {
+      "productId": "103518901985",
+      "page": 1,
+      "limit": 20,
+      "sort": "lowest_rating",
+      "filter": "all"
+    }
+  },
+  {
+    "tool": "get_product_reviews",
+    "arguments": {
+      "productId": "102403283433",
+      "page": 1,
+      "limit": 20,
+      "sort": "lowest_rating",
+      "filter": "all"
+    }
+  },
+  {
+    "tool": "get_product_reviews",
+    "arguments": {
+      "productId": "16184149672",
+      "page": 1,
+      "limit": 20,
+      "sort": "lowest_rating",
+      "filter": "all"
+    }
+  },
+  {
+    "tool": "get_product_reviews",
+    "arguments": {
+      "productId": "16661609540",
+      "page": 1,
+      "limit": 20,
+      "sort": "lowest_rating",
+      "filter": "all"
     }
   }
 ]

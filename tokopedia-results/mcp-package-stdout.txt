@@ -14,72 +14,120 @@
   "results": [
     {
       "step": 1,
-      "tool": "search_products",
+      "tool": "get_shop_info",
       "result": {
         "content": [
           {
             "type": "text",
-            "text": "🛒 Search Results for \"0\"\n📊 6 total products | Page 1/1\n\n1. **HUAWEI MATE 20 PRO 4G 6/128GB SECOND MINUS**\n   💰 Rp1.800.000\n   ⭐ N/A | 🏪 Arfan Cell 23 (Jakarta Pusat) | 🆔 102851615347\n   🔗 https://www.tokopedia.com/gg-store-23-16/huawei-mate-20-pro-4g-6-128gb-second-minus-1734011349277902699?extParam=ivf%3Dfalse%26keyword%3Dhuawei+mate+20+pro+second%26search_id%3D20260824163205226B5767496D0A236Q3G%26src%3Dsearch\n\n2. **Huawei Mate 20 Pro 6/128GB Second Resmi**\n   💰 Rp2.000.000\n   ⭐ N/A | 🏪 Arfan Cell 23 (Jakarta Pusat) | 🆔 102403283433\n   🔗 https://www.tokopedia.com/gg-store-23-16/huawei-mate-20-pro-6-128gb-second-resmi-1732831929311594347?extParam=ivf%3Dfalse%26keyword%3Dhuawei+mate+20+pro+second%26search_id%3D20260824163205226B5767496D0A236Q3G%26src%3Dsearch\n\n3. **ponsel Second Huawei mate 20 pro Ram 6GB Rom 128GB hp second huawei**\n   💰 Rp2.000.000\n   ⭐ N/A | 🏪 Sejahtera NF (Jakarta Barat) | 🆔 103487761423\n   🔗 https://www.tokopedia.com/sejahteranf/ponsel-second-huawei-mate-20-pro-ram-6gb-rom-128gb-hp-second-huawei-1736092101311235520?extParam=ivf%3Dfalse%26keyword%3Dhuawei+mate+20+pro+second%26search_id%3D20260824163205226B5767496D0A236Q3G%26src%3Dsearch\n\n4. **Huawei Mate 20 Pro second original**\n   💰 Rp2.150.000\n   ⭐ 5.0 | 🏪 Hendrit P (Kab. Batang) | 🆔 100771923841\n   🔗 https://www.tokopedia.com/hendrit-p/huawei-mate-20-pro-second-original-1731944519576683596?extParam=ivf%3Dfalse%26keyword%3Dhuawei+mate+20+pro+second%26search_id%3D20260824163205226B5767496D0A236Q3G%26src%3Dsearch\n\n5. **huawei mate 20 pro second**\n   💰 Rp2.250.000\n   ⭐ 3.0 | 🏪 kaylangga (Kab. Purbalingga) | 🆔 7156444118\n   🔗 https://www.tokopedia.com/starkayla168/huawei-mate-20-pro-second?extParam=ivf%3Dfalse%26keyword%3Dhuawei+mate+20+pro+second%26search_id%3D20260824163205226B5767496D0A236Q3G%26src%3Dsearch\n\n6. **Huawei Mate 20 Pro Second Original Resmi Indonesia**\n   💰 Rp2.700.000\n   ⭐ 5.0 | 🏪 Storegadget12 [Power Store] (Jakarta Barat) | 🆔 16184149672\n   🔗 https://www.tokopedia.com/gadgetstore98/huawei-mate-20-pro-second-original-resmi-indonesia-1730834422255814039?extParam=ivf%3Dfalse%26keyword%3Dhuawei+mate+20+pro+second%26search_id%3D20260824163205226B5767496D0A236Q3G%26src%3Dsearch"
+            "text": "🏪 **Gadget 2ndStore** ⭐ Power Merchant\n📍 Kota Administrasi Jakarta Selatan\n🕐 ✅ Open\n📆 Open since September 2024\n📊 **Shop Stats:**\n  ✅ Successful transactions: 48\n  📦 Products sold: 48\n  🗂 Active products: 14\n  ❤️ Favorites: 153\n  🖼 Showcases: 2\n🔗 https://www.tokopedia.com/gadget2ndstore-88"
           }
         ]
       }
     },
     {
       "step": 2,
-      "tool": "search_products",
+      "tool": "get_shop_info",
       "result": {
         "content": [
           {
             "type": "text",
-            "text": "🛒 Search Results for \"0\"\n📊 1 total products | Page 1/1\n\n1. **Huawei P30 Pro Fullset Second**\n   💰 Rp1.500.000\n   ⭐ N/A | 🏪 titopol (Kab. Semarang) | 🆔 16661609540\n   🔗 https://www.tokopedia.com/titopol/huawei-p30-pro-fullset-second-1731386187236214199?extParam=ivf%3Dfalse%26keyword%3Dhuawei+p30+pro+second%26search_id%3D20260824163206C203D8A151612A2EEHZZ%26src%3Dsearch"
+            "text": "🏪 **wafalin** ⭐ Power Merchant\n📍 Kab. Bantul\n🕐 ✅ Open\n📆 Open since June 2025\n📊 **Shop Stats:**\n  ✅ Successful transactions: 1\n  📦 Products sold: 1\n  🗂 Active products: 2\n  ❤️ Favorites: 0\n  🖼 Showcases: 3\n🔗 https://www.tokopedia.com/wafalin"
           }
         ]
       }
     },
     {
       "step": 3,
-      "tool": "search_products",
+      "tool": "get_shop_info",
       "result": {
         "content": [
           {
             "type": "text",
-            "text": "No products found for \"huawei p40 pro second\". Try a different keyword or loosen the filters."
+            "text": "🏪 **Arfan Cell 23** ⭐ Power Merchant\n📍 Jakarta Pusat\n🕐 ✅ Open\n📆 Open since June 2025\n📊 **Shop Stats:**\n  ✅ Successful transactions: 4689\n  📦 Products sold: 5539\n  🗂 Active products: 269\n  ❤️ Favorites: 9.204\n  🖼 Showcases: 67\n🔗 https://www.tokopedia.com/gg-store-23-16"
           }
         ]
       }
     },
     {
       "step": 4,
-      "tool": "search_products",
+      "tool": "get_shop_info",
       "result": {
         "content": [
           {
             "type": "text",
-            "text": "🛒 Search Results for \"0\"\n📊 1 total products | Page 1/1\n\n1. **Huawei mate 30 pro 5g harmonyos second**\n   💰 Rp1.900.000\n   ⭐ N/A | 🏪 wafalin (Kab. Bantul) | 🆔 103518901985\n   🔗 https://www.tokopedia.com/wafalin/huawei-mate-30-pro-5g-harmonyos-second-1736211012436526747?extParam=ivf%3Dfalse%26keyword%3Dhuawei+mate+30+pro+second%26search_id%3D20260824163207C203D8A151612A1D5PA6%26src%3Dsearch"
+            "text": "🏪 **Storegadget12** ⭐ Power Merchant\n📍 Kota Administrasi Jakarta Barat\n🕐 ✅ Open\n📆 Open since January 2023\n📊 **Shop Stats:**\n  ✅ Successful transactions: 105\n  📦 Products sold: 108\n  🗂 Active products: 103\n  ❤️ Favorites: 1.618\n  🖼 Showcases: 14\n🔗 https://www.tokopedia.com/gadgetstore98"
           }
         ]
       }
     },
     {
       "step": 5,
-      "tool": "search_products",
+      "tool": "get_shop_info",
       "result": {
         "content": [
           {
             "type": "text",
-            "text": "🛒 Search Results for \"0\"\n📊 1 total products | Page 1/1\n\n1. **Huawei Nova 9 8/256GB Resmi indo second , super mulus, nominus**\n   💰 Rp2.875.000\n   ⭐ N/A | 🏪 Gadget 2ndStore (Jakarta Selatan) | 🆔 102811404183\n   🔗 https://www.tokopedia.com/gadget2ndstore-88/huawei-nova-9-8-256gb-resmi-indo-second-super-mulus-nominus-1733915175313770176?extParam=ivf%3Dfalse%26keyword%3Dhuawei+nova+9+second%26search_id%3D20260824163207DCE632459E4D41353ZW7%26src%3Dsearch"
+            "text": "🏪 **titopol** ⭐ Power Merchant\n📍 Kab. Semarang\n🕐 ✅ Open\n📆 Open since February 2026\n📊 **Shop Stats:**\n  ✅ Successful transactions: 13\n  📦 Products sold: 14\n  🗂 Active products: 1\n  ❤️ Favorites: 10\n  🖼 Showcases: 0\n🔗 https://www.tokopedia.com/titopol"
           }
         ]
       }
     },
     {
       "step": 6,
-      "tool": "search_products",
+      "tool": "get_product_reviews",
       "result": {
         "content": [
           {
             "type": "text",
-            "text": "No products found for \"huawei nova 10 second\". Try a different keyword or loosen the filters."
+            "text": "This product has no reviews yet."
+          }
+        ]
+      }
+    },
+    {
+      "step": 7,
+      "tool": "get_product_reviews",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "This product has no reviews yet."
+          }
+        ]
+      }
+    },
+    {
+      "step": 8,
+      "tool": "get_product_reviews",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "This product has no reviews yet."
+          }
+        ]
+      }
+    },
+    {
+      "step": 9,
+      "tool": "get_product_reviews",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "📝 **Reviews for Storegadget12's product**\n⭐ 1 total reviews | Page 1 | sorted by lowest_rating\n\n1. ★★★★★ — **Wawan**\n   sesuai dengan pesanan Semogah kedepannya ya tdk ada masalah Aamiin cepet pengiriman dan respon,\n   🖼 1 photo(s) attached\n   ↳ 🏪 Seller: Terima kasih telah berbelanja di gadgetstore98. Bagikan link toko kami https://www.tokopedia.com/gadgetstore98 kepada teman-teman kamu. Jangan lupa follow toko kami untuk tahu update terbaru tentang s…\n   📅 1739813290"
+          }
+        ]
+      }
+    },
+    {
+      "step": 10,
+      "tool": "get_product_reviews",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "This product has no reviews yet."
           }
         ]
       }
