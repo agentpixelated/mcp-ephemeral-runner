@@ -14,12 +14,12 @@
   "results": [
     {
       "step": 1,
-      "tool": "search_products",
+      "tool": "get_product_detail",
       "result": {
         "content": [
           {
             "type": "text",
-            "text": "🛒 Search Results for \"0\"\n📊 1 total products | Page 1/1\n\n1. **Samsung A54 5G 8/256 Resmi SEIN Bekas Second Full Original Fungsi Normal**\n   💰 Rp2.450.000\n   ⭐ N/A | 🏪 DannyStoreID (Kab. Bojonegoro) | 🆔 103772191706\n   🔗 https://www.tokopedia.com/dannystorebjn/samsung-a54-5g-8-256-resmi-sein-bekas-second-full-original-fungsi-normal-1737123655856194769-1737123680374457553?extParam=ivf%3Dfalse%26keyword%3Dsamsung+a54+5g+second+fungsi+normal%26search_id%3D20260824151400C203D8A151612A397FEB%26src%3Dsearch"
+            "text": "❌ Tokopedia API Error: Timed out after 30s calling productPage. Tokopedia may be slow or unreachable."
           }
         ]
       }
