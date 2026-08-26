@@ -1,11 +1,10 @@
 {
   "workflow": [
-    {"tool":"get_shop_info","arguments":{"shopDomain":"gudanggadgetjkt"}},
-    {"tool":"get_shop_info","arguments":{"shopDomain":"casaloma"}},
-    {"tool":"get_shop_info","arguments":{"shopDomain":"lordgent"}},
-    {"tool":"get_product_reviews","arguments":{"productId":"102936842095","page":1,"limit":20,"sort":"lowest_rating","filter":"all"}},
-    {"tool":"get_product_reviews","arguments":{"productId":"12062582542","page":1,"limit":20,"sort":"lowest_rating","filter":"all"}},
-    {"tool":"get_product_reviews","arguments":{"productId":"16702303985","page":1,"limit":20,"sort":"lowest_rating","filter":"all"}}
+    {"tool":"search_products","arguments":{"query":"Fibocom L850-GL","rows":50,"orderBy":23}},
+    {"tool":"search_products","arguments":{"query":"L850-GL 01AX792","rows":50,"orderBy":23}},
+    {"tool":"search_products","arguments":{"query":"Fibocom 01AX792 Lenovo","rows":50,"orderBy":23}},
+    {"tool":"search_products","arguments":{"query":"WWAN L850-GL Lenovo","rows":50,"orderBy":23}}
   ],
-  "requestedAt":"2026-08-24T23:40:00+07:00"
+  "requestedAt":"2026-08-26T19:18:00+07:00",
+  "purpose":"hunt cheapest Lenovo-compatible Fibocom L850-GL WWAN for ThinkPad X1 Yoga Gen 3"
 }
