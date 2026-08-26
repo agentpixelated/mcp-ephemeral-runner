@@ -1,13 +1,10 @@
 {
   "workflow": [
-    {"tool":"get_product_detail","arguments":{"url":"https://www.tokopedia.com/dunia-laptop/modul-modem-wwan-model-fibocom-l850-gl-100-original"}},
-    {"tool":"get_product_detail","arguments":{"url":"https://www.tokopedia.com/miguelcomputer/wwan-laptop-lenovo-thinkpad-fibocom-l850-gl-original-cocok-untuk-gen-8-original-x1-carbon-yoga-1731466220541019371"}},
-    {"tool":"get_product_detail","arguments":{"url":"https://www.tokopedia.com/cendrawasih-networks/fibocom-l850-gl-450mbps-lte-module-cat9-modem-rakitan"}},
-    {"tool":"get_product_detail","arguments":{"url":"https://www.tokopedia.com/thinkpadsalatiga/modem-internal-wwan-fibocom-l850-gl-thinkpad-t480-t490-x280-x390-x1-l830-eb"}},
-    {"tool":"get_shop_info","arguments":{"shopDomain":"dunia-laptop"}},
-    {"tool":"get_shop_info","arguments":{"shopDomain":"miguelcomputer"}},
-    {"tool":"get_shop_info","arguments":{"shopDomain":"thinkpadsalatiga"}}
+    {"tool":"search_products","arguments":{"query":"00HN897","rows":50,"orderBy":23}},
+    {"tool":"search_products","arguments":{"query":"4X80K32539","rows":50,"orderBy":23}},
+    {"tool":"search_products","arguments":{"query":"ThinkPad Pen Pro X1 Yoga Gen 3","rows":50,"orderBy":23}},
+    {"tool":"search_products","arguments":{"query":"Lenovo X1 Yoga Gen 3 pen stylus","rows":50,"orderBy":23}}
   ],
-  "requestedAt":"2026-08-26T19:20:00+07:00",
-  "purpose":"verify cheapest Tokopedia L850-GL listings for ThinkPad X1 Yoga Gen 3"
+  "requestedAt":"2026-08-26T19:33:00+07:00",
+  "purpose":"hunt cheapest compatible garaged rechargeable pen for ThinkPad X1 Yoga Gen 3"
 }
