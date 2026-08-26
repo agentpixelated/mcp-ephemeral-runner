@@ -1,8 +1,64 @@
 {
-  "content": [
+  "initialize": {
+    "protocolVersion": "2025-06-18",
+    "capabilities": {
+      "tools": {
+        "listChanged": true
+      }
+    },
+    "serverInfo": {
+      "name": "tokopedia-mcp",
+      "version": "2.1.0"
+    }
+  },
+  "results": [
     {
-      "type": "text",
-      "text": "🛒 Search Results for \"0\"\n📊 6 total products | Page 1/1\n\n1. **Lenovo ThinkPad X1 Yoga 3Rd Slim Premium | Core i5-8250U | RAM 8GB | SSD 128GB | 14” FHD Touchscreen 360° | Include Stylus Pen | Keyboard US Backlight | Laptop 2-in-1**\n   💰 Rp4.500.000\n   ⭐ 5.0 | 🏪 InnoLapTech (Jakarta Pusat) | 🆔 102978710421\n   🔗 https://www.tokopedia.com/innolaptech/lenovo-thinkpad-x1-yoga-gen-4-laptop-ringan-performa-hebat-siap-menemani-aktivitas-anda-1732982465994196918?extParam=ivf%3Dfalse%26keyword%3Dx1+yoga+3rd+stylus+pen%26search_id%3D20260826124053DCE632459E4D4101BWI4%26src%3Dsearch\n\n2. **LAPTOP LENOVO THINKPAD X1 YOGA 3rd |CORE I5-8350U |PEN STYLUS | 14\" 2K**\n   💰 Rp5.150.000\n   ⭐ 5.0 | 🏪 Computer Murah 2021 (Jakarta Pusat) | 🆔 13600380061\n   🔗 https://www.tokopedia.com/computermurah202/laptop-lenovo-thinkpad-x1-yoga-3rd-core-i5-8350u-pen-stylus-14-2k-x1-yoga-core-i5-16gb-ssd-1tb-62c20?extParam=ivf%3Dfalse%26keyword%3Dx1+yoga+3rd+stylus+pen%26search_id%3D20260826124053DCE632459E4D4101BWI4%26src%3Dsearch\n\n3. **Lenovo X1 Yoga 3rd i7 Gen8 RAM 16GB SSD 512GB 2in1 Touchscreebn Pen stylus 14inch**\n   💰 Rp4.850.000\n   ⭐ 5.0 | 🏪 Samsan Computer (Jakarta Barat) | 🆔 102349953493\n   🔗 https://www.tokopedia.com/samsan-computer/lenovo-x1-yoga-3rd-i7-gen8-ram-16gb-ssd-512gb-2in1-touchscreebn-pen-stylus-14inch-1732700596530480802?extParam=ivf%3Dfalse%26keyword%3Dx1+yoga+3rd+stylus+pen%26search_id%3D20260826124053DCE632459E4D4101BWI4%26src%3Dsearch\n\n4. **X1 YOGA 3RD INTEL i5 GEN 8 TOUCHSCREEN 8-256GB WITH PEN STYLUS**\n   💰 Rp4.900.000\n   ⭐ 5.0 | 🏪 RyNcompt Bandung (Kab. Bandung) | 🆔 11618307914\n   🔗 https://www.tokopedia.com/ryansopian/x1-yoga-3rd-intel-i5-gen-8-touchscreen-8-256gb-with-pen-stylus-8-512gb-c27c6?extParam=ivf%3Dfalse%26keyword%3Dx1+yoga+3rd+stylus+pen%26search_id%3D20260826124053DCE632459E4D4101BWI4%26src%3Dsearch\n\n5. **X1 YOGA 3rd Slim 2 in 1 With Pen Sim kartu Aktif Gsm i5 8350U Vpro Ram 8 Nvme 256 Laptop Charger Stylus**\n   💰 Rp4.200.000\n   ⭐ N/A | 🏪 tokoavira (Depok) | 🆔 102543653430\n   🔗 https://www.tokopedia.com/sclean-1/x1-yoga-3rd-slim-2-in-1-with-pen-sim-kartu-aktif-gsm-i5-8350u-vpro-ram-8-nvme-256-laptop-charger-stylus-1733156789912044770?extParam=ivf%3Dfalse%26keyword%3Dx1+yoga+3rd+stylus+pen%26search_id%3D20260826124053DCE632459E4D4101BWI4%26src%3Dsearch\n\n6. **Lenovo X1 YOGA 3rd slim touchscreen + stylus pen**\n   💰 Rp4.800.000\n   ⭐ N/A | 🏪 Sakumi shop (Kab. Tangerang) | 🆔 16535229574\n   🔗 https://www.tokopedia.com/saku-mi/lenovo-x1-yoga-3rd-slim-touchscreen-stylus-pen-1731118455576757393?extParam=ivf%3Dfalse%26keyword%3Dx1+yoga+3rd+stylus+pen%26search_id%3D20260826124053DCE632459E4D4101BWI4%26src%3Dsearch"
+      "step": 1,
+      "tool": "search_products",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "🛒 Search Results for \"0\"\n📊 3 total products | Page 1/1\n\n1. **1/3 Pcs Original Stylus Tips Nip for Dell PN579X PN556W PN557W Thinkpad Pro Active Google Pixelbook/Pixel Slate Pen Nibs**\n   💰 Rp558.100\n   ⭐ N/A | 🏪 Kiyoz Store (Jakarta Barat) | 🆔 16535428470\n   🔗 https://www.tokopedia.com/kiyoz-store/1-3-pcs-original-stylus-tips-nip-for-dell-pn579x-pn556w-pn557w-thinkpad-pro-active-google-pixelbook-pixel-slate-pen-nibs-1731118954030466690?extParam=ivf%3Dfalse%26keyword%3Dthinkpad+pen+pro+3%26search_id%3D20260826124148FE73F687E5BC52164MUO%26src%3Dsearch\n\n2. **1/3 Pcs Original Stylus Tips Nip for Dell PN579X PN556W PN557W Thinkpad Pro Active Google Pixelbook/Pixel Slate Pen Nibs**\n   💰 Rp425.400\n   ⭐ N/A | 🏪 CINOVO STORE (Jakarta Barat) | 🆔 16222907227\n   🔗 https://www.tokopedia.com/cinovo-store/1-3-pcs-original-stylus-tips-nip-for-dell-pn579x-pn556w-pn557w-thinkpad-pro-active-google-pixelbook-pixel-slate-pen-nibs-1730851470321419402?extParam=ivf%3Dfalse%26keyword%3Dthinkpad+pen+pro+3%26search_id%3D20260826124148FE73F687E5BC52164MUO%26src%3Dsearch\n\n3. **1/3 Pcs Original Stylus Tips Nip for Dell PN579X PN556W PN557W Thinkpad Pro Active Google Pixelbook/Pixel Slate Pen Nibs**\n   💰 Rp478.000\n   ⭐ N/A | 🏪 yulianiana (Jakarta Timur) | 🆔 103207190622\n   🔗 https://www.tokopedia.com/yulianiana/1-3-pcs-original-stylus-tips-nip-for-dell-pn579x-pn556w-pn557w-thinkpad-pro-active-google-pixelbook-pixel-slate-pen-nibs-1735012864725714432?extParam=ivf%3Dfalse%26keyword%3Dthinkpad+pen+pro+3%26search_id%3D20260826124148FE73F687E5BC52164MUO%26src%3Dsearch"
+          }
+        ]
+      }
+    },
+    {
+      "step": 2,
+      "tool": "search_products",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "🛒 Search Results for \"0\"\n📊 5 total products | Page 1/1\n\n1. **Laptop ThinkPad X1 Yoga Gen 9 Ultra 7 165U 32GB 1TB SSD Lenovo Slim Pen 14\" WUXGA IPS 400nits 100% sRGB Windows 11 Pro 3Y Premier Support**\n   💰 Rp54.459.000\n   ⭐ N/A | 🏪 Vortexindo.Computer [Official Store] (Jakarta Pusat) | 🆔 1214719601\n   🔗 https://www.tokopedia.com/vortexindocomputer/thinkpad-x1-yoga-gen-9-ultra-7-165u-32gb-1tb-ssd-lenovo-slim-pen-14-wuxga-ips-400nits-100-srgb-windows-11-pro-3y-premier-support-1729814842078627497?extParam=ivf%3Dfalse%26keyword%3Dthinkpad+pen+pro+x1+yoga%26search_id%3D20260826124149B83AAC23B952871C75XE%26src%3Dsearch\n\n2. **Tablet Tou Control Digital Pen Stylus For Len ThinkPad Pro YOGA X1**\n   💰 Rp396.400\n   ⭐ N/A | 🏪 One Outdoor stores (Kab. Tangerang) | 🆔 1917534964\n   🔗 https://www.tokopedia.com/oneoutdoor/tablet-tou-control-digital-pen-stylus-for-len-thinkpad-pro-yoga-x1?extParam=ivf%3Dfalse%26keyword%3Dthinkpad+pen+pro+x1+yoga%26search_id%3D20260826124149B83AAC23B952871C75XE%26src%3Dsearch\n\n3. **LENOVO ThinkPad Pen Pro-10 Stylus for X1 Yoga 6th Gen Notebook - Stylus untuk LENOVO ThinkPad X1 Yoga Gen 6**\n   💰 Rp1.189.900\n   ⭐ N/A | 🏪 LOBAJET IDN (Jakarta Barat) | 🆔 102301393337\n   🔗 https://www.tokopedia.com/lobajet/lenovo-thinkpad-pen-pro-10-stylus-for-x1-yoga-6th-gen-notebook-stylus-untuk-lenovo-thinkpad-x1-yoga-gen-6-1732588947599492216?extParam=ivf%3Dfalse%26keyword%3Dthinkpad+pen+pro+x1+yoga%26search_id%3D20260826124149B83AAC23B952871C75XE%26src%3Dsearch\n\n4. **Lenovo ThinkPad Pen Pro-10 Stylus for X1 Yoga 6th Gen Notebook - Stylus untuk LENOVO ThinkPad X1 Yoga Gen 6**\n   💰 Rp1.189.900\n   ⭐ N/A | 🏪 Lobajet (Jakarta Barat) | 🆔 102485064488\n   🔗 https://www.tokopedia.com/lobajet-987/lenovo-thinkpad-pen-pro-10-stylus-for-x1-yoga-6th-gen-notebook-stylus-untuk-lenovo-thinkpad-x1-yoga-gen-6-1732996874510239418?extParam=ivf%3Dfalse%26keyword%3Dthinkpad+pen+pro+x1+yoga%26search_id%3D20260826124149B83AAC23B952871C75XE%26src%3Dsearch\n\n5. **Laptop Lenovo thinkpad X1 yoga 5th Core i7 GEN 10 - RAM 16GB - SSD 1TB - 14 inch - Touchscreen - Pen Stylus - Windows 11 Pro - Full HD**\n   💰 Rp9.500.000\n   ⭐ N/A | 🏪 Butterfly Computer (Jakarta Pusat) | 🆔 15210350134\n   🔗 https://www.tokopedia.com/butterflycomputer/laptop-lenovo-thinkpad-x1-yoga-5th-core-i7-gen-10-ram-16gb-ssd-1tb-14-inch-touchscreen-pen-stylus-windows-11-pro-full-hd-1730159971216885384?extParam=ivf%3Dfalse%26keyword%3Dthinkpad+pen+pro+x1+yoga%26search_id%3D20260826124149B83AAC23B952871C75XE%26src%3Dsearch"
+          }
+        ]
+      }
+    },
+    {
+      "step": 3,
+      "tool": "search_products",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "No products found for \"X1 Yoga 2nd stylus pen\". Try a different keyword or loosen the filters."
+          }
+        ]
+      }
+    },
+    {
+      "step": 4,
+      "tool": "search_products",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "No products found for \"SD60M68133\". Try a different keyword or loosen the filters."
+          }
+        ]
+      }
     }
   ]
 }

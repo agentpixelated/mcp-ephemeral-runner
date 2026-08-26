@@ -1,1 +1,34 @@
-{"query":"X1 Yoga 3rd stylus pen","rows":20,"orderBy":23}
+[
+  {
+    "tool": "search_products",
+    "arguments": {
+      "query": "ThinkPad Pen Pro 3",
+      "rows": 20,
+      "orderBy": 23
+    }
+  },
+  {
+    "tool": "search_products",
+    "arguments": {
+      "query": "ThinkPad Pen Pro X1 Yoga",
+      "rows": 20,
+      "orderBy": 23
+    }
+  },
+  {
+    "tool": "search_products",
+    "arguments": {
+      "query": "X1 Yoga 2nd stylus pen",
+      "rows": 20,
+      "orderBy": 23
+    }
+  },
+  {
+    "tool": "search_products",
+    "arguments": {
+      "query": "SD60M68133",
+      "rows": 20,
+      "orderBy": 23
+    }
+  }
+]
