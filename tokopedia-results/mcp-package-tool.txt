@@ -1,1 +1,1 @@
-workflow
+get_product_detail
