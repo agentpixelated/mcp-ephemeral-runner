@@ -1,0 +1,64 @@
+{
+  "initialize": {
+    "protocolVersion": "2025-06-18",
+    "capabilities": {
+      "tools": {
+        "listChanged": true
+      }
+    },
+    "serverInfo": {
+      "name": "tokopedia-mcp",
+      "version": "2.1.0"
+    }
+  },
+  "results": [
+    {
+      "step": 1,
+      "tool": "search_products",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "No products found for \"00HN897\". Try a different keyword or loosen the filters."
+          }
+        ]
+      }
+    },
+    {
+      "step": 2,
+      "tool": "search_products",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "No products found for \"4X80K32539\". Try a different keyword or loosen the filters."
+          }
+        ]
+      }
+    },
+    {
+      "step": 3,
+      "tool": "search_products",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "No products found for \"ThinkPad Pen Pro X1 Yoga Gen 3\". Try a different keyword or loosen the filters."
+          }
+        ]
+      }
+    },
+    {
+      "step": 4,
+      "tool": "search_products",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "No products found for \"Lenovo X1 Yoga Gen 3 pen stylus\". Try a different keyword or loosen the filters."
+          }
+        ]
+      }
+    }
+  ]
+}
