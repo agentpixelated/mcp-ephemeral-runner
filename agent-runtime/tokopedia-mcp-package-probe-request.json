@@ -1,10 +1,11 @@
 {
   "workflow": [
-    {"tool":"search_products","arguments":{"query":"00HN897","rows":50,"orderBy":23}},
-    {"tool":"search_products","arguments":{"query":"4X80K32539","rows":50,"orderBy":23}},
-    {"tool":"search_products","arguments":{"query":"ThinkPad Pen Pro X1 Yoga Gen 3","rows":50,"orderBy":23}},
-    {"tool":"search_products","arguments":{"query":"Lenovo X1 Yoga Gen 3 pen stylus","rows":50,"orderBy":23}}
+    {"tool":"search_products","arguments":{"query":"pen x1 yoga","rows":50,"orderBy":23}},
+    {"tool":"search_products","arguments":{"query":"stylus x1 yoga","rows":50,"orderBy":23}},
+    {"tool":"search_products","arguments":{"query":"thinkpad yoga pen","rows":50,"orderBy":23}},
+    {"tool":"search_products","arguments":{"query":"lenovo thinkpad pen pro","rows":50,"orderBy":23}},
+    {"tool":"search_products","arguments":{"query":"pen lenovo yoga garaged","rows":50,"orderBy":23}}
   ],
-  "requestedAt":"2026-08-26T19:33:00+07:00",
-  "purpose":"hunt cheapest compatible garaged rechargeable pen for ThinkPad X1 Yoga Gen 3"
+  "requestedAt":"2026-08-26T19:40:00+07:00",
+  "purpose":"broader Tokopedia hunt for compatible garaged rechargeable pen for ThinkPad X1 Yoga Gen 3"
 }
