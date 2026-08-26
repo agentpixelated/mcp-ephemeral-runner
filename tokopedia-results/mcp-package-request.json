@@ -1,50 +1,34 @@
 [
   {
-    "tool": "get_shop_info",
+    "tool": "search_products",
     "arguments": {
-      "shopDomain": "gudanggadgetjkt"
+      "query": "Fibocom L850-GL",
+      "rows": 50,
+      "orderBy": 23
     }
   },
   {
-    "tool": "get_shop_info",
+    "tool": "search_products",
     "arguments": {
-      "shopDomain": "casaloma"
+      "query": "L850-GL 01AX792",
+      "rows": 50,
+      "orderBy": 23
     }
   },
   {
-    "tool": "get_shop_info",
+    "tool": "search_products",
     "arguments": {
-      "shopDomain": "lordgent"
+      "query": "Fibocom 01AX792 Lenovo",
+      "rows": 50,
+      "orderBy": 23
     }
   },
   {
-    "tool": "get_product_reviews",
+    "tool": "search_products",
     "arguments": {
-      "productId": "102936842095",
-      "page": 1,
-      "limit": 20,
-      "sort": "lowest_rating",
-      "filter": "all"
-    }
-  },
-  {
-    "tool": "get_product_reviews",
-    "arguments": {
-      "productId": "12062582542",
-      "page": 1,
-      "limit": 20,
-      "sort": "lowest_rating",
-      "filter": "all"
-    }
-  },
-  {
-    "tool": "get_product_reviews",
-    "arguments": {
-      "productId": "16702303985",
-      "page": 1,
-      "limit": 20,
-      "sort": "lowest_rating",
-      "filter": "all"
+      "query": "WWAN L850-GL Lenovo",
+      "rows": 50,
+      "orderBy": 23
     }
   }
 ]
