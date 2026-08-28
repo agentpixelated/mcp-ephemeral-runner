@@ -1,0 +1,13 @@
+[
+  {"tool":"get_product_detail","arguments":{"url":"https://www.tokopedia.com/jualjualonly/lenovo-thinkpad-x1-yoga-gen-3-laptop-seri-x1-yoga-generasi-3-dengan-desain-fleksibel-dan-performa-tinggi-1735560433449993420"}},
+  {"tool":"get_product_detail","arguments":{"url":"https://www.tokopedia.com/mentarisuryalaptop/laptop-lenovo-x1-yoga-1st-2nd-3rd-core-i5-i7-gen-6-7-8-layar-14-mulus-1st-i5-gen6-ram-8-ssd-256-3ecda"}},
+  {"tool":"get_product_variants","arguments":{"url":"https://www.tokopedia.com/mentarisuryalaptop/laptop-lenovo-x1-yoga-1st-2nd-3rd-core-i5-i7-gen-6-7-8-layar-14-mulus-1st-i5-gen6-ram-8-ssd-256-3ecda"}},
+  {"tool":"get_product_detail","arguments":{"url":"https://www.tokopedia.com/tokehlaptop/thinkpad-x1-yoga-3rd-intel-gen-8-thinkpad-x1-yoga-gen-3-x1-yoga-3rd-g3-1730873296834692599-1734595972618356215"}},
+  {"tool":"get_product_detail","arguments":{"url":"https://www.tokopedia.com/trustcompbekasi/lenovo-thinkpad-x1-yoga-intel-core-i5-8350u-8gb-ssd-512g-stylus-pen"}},
+  {"tool":"get_product_detail","arguments":{"url":"https://www.tokopedia.com/glorycomputerr/laptop-lenovo-thinkpad-x1-yoga-3rd-core-i5-i7-gen-8-ram-8gb-16gb-ssd-128gb-256gb-512gb-touchscren-flip-360-bergaransi"}},
+  {"tool":"get_product_variants","arguments":{"url":"https://www.tokopedia.com/glorycomputerr/laptop-lenovo-thinkpad-x1-yoga-3rd-core-i5-i7-gen-8-ram-8gb-16gb-ssd-128gb-256gb-512gb-touchscren-flip-360-bergaransi"}},
+  {"tool":"get_product_detail","arguments":{"url":"https://www.tokopedia.com/arifesshop/lenovo-thinkpad-yoga-x1-carbon-3rd-i7-8650u-gen-8-ram-16-gb-256-gb-ts"}},
+  {"tool":"get_product_detail","arguments":{"url":"https://www.tokopedia.com/gamingcomp/x1-yoga-3rd-2-in-1-flip-360-2k-ips-with-pen-core-i5-8350u-sim-active"}},
+  {"tool":"get_product_detail","arguments":{"url":"https://www.tokopedia.com/uselectronic/ready-stok-lenovo-x1-yoga-3rd-core-i7-8th-ram-16gb-1tb-ssd"}},
+  {"tool":"get_product_variants","arguments":{"url":"https://www.tokopedia.com/uselectronic/ready-stok-lenovo-x1-yoga-3rd-core-i7-8th-ram-16gb-1tb-ssd"}}
+]
