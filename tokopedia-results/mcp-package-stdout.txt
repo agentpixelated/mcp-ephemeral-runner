@@ -1,0 +1,8 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "🛒 Search Results for \"0\"\n📊 1 total products | Page 1/1\n\n1. **Casing Bawah Lenovo Flex 6 Flex 6-14IKB Yoga 530 Yoga 530-14IKB Original Laptop**\n   💰 Rp350.000\n   ⭐ N/A | 🏪 Hero Notebook Bandoeng [Power Store] (Cimahi) | 🆔 100551320937\n   🔗 https://www.tokopedia.com/hero-notebook-bandoeng/casing-bawah-lenovo-flex-6-flex-6-14ikb-yoga-530-yoga-530-14ikb-original-laptop-1731551299343255420?extParam=ivf%3Dfalse%26keyword%3Dcasing+bawah+yoga+530%26search_id%3D20260828093913FE73F687E5BC521D103K%26src%3Dsearch"
+    }
+  ]
+}
