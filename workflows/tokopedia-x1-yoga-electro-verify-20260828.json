@@ -1,0 +1,4 @@
+[
+  {"tool":"get_product_variants","arguments":{"url":"https://www.tokopedia.com/electrocom/laptop-x1-yoga-3rd-core-i7-8th-gen-16gb-ram-512gb-ssd-1731631362048951554-1737191841635206402"}},
+  {"tool":"get_product_detail","arguments":{"url":"https://www.tokopedia.com/electrocom/laptop-x1-yoga-3rd-core-i7-8th-gen-16gb-ram-512gb-ssd-1731631362048951554-1737191841635206402"}}
+]
