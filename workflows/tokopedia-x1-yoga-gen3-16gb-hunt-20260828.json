@@ -1,0 +1,6 @@
+[
+  {"tool":"search_products","arguments":{"query":"X1 Yoga Gen 3 16GB","rows":60,"orderBy":3,"priceMin":2000000,"priceMax":5000000}},
+  {"tool":"search_products","arguments":{"query":"X1 Yoga 3rd RAM 16GB","rows":60,"orderBy":3,"priceMin":2000000,"priceMax":5000000}},
+  {"tool":"search_products","arguments":{"query":"Thinkpad X1 Yoga 3rd i7 16GB","rows":60,"orderBy":3,"priceMin":2000000,"priceMax":5000000}},
+  {"tool":"search_products","arguments":{"query":"Thinkpad X1 Yoga Gen 3 i5 16GB","rows":60,"orderBy":3,"priceMin":2000000,"priceMax":5000000}}
+]
