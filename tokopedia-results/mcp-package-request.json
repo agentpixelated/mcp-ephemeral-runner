@@ -2,7 +2,7 @@
   {
     "tool": "search_products",
     "arguments": {
-      "query": "5CB0R08530",
+      "query": "Yoga 530 casing",
       "rows": 50,
       "orderBy": 23
     }
@@ -10,7 +10,7 @@
   {
     "tool": "search_products",
     "arguments": {
-      "query": "AP173000500",
+      "query": "Yoga 530 body",
       "rows": 50,
       "orderBy": 23
     }
@@ -18,7 +18,7 @@
   {
     "tool": "search_products",
     "arguments": {
-      "query": "Yoga 530 81EK casing bawah",
+      "query": "Flex 6 casing",
       "rows": 50,
       "orderBy": 23
     }
@@ -26,7 +26,7 @@
   {
     "tool": "search_products",
     "arguments": {
-      "query": "Flex 6 81EM casing bawah",
+      "query": "Flex 6 14IKB casing",
       "rows": 50,
       "orderBy": 23
     }
@@ -34,7 +34,7 @@
   {
     "tool": "search_products",
     "arguments": {
-      "query": "Yoga 530 14IKB lower case",
+      "query": "Yoga 530 14IKB casing",
       "rows": 50,
       "orderBy": 23
     }
@@ -42,25 +42,31 @@
   {
     "tool": "search_products",
     "arguments": {
-      "query": "Yoga 530 14IKB bottom cover",
+      "query": "Yoga 530 bottom",
       "rows": 50,
       "orderBy": 23
     }
   },
   {
-    "tool": "search_products",
+    "tool": "get_product_detail",
     "arguments": {
-      "query": "casing D Yoga 530 14IKB",
-      "rows": 50,
-      "orderBy": 23
+      "url": "https://www.tokopedia.com/hero-notebook-bandoeng/casing-bawah-lenovo-flex-6-flex-6-14ikb-yoga-530-yoga-530-14ikb-original-laptop-1731551299343255420"
     }
   },
   {
-    "tool": "search_products",
+    "tool": "get_shop_info",
     "arguments": {
-      "query": "casing bawah Flex 6 14IKB",
-      "rows": 50,
-      "orderBy": 23
+      "shopDomain": "hero-notebook-bandoeng"
+    }
+  },
+  {
+    "tool": "get_product_reviews",
+    "arguments": {
+      "productId": "100551320937",
+      "page": 1,
+      "limit": 20,
+      "sort": "lowest_rating",
+      "filter": "all"
     }
   }
 ]
