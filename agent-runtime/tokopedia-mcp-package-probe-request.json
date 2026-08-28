@@ -1,6 +1,6 @@
 {
   "tool":"search_products",
-  "arguments":{"query":"Lenovo Yoga 530 14IKB","rows":50,"orderBy":23},
-  "requestedAt":"2026-08-28T16:16:00+07:00",
-  "purpose":"broad live Tokopedia sweep for alternative Yoga 530-14IKB parts; manually filter lower/bottom case and exclude known sold-out Hero listing"
+  "arguments":{"query":"Lenovo Yoga 530 14IKB","rows":50,"page":2,"orderBy":23},
+  "requestedAt":"2026-08-28T16:18:00+07:00",
+  "purpose":"scan page 2 of broad Yoga 530-14IKB Tokopedia results for lower/bottom case listings, excluding known sold-out Hero item"
 }
