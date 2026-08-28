@@ -2,7 +2,7 @@
   {
     "tool": "search_products",
     "arguments": {
-      "query": "casing bawah flex 6 14ikb",
+      "query": "body Yoga 530 14IKB",
       "rows": 50,
       "orderBy": 23
     }
@@ -10,7 +10,7 @@
   {
     "tool": "search_products",
     "arguments": {
-      "query": "base cover flex 6 14ikb",
+      "query": "casing lengkap Yoga 530 14IKB",
       "rows": 50,
       "orderBy": 23
     }
@@ -18,7 +18,7 @@
   {
     "tool": "search_products",
     "arguments": {
-      "query": "lower case flex 6 14ikb",
+      "query": "kanibal Yoga 530 14IKB",
       "rows": 50,
       "orderBy": 23
     }
@@ -26,7 +26,7 @@
   {
     "tool": "search_products",
     "arguments": {
-      "query": "d cover flex 6 14ikb",
+      "query": "body Flex 6 14IKB",
       "rows": 50,
       "orderBy": 23
     }
@@ -34,7 +34,7 @@
   {
     "tool": "search_products",
     "arguments": {
-      "query": "5CB0R08530 Lenovo",
+      "query": "casing Yoga 530 silver",
       "rows": 50,
       "orderBy": 23
     }

@@ -19,7 +19,7 @@
         "content": [
           {
             "type": "text",
-            "text": "🛒 Search Results for \"0\"\n📊 1 total products | Page 1/1\n\n1. **Casing Bawah Lenovo Flex 6 Flex 6-14IKB Yoga 530 Yoga 530-14IKB Original Laptop**\n   💰 Rp350.000\n   ⭐ N/A | 🏪 Hero Notebook Bandoeng [Power Store] (Cimahi) | 🆔 100551320937\n   🔗 https://www.tokopedia.com/hero-notebook-bandoeng/casing-bawah-lenovo-flex-6-flex-6-14ikb-yoga-530-yoga-530-14ikb-original-laptop-1731551299343255420?extParam=ivf%3Dfalse%26keyword%3Dcasing+bawah+flex+6+14ikb%26search_id%3D2026082809455640008B9A5380FC22B5AB%26src%3Dsearch"
+            "text": "No products found for \"body Yoga 530 14IKB\". Try a different keyword or loosen the filters."
           }
         ]
       }
@@ -31,7 +31,7 @@
         "content": [
           {
             "type": "text",
-            "text": "🛒 Search Results for \"0\"\n📊 3 total products | Page 1/1\n\n1. **New laptop Top case base lcd back cover for flex6-14 FLEX 6 14 YOGA530-14ikb**\n   💰 Rp1.222.100\n   ⭐ N/A | 🏪 Datamall (Jakarta Timur) | 🆔 102396704112\n   🔗 https://www.tokopedia.com/datamall/new-laptop-top-case-base-lcd-back-cover-for-flex6-14-flex-6-14-yoga530-14ikb-1732810313276688381?extParam=ivf%3Dfalse%26keyword%3Dbase+cover+flex+6+14ikb%26search_id%3D20260828094556955AF57E494555388BY1%26src%3Dsearch\n\n2. **New laptop for flex6-14 FLEX 6 14 YOGA530-14ikb AP173000200 top case base lcd back cover**\n   💰 Rp17.736.000\n   ⭐ N/A | 🏪 Heart Aflame (Jakarta Barat) | 🆔 16541272563\n   🔗 https://www.tokopedia.com/heartaflame/new-laptop-for-flex6-14-flex-6-14-yoga530-14ikb-ap173000200-top-case-base-lcd-back-cover-1731125955411281549?extParam=ivf%3Dfalse%26keyword%3Dbase+cover+flex+6+14ikb%26search_id%3D20260828094556955AF57E494555388BY1%26src%3Dsearch\n\n3. **New laptop Top case base lcd back cover for flex6-14 FLEX 6 14 YOGA530-14ikb**\n   💰 Rp19.449.000\n   ⭐ N/A | 🏪 VIKACELL03 (Jakarta Pusat) | 🆔 16541766472\n   🔗 https://www.tokopedia.com/archive-alifvikacell/new-laptop-top-case-base-lcd-back-cover-for-flex6-14-flex-6-14-yoga530-14ikb-1731126537973171371?extParam=ivf%3Dfalse%26keyword%3Dbase+cover+flex+6+14ikb%26search_id%3D20260828094556955AF57E494555388BY1%26src%3Dsearch"
+            "text": "No products found for \"casing lengkap Yoga 530 14IKB\". Try a different keyword or loosen the filters."
           }
         ]
       }
@@ -43,7 +43,7 @@
         "content": [
           {
             "type": "text",
-            "text": "No products found for \"lower case flex 6 14ikb\". Try a different keyword or loosen the filters."
+            "text": "No products found for \"kanibal Yoga 530 14IKB\". Try a different keyword or loosen the filters."
           }
         ]
       }
@@ -55,7 +55,7 @@
         "content": [
           {
             "type": "text",
-            "text": "No products found for \"d cover flex 6 14ikb\". Try a different keyword or loosen the filters."
+            "text": "No products found for \"body Flex 6 14IKB\". Try a different keyword or loosen the filters."
           }
         ]
       }
@@ -67,7 +67,7 @@
         "content": [
           {
             "type": "text",
-            "text": "No products found for \"5CB0R08530 Lenovo\". Try a different keyword or loosen the filters."
+            "text": "No products found for \"casing Yoga 530 silver\". Try a different keyword or loosen the filters."
           }
         ]
       }
