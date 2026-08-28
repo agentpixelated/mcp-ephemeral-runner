@@ -1,0 +1,11 @@
+[
+  {"tool":"get_filters_and_sorts","arguments":{"query":"ThinkPad X1 Yoga Gen 3"}},
+  {"tool":"search_products","arguments":{"query":"ThinkPad X1 Yoga Gen 3","rows":60,"orderBy":3,"priceMin":1000000,"priceMax":6500000}},
+  {"tool":"search_products","arguments":{"query":"X1 Yoga Gen 3","rows":60,"orderBy":3,"priceMin":1000000,"priceMax":6500000}},
+  {"tool":"search_products","arguments":{"query":"Lenovo X1 Yoga 3rd","rows":60,"orderBy":3,"priceMin":1000000,"priceMax":6500000}},
+  {"tool":"search_products","arguments":{"query":"ThinkPad X1 Yoga 3rd","rows":60,"orderBy":3,"priceMin":1000000,"priceMax":6500000}},
+  {"tool":"search_products","arguments":{"query":"X1 Yoga i5 8350U","rows":60,"orderBy":3,"priceMin":1000000,"priceMax":6500000}},
+  {"tool":"search_products","arguments":{"query":"X1 Yoga i7 8650U","rows":60,"orderBy":3,"priceMin":1000000,"priceMax":6500000}},
+  {"tool":"search_products","arguments":{"query":"X1 Yoga 3rd second","rows":60,"orderBy":3,"priceMin":1000000,"priceMax":6500000}},
+  {"tool":"search_products","arguments":{"query":"X1 Yoga Gen 3 minus","rows":60,"orderBy":3,"priceMin":1000000,"priceMax":6500000}}
+]
