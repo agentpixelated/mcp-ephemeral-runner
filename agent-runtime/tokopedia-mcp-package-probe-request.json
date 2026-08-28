@@ -1,6 +1,6 @@
 {
-  "tool":"search_products",
-  "arguments":{"query":"Flex 6-14IKB bottom case silver","rows":50,"orderBy":23},
-  "requestedAt":"2026-08-28T16:24:00+07:00",
-  "purpose":"find alternate silver lower/bottom case listing compatible with Yoga 530-14IKB / Flex 6-14IKB"
+  "tool":"get_product_detail",
+  "arguments":{"url":"https://www.tokopedia.com/bugglesstate844/org-for-lenovo-14-yoga-530-14-yoga-530-14ikb-flex6-14-lcd-back-cover-5cb0r08505-upper-cover-touchpad-bottom-case-silver-1730873813939685374"},
+  "requestedAt":"2026-08-28T16:26:00+07:00",
+  "purpose":"verify live stock/variants/price of silver Yoga 530-14IKB bottom case candidate before ranking and checkout recommendation"
 }
