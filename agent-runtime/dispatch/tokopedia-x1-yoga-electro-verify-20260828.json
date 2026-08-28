@@ -1,0 +1,9 @@
+{
+  "id": "tokopedia-x1-yoga-electro-verify-20260828",
+  "kind": "exec",
+  "payload": {
+    "argv": ["node", "src/cli.mjs", "workflow", "examples/tokopedia-long.json", "workflows/tokopedia-x1-yoga-electro-verify-20260828.json"],
+    "timeout_ms": 360000,
+    "max_output_bytes": 8000000
+  }
+}
