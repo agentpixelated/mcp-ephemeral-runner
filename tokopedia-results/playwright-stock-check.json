@@ -1,0 +1,114 @@
+{
+  "initialize": {
+    "protocolVersion": "2025-06-18",
+    "capabilities": {
+      "tools": {}
+    },
+    "serverInfo": {
+      "name": "Playwright",
+      "version": "1.63.0-alpha-2026-08-05"
+    }
+  },
+  "results": [
+    {
+      "step": 1,
+      "tool": "browser_navigate",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "### Error\nError: browserBackend.callTool: net::ERR_HTTP2_PROTOCOL_ERROR at https://www.tokopedia.com/hero-notebook-bandoeng/casing-lcd-led-lenovo-flex-6-lenovo-flex-6-14ikb-yoga-530-14ikb-yoga-530-original-laptop-1731551375376549756\nCall log:\n  - navigating to \"https://www.tokopedia.com/hero-notebook-bandoeng/casing-lcd-led-lenovo-flex-6-lenovo-flex-6-14ikb-yoga-530-14ikb-yoga-530-original-laptop-1731551375376549756\", waiting until \"domcontentloaded\"\n"
+          }
+        ],
+        "isError": true
+      }
+    },
+    {
+      "step": 2,
+      "tool": "browser_snapshot",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "### Page\n- Page URL: chrome-error://chromewebdata/\n- Page Title: www.tokopedia.com\n### Snapshot\n```yaml\n- generic [ref=e6]:\n  - heading \"This site can’t be reached\" [level=1] [ref=e7]\n  - paragraph [ref=e8]:\n    - text: The webpage at\n    - strong [ref=e9]: https://www.tokopedia.com/hero-notebook-bandoeng/casing-lcd-led-lenovo-flex-6-lenovo-flex-6-14ikb-yoga-530-14ikb-yoga-530-original-laptop-1731551375376549756\n    - text: might be temporarily down or it may have moved permanently to a new web address.\n  - generic [ref=e10]: ERR_HTTP2_PROTOCOL_ERROR\n```"
+          }
+        ]
+      }
+    },
+    {
+      "step": 3,
+      "tool": "browser_navigate",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "### Error\nError: browserBackend.callTool: net::ERR_HTTP2_PROTOCOL_ERROR at https://www.tokopedia.com/comp-online/new-lcd-back-top-cover-housing-for-lenovo-flex6-14-flex-6-14-yoga-530-14ikb-laptop-case-touchpad-fingerprint-1731570083398845597\nCall log:\n  - navigating to \"https://www.tokopedia.com/comp-online/new-lcd-back-top-cover-housing-for-lenovo-flex6-14-flex-6-14-yoga-530-14ikb-laptop-case-touchpad-fingerprint-1731570083398845597\", waiting until \"domcontentloaded\"\n"
+          }
+        ],
+        "isError": true
+      }
+    },
+    {
+      "step": 4,
+      "tool": "browser_snapshot",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "### Page\n- Page URL: chrome-error://chromewebdata/\n- Page Title: www.tokopedia.com\n### Snapshot\n```yaml\n- generic [ref=f1e6]:\n  - heading \"This site can’t be reached\" [level=1] [ref=f1e7]\n  - paragraph [ref=f1e8]:\n    - text: The webpage at\n    - strong [ref=f1e9]: https://www.tokopedia.com/comp-online/new-lcd-back-top-cover-housing-for-lenovo-flex6-14-flex-6-14-yoga-530-14ikb-laptop-case-touchpad-fingerprint-1731570083398845597\n    - text: might be temporarily down or it may have moved permanently to a new web address.\n  - generic [ref=f1e10]: ERR_HTTP2_PROTOCOL_ERROR\n```"
+          }
+        ]
+      }
+    },
+    {
+      "step": 5,
+      "tool": "browser_navigate",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "### Error\nError: browserBackend.callTool: net::ERR_HTTP2_PROTOCOL_ERROR at https://www.tokopedia.com/datamall/new-laptop-top-case-base-lcd-back-cover-for-flex6-14-flex-6-14-yoga530-14ikb-1732810313276688381\nCall log:\n  - navigating to \"https://www.tokopedia.com/datamall/new-laptop-top-case-base-lcd-back-cover-for-flex6-14-flex-6-14-yoga530-14ikb-1732810313276688381\", waiting until \"domcontentloaded\"\n"
+          }
+        ],
+        "isError": true
+      }
+    },
+    {
+      "step": 6,
+      "tool": "browser_snapshot",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "### Page\n- Page URL: chrome-error://chromewebdata/\n- Page Title: www.tokopedia.com\n### Snapshot\n```yaml\n- generic [ref=f2e6]:\n  - heading \"This site can’t be reached\" [level=1] [ref=f2e7]\n  - paragraph [ref=f2e8]:\n    - text: The webpage at\n    - strong [ref=f2e9]: https://www.tokopedia.com/datamall/new-laptop-top-case-base-lcd-back-cover-for-flex6-14-flex-6-14-yoga530-14ikb-1732810313276688381\n    - text: might be temporarily down or it may have moved permanently to a new web address.\n  - generic [ref=f2e10]: ERR_HTTP2_PROTOCOL_ERROR\n```"
+          }
+        ]
+      }
+    },
+    {
+      "step": 7,
+      "tool": "browser_navigate",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "### Error\nError: browserBackend.callTool: net::ERR_HTTP2_PROTOCOL_ERROR at https://www.tokopedia.com/bugglesstate844/org-for-lenovo-14-yoga-530-14-yoga-530-14ikb-flex6-14-lcd-back-cover-5cb0r08505-upper-cover-touchpad-bottom-case-silver-1730873813939685374\nCall log:\n  - navigating to \"https://www.tokopedia.com/bugglesstate844/org-for-lenovo-14-yoga-530-14-yoga-530-14ikb-flex6-14-lcd-back-cover-5cb0r08505-upper-cover-touchpad-bottom-case-silver-1730873813939685374\", waiting until \"domcontentloaded\"\n"
+          }
+        ],
+        "isError": true
+      }
+    },
+    {
+      "step": 8,
+      "tool": "browser_snapshot",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "### Page\n- Page URL: chrome-error://chromewebdata/\n- Page Title: www.tokopedia.com\n### Snapshot\n```yaml\n- generic [ref=f3e6]:\n  - heading \"This site can’t be reached\" [level=1] [ref=f3e7]\n  - paragraph [ref=f3e8]:\n    - text: The webpage at\n    - strong [ref=f3e9]: https://www.tokopedia.com/bugglesstate844/org-for-lenovo-14-yoga-530-14-yoga-530-14ikb-flex6-14-lcd-back-cover-5cb0r08505-upper-cover-touchpad-bottom-case-silver-1730873813939685374\n    - text: might be temporarily down or it may have moved permanently to a new web address.\n  - generic [ref=f3e10]: ERR_HTTP2_PROTOCOL_ERROR\n```"
+          }
+        ]
+      }
+    }
+  ]
+}
