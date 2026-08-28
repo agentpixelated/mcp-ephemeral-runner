@@ -1,14 +1,15 @@
 {
   "workflow": [
-    {"tool":"search_products","arguments":{"query":"5CB0R08530","rows":50,"orderBy":23}},
-    {"tool":"search_products","arguments":{"query":"AP173000500","rows":50,"orderBy":23}},
-    {"tool":"search_products","arguments":{"query":"Yoga 530 81EK casing bawah","rows":50,"orderBy":23}},
-    {"tool":"search_products","arguments":{"query":"Flex 6 81EM casing bawah","rows":50,"orderBy":23}},
-    {"tool":"search_products","arguments":{"query":"Yoga 530 14IKB lower case","rows":50,"orderBy":23}},
-    {"tool":"search_products","arguments":{"query":"Yoga 530 14IKB bottom cover","rows":50,"orderBy":23}},
-    {"tool":"search_products","arguments":{"query":"casing D Yoga 530 14IKB","rows":50,"orderBy":23}},
-    {"tool":"search_products","arguments":{"query":"casing bawah Flex 6 14IKB","rows":50,"orderBy":23}}
+    {"tool":"search_products","arguments":{"query":"Yoga 530 casing","rows":50,"orderBy":23}},
+    {"tool":"search_products","arguments":{"query":"Yoga 530 body","rows":50,"orderBy":23}},
+    {"tool":"search_products","arguments":{"query":"Flex 6 casing","rows":50,"orderBy":23}},
+    {"tool":"search_products","arguments":{"query":"Flex 6 14IKB casing","rows":50,"orderBy":23}},
+    {"tool":"search_products","arguments":{"query":"Yoga 530 14IKB casing","rows":50,"orderBy":23}},
+    {"tool":"search_products","arguments":{"query":"Yoga 530 bottom","rows":50,"orderBy":23}},
+    {"tool":"get_product_detail","arguments":{"url":"https://www.tokopedia.com/hero-notebook-bandoeng/casing-bawah-lenovo-flex-6-flex-6-14ikb-yoga-530-yoga-530-14ikb-original-laptop-1731551299343255420"}},
+    {"tool":"get_shop_info","arguments":{"shopDomain":"hero-notebook-bandoeng"}},
+    {"tool":"get_product_reviews","arguments":{"productId":"100551320937","page":1,"limit":20,"sort":"lowest_rating","filter":"all"}}
   ],
-  "requestedAt":"2026-08-28T16:07:00+07:00",
-  "purpose":"second-pass cheapest hunt for Lenovo Yoga 530-14IKB / Flex 6-14IKB bottom case using exact Lenovo FRU 5CB0R08530 and machine-type aliases 81EK/81EM"
+  "requestedAt":"2026-08-28T16:08:00+07:00",
+  "purpose":"broad final sweep and verification of the cheapest Lenovo Yoga 530-14IKB / Flex 6-14IKB bottom case candidate"
 }
