@@ -1,8 +1,0 @@
-{
-  "content": [
-    {
-      "type": "text",
-      "text": "No products found for \"Flex 6-14IKB bottom case silver\". Try a different keyword or loosen the filters."
-    }
-  ]
-}

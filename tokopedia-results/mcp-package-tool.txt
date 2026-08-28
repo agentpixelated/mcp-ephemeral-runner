@@ -1,1 +1,1 @@
-search_products
+get_product_detail
