@@ -1,0 +1,9 @@
+{
+  "id": "tokopedia-backdoor-stock-check",
+  "kind": "exec",
+  "payload": {
+    "argv": ["node", "src/cli.mjs", "workflow", "examples/playwright.json", "workflows/tokopedia-backdoor-stock-check.json"],
+    "timeout_ms": 240000,
+    "max_output_bytes": 12000000
+  }
+}
