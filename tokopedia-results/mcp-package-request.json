@@ -1,1 +1,38 @@
-{"query":"Lenovo Yoga 530 14IKB","rows":50,"page":2,"orderBy":23}
+[
+  {
+    "tool": "search_products",
+    "arguments": {
+      "query": "Lenovo Yoga 530 14IKB",
+      "rows": 50,
+      "page": 3,
+      "orderBy": 23
+    }
+  },
+  {
+    "tool": "search_products",
+    "arguments": {
+      "query": "Lenovo Yoga 530 14IKB",
+      "rows": 50,
+      "page": 4,
+      "orderBy": 23
+    }
+  },
+  {
+    "tool": "search_products",
+    "arguments": {
+      "query": "Lenovo Yoga 530 14IKB",
+      "rows": 50,
+      "page": 5,
+      "orderBy": 23
+    }
+  },
+  {
+    "tool": "search_products",
+    "arguments": {
+      "query": "Lenovo Yoga 530 14IKB",
+      "rows": 50,
+      "page": 6,
+      "orderBy": 23
+    }
+  }
+]
