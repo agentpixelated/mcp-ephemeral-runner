@@ -1,0 +1,6 @@
+[
+  {"tool":"get_product_reviews","arguments":{"productId":"103793777253","page":1,"limit":20,"sort":"lowest_rating","filter":"all"}},
+  {"tool":"get_product_reviews","arguments":{"productId":"103377444144","page":1,"limit":20,"sort":"lowest_rating","filter":"all"}},
+  {"tool":"get_product_reviews","arguments":{"productId":"103094858943","page":1,"limit":20,"sort":"lowest_rating","filter":"all"}},
+  {"tool":"get_product_reviews","arguments":{"productId":"16488594810","page":1,"limit":20,"sort":"lowest_rating","filter":"all"}}
+]
