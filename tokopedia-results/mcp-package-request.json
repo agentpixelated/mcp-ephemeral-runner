@@ -2,7 +2,7 @@
   {
     "tool": "search_products",
     "arguments": {
-      "query": "Lenovo Yoga 540-14IKB back cover",
+      "query": "5CB0R08530",
       "rows": 50,
       "orderBy": 23
     }
@@ -10,7 +10,7 @@
   {
     "tool": "search_products",
     "arguments": {
-      "query": "Lenovo Yoga 540-14IKB bottom case",
+      "query": "AP173000500",
       "rows": 50,
       "orderBy": 23
     }
@@ -18,7 +18,7 @@
   {
     "tool": "search_products",
     "arguments": {
-      "query": "Lenovo Yoga 540 14IKB casing bawah",
+      "query": "Yoga 530 81EK casing bawah",
       "rows": 50,
       "orderBy": 23
     }
@@ -26,7 +26,7 @@
   {
     "tool": "search_products",
     "arguments": {
-      "query": "Lenovo Yoga 530-14IKB bottom case",
+      "query": "Flex 6 81EM casing bawah",
       "rows": 50,
       "orderBy": 23
     }
@@ -34,7 +34,7 @@
   {
     "tool": "search_products",
     "arguments": {
-      "query": "Lenovo Yoga 530-14IKB D cover",
+      "query": "Yoga 530 14IKB lower case",
       "rows": 50,
       "orderBy": 23
     }
@@ -42,7 +42,23 @@
   {
     "tool": "search_products",
     "arguments": {
-      "query": "casing bawah Lenovo Yoga 530 14IKB",
+      "query": "Yoga 530 14IKB bottom cover",
+      "rows": 50,
+      "orderBy": 23
+    }
+  },
+  {
+    "tool": "search_products",
+    "arguments": {
+      "query": "casing D Yoga 530 14IKB",
+      "rows": 50,
+      "orderBy": 23
+    }
+  },
+  {
+    "tool": "search_products",
+    "arguments": {
+      "query": "casing bawah Flex 6 14IKB",
       "rows": 50,
       "orderBy": 23
     }
