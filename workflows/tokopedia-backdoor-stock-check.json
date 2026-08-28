@@ -1,10 +1,10 @@
 [
-  {"tool":"browser_navigate","arguments":{"url":"https://www.tokopedia.com/hero-notebook-bandoeng/casing-lcd-led-lenovo-flex-6-lenovo-flex-6-14ikb-yoga-530-14ikb-yoga-530-original-laptop-1731551375376549756"}},
-  {"tool":"browser_snapshot","arguments":{}},
-  {"tool":"browser_navigate","arguments":{"url":"https://www.tokopedia.com/comp-online/new-lcd-back-top-cover-housing-for-lenovo-flex6-14-flex-6-14-yoga-530-14ikb-laptop-case-touchpad-fingerprint-1731570083398845597"}},
-  {"tool":"browser_snapshot","arguments":{}},
-  {"tool":"browser_navigate","arguments":{"url":"https://www.tokopedia.com/datamall/new-laptop-top-case-base-lcd-back-cover-for-flex6-14-flex-6-14-yoga530-14ikb-1732810313276688381"}},
-  {"tool":"browser_snapshot","arguments":{}},
-  {"tool":"browser_navigate","arguments":{"url":"https://www.tokopedia.com/bugglesstate844/org-for-lenovo-14-yoga-530-14-yoga-530-14ikb-flex6-14-lcd-back-cover-5cb0r08505-upper-cover-touchpad-bottom-case-silver-1730873813939685374"}},
-  {"tool":"browser_snapshot","arguments":{}}
+  { "tool": "browser_navigate", "arguments": { "url": "https://www.tokopedia.com/hero-notebook-bandoeng/casing-lcd-led-lenovo-flex-6-lenovo-flex-6-14ikb-yoga-530-14ikb-yoga-530-original-laptop-1731551375376549756" } },
+  { "tool": "browser_snapshot", "arguments": {} },
+  { "tool": "browser_navigate", "arguments": { "url": "https://www.tokopedia.com/comp-online/new-lcd-back-top-cover-housing-for-lenovo-flex6-14-flex-6-14-yoga-530-14ikb-laptop-case-touchpad-fingerprint-1731570083398845597" } },
+  { "tool": "browser_snapshot", "arguments": {} },
+  { "tool": "browser_navigate", "arguments": { "url": "https://www.tokopedia.com/datamall/new-laptop-top-case-base-lcd-back-cover-for-flex6-14-flex-6-14-yoga530-14ikb-1732810313276688381" } },
+  { "tool": "browser_snapshot", "arguments": {} },
+  { "tool": "browser_navigate", "arguments": { "url": "https://www.tokopedia.com/bugglesstate844/org-for-lenovo-14-yoga-530-14-yoga-530-14ikb-flex6-14-lcd-back-cover-5cb0r08505-upper-cover-touchpad-bottom-case-silver-1730873813939685374" } },
+  { "tool": "browser_snapshot", "arguments": {} }
 ]
