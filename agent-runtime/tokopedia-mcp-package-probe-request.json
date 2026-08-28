@@ -1,6 +1,10 @@
 {
-  "tool":"search_products",
-  "arguments":{"query":"Lenovo Yoga 530 14IKB","rows":50,"page":2,"orderBy":23},
-  "requestedAt":"2026-08-28T16:18:00+07:00",
-  "purpose":"scan page 2 of broad Yoga 530-14IKB Tokopedia results for lower/bottom case listings, excluding known sold-out Hero item"
+  "workflow": [
+    {"tool":"search_products","arguments":{"query":"Lenovo Yoga 530 14IKB","rows":50,"page":3,"orderBy":23}},
+    {"tool":"search_products","arguments":{"query":"Lenovo Yoga 530 14IKB","rows":50,"page":4,"orderBy":23}},
+    {"tool":"search_products","arguments":{"query":"Lenovo Yoga 530 14IKB","rows":50,"page":5,"orderBy":23}},
+    {"tool":"search_products","arguments":{"query":"Lenovo Yoga 530 14IKB","rows":50,"page":6,"orderBy":23}}
+  ],
+  "requestedAt":"2026-08-28T16:20:00+07:00",
+  "purpose":"scan remaining Tokopedia search pages 3-6 for Yoga 530-14IKB lower/bottom case candidates and produce top three available alternatives"
 }
