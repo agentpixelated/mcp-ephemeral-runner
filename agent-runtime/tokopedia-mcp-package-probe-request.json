@@ -1,11 +1,11 @@
 {
   "workflow": [
-    {"tool":"search_products","arguments":{"query":"casing bawah flex 6 14ikb","rows":50,"orderBy":23}},
-    {"tool":"search_products","arguments":{"query":"base cover flex 6 14ikb","rows":50,"orderBy":23}},
-    {"tool":"search_products","arguments":{"query":"lower case flex 6 14ikb","rows":50,"orderBy":23}},
-    {"tool":"search_products","arguments":{"query":"d cover flex 6 14ikb","rows":50,"orderBy":23}},
-    {"tool":"search_products","arguments":{"query":"5CB0R08530 Lenovo","rows":50,"orderBy":23}}
+    {"tool":"search_products","arguments":{"query":"body Yoga 530 14IKB","rows":50,"orderBy":23}},
+    {"tool":"search_products","arguments":{"query":"casing lengkap Yoga 530 14IKB","rows":50,"orderBy":23}},
+    {"tool":"search_products","arguments":{"query":"kanibal Yoga 530 14IKB","rows":50,"orderBy":23}},
+    {"tool":"search_products","arguments":{"query":"body Flex 6 14IKB","rows":50,"orderBy":23}},
+    {"tool":"search_products","arguments":{"query":"casing Yoga 530 silver","rows":50,"orderBy":23}}
   ],
-  "requestedAt":"2026-08-28T16:29:00+07:00",
-  "purpose":"final synonym sweep for Lenovo Yoga 530-14IKB / Flex 6-14IKB bottom base cover; prioritize silver where titles expose color"
+  "requestedAt":"2026-08-28T16:32:00+07:00",
+  "purpose":"hunt cheaper donor/body/casing options for Yoga 530-14IKB / Flex 6-14IKB, prioritizing silver and usable lower case"
 }
