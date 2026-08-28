@@ -1,0 +1,36 @@
+name: Tokopedia Playwright stock check
+
+on:
+  push:
+    paths:
+      - 'workflows/tokopedia-backdoor-stock-check.json'
+
+permissions:
+  contents: write
+
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run Playwright MCP through ephemeral runner
+        shell: bash
+        run: |
+          set +e
+          mkdir -p tokopedia-results
+          timeout --signal=TERM 300s node src/cli.mjs workflow examples/playwright.json workflows/tokopedia-backdoor-stock-check.json > tokopedia-results/playwright-stock-check.json 2> tokopedia-results/playwright-stock-check.stderr.txt
+          printf '%s\n' "$?" > tokopedia-results/playwright-stock-check.exit-code.txt
+          exit 0
+      - name: Persist stock check
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add tokopedia-results/playwright-stock-check.json tokopedia-results/playwright-stock-check.stderr.txt tokopedia-results/playwright-stock-check.exit-code.txt
+          git commit -m 'chore: update Tokopedia Playwright stock check' || exit 0
+          git push
