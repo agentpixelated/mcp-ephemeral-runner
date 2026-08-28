@@ -1,0 +1,88 @@
+{
+  "initialize": {
+    "protocolVersion": "2025-06-18",
+    "capabilities": {
+      "tools": {
+        "listChanged": true
+      }
+    },
+    "serverInfo": {
+      "name": "tokopedia-mcp",
+      "version": "2.1.0"
+    }
+  },
+  "results": [
+    {
+      "step": 1,
+      "tool": "search_products",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "No products found for \"Lenovo Yoga 540-14IKB back cover\". Try a different keyword or loosen the filters."
+          }
+        ]
+      }
+    },
+    {
+      "step": 2,
+      "tool": "search_products",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "No products found for \"Lenovo Yoga 540-14IKB bottom case\". Try a different keyword or loosen the filters."
+          }
+        ]
+      }
+    },
+    {
+      "step": 3,
+      "tool": "search_products",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "No products found for \"Lenovo Yoga 540 14IKB casing bawah\". Try a different keyword or loosen the filters."
+          }
+        ]
+      }
+    },
+    {
+      "step": 4,
+      "tool": "search_products",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "🛒 Search Results for \"0\"\n📊 1 total products | Page 1/1\n\n1. **/org For Lenovo 14\" YOGA 530-14 Yoga 530-14ikb Flex6-14 LCD back cover 5CB0R08505 /Upper cover /Touchpad /Bottom case,Silver**\n   💰 Rp1.591.000\n   ⭐ N/A | 🏪 Buggles State (Bandung) | 🆔 16263097132\n   🔗 https://www.tokopedia.com/bugglesstate844/org-for-lenovo-14-yoga-530-14-yoga-530-14ikb-flex6-14-lcd-back-cover-5cb0r08505-upper-cover-touchpad-bottom-case-silver-1730873813939685374?extParam=ivf%3Dfalse%26keyword%3Dlenovo+yoga+530-14ikb+bottom+case%26search_id%3D2026082809061840008B9A5380FC09EGYL%26src%3Dsearch"
+          }
+        ]
+      }
+    },
+    {
+      "step": 5,
+      "tool": "search_products",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "No products found for \"Lenovo Yoga 530-14IKB D cover\". Try a different keyword or loosen the filters."
+          }
+        ]
+      }
+    },
+    {
+      "step": 6,
+      "tool": "search_products",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "🛒 Search Results for \"0\"\n📊 1 total products | Page 1/1\n\n1. **Casing Bawah Lenovo Flex 6 Flex 6-14IKB Yoga 530 Yoga 530-14IKB Original Laptop**\n   💰 Rp350.000\n   ⭐ N/A | 🏪 Hero Notebook Bandoeng [Power Store] (Cimahi) | 🆔 100551320937\n   🔗 https://www.tokopedia.com/hero-notebook-bandoeng/casing-bawah-lenovo-flex-6-flex-6-14ikb-yoga-530-yoga-530-14ikb-original-laptop-1731551299343255420?extParam=ivf%3Dfalse%26keyword%3Dcasing+bawah+lenovo+yoga+530+14ikb%26search_id%3D20260828090618B83AAC23B952873844GT%26src%3Dsearch"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,1 +1,50 @@
-{"url":"https://www.tokopedia.com/oneoutdoor/tablet-tou-control-digital-pen-stylus-for-len-thinkpad-pro-yoga-x1"}
+[
+  {
+    "tool": "search_products",
+    "arguments": {
+      "query": "Lenovo Yoga 540-14IKB back cover",
+      "rows": 50,
+      "orderBy": 23
+    }
+  },
+  {
+    "tool": "search_products",
+    "arguments": {
+      "query": "Lenovo Yoga 540-14IKB bottom case",
+      "rows": 50,
+      "orderBy": 23
+    }
+  },
+  {
+    "tool": "search_products",
+    "arguments": {
+      "query": "Lenovo Yoga 540 14IKB casing bawah",
+      "rows": 50,
+      "orderBy": 23
+    }
+  },
+  {
+    "tool": "search_products",
+    "arguments": {
+      "query": "Lenovo Yoga 530-14IKB bottom case",
+      "rows": 50,
+      "orderBy": 23
+    }
+  },
+  {
+    "tool": "search_products",
+    "arguments": {
+      "query": "Lenovo Yoga 530-14IKB D cover",
+      "rows": 50,
+      "orderBy": 23
+    }
+  },
+  {
+    "tool": "search_products",
+    "arguments": {
+      "query": "casing bawah Lenovo Yoga 530 14IKB",
+      "rows": 50,
+      "orderBy": 23
+    }
+  }
+]
