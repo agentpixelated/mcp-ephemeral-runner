@@ -1,0 +1,41 @@
+name: temp-social-matrix
+
+on:
+  push:
+    branches:
+      - temp-social-matrix-20260830
+
+jobs:
+  inspect-playwright-mcp:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install Chromium for Playwright
+        run: npx -y playwright@latest install chromium --with-deps
+
+      - name: Configure ephemeral Playwright MCP
+        run: |
+          cat > /tmp/playwright-mcp.json <<'JSON'
+          {
+            "command": "npx",
+            "args": ["-y", "@playwright/mcp", "--headless", "--browser", "chromium"],
+            "timeoutMs": 120000
+          }
+          JSON
+
+      - name: Inspect MCP tools through ephemeral runner
+        run: |
+          mkdir -p temp-social-results
+          node src/cli.mjs inspect /tmp/playwright-mcp.json > temp-social-results/playwright-tools.json
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: temp-social-matrix-inspect
+          path: temp-social-results/
+          retention-days: 1
