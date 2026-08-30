@@ -1,0 +1,16 @@
+[
+  {
+    "tool": "resolve-library-id",
+    "arguments": {
+      "libraryName": "Next.js",
+      "query": "How do Cache Components work in Next.js 16?"
+    }
+  },
+  {
+    "tool": "query-docs",
+    "arguments": {
+      "libraryId": "/vercel/next.js",
+      "query": "How do Cache Components work in Next.js 16?"
+    }
+  }
+]

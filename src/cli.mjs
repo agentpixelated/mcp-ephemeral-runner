@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { McpStdioClient } from './mcp-client.mjs';
+import { createMcpClient } from './mcp-client-factory.mjs';
 
 function usage() {
-  console.log(`\nMCP Ephemeral Runner\n\nUsage:\n  mcp-runner inspect <config.json>\n  mcp-runner call <config.json> <tool-name> [arguments-json]\n  mcp-runner workflow <config.json> <workflow.json>\n\nThe server is started for the command, MCP handshake is performed, tools are used, and the process is terminated.\n`);
+  console.log(`\nMCP Ephemeral Runner\n\nUsage:\n  mcp-runner inspect <config.json>\n  mcp-runner call <config.json> <tool-name> [arguments-json]\n  mcp-runner workflow <config.json> <workflow.json>\n\nThe MCP session is started for the command, handshake is performed, tools are used, and the process/session is terminated.\n`);
 }
 
 async function readJson(file) {
@@ -37,7 +37,7 @@ function expandEnv(value) {
 }
 
 const config = expandEnv(await readJson(configPath));
-const client = new McpStdioClient(config);
+const client = createMcpClient(config);
 
 try {
   const init = await client.start();
