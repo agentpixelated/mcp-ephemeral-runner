@@ -1,0 +1,12 @@
+{
+  "kind": "exec",
+  "payload": {
+    "argv": [
+      "bash",
+      "-lc",
+      "set -euo pipefail; node src/cli.mjs inspect examples/playwright.json"
+    ],
+    "cwd": ".",
+    "timeout_ms": 180000
+  }
+}
