@@ -6,9 +6,9 @@ on:
       - temp-social-matrix-20260830
 
 jobs:
-  inspect-playwright-mcp:
+  research:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
 
@@ -25,17 +25,31 @@ jobs:
           {
             "command": "npx",
             "args": ["-y", "@playwright/mcp", "--headless", "--browser", "chromium"],
-            "timeoutMs": 120000
+            "timeoutMs": 180000
           }
           JSON
 
-      - name: Inspect MCP tools through ephemeral runner
+      - name: Build social research workflow
         run: |
           mkdir -p temp-social-results
-          node src/cli.mjs inspect /tmp/playwright-mcp.json > temp-social-results/playwright-tools.json
+          cat > /tmp/research-workflow.json <<'JSON'
+          [
+            {
+              "tool": "browser_run_code_unsafe",
+              "timeoutMs": 180000,
+              "arguments": {
+                "code": "async (page) => { const queries = [\"\\\"MATRIX UI 2026\\\" voucher\",\"\\\"MATRIX UI 2026\\\" \\\"kode promo\\\"\",\"\\\"MATRIX UI 2026\\\" diskon\",\"\\\"MATRIX UI 2026\\\" ambassador\",\"site:instagram.com \\\"matrixui.2026\\\" voucher\",\"site:instagram.com \\\"matrixui.2026\\\" promo\",\"site:instagram.com \\\"MATRIX UI 2026\\\" ambassador\",\"site:tiktok.com \\\"matrixui.2026\\\"\",\"site:x.com \\\"matrixui.2026\\\"\",\"site:threads.net \\\"matrixui.2026\\\"\",\"\\\"matrixui.2026\\\" \\\"media partner\\\"\",\"\\\"MATRIX UI 2026\\\" \\\"special promo\\\"\"]; const out={searchedAt:new Date().toISOString(),engines:{google:[],bing:[]},direct:[]}; const clean=s=>(s||'').replace(/\\s+/g,' ').trim().slice(0,700); for (const q of queries){ try{await page.goto('https://www.google.com/search?q='+encodeURIComponent(q)+'&num=20',{waitUntil:'domcontentloaded',timeout:25000}); await page.waitForTimeout(1200); const data=await page.locator('body').evaluate((body)=>{const a=[...body.querySelectorAll('a')].map(x=>({text:(x.innerText||'').replace(/\\s+/g,' ').trim(),href:x.href})).filter(x=>x.text&&x.href).slice(0,60); return {title:document.title,text:(body.innerText||'').slice(0,12000),links:a};}); out.engines.google.push({q,title:data.title,text:clean(data.text),links:data.links.slice(0,25)});}catch(e){out.engines.google.push({q,error:String(e)});} try{await page.goto('https://www.bing.com/search?q='+encodeURIComponent(q)+'&count=20',{waitUntil:'domcontentloaded',timeout:25000}); await page.waitForTimeout(1000); const data=await page.locator('body').evaluate((body)=>{const a=[...body.querySelectorAll('a')].map(x=>({text:(x.innerText||'').replace(/\\s+/g,' ').trim(),href:x.href})).filter(x=>x.text&&x.href).slice(0,60); return {title:document.title,text:(body.innerText||'').slice(0,12000),links:a};}); out.engines.bing.push({q,title:data.title,text:clean(data.text),links:data.links.slice(0,25)});}catch(e){out.engines.bing.push({q,error:String(e)});} } const direct=[['instagram','https://www.instagram.com/matrixui.2026/'],['tiktok-search','https://www.tiktok.com/search?q=matrix%20ui%202026'],['threads','https://www.threads.net/@matrixui.2026']]; for(const [name,url] of direct){try{await page.goto(url,{waitUntil:'domcontentloaded',timeout:30000}); await page.waitForTimeout(2500); const body=await page.locator('body').innerText().catch(()=> ''); const links=await page.locator('a').evaluateAll(as=>as.slice(0,80).map(a=>({text:(a.innerText||'').replace(/\\s+/g,' ').trim(),href:a.href})).filter(x=>x.text&&x.href)); out.direct.push({name,url:page.url(),title:await page.title(),text:clean(body),links:links.slice(0,30)});}catch(e){out.direct.push({name,url,error:String(e)});} } return JSON.stringify(out); }"
+              }
+            }
+          ]
+          JSON
+
+      - name: Run temporary MCP social research
+        run: |
+          node src/cli.mjs workflow /tmp/playwright-mcp.json /tmp/research-workflow.json > temp-social-results/matrix-social-research.json
 
       - uses: actions/upload-artifact@v4
         with:
-          name: temp-social-matrix-inspect
+          name: temp-social-matrix-research
           path: temp-social-results/
           retention-days: 1
