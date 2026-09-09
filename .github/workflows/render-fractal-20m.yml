@@ -22,16 +22,15 @@ jobs:
       - name: Install system dependencies
         run: |
           sudo apt-get update
-          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y \
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
             ffmpeg libcairo2-dev libpango1.0-dev pkg-config python3-dev \
-            texlive texlive-latex-extra texlive-fonts-extra texlive-science \
+            texlive-latex-base texlive-latex-extra dvisvgm \
             fonts-dejavu-core espeak-ng
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.13'
-          cache: 'pip'
 
       - name: Install Python dependencies
         run: |
