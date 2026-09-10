@@ -5,6 +5,7 @@ on:
     branches: [render/fractal-20m-20260909]
     paths:
       - '.github/workflows/test-fractal-v2-scene.yml'
+      - 'fractal_video/v2_source.py.gz.b64'
 
 jobs:
   test:
