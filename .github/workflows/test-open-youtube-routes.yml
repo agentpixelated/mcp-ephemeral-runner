@@ -1,0 +1,81 @@
+name: test-open-youtube-routes
+
+on:
+  push:
+    branches: [render/fractal-20m-20260909]
+    paths:
+      - '.github/workflows/test-open-youtube-routes.yml'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends curl jq ffmpeg
+          mkdir -p route_test
+      - name: Test official 3Blue1Brown sources
+        run: |
+          set +e
+          curl -L -sS -o route_test/lesson.html -w '3b1b lesson HTTP %{http_code}\n' 'https://www.3blue1brown.com/lessons/fractal-dimension/' | tee route_test/status.txt
+          curl -L -sS -o route_test/fractal_dimension.py -w '3b1b source HTTP %{http_code}\n' 'https://raw.githubusercontent.com/3b1b/videos/master/_2017/fractal_dimension.py' | tee -a route_test/status.txt
+      - name: Test Piped public APIs
+        run: |
+          set +e
+          for api in \
+            'https://pipedapi.kavin.rocks' \
+            'https://pipedapi.adminforge.de' \
+            'https://pipedapi.reallyaweso.me'; do
+            name=$(echo "$api" | sed 's#https://##;s#[^A-Za-z0-9]#_#g')
+            code=$(curl -L --connect-timeout 8 --max-time 20 -sS -o "route_test/piped_${name}.json" -w '%{http_code}' "$api/streams/gB9n2gHsHN4")
+            echo "PIPED $api HTTP $code bytes $(wc -c < route_test/piped_${name}.json 2>/dev/null)" | tee -a route_test/status.txt
+            if [ "$code" = 200 ]; then
+              jq '{title,videoStreams:(.videoStreams|length),audioStreams:(.audioStreams|length)}' "route_test/piped_${name}.json" >> route_test/status.txt 2>/dev/null
+              u=$(jq -r '[.videoStreams[]? | select(.height <= 360) | .url][0] // empty' "route_test/piped_${name}.json")
+              if [ -n "$u" ]; then
+                mcode=$(curl -L --connect-timeout 8 --max-time 20 -sS --range 0-1048575 -o "route_test/piped_${name}.bin" -w '%{http_code}' "$u")
+                echo "PIPED_MEDIA $api HTTP $mcode bytes $(wc -c < route_test/piped_${name}.bin 2>/dev/null)" | tee -a route_test/status.txt
+              fi
+            fi
+          done
+      - name: Test trusted Invidious public instances
+        run: |
+          set +e
+          curl -L -sS --max-time 20 'https://api.invidious.io/instances.json?sort_by=health' -o route_test/invidious_instances.json
+          for api in 'https://inv.nadeko.net' 'https://invidious.nerdvpn.de'; do
+            name=$(echo "$api" | sed 's#https://##;s#[^A-Za-z0-9]#_#g')
+            code=$(curl -L --connect-timeout 8 --max-time 20 -sS -o "route_test/inv_${name}.json" -w '%{http_code}' "$api/api/v1/videos/gB9n2gHsHN4")
+            echo "INVIDIOUS $api HTTP $code bytes $(wc -c < route_test/inv_${name}.json 2>/dev/null)" | tee -a route_test/status.txt
+            if [ "$code" = 200 ]; then
+              jq '{title,formatStreams:(.formatStreams|length),adaptiveFormats:(.adaptiveFormats|length)}' "route_test/inv_${name}.json" >> route_test/status.txt 2>/dev/null
+              u=$(jq -r '[.formatStreams[]? | select(.height <= 360) | .url][0] // empty' "route_test/inv_${name}.json")
+              if [ -n "$u" ]; then
+                mcode=$(curl -L --connect-timeout 8 --max-time 20 -sS --range 0-1048575 -o "route_test/inv_${name}.bin" -w '%{http_code}' "$u")
+                echo "INVIDIOUS_MEDIA $api HTTP $mcode bytes $(wc -c < route_test/inv_${name}.bin 2>/dev/null)" | tee -a route_test/status.txt
+              fi
+            fi
+          done
+      - name: Test Cobalt official public endpoint
+        run: |
+          set +e
+          code=$(curl -L --connect-timeout 8 --max-time 25 -sS -o route_test/cobalt.json -w '%{http_code}' \
+            -H 'Accept: application/json' -H 'Content-Type: application/json' \
+            --data '{"url":"https://www.youtube.com/watch?v=gB9n2gHsHN4","videoQuality":"360"}' \
+            'https://api.cobalt.tools/')
+          echo "COBALT official HTTP $code bytes $(wc -c < route_test/cobalt.json 2>/dev/null)" | tee -a route_test/status.txt
+          head -c 1000 route_test/cobalt.json >> route_test/status.txt 2>/dev/null
+          echo >> route_test/status.txt
+      - name: Test known public mirror used for reference analysis
+        run: |
+          set +e
+          url='https://huggingface.co/buckets/chr1ce/VideodrData/resolve/3blue1brown/Fractals%20are%20typically%20not%20self-similar%20%5BgB9n2gHsHN4%5D.mp4?download=true'
+          code=$(curl -L --connect-timeout 8 --max-time 30 -sS --range 0-1048575 -o route_test/hf_sample.bin -w '%{http_code}' "$url")
+          echo "HF_MIRROR HTTP $code bytes $(wc -c < route_test/hf_sample.bin 2>/dev/null)" | tee -a route_test/status.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: open-youtube-route-test
+          path: route_test
+          retention-days: 2
