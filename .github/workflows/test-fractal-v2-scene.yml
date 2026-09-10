@@ -1,0 +1,47 @@
+name: test-fractal-v2-scene
+
+on:
+  push:
+    branches: [render/fractal-20m-20260909]
+    paths:
+      - '.github/workflows/test-fractal-v2-scene.yml'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Manim runtime
+        run: |
+          sudo apt-get update -qq
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+            ffmpeg libcairo2-dev libpango1.0-dev pkg-config python3-dev \
+            texlive-latex-base texlive-latex-extra dvisvgm fonts-dejavu-core
+          python -m pip install --upgrade pip
+          python -m pip install 'manim==0.21.0'
+      - name: Prepare compressed all-scene test
+        working-directory: fractal_video
+        run: |
+          base64 -d v2_source.py.gz.b64 | gunzip > fractal_video.py
+          python -m py_compile fractal_video.py
+          python - <<'PY'
+          import json
+          n=json.load(open('narration.json'))
+          json.dump([{'id':x['id'],'duration':14.0} for x in n],open('timings.json','w'))
+          PY
+      - name: Render all sections low-res
+        working-directory: fractal_video
+        run: manim -r 640,360 --fps 10 fractal_video.py FractalExplainer
+      - name: Make QA contact sheet
+        working-directory: fractal_video
+        run: |
+          V="$(find media -type f -name 'FractalExplainer.mp4' | head -n1)"
+          mkdir -p smoke_qa
+          ffmpeg -y -loglevel error -i "$V" -vf 'fps=1/24,scale=320:-2,tile=4x4:padding=3:margin=3' -q:v 3 smoke_qa/contact_%02d.jpg
+          ffprobe -v error -show_entries format=duration,size -of json "$V" > smoke_qa/ffprobe.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fractal-v2-smoke-qa
+          path: fractal_video/smoke_qa
+          retention-days: 2
