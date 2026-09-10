@@ -1,0 +1,55 @@
+name: analyze-3b1b-reference
+
+on:
+  push:
+    branches: [render/fractal-20m-20260909]
+    paths:
+      - '.github/workflows/analyze-3b1b-reference.yml'
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends ffmpeg
+          python -m pip install --upgrade pip yt-dlp
+          yt-dlp --version
+      - name: Download official 3Blue1Brown reference videos with yt-dlp
+        run: |
+          mkdir -p refs/videos refs/sheets refs/keyframes
+          yt-dlp --no-playlist --merge-output-format mp4 \
+            -f 'bv*[height<=360]+ba/b[height<=360]' \
+            -o 'refs/videos/%(id)s.%(ext)s' \
+            'https://www.youtube.com/watch?v=gB9n2gHsHN4' \
+            'https://www.youtube.com/watch?v=LqbZpur38nw'
+      - name: Extract contact sheets and keyframes
+        run: |
+          set -e
+          for v in refs/videos/*.mp4; do
+            id=$(basename "$v" .mp4)
+            ffmpeg -hide_banner -loglevel error -i "$v" \
+              -vf "fps=1/20,scale=426:-2,tile=4x4:padding=4:margin=4" \
+              -q:v 3 "refs/sheets/${id}_sheet_%02d.jpg"
+          done
+          # Fractal dimension video key moments
+          for spec in 'gB9n2gHsHN4 00:00:25' 'gB9n2gHsHN4 00:02:10' 'gB9n2gHsHN4 00:04:30' 'gB9n2gHsHN4 00:07:10' 'gB9n2gHsHN4 00:10:40' 'gB9n2gHsHN4 00:13:10' \
+                      'LqbZpur38nw 00:00:35' 'LqbZpur38nw 00:04:40' 'LqbZpur38nw 00:08:40' 'LqbZpur38nw 00:13:20' 'LqbZpur38nw 00:18:00' 'LqbZpur38nw 00:24:00'; do
+            set -- $spec; id=$1; ts=$2
+            ffmpeg -hide_banner -loglevel error -ss "$ts" -i "refs/videos/${id}.mp4" -frames:v 1 -q:v 2 "refs/keyframes/${id}_${ts//:/-}.jpg"
+          done
+      - name: Save metadata
+        run: |
+          for v in refs/videos/*.mp4; do
+            ffprobe -v error -show_entries format=filename,duration,size -show_entries stream=codec_name,width,height,r_frame_rate -of json "$v"
+          done > refs/metadata.json
+          rm -rf refs/videos
+      - uses: actions/upload-artifact@v4
+        with:
+          name: 3b1b-reference-analysis
+          path: refs
+          compression-level: 6
+          retention-days: 7
