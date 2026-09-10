@@ -9,23 +9,31 @@ on:
 jobs:
   analyze:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 35
     steps:
       - uses: actions/checkout@v4
       - name: Install tools
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y --no-install-recommends ffmpeg
-          python -m pip install --upgrade pip yt-dlp
+          python -m pip install --upgrade pip 'yt-dlp[default]'
+          node --version
           yt-dlp --version
       - name: Download official 3Blue1Brown reference videos with yt-dlp
         run: |
+          set -e
           mkdir -p refs/videos refs/sheets refs/keyframes
-          yt-dlp --no-playlist --merge-output-format mp4 \
-            -f 'bv*[height<=360]+ba/b[height<=360]' \
-            -o 'refs/videos/%(id)s.%(ext)s' \
-            'https://www.youtube.com/watch?v=gB9n2gHsHN4' \
-            'https://www.youtube.com/watch?v=LqbZpur38nw'
+          download_one() {
+            url="$1"
+            yt-dlp --no-playlist --merge-output-format mp4 \
+              --js-runtimes node \
+              --remote-components ejs:github \
+              --extractor-args 'youtube:player_client=web_embedded' \
+              -f 'bv*[height<=360]+ba/b[height<=360]' \
+              -o 'refs/videos/%(id)s.%(ext)s' "$url"
+          }
+          download_one 'https://www.youtube.com/watch?v=gB9n2gHsHN4'
+          download_one 'https://www.youtube.com/watch?v=LqbZpur38nw'
       - name: Extract contact sheets and keyframes
         run: |
           set -e
@@ -35,7 +43,6 @@ jobs:
               -vf "fps=1/20,scale=426:-2,tile=4x4:padding=4:margin=4" \
               -q:v 3 "refs/sheets/${id}_sheet_%02d.jpg"
           done
-          # Fractal dimension video key moments
           for spec in 'gB9n2gHsHN4 00:00:25' 'gB9n2gHsHN4 00:02:10' 'gB9n2gHsHN4 00:04:30' 'gB9n2gHsHN4 00:07:10' 'gB9n2gHsHN4 00:10:40' 'gB9n2gHsHN4 00:13:10' \
                       'LqbZpur38nw 00:00:35' 'LqbZpur38nw 00:04:40' 'LqbZpur38nw 00:08:40' 'LqbZpur38nw 00:13:20' 'LqbZpur38nw 00:18:00' 'LqbZpur38nw 00:24:00'; do
             set -- $spec; id=$1; ts=$2
