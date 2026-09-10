@@ -15,44 +15,43 @@ jobs:
       - name: Install tools
         run: |
           sudo apt-get update -qq
-          sudo apt-get install -y --no-install-recommends ffmpeg
+          sudo apt-get install -y --no-install-recommends ffmpeg curl
           python -m pip install --upgrade pip 'yt-dlp[default]'
-          node --version
-          yt-dlp --version
-      - name: Download official 3Blue1Brown reference videos with yt-dlp
+          yt-dlp --version > refs_yt_dlp_version.txt
+      - name: Record yt-dlp channel-source attempt
+        continue-on-error: true
+        run: |
+          yt-dlp --no-playlist --js-runtimes node --remote-components ejs:github \
+            --extractor-args 'youtube:player_client=web_embedded' \
+            --simulate 'https://www.youtube.com/watch?v=gB9n2gHsHN4' 2>&1 | tee yt_dlp_attempt.log
+      - name: Fetch mirrored copies of the exact 3Blue1Brown channel videos
         run: |
           set -e
           mkdir -p refs/videos refs/sheets refs/keyframes
-          download_one() {
-            url="$1"
-            yt-dlp --no-playlist --merge-output-format mp4 \
-              --js-runtimes node \
-              --remote-components ejs:github \
-              --extractor-args 'youtube:player_client=web_embedded' \
-              -f 'bv*[height<=360]+ba/b[height<=360]' \
-              -o 'refs/videos/%(id)s.%(ext)s' "$url"
-          }
-          download_one 'https://www.youtube.com/watch?v=gB9n2gHsHN4'
-          download_one 'https://www.youtube.com/watch?v=LqbZpur38nw'
-      - name: Extract contact sheets and keyframes
+          base='https://huggingface.co/buckets/chr1ce/VideodrData/resolve/3blue1brown'
+          curl -L --fail --retry 3 -o refs/videos/gB9n2gHsHN4.mp4 "$base/Fractals%20are%20typically%20not%20self-similar%20%5BgB9n2gHsHN4%5D.mp4?download=true"
+          curl -L --fail --retry 3 -o refs/videos/RU0wScIj36o.mp4 "$base/Fractal%20charm%EF%BC%9A%20Space%20filling%20curves%20%5BRU0wScIj36o%5D.mp4?download=true"
+          curl -L --fail --retry 3 -o refs/videos/rfG8ce4nNh0.mp4 "$base/Integration%20and%20the%20fundamental%20theorem%20of%20calculus%20%EF%BD%9C%20Chapter%208%2C%20Essence%20of%20calculus%20%5BrfG8ce4nNh0%5D.mp4?download=true"
+      - name: Extract dense contact sheets and keyframes
         run: |
           set -e
           for v in refs/videos/*.mp4; do
             id=$(basename "$v" .mp4)
             ffmpeg -hide_banner -loglevel error -i "$v" \
-              -vf "fps=1/20,scale=426:-2,tile=4x4:padding=4:margin=4" \
-              -q:v 3 "refs/sheets/${id}_sheet_%02d.jpg"
+              -vf "fps=1/12,scale=426:-2,tile=4x4:padding=4:margin=4" \
+              -q:v 3 "refs/sheets/${id}_sheet_%03d.jpg"
           done
-          for spec in 'gB9n2gHsHN4 00:00:25' 'gB9n2gHsHN4 00:02:10' 'gB9n2gHsHN4 00:04:30' 'gB9n2gHsHN4 00:07:10' 'gB9n2gHsHN4 00:10:40' 'gB9n2gHsHN4 00:13:10' \
-                      'LqbZpur38nw 00:00:35' 'LqbZpur38nw 00:04:40' 'LqbZpur38nw 00:08:40' 'LqbZpur38nw 00:13:20' 'LqbZpur38nw 00:18:00' 'LqbZpur38nw 00:24:00'; do
-            set -- $spec; id=$1; ts=$2
-            ffmpeg -hide_banner -loglevel error -ss "$ts" -i "refs/videos/${id}.mp4" -frames:v 1 -q:v 2 "refs/keyframes/${id}_${ts//:/-}.jpg"
-          done
-      - name: Save metadata
+          extract(){ ffmpeg -hide_banner -loglevel error -ss "$2" -i "refs/videos/$1.mp4" -frames:v 1 -q:v 2 "refs/keyframes/${1}_${2//:/-}.jpg"; }
+          for ts in 00:00:20 00:01:20 00:02:40 00:04:00 00:05:20 00:06:40 00:08:00 00:09:20 00:10:40 00:12:00 00:13:20; do extract gB9n2gHsHN4 $ts; done
+          for ts in 00:00:20 00:01:20 00:02:40 00:04:00 00:05:20 00:06:40; do extract RU0wScIj36o $ts; done
+          for ts in 00:00:20 00:01:30 00:03:00 00:04:30 00:06:00 00:07:30 00:09:00; do extract rfG8ce4nNh0 $ts; done
+      - name: Save metadata and remove full videos
         run: |
           for v in refs/videos/*.mp4; do
             ffprobe -v error -show_entries format=filename,duration,size -show_entries stream=codec_name,width,height,r_frame_rate -of json "$v"
           done > refs/metadata.json
+          cp yt_dlp_attempt.log refs/yt_dlp_attempt.log || true
+          cp refs_yt_dlp_version.txt refs/yt_dlp_version.txt
           rm -rf refs/videos
       - uses: actions/upload-artifact@v4
         with:
