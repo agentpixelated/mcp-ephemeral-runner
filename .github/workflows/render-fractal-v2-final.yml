@@ -1,0 +1,155 @@
+name: render-fractal-v2-final
+
+on:
+  push:
+    branches: [render/fractal-20m-20260909]
+    paths:
+      - '.github/workflows/render-fractal-v2-final.yml'
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  final:
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install render runtime
+        run: |
+          sudo apt-get update -qq
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+            ffmpeg unzip libcairo2-dev libpango1.0-dev pkg-config python3-dev \
+            texlive-latex-base texlive-latex-extra dvisvgm fonts-dejavu-core
+          python -m pip install --upgrade pip
+          python -m pip install 'manim==0.21.0' pillow
+          manim --version
+
+      - name: Recover verified v2 scene and apply final patches
+        run: |
+          set -euo pipefail
+          git show c164c562e25e1fbaeac622eaa92e55d66966f8b7:fractal_video/v2_source.py.gz.b64 \
+            | tr -d '\r\n' | base64 -d | gunzip > fractal_video/fractal_video_v2_final.py
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          p=Path('fractal_video/fractal_video_v2_final.py')
+          s=p.read_text()
+          s,n=re.subn(r'ReplacementTransform\(fern\s*,\s*tri\)', 'FadeOut(fern),FadeIn(tri)', s)
+          if n != 1:
+              raise SystemExit(f'fern->triangle patch expected once, got {n}')
+
+          old='''    img[...,0]=(15+65*np.clip(t*2.1,0,1)).astype(np.uint8)\n    img[...,1]=(38+190*np.clip(t*1.65,0,1)).astype(np.uint8)\n    img[...,2]=(50+200*np.clip(1-np.abs(t-.33)*1.7,0,1)).astype(np.uint8)\n    bands=(.5+.5*np.cos(30*t))\n    img=(img*(.65+.35*bands[...,None])).astype(np.uint8)'''
+          new='''    q=np.clip(np.sqrt(t)*1.70,0,1)\n    bands=.55+.45*(.5+.5*np.cos(30*t))\n    img[...,0]=(18*q*bands).astype(np.uint8)\n    img[...,1]=(175*q*bands).astype(np.uint8)\n    img[...,2]=(225*q*bands).astype(np.uint8)'''
+          if old not in s:
+              raise SystemExit('Mandelbrot palette block not found')
+          s=s.replace(old,new,1)
+
+          oldj='''    img[...,0]=(18+100*np.clip(t*1.8,0,1)).astype(np.uint8)\n    img[...,1]=(28+190*np.clip(1-np.abs(t-.35)*1.8,0,1)).astype(np.uint8)\n    img[...,2]=(55+195*np.clip(1-t*.55,0,1)).astype(np.uint8)'''
+          newj='''    q=np.clip(np.sqrt(t)*1.65,0,1)\n    bands=.58+.42*(.5+.5*np.cos(27*t))\n    img[...,0]=(22*q*bands).astype(np.uint8)\n    img[...,1]=(165*q*bands).astype(np.uint8)\n    img[...,2]=(220*q*bands).astype(np.uint8)'''
+          if oldj not in s:
+              raise SystemExit('Julia palette block not found')
+          s=s.replace(oldj,newj,1)
+          p.write_text(s)
+          PY
+          cp fractal_video/fractal_video_v2_final.py fractal_video/fractal_video.py
+          python -m py_compile fractal_video/fractal_video.py
+          sha256sum fractal_video/fractal_video.py | tee fractal_video/source.sha256
+
+      - name: Reuse verified 20-minute neural narration and timings
+        run: |
+          set -euo pipefail
+          curl -L --fail --retry 3 \
+            -H 'Accept: application/vnd.github+json' \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H 'X-GitHub-Api-Version: 2022-11-28' \
+            -o /tmp/v1-artifact.zip \
+            'https://api.github.com/repos/agentpixelated/mcp-ephemeral-runner/actions/artifacts/10109780885/zip'
+          mkdir -p /tmp/v1-cache
+          unzip -q /tmp/v1-artifact.zip -d /tmp/v1-cache
+          cp /tmp/v1-cache/source/timings.json fractal_video/timings.json
+          ffmpeg -y -loglevel error -i /tmp/v1-cache/fractals_20min_final.mp4 \
+            -vn -ar 24000 -ac 1 -c:a pcm_s16le fractal_video/narration.wav
+          python - <<'PY'
+          import json, wave
+          t=json.load(open('fractal_video/timings.json'))
+          print('sections',len(t),'timing_total',sum(float(x['duration']) for x in t))
+          with wave.open('fractal_video/narration.wav','rb') as w:
+              print('audio_seconds',w.getnframes()/w.getframerate())
+          assert len(t)==21
+          assert abs(sum(float(x['duration']) for x in t)-1200)<0.05
+          PY
+
+      - name: Render final Manim animation 720p24
+        working-directory: fractal_video
+        run: |
+          set -euo pipefail
+          manim -r 1280,720 --fps 24 fractal_video.py FractalExplainer
+          find media -type f -name 'FractalExplainer.mp4' -print
+
+      - name: Mux narration and enforce exact 20 minutes
+        working-directory: fractal_video
+        run: |
+          set -euo pipefail
+          SILENT="$(find media -type f -name 'FractalExplainer.mp4' | head -n1)"
+          test -n "$SILENT"
+          ffmpeg -y -loglevel error -i "$SILENT" -i narration.wav \
+            -map 0:v:0 -map 1:a:0 -t 1200 \
+            -c:v libx264 -preset veryfast -crf 22 -pix_fmt yuv420p \
+            -c:a aac -b:a 144k -af 'loudnorm=I=-16:TP=-1:LRA=7' \
+            -movflags +faststart fractals_20min_3b1b_v2_final.mp4
+
+      - name: Visual and technical QA
+        working-directory: fractal_video
+        run: |
+          set -euo pipefail
+          mkdir -p qa_frames
+          ffprobe -v error \
+            -show_entries format=duration,size,bit_rate:stream=index,codec_name,codec_type,width,height,r_frame_rate,sample_rate,channels \
+            -of json fractals_20min_3b1b_v2_final.mp4 > ffprobe.json
+          for T in 00:00:10 00:02:30 00:05:00 00:07:30 00:10:00 00:12:30 00:15:00 00:17:30 00:19:30; do
+            SAFE="${T//:/_}"
+            ffmpeg -y -loglevel error -ss "$T" -i fractals_20min_3b1b_v2_final.mp4 -frames:v 1 "qa_frames/${SAFE}.png"
+          done
+          ffmpeg -y -loglevel error -i fractals_20min_3b1b_v2_final.mp4 \
+            -vf 'fps=1/75,scale=320:-2,tile=4x4:padding=3:margin=3' -frames:v 1 -q:v 2 qa_contact.jpg
+          python - <<'PY'
+          import json, pathlib
+          from PIL import Image
+          import numpy as np
+          info=json.load(open('ffprobe.json'))
+          dur=float(info['format']['duration'])
+          assert abs(dur-1200.0)<0.08, dur
+          streams=info['streams']
+          assert any(x.get('codec_type')=='video' and x.get('codec_name')=='h264' and x.get('width')==1280 and x.get('height')==720 for x in streams)
+          assert any(x.get('codec_type')=='audio' and x.get('codec_name')=='aac' for x in streams)
+          rep=[]
+          for p in sorted(pathlib.Path('qa_frames').glob('*.png')):
+              a=np.asarray(Image.open(p).convert('RGB'))
+              rep.append({'file':p.name,'mean':round(float(a.mean()),3),'std':round(float(a.std()),3),'near_black_fraction':round(float((a.mean(axis=2)<8).mean()),4)})
+          pathlib.Path('qa_report.json').write_text(json.dumps(rep,indent=2))
+          print(json.dumps(rep,indent=2))
+          PY
+
+      - name: Package final deliverable
+        working-directory: fractal_video
+        run: |
+          mkdir -p deliverable/source deliverable/qa
+          cp fractals_20min_3b1b_v2_final.mp4 deliverable/
+          cp fractal_video.py narration.json timings.json source.sha256 deliverable/source/
+          cp ffprobe.json qa_report.json qa_contact.jpg deliverable/qa/
+          cp -r qa_frames deliverable/qa/
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fractals-20min-3b1b-v2-final
+          path: fractal_video/deliverable
+          compression-level: 0
+          if-no-files-found: error
+          retention-days: 7
