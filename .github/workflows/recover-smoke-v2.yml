@@ -1,0 +1,77 @@
+name: recover-smoke-v2
+
+on:
+  push:
+    branches: [render/fractal-20m-20260909]
+    paths:
+      - '.github/workflows/recover-smoke-v2.yml'
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Install Manim runtime
+        run: |
+          sudo apt-get update -qq
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+            ffmpeg libcairo2-dev libpango1.0-dev pkg-config python3-dev \
+            texlive-latex-base texlive-latex-extra dvisvgm fonts-dejavu-core
+          python -m pip install --upgrade pip
+          python -m pip install 'manim==0.21.0'
+      - name: Recover last known-good v2 source
+        run: |
+          set -euo pipefail
+          git show c164c562e25e1fbaeac622eaa92e55d66966f8b7:fractal_video/v2_source.py.gz.b64 \
+            | tr -d '\r\n' | base64 -d | gunzip > fractal_video/fractal_video.py
+          python -m py_compile fractal_video/fractal_video.py
+          sha256sum fractal_video/fractal_video.py | tee fractal_video/recovered_source.sha256
+          grep -n -E 'def ifs|ReplacementTransform\(fern|ImageMobject\(barnsley' fractal_video/fractal_video.py | tee fractal_video/recovered_ifs_before.txt
+      - name: Patch incompatible IFS image transform
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          p=Path('fractal_video/fractal_video.py')
+          s=p.read_text()
+          s2,n=re.subn(r'ReplacementTransform\(fern\s*,\s*tri\)', 'FadeOut(fern),FadeIn(tri)', s)
+          if n != 1:
+              raise SystemExit(f'Expected exactly one fern->tri replacement, got {n}')
+          p.write_text(s2)
+          PY
+          python -m py_compile fractal_video/fractal_video.py
+          grep -n -E 'def ifs|FadeOut\(fern\)|ReplacementTransform\(fern' fractal_video/fractal_video.py | tee fractal_video/recovered_ifs_after.txt
+      - name: Compress all narration timings for smoke render
+        working-directory: fractal_video
+        run: |
+          python - <<'PY'
+          import json
+          n=json.load(open('narration.json'))
+          json.dump([{'id':x['id'],'duration':12.0} for x in n],open('timings.json','w'))
+          print('sections', len(n))
+          PY
+      - name: Render every v2 section low-res
+        working-directory: fractal_video
+        run: manim -r 640,360 --fps 10 fractal_video.py FractalExplainer
+      - name: Build smoke QA sheets
+        working-directory: fractal_video
+        run: |
+          set -e
+          V="$(find media -type f -name 'FractalExplainer.mp4' | head -n1)"
+          test -n "$V"
+          mkdir -p smoke_qa
+          cp fractal_video.py smoke_qa/fractal_video_v2_recovered.py
+          cp recovered_source.sha256 recovered_ifs_before.txt recovered_ifs_after.txt smoke_qa/
+          ffprobe -v error -show_entries format=duration,size -show_entries stream=codec_name,width,height,r_frame_rate -of json "$V" > smoke_qa/ffprobe.json
+          ffmpeg -y -loglevel error -i "$V" -vf 'fps=1/15,scale=320:-2,tile=4x4:padding=3:margin=3' -q:v 3 smoke_qa/contact_%02d.jpg
+          for t in 00:00:10 00:00:40 00:01:10 00:01:40 00:02:10 00:02:40 00:03:10 00:03:40; do
+            ffmpeg -y -loglevel error -ss "$t" -i "$V" -frames:v 1 -q:v 2 "smoke_qa/frame_${t//:/-}.jpg"
+          done
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fractal-v2-recovered-smoke
+          path: fractal_video/smoke_qa
+          retention-days: 3
