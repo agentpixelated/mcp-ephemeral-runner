@@ -11,12 +11,16 @@ jobs:
     timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
-      - name: Install Auto-Editor and FFmpeg
+      - name: Install Auto-Editor 31.6.0 repo release and FFmpeg
         run: |
+          set -euo pipefail
           sudo apt-get update -qq
           sudo apt-get install -y -qq ffmpeg
-          python -m pip install --upgrade pip
-          pip install auto-editor
+          python -m pip install --quiet pillow
+          curl -fL https://github.com/WyattBlue/auto-editor/releases/download/31.6.0/auto-editor-linux-x86_64 -o /tmp/auto-editor
+          echo 'ad38d62dda324bf5adf820e7c49fd982c30e4b9b89682a6f9a441b6485edd29a  /tmp/auto-editor' | sha256sum -c -
+          chmod +x /tmp/auto-editor
+          sudo install /tmp/auto-editor /usr/local/bin/auto-editor
           auto-editor --version
       - name: Download and verify source
         run: |
@@ -27,6 +31,7 @@ jobs:
           test "$(md5sum source.mp4 | cut -d' ' -f1)" = 536fd423ff1733d868e7e1528b342966
       - name: Preview explicit editorial ranges
         run: |
+          set -euo pipefail
           auto-editor source.mp4 --edit 0 \
             --keep 1111sec,1137sec 1570sec,1595sec 1826sec,1880sec 2029sec,2058sec 2265sec,2295sec 2332sec,2360sec \
             --preview | tee preview.txt
@@ -61,37 +66,36 @@ jobs:
           mkdir -p output/review
           dur=$(ffprobe -v error -show_entries format=duration -of csv=p=0 "$final")
           python - "$dur" <<'PY'
-          import sys,subprocess,os
-          d=float(sys.argv[1]); times=[]; t=0
-          while t<d: times.append(t); t+=5
-          for i,t in enumerate(times):
+          import sys,subprocess
+          d=float(sys.argv[1]); t=0; i=0
+          while t<d:
             subprocess.run(['ffmpeg','-hide_banner','-loglevel','error','-ss',str(t),'-i','output/CU_2026-09-12_highlight_draft.mp4','-frames:v','1','-vf','scale=640:-2',f'output/review/f{i:03d}_{t:.1f}.jpg'],check=True)
+            i+=1; t+=5
           PY
           python - <<'PY'
           from PIL import Image,ImageDraw,ImageFont
           from pathlib import Path
-          import math,re
+          import math
           p=sorted(Path('output/review').glob('f*.jpg')); cols=4; rows=4; font=ImageFont.load_default(size=18)
           for si in range(math.ceil(len(p)/16)):
             batch=p[si*16:(si+1)*16]; ims=[Image.open(x).convert('RGB') for x in batch]
             w,h=ims[0].size; lh=26; sh=Image.new('RGB',(cols*w,rows*(h+lh)),'black'); dr=ImageDraw.Draw(sh)
             for j,(im,path) in enumerate(zip(ims,batch)):
-              x=(j%cols)*w; y=(j//cols)*(h+lh); sh.paste(im,(x,y));
-              ts=path.stem.split('_')[-1]; dr.text((x+5,y+h+3),ts+'s',fill='white',font=font)
+              x=(j%cols)*w; y=(j//cols)*(h+lh); sh.paste(im,(x,y)); ts=path.stem.split('_')[-1]; dr.text((x+5,y+h+3),ts+'s',fill='white',font=font)
             sh.save(f'output/review_sheet_{si:02d}.jpg',quality=90)
           PY
           cat > output/edit_ledger.csv <<'EOF'
-          clip_id,source_in,source_out,planned_duration,event_basis
-          clip_01,1111,1137,26,C09 early high-activity candidate
-          clip_02,1570,1595,25,C12 red/damage-like event
-          clip_03,1826,1880,54,C14-C15 strongest incident chain
-          clip_04,2029,2058,29,C18 injury/interaction-like event
-          clip_05,2265,2295,30,C20 red-suit/person encounter
-          clip_06,2332,2360,28,C21 gun-visible interaction
-          EOF
+clip_id,source_in,source_out,planned_duration,event_basis
+clip_01,1111,1137,26,C09 early high-activity candidate
+clip_02,1570,1595,25,C12 red/damage-like event
+clip_03,1826,1880,54,C14-C15 strongest incident chain
+clip_04,2029,2058,29,C18 injury/interaction-like event
+clip_05,2265,2295,30,C20 red-suit/person encounter
+clip_06,2332,2360,28,C21 gun-visible interaction
+EOF
       - uses: actions/upload-artifact@v4
         with:
-          name: cu-edit-draft
+          name: cu-edit-draft-v2
           path: output
           retention-days: 1
           compression-level: 0
