@@ -1,0 +1,262 @@
+# C:U dense refinement report
+
+## A_C12 1565-1597s
+- scene changes: (none)
+- strongest 2s frames:
+  - 1585.0s score=65.7 rms=-23.04 delta=21.43 event=3 menu=0 :: a screenshot of a person in a dark room :: OCR 1m storminn! wi mi Jell [crn Jo@@aQooe
+  - 1593.0s score=64.9 rms=-24.17 delta=22.47 event=3 menu=0 :: a screenshot of a man in a dark room :: OCR eT succ, | 1m stormion b=) tay ke YIO@@QDOOEOO@ Pes
+  - 1581.0s score=59.3 rms=-17.09 delta=5.12 event=3 menu=0 :: a screenshot of a person in a dark room :: OCR lant frult (4150 ES 4 cH) VYIO@@OO@s
+  - 1571.0s score=52.1 rms=-23.43 delta=8.51 event=3 menu=0 :: a screenshot of a man in a dark room :: OCR Ope csarnalas beac Fat 3 Ae ice c) VIO@@@OO@z
+  - 1595.0s score=44.8 rms=-31.81 delta=23.81 event=3 menu=1 :: a screenshot of a dark room with a red background :: OCR filet Geuplant fruit (STI cH) YO@@OOOs
+  - 1575.0s score=43.6 rms=-45.81 delta=7.6 event=3 menu=0 :: a screenshot of a dark room with a red light :: OCR gap ete from Came: VIO@@OO@s
+- timeline:
+  - 1565.0s rms=-38.65 delta=0.0 ev=0 menu=1 :: a screen shot of a screen showing a map of the area :: tant frult (47H) eee od ee rahe VIO@@@OO@2
+  - 1567.0s rms=-22.16 delta=11.7 ev=0 menu=0 :: a screen shot of a video game :: 3 ee ae cH) VIO@@@OOO@z bad
+  - 1569.0s rms=-35.78 delta=8.41 ev=0 menu=0 :: a screen shot of a space station :: eran costs coed — oc ooo xe Ba bay =e ry cH) VYIO@@@OOC@z toe
+  - 1571.0s rms=-23.43 delta=8.51 ev=3 menu=0 :: a screenshot of a man in a dark room :: Ope csarnalas beac Fat 3 Ae ice c) VIO@@@OO@z
+  - 1573.0s rms=-35.53 delta=10.91 ev=0 menu=0 :: a screenshot of a castle in the middle of the game :: a ep te ct) 2, YIO@@OO@s S.
+  - 1575.0s rms=-45.81 delta=7.6 ev=3 menu=0 :: a screenshot of a dark room with a red light :: gap ete from Came: VIO@@OO@s
+  - 1577.0s rms=-28.82 delta=8.5 ev=2 menu=0 :: a screenshot of a man standing in front of a red background :: TO open accel 2», | cH) VYIO@@OO@s
+  - 1579.0s rms=-39.72 delta=8.61 ev=3 menu=1 :: a screenshot of a person in a dark room :: lot @lemplant fruit (42x) oe * cam cH) YIO@@OOOs
+  - 1581.0s rms=-17.09 delta=5.12 ev=3 menu=0 :: a screenshot of a person in a dark room :: lant frult (4150 ES 4 cH) VYIO@@OO@s
+  - 1583.0s rms=-36.18 delta=9.39 ev=1 menu=0 :: a screenshot of the game ' s avatar, with a red background and a black background :: lant frult C4150 ‘es cH) VIO@@OO@s
+  - 1585.0s rms=-23.04 delta=21.43 ev=3 menu=0 :: a screenshot of a person in a dark room :: 1m storminn! wi mi Jell [crn Jo@@aQooe
+  - 1587.0s rms=-21.69 delta=5.8 ev=2 menu=0 :: a screenshot of a man with a red heart on his chest :: es _| rm stormion! - [crn YID@@OOEO@
+  - 1589.0s rms=-24.63 delta=3.18 ev=2 menu=0 :: a screenshot of a man with a red heart on his chest :: 1m stormion! 4.4) . Wid f\~ | asa ° [crn YIOD@@OOOO@
+  - 1591.0s rms=-48.8 delta=20.82 ev=1 menu=0 :: a screenshot of a video game with a red background :: mm a ae =e Cc) PO@@OOOs 22,
+  - 1593.0s rms=-24.17 delta=22.47 ev=3 menu=0 :: a screenshot of a man in a dark room :: eT succ, | 1m stormion b=) tay ke YIO@@QDOOEOO@ Pes
+  - 1595.0s rms=-31.81 delta=23.81 ev=3 menu=1 :: a screenshot of a dark room with a red background :: filet Geuplant fruit (STI cH) YO@@OOOs
+  - 1597.0s rms=-28.63 delta=4.72 ev=3 menu=0 :: a screenshot of a dark room with a red background :: oof semplant frome 3650 7 # cH) PIO@@OOOs
+
+## B_C14_C15 1818-1880s
+- scene changes: (none)
+- strongest 2s frames:
+  - 1860.0s score=85.3 rms=-11.35 delta=21.51 event=3 menu=0 :: a screenshot of a man in a dark room :: OCR Fars | =| —_. = |e Se ve —— Biss a) _ Ge ee
+  - 1842.0s score=61.0 rms=-17.56 delta=19.55 event=2 menu=0 :: a screenshot of a dark room with a black and white background :: OCR oo Bs Pag | ed Dy pan
+  - 1832.0s score=57.3 rms=-20.13 delta=20.15 event=2 menu=0 :: a screenshot of a dark room with green lights :: OCR REALLY oto ann! ba | igi E = @ % an Jel alsaaoooeoe — a Re,
+  - 1838.0s score=53.4 rms=-25.14 delta=12.66 event=3 menu=0 :: a screenshot of a person in a dark room :: OCR = cmmunpeeyh seats ana! a 4 |ss* qo 2]6@OOGOOs
+  - 1822.0s score=53.2 rms=-27.91 delta=5.06 event=4 menu=0 :: a screenshot of a person in a dark room :: OCR FE > seman ya es io ig [*, es an a meta Ey res
+  - 1834.0s score=50.2 rms=-22.73 delta=5.37 event=3 menu=0 :: a screenshot of a person in a dark room :: OCR Resco | [22s nou-canes | t sé) Vlo@e@OGOOO@
+- timeline:
+  - 1818.0s rms=-18.71 delta=0.0 ev=1 menu=0 :: a computer screen with a picture of a person in the background :: gap eetent oon eee Cee i. eh 7 2]6o@OO0O0Os i
+  - 1820.0s rms=-29.51 delta=4.01 ev=3 menu=0 :: a screenshot of a person in a dark room :: eT ae FM ascot oh se i. | ahs ws, rg c) 9 b@O00002 RRS — mtg
+  - 1822.0s rms=-27.91 delta=5.06 ev=4 menu=0 :: a screenshot of a person in a dark room :: FE > seman ya es io ig [*, es an a meta Ey res
+  - 1824.0s rms=-30.8 delta=9.48 ev=3 menu=0 :: a screenshot of a person in a dark room :: EM cancameryh-cafer < sccd i i’, ae + Ce & ¢ — YlO@@O@: |
+  - 1826.0s rms=-21.98 delta=3.5 ev=2 menu=0 :: a screenshot of a dark room with a light on it :: gap inna et oan Cae 2 Es, tT a a, E = WA fayororny
+  - 1828.0s rms=-28.7 delta=8.84 ev=3 menu=0 :: a screenshot of a person in a dark room :: ga etree eee ‘a i, contin isaac neue: —_— = hal
+  - 1830.0s rms=-28.34 delta=6.02 ev=3 menu=0 :: a screenshot of a person in a dark room :: gap ete ai i ar iy f ome ct) ~Maboeoees —_— |
+  - 1832.0s rms=-20.13 delta=20.15 ev=2 menu=0 :: a screenshot of a dark room with green lights :: REALLY oto ann! ba | igi E = @ % an Jel alsaaoooeoe — a Re,
+  - 1834.0s rms=-22.73 delta=5.37 ev=3 menu=0 :: a screenshot of a person in a dark room :: Resco | [22s nou-canes | t sé) Vlo@e@OGOOO@
+  - 1836.0s rms=-24.46 delta=25.7 ev=1 menu=0 :: a man in a black shirt standing in front of a screen :: gap aetna oon is. ae t , # cH) Pe € Vlo@O@G0O5 - —_
+  - 1838.0s rms=-25.14 delta=12.66 ev=3 menu=0 :: a screenshot of a person in a dark room :: = cmmunpeeyh seats ana! a 4 |ss* qo 2]6@OOGOOs
+  - 1840.0s rms=-25.14 delta=9.09 ev=3 menu=0 :: a screenshot of a person in a dark room :: - as [e* 7 es
+  - 1842.0s rms=-17.56 delta=19.55 ev=2 menu=0 :: a screenshot of a dark room with a black and white background :: oo Bs Pag | ed Dy pan
+  - 1844.0s rms=-26.67 delta=10.53 ev=2 menu=0 :: a screenshot of a dark room with a purple light :: ne -. Le, -. — ee oF a”, b= a “ie
+  - 1846.0s rms=-30.69 delta=4.37 ev=3 menu=0 :: a screenshot of a person in a dark room :: ial ee“shey —s = Pg ee iy 4 a. ae
+  - 1848.0s rms=-18.38 delta=8.07 ev=0 menu=0 :: a screen shot of a video game :: Gi 2, =x. 5 ee ‘oneal aes a ca SS
+  - 1850.0s rms=-32.85 delta=9.19 ev=3 menu=0 :: a screenshot of a person in a dark room :: GR: ome = 4 od + . baal ee ta —<— —
+  - 1852.0s rms=-30.96 delta=15.3 ev=1 menu=0 :: a black and white image of a man in a black suit :: ee ee Oe an Prat =~. =e & a We
+  - 1854.0s rms=-21.28 delta=8.16 ev=1 menu=0 :: a black and white image of a man in a suit :: ai oe BE Sa Ee ae x on e x. -e a aes eal
+  - 1856.0s rms=-24.41 delta=9.61 ev=1 menu=0 :: a screen shot of a video game with a dark background :: eae =" —-— ty — a
+  - 1858.0s rms=-14.87 delta=8.31 ev=0 menu=0 :: a screenshot of a black hole in the middle of the game :: EE moe a aa a a. ~*~ ee Are ® — si Cos th V6 OOOt ——
+  - 1860.0s rms=-11.35 delta=21.51 ev=3 menu=0 :: a screenshot of a man in a dark room :: Fars | =| —_. = |e Se ve —— Biss a) _ Ge ee
+  - 1862.0s rms=-31.05 delta=21.79 ev=2 menu=0 :: a screenshot of a dark cave with a cave in the background :: - my BM " ootem OO > i hr
+  - 1864.0s rms=-23.83 delta=12.56 ev=2 menu=0 :: a screen shot of a dark room with a large window :: Gi tigi tm Gt ‘itis " CY a ae
+  - 1866.0s rms=-29.67 delta=10.72 ev=0 menu=0 :: a screenshot of a black hole in the sky :: - % Pod i . lo) ? fad
+  - 1868.0s rms=-29.82 delta=18.8 ev=0 menu=0 :: a screenshot of a black hole in the sky :: > Canvas slel*T+] moat pp ———s ah me a nat 2 1 pe oe 1 > 3 fez cant) Ee wi a oy = a ae fcr thea 6 ©) OoOo*—— =|
+  - 1870.0s rms=-33.0 delta=17.76 ev=0 menu=0 :: a screenshot of a video game with a black background :: laa Sad eS >" At. oak " dio) lf ae
+  - 1872.0s rms=-22.21 delta=6.8 ev=0 menu=0 :: a screen shot of a video game :: > ts 4, 1d > i. ™
+  - 1874.0s rms=-27.21 delta=6.53 ev=2 menu=0 :: a screenshot of a dark room with a large hole in the middle :: PS od > Ais Car of) Ole ae a
+  - 1876.0s rms=-32.2 delta=4.87 ev=0 menu=0 :: a screen shot of a video game :: Ra SR ie ‘Sa fe 4, = Ok 4 O1n) Fe a
+  - 1878.0s rms=-24.48 delta=5.64 ev=1 menu=0 :: a screenshot of a video game with a dark background :: Ge ee natin. 0 a >" «4. at a " wet oe es
+  - 1880.0s rms=-26.89 delta=5.03 ev=1 menu=0 :: a screen shot of a game screen with a dark background :: a ae ger Rake meant =" Lf) = oe eo 1 rs ae
+
+## C_C16_C17 1895-1955s
+- scene changes: (none)
+- strongest 2s frames:
+  - 1903.0s score=72.1 rms=-13.97 delta=24.68 event=2 menu=0 :: a screenshot of a man with a gun :: OCR i \ we *, he ee
+  - 1911.0s score=66.6 rms=-13.88 delta=7.09 event=3 menu=0 :: a screenshot of a man in a dark room :: OCR ae . I ie Ps ses loa j=
+  - 1905.0s score=65.9 rms=-16.42 delta=10.63 event=3 menu=0 :: a screenshot of a person in a dark room :: OCR sea a 1? > Y we AT: OO@ 3
+  - 1909.0s score=65.7 rms=-14.5 delta=7.21 event=3 menu=0 :: a screenshot of a person in a dark room :: OCR yernen =, 1? Pa ARs. the Wie 2s; Pa
+  - 1907.0s score=61.7 rms=-17.48 delta=8.14 event=3 menu=0 :: a screenshot of a man in a dark room :: OCR a! ~~ —— iq & a AAA =a Ps Re ae — 6 OO OO. ae bas
+  - 1919.0s score=56.2 rms=-16.1 delta=24.32 event=1 menu=0 :: a screenshot of a man in a space suit :: OCR AAA a, g a e| — DO) fae,
+- timeline:
+  - 1895.0s rms=-30.77 delta=0.0 ev=0 menu=0 :: a screen shot of a space station :: ae AY od ty > 9 ore — V6
+  - 1897.0s rms=-37.58 delta=10.1 ev=0 menu=0 :: a screen shot of a space station :: ee L > ya — 3s mt) Ole bo OW be
+  - 1899.0s rms=-29.61 delta=20.48 ev=0 menu=0 :: a screenshot of a black hole with a green light on it :: persevere Conve sLelT*T+ Tete) ‘ Er os as oe — ae om Cha rr vlo Q) OOm
+  - 1901.0s rms=-24.48 delta=17.36 ev=0 menu=0 :: a screenshot of a black hole in the sky :: _— RS od | cs com a) ty > 3 ef)? pray |e OOD
+  - 1903.0s rms=-13.97 delta=24.68 ev=2 menu=0 :: a screenshot of a man with a gun :: i \ we *, he ee
+  - 1905.0s rms=-16.42 delta=10.63 ev=3 menu=0 :: a screenshot of a person in a dark room :: sea a 1? > Y we AT: OO@ 3
+  - 1907.0s rms=-17.48 delta=8.14 ev=3 menu=0 :: a screenshot of a man in a dark room :: a! ~~ —— iq & a AAA =a Ps Re ae — 6 OO OO. ae bas
+  - 1909.0s rms=-14.5 delta=7.21 ev=3 menu=0 :: a screenshot of a person in a dark room :: yernen =, 1? Pa ARs. the Wie 2s; Pa
+  - 1911.0s rms=-13.88 delta=7.09 ev=3 menu=0 :: a screenshot of a man in a dark room :: ae . I ie Ps ses loa j=
+  - 1913.0s rms=-14.91 delta=11.71 ev=1 menu=0 :: a screenshot of a man in a space suit :: Ps Resales ty =, rT A g a OO
+  - 1915.0s rms=-21.35 delta=24.34 ev=0 menu=0 :: a screen shot of a video game :: eo. oe = C3 a, Ee
+  - 1917.0s rms=-30.18 delta=7.42 ev=0 menu=0 :: a screen shot of a video game :: ma == [ems coms a ik #, iia dla) fe le
+  - 1919.0s rms=-16.1 delta=24.32 ev=1 menu=0 :: a screenshot of a man in a space suit :: AAA a, g a e| — DO) fae,
+  - 1921.0s rms=-19.87 delta=24.44 ev=0 menu=0 :: a screenshot of a black hole in the sky :: i ne a, @ O@ FF i.
+  - 1923.0s rms=-30.25 delta=10.98 ev=0 menu=0 :: a screenshot of a black hole in the sky :: a, a ivlo oa
+  - 1925.0s rms=-17.46 delta=7.75 ev=0 menu=0 :: a screenshot of a black hole in the sky :: EB at lecrs coms a= =o os a, & *: we NN) a i
+  - 1927.0s rms=-27.74 delta=10.68 ev=0 menu=0 :: a screenshot of a black hole in the sky :: or a a, ee ra bar Ole = |
+  - 1929.0s rms=-32.65 delta=10.52 ev=0 menu=0 :: a screenshot of a black hole in the sky :: a od ~ * boas to =? by <n vo
+  - 1931.0s rms=-31.43 delta=8.45 ev=2 menu=0 :: a screenshot of a dark cave with a hole in the middle :: ila HEN we i se ~~ ed a. 6 OO
+  - 1933.0s rms=-29.8 delta=7.29 ev=0 menu=0 :: a screenshot of a black hole in the sky :: ae a > nt vlo —
+  - 1935.0s rms=-27.0 delta=6.97 ev=0 menu=0 :: a screenshot of a black hole in the sky :: — (ol) — a % ~~ es vlo ret Ce ae:
+  - 1937.0s rms=-28.91 delta=6.46 ev=0 menu=0 :: a screenshot of a black hole in the middle of the screen :: Cet es s > t lf ee
+  - 1939.0s rms=-16.97 delta=21.67 ev=1 menu=0 :: a screenshot of a man in a space suit :: ts a aaa Ey oe pea) [ el
+  - 1941.0s rms=-25.22 delta=21.3 ev=0 menu=0 :: a screenshot of a black hole in the sky :: =~ reetgue. Ems tnt > eh = — ivlo aa
+  - 1943.0s rms=-18.08 delta=21.51 ev=1 menu=0 :: a screenshot of a man in a space suit :: yong to catching ees a Hoo’. _*) ed TBStoy 03 4 ¢, ANAAANAA | ea) ol me OG ihe , alse a
+  - 1945.0s rms=-30.58 delta=21.93 ev=0 menu=0 :: a screenshot of a black hole with a hole in the middle :: Bind > gang eae tategete term Hamre ine. nt > le Sei oe OC =, oe > i. he
+  - 1947.0s rms=-31.11 delta=7.16 ev=0 menu=0 :: a screen shot of a space station :: Sa! Pe gees ah in sort —_ FS -.
+  - 1949.0s rms=-27.6 delta=8.34 ev=0 menu=0 :: a screenshot of a black hole in the sky :: oO ae ee US oe = oe a a
+  - 1951.0s rms=-23.85 delta=5.9 ev=0 menu=0 :: a screenshot of a black hole in the sky :: ey -— ons woe = ad ss Sa oe = et & es “he,
+  - 1953.0s rms=-27.31 delta=6.35 ev=0 menu=0 :: a screenshot of a black hole with a hole in the middle :: — bl sp op prt ap =. ee ome am, > i eid a
+  - 1955.0s rms=-27.06 delta=7.46 ev=0 menu=0 :: a screen shot of a space station :: a en ee —_ > “hr
+
+## D_C18 2025-2060s
+- scene changes: (none)
+- strongest 2s frames:
+  - 2049.0s score=56.7 rms=-26.77 delta=30.62 event=2 menu=0 :: a screenshot of a black hole in a dark room :: OCR ee res TOIOOIO!
+  - 2027.0s score=52.3 rms=-21.62 delta=5.66 event=3 menu=0 :: a screenshot of a person in a dark room :: OCR hi = = = - | 8 ca
+  - 2033.0s score=45.5 rms=-35.19 delta=21.5 event=2 menu=0 :: a screen shot of a dark room with a large window :: OCR ce r nm Me
+  - 2025.0s score=42.0 rms=-24.39 delta=0.0 event=3 menu=0 :: a screenshot of a person in a dark room :: OCR =| ae %Je eer
+  - 2029.0s score=37.9 rms=-24.41 delta=7.92 event=2 menu=0 :: a screenshot of a man in a red and black suit :: OCR es . E er — ae
+  - 2045.0s score=35.0 rms=-29.48 delta=39.32 event=0 menu=0 :: a screenshot of a tree in the middle of the screen :: OCR oo i om OS PA omer a ee, a a Gil . Lg @OQQOOOOO i
+- timeline:
+  - 2025.0s rms=-24.39 delta=0.0 ev=3 menu=0 :: a screenshot of a person in a dark room :: =| ae %Je eer
+  - 2027.0s rms=-21.62 delta=5.66 ev=3 menu=0 :: a screenshot of a person in a dark room :: hi = = = - | 8 ca
+  - 2029.0s rms=-24.41 delta=7.92 ev=2 menu=0 :: a screenshot of a man in a red and black suit :: es . E er — ae
+  - 2031.0s rms=-26.44 delta=3.45 ev=1 menu=0 :: a screenshot of a dead dead dead dead dead dead dead dead dead dead dead dead dead dead dead dead dead dead dead :: —_ cece —? cai one alll Y = SM CK) Cini | na} whe, NS Gg) oh i” cli
+  - 2033.0s rms=-35.19 delta=21.5 ev=2 menu=0 :: a screen shot of a dark room with a large window :: ce r nm Me
+  - 2035.0s rms=-39.18 delta=7.64 ev=0 menu=0 :: a screenshot of a black hole with a green circle on it :: ey > a _— %Jlo@ ¥ 7 ‘he
+  - 2037.0s rms=-19.32 delta=10.58 ev=0 menu=0 :: a screenshot of a black hole with a green light :: Seay geocgeney Se a ee les —— see Mo Fo.
+  - 2039.0s rms=-33.89 delta=9.4 ev=0 menu=0 :: a screenshot of a black and white screen :: ee [ste] Od Qa PO@o peed ol. pees
+  - 2041.0s rms=-20.5 delta=9.99 ev=0 menu=0 :: a screenshot of a black hole in the middle of the screen :: a. a ch) ro .* pate Vlo@o og i oe
+  - 2043.0s rms=-20.66 delta=8.31 ev=0 menu=0 :: a screenshot of a black hole in the sky :: tee = . > ont Vlo@o —r ae
+  - 2045.0s rms=-29.48 delta=39.32 ev=0 menu=0 :: a screenshot of a tree in the middle of the screen :: oo i om OS PA omer a ee, a a Gil . Lg @OQQOOOOO i
+  - 2047.0s rms=-25.63 delta=13.92 ev=0 menu=0 :: a screen shot of a video game :: ~ Be vi och yt »® Gil PH@@OOOOO“E ite! 6
+  - 2049.0s rms=-26.77 delta=30.62 ev=2 menu=0 :: a screenshot of a black hole in a dark room :: ee res TOIOOIO!
+  - 2051.0s rms=-30.18 delta=22.61 ev=1 menu=0 :: a screenshot of a black hole in the middle of a dark hole :: : “ae ps hae: ——_ a es Y]o@@@@@OE8 7 ocr
+  - 2053.0s rms=-31.07 delta=17.17 ev=0 menu=0 :: a screenshot of a black hole in the middle of the screen :: S84 = 1 o _ co ‘= YOO@OOOO
+  - 2055.0s rms=-23.98 delta=16.3 ev=0 menu=0 :: a screenshot of a black and white image of a tree :: a ~ foe cH) ~Me@eoaoees
+  - 2057.0s rms=-28.07 delta=14.16 ev=0 menu=1 :: a screenshot of a black and white map :: —¥F ~ fons Cc) 9 ayy):
+  - 2059.0s rms=-22.5 delta=12.5 ev=1 menu=0 :: a screenshot of a dark forest, with a dark sky in the background :: a Ee: ot SG ae — ~~ e - foe ey 2. yp. cH) 9) ooaeoGCeen
+
+## E_C20 2260-2298s
+- scene changes: (none)
+- strongest 2s frames:
+  - 2284.0s score=82.3 rms=-19.87 delta=20.75 event=4 menu=0 :: a screenshot of a person in a dark room :: OCR There's 0 much Blood, = ao} on ae wd 19©06@0000000 Pes
+  - 2294.0s score=73.4 rms=-21.17 delta=25.99 event=3 menu=0 :: a screenshot of a person in a dark room :: OCR | aut \~ aes Pty ame Ss Ste 9 Bee ee Pes
+  - 2274.0s score=73.4 rms=-20.66 delta=13.12 event=4 menu=0 :: a screenshot of a red man in a dark room :: OCR iat els amazing, 4 |SSen2> snow-cnnee'| il) ar I= , wd eeBoeesced
+  - 2272.0s score=64.1 rms=-18.96 delta=13.05 event=3 menu=0 :: a screenshot of a person in a dark room :: OCR | aes ‘= cee a YPO@OOOOOOOD a
+  - 2286.0s score=63.0 rms=-21.14 delta=3.61 event=4 menu=0 :: a screenshot of a person in a dark room :: OCR >. eee | There's 39 much Blood, = = (aes ~~ lee ae 9 aeMacesoon ei
+  - 2278.0s score=62.6 rms=-16.69 delta=19.78 event=2 menu=0 :: a screenshot of a dark room with a black and white background :: OCR “— °° — ee 1% RA cH) + ooo i i i.
+- timeline:
+  - 2260.0s rms=-27.9 delta=0.0 ev=1 menu=0 :: a black and white image of a man in a suit :: Se Fe cere ct] VYI@@DO@@@O@s \\
+  - 2262.0s rms=-21.39 delta=37.74 ev=1 menu=0 :: a red screen with a red background and a black background :: FS ct] VYIQ@ODO@@QOO@s
+  - 2264.0s rms=-18.32 delta=34.86 ev=0 menu=0 :: a screenshot of a black hole with a green circle :: OF cH PIO@D@@@OOOs .
+  - 2266.0s rms=-29.93 delta=7.44 ev=0 menu=0 :: a screen shot of a screen with a black background :: a : ee * Le =< = orem reese Be r- iap Ta ico
+  - 2268.0s rms=-25.39 delta=22.6 ev=0 menu=0 :: a screenshot of a character in a game :: Fuck me; hahah. That fels amazing, a. Co ra ‘ail ke i] 2o@@0000000
+  - 2270.0s rms=-29.59 delta=2.48 ev=2 menu=0 :: a screenshot of a man in a red suit :: haha.. That fs amazing o [Soea> inoncance | OHI | (CK) = cl OW dis @ |= PIO@OOOOOOOD ae.
+  - 2272.0s rms=-18.96 delta=13.05 ev=3 menu=0 :: a screenshot of a person in a dark room :: | aes ‘= cee a YPO@OOOOOOOD a
+  - 2274.0s rms=-20.66 delta=13.12 ev=4 menu=0 :: a screenshot of a red man in a dark room :: iat els amazing, 4 |SSen2> snow-cnnee'| il) ar I= , wd eeBoeesced
+  - 2276.0s rms=-24.5 delta=2.94 ev=3 menu=0 :: a screenshot of a person in a dark room :: Fuck me, hahah. Tat els amazin, *~ z | sal ke ba = Vooeooaoeo®
+  - 2278.0s rms=-16.69 delta=19.78 ev=2 menu=0 :: a screenshot of a dark room with a black and white background :: “— °° — ee 1% RA cH) + ooo i i i.
+  - 2280.0s rms=-21.64 delta=8.5 ev=0 menu=0 :: a screen shot of a video game :: = | eel 3 q iss % og a ee
+  - 2282.0s rms=-19.15 delta=8.75 ev=1 menu=0 :: a screenshot of a black hole in the middle of the game :: ES seman! he ee = an = me 7a as og as
+  - 2284.0s rms=-19.87 delta=20.75 ev=4 menu=0 :: a screenshot of a person in a dark room :: There's 0 much Blood, = ao} on ae wd 19©06@0000000 Pes
+  - 2286.0s rms=-21.14 delta=3.61 ev=4 menu=0 :: a screenshot of a person in a dark room :: >. eee | There's 39 much Blood, = = (aes ~~ lee ae 9 aeMacesoon ei
+  - 2288.0s rms=-22.91 delta=21.31 ev=2 menu=0 :: a screenshot of a black hole in the middle of a dark room :: Fe oven Sehr cH) PIO@D@@2@@OOO@s
+  - 2290.0s rms=-21.72 delta=6.25 ev=0 menu=0 :: a screenshot of a black hole with a green circle on it :: FS row togue Ly ,f.. “J = Ya ¢ 2Z y, Pal ct] Vlo@O@@OO@OEA
+  - 2292.0s rms=-19.04 delta=5.15 ev=0 menu=0 :: a screenshot of a black hole in the sky :: Naa YIO@D@@@@OOO@s
+  - 2294.0s rms=-21.17 delta=25.99 ev=3 menu=0 :: a screenshot of a person in a dark room :: | aut \~ aes Pty ame Ss Ste 9 Bee ee Pes
+  - 2296.0s rms=-20.15 delta=6.43 ev=1 menu=0 :: a screenshot of a cross on a screen :: Eee | No cere = ~~ — elaine ama = YI@@DO@@QBDOOO®D ss ml \ VR Pes
+  - 2298.0s rms=-18.53 delta=3.82 ev=3 menu=0 :: a screenshot of a person in a dark room :: Fea | = a. Seareas ter] — 9 ar FOO Pes
+
+## F_C21 2328-2362s
+- scene changes: (none)
+- strongest 2s frames:
+  - 2362.0s score=73.4 rms=-17.07 delta=19.18 event=3 menu=0 :: a screenshot of a person in a dark room :: OCR Fee euco | Uninn. what's going on? ] | ee bs & lic YI@@DO@@@OOODO Pe,
+  - 2348.0s score=72.7 rms=-13.28 delta=24.14 event=2 menu=0 :: a screenshot of a dark room with a black background :: OCR Se art eat ssn steno cit ct] YPI@@@O@@@OOs
+  - 2340.0s score=67.6 rms=-14.53 delta=9.13 event=3 menu=0 :: a screenshot of a man in a dark room :: OCR Stevo: _ sx @ YIQ@@DO@@QOOOO®D eere| Ped
+  - 2342.0s score=66.6 rms=-12.92 delta=5.5 event=3 menu=0 :: a screenshot of a man in a dark room :: OCR Pere tewee: _| se sient atone etiasee Fe YI@@DO@@QOOOO®D ei
+  - 2332.0s score=64.1 rms=-15.37 delta=7.04 event=3 menu=0 :: a screenshot of a person in a dark room :: OCR FE | Sz" a a g wes YG@DOOQOOOO®D Pel
+  - 2344.0s score=59.3 rms=-17.11 delta=5.15 event=3 menu=0 :: a screenshot of a man in a dark room :: OCR Fare | 9 on? siete a eae = tie YPI@@DO@@Q@OOOO®D saa i
+- timeline:
+  - 2328.0s rms=-14.83 delta=0.0 ev=2 menu=0 :: a screenshot of a man with a gun in his hand :: ee euco | Ss" a GE.) Alu ey PI@@DOO@QOOOOO®D Pe,
+  - 2330.0s rms=-14.33 delta=8.16 ev=0 menu=0 :: a screenshot of a black and white computer screen :: FE ewe: | Sx" secant if =r Gat = YI@@DOO@QOOCOO®D
+  - 2332.0s rms=-15.37 delta=7.04 ev=3 menu=0 :: a screenshot of a person in a dark room :: FE | Sz" a a g wes YG@DOOQOOOO®D Pel
+  - 2334.0s rms=-18.94 delta=6.29 ev=1 menu=0 :: a screenshot of a person holding a ball :: eee eee: __| cs ttantetratennaenieee nitantasratersectte nae = =a as ame YI@@DOO@QOOOOO®D se
+  - 2336.0s rms=-25.73 delta=11.31 ev=3 menu=0 :: a screenshot of a person in a dark room :: FEE reuse: | Lael = oe = ella alas YI@@DO@@Q@DOOO®D
+  - 2338.0s rms=-17.61 delta=3.34 ev=3 menu=0 :: a screenshot of a person in a dark room :: Fee ewes: | a“ Fe = YIQ@@DO@@QOOOO®D ei
+  - 2340.0s rms=-14.53 delta=9.13 ev=3 menu=0 :: a screenshot of a man in a dark room :: Stevo: _ sx @ YIQ@@DO@@QOOOO®D eere| Ped
+  - 2342.0s rms=-12.92 delta=5.5 ev=3 menu=0 :: a screenshot of a man in a dark room :: Pere tewee: _| se sient atone etiasee Fe YI@@DO@@QOOOO®D ei
+  - 2344.0s rms=-17.11 delta=5.15 ev=3 menu=0 :: a screenshot of a man in a dark room :: Fare | 9 on? siete a eae = tie YPI@@DO@@Q@OOOO®D saa i
+  - 2346.0s rms=-18.19 delta=5.44 ev=1 menu=0 :: a screenshot of a person with a green light on their face :: i oe gers sean Siete = [Basen concen) Seelam anda ew (2) YI@@ODO@@Q@OOOO®D ei
+  - 2348.0s rms=-13.28 delta=24.14 ev=2 menu=0 :: a screenshot of a dark room with a black background :: Se art eat ssn steno cit ct] YPI@@@O@@@OOs
+  - 2350.0s rms=-14.26 delta=5.33 ev=0 menu=0 :: a screen shot of a video game :: SS a inde ha cH) YI@@OO@@@OOsa
+  - 2352.0s rms=-14.25 delta=4.21 ev=2 menu=0 :: a screen shot of a dark room with a black light :: Se | se Dostawt tlhe cH] YI@@ODO@@O@OOs
+  - 2354.0s rms=-14.7 delta=6.49 ev=0 menu=0 :: a screenshot of a black screen with a green circle :: Se rs oanange Ae y a las fc) YI@@OO@@@OOs
+  - 2356.0s rms=-13.7 delta=6.02 ev=0 menu=0 :: a screen shot of a video game :: Sr bon conned ate Cc) YI@@ODO@@@OOs
+  - 2358.0s rms=-14.31 delta=6.21 ev=0 menu=0 :: a screen shot of a video game :: Se a coatoagal Pee se == — —— <> ay ct] YPI@@OO@@O@OOs
+  - 2360.0s rms=-14.5 delta=4.93 ev=2 menu=0 :: a screenshot of a dark room with a black background :: Se fase c) Y@@OO@@@OOs
+  - 2362.0s rms=-17.07 delta=19.18 ev=3 menu=0 :: a screenshot of a person in a dark room :: Fee euco | Uninn. what's going on? ] | ee bs & lic YI@@DO@@@OOODO Pe,
+
+## G_C09 1107-1142s
+- scene changes: (none)
+- strongest 2s frames:
+  - 1121.0s score=83.3 rms=-13.0 delta=22.35 event=3 menu=0 :: a screenshot of a person in a dark room :: OCR tm buranng np. SXEXEY is (Gy) is} s Si) ‘- oo F Y%J@@@2O@O
+  - 1115.0s score=57.5 rms=-17.57 delta=4.15 event=3 menu=0 :: a screenshot of a person in a dark room :: OCR tm buranng np. Braxeyg [era a) YN@@@OOCO
+  - 1123.0s score=53.1 rms=-14.38 delta=6.36 event=2 menu=0 :: a screenshot of a dark room with green and black lighting :: OCR tm buranng np. as =a (el YN@@@OOCO
+  - 1129.0s score=46.9 rms=-36.0 delta=22.93 event=2 menu=0 :: a screenshot of a dark room with a black background :: OCR a les | Y\@@@@O@OO2
+  - 1117.0s score=46.1 rms=-32.72 delta=22.07 event=2 menu=0 :: a screenshot of a dark room with a large window :: OCR tiple — YI@@@@O@@2
+  - 1125.0s score=41.4 rms=-12.35 delta=3.32 event=1 menu=0 :: a screenshot of a person holding their hands in front of a screen :: OCR [SESS t anew | = = Ee YN@@@OOCO
+- timeline:
+  - 1107.0s rms=-27.7 delta=0.0 ev=2 menu=0 :: a screenshot of a dark room with a light shining on the floor :: Ps cH) Y@@@@@@2
+  - 1109.0s rms=-46.23 delta=11.05 ev=2 menu=0 :: a screen shot of a dark room with a large window :: fem pancreas ct) os YI@@@@@@2
+  - 1111.0s rms=-62.05 delta=6.15 ev=2 menu=0 :: a screen shot of a dark room with a light shining on it :: FA peeping x tag ™*- ct) oe YI@@@@@O@2
+  - 1113.0s rms=-17.74 delta=21.07 ev=0 menu=1 :: a screenshot of the game ' s main menu :: tm buranng n. “| = [SESS ee 1] ee ae | ay, Iell YPN@@@OOCO
+  - 1115.0s rms=-17.57 delta=4.15 ev=3 menu=0 :: a screenshot of a person in a dark room :: tm buranng np. Braxeyg [era a) YN@@@OOCO
+  - 1117.0s rms=-32.72 delta=22.07 ev=2 menu=0 :: a screenshot of a dark room with a large window :: tiple — YI@@@@O@@2
+  - 1119.0s rms=-53.74 delta=7.77 ev=2 menu=0 :: a screenshot of a dark room with a black background :: aap so asco YI@@@@@@2
+  - 1121.0s rms=-13.0 delta=22.35 ev=3 menu=0 :: a screenshot of a person in a dark room :: tm buranng np. SXEXEY is (Gy) is} s Si) ‘- oo F Y%J@@@2O@O
+  - 1123.0s rms=-14.38 delta=6.36 ev=2 menu=0 :: a screenshot of a dark room with green and black lighting :: tm buranng np. as =a (el YN@@@OOCO
+  - 1125.0s rms=-12.35 delta=3.32 ev=1 menu=0 :: a screenshot of a person holding their hands in front of a screen :: [SESS t anew | = = Ee YN@@@OOCO
+  - 1127.0s rms=-16.44 delta=1.86 ev=1 menu=0 :: a screenshot of a person holding their hands in front of a screen :: [SSEE=E Teen cance | Ss Sal el |e YN@@@OOCO
+  - 1129.0s rms=-36.0 delta=22.93 ev=2 menu=0 :: a screenshot of a dark room with a black background :: a les | Y\@@@@O@OO2
+  - 1131.0s rms=-26.4 delta=6.39 ev=2 menu=0 :: a screenshot of a dark room with a light shining on the floor :: ae =k ct) VY\@@@@O@O@2
+  - 1133.0s rms=-29.94 delta=7.89 ev=1 menu=1 :: a screenshot of a map in the dark :: fe prude len” | set — cH) YI@@@2@@@2
+  - 1135.0s rms=-49.26 delta=8.03 ev=0 menu=0 :: a screenshot of a hand holding a finger :: = pratt og et — precetons 88 dear cen (or cH) Y\@@@OOE2
+  - 1137.0s rms=-38.22 delta=2.03 ev=1 menu=0 :: a screenshot of a person holding a microphone :: SS Look presen 8 degrees ct) YI@@@@O@O@E@2
+  - 1139.0s rms=-36.41 delta=2.16 ev=0 menu=0 :: a screenshot of a hand holding a headphone :: = 2 animes Look preston 8 dogrses cH) Y\@@@OO@2
+  - 1141.0s rms=-21.38 delta=2.27 ev=0 menu=0 :: a screenshot of a hand holding a mouse :: = 2 bananas Look precio 8 degre c) rat YI@@@O@OE@2
+
+## H_C10 1303-1338s
+- scene changes: (none)
+- strongest 2s frames:
+  - 1323.0s score=70.7 rms=-19.46 delta=20.44 event=3 menu=0 :: a screenshot of a person in a dark room :: OCR a}, Ugh. Em [| 2 = =| im |SSEESS' ran-conce | ewe 3 E. = 7 a IIL [crn 2N9@@GOOOO
+  - 1315.0s score=55.6 rms=-28.75 delta=19.64 event=3 menu=0 :: a screenshot of a person in a dark room :: OCR — aan [crn °N9@@OOOO
+  - 1319.0s score=50.1 rms=-17.56 delta=8.69 event=2 menu=0 :: a screenshot of a dark room with a light shining on the floor :: OCR a oun 188K) lee | Cc) YPO@@@OOs *
+  - 1325.0s score=45.4 rms=-27.97 delta=21.33 event=2 menu=0 :: a screen shot of a dark room with a black background :: OCR ae J hi oe ct) Y\O@@OOs
+  - 1305.0s score=45.3 rms=-23.06 delta=1.05 event=3 menu=0 :: a screenshot of a person in a dark room :: OCR Mmph.. er ] iba [crn Y\@@@OO@
+  - 1303.0s score=44.9 rms=-22.64 delta=0.0 event=3 menu=0 :: a screenshot of a person in a dark room :: OCR mph. sae ] | [crn Yl@@@OO@
+- timeline:
+  - 1303.0s rms=-22.64 delta=0.0 ev=3 menu=0 :: a screenshot of a person in a dark room :: mph. sae ] | [crn Yl@@@OO@
+  - 1305.0s rms=-23.06 delta=1.05 ev=3 menu=0 :: a screenshot of a person in a dark room :: Mmph.. er ] iba [crn Y\@@@OO@
+  - 1307.0s rms=-31.14 delta=1.24 ev=3 menu=0 :: a screenshot of a person in a dark room :: mph. er Se [SEER non cameo | ] © ‘al [crn & Y\@@@OO@
+  - 1309.0s rms=-38.25 delta=20.16 ev=2 menu=0 :: a screenshot of a dark room with a black background :: ae ee =o = 8 ¥ ct) Y\@@@O@s
+  - 1311.0s rms=-37.35 delta=3.37 ev=2 menu=0 :: a screenshot of a dark room with a light shining on the floor :: aie ¥ c) Y\O9@@OOs
+  - 1313.0s rms=-21.66 delta=4.27 ev=2 menu=0 :: a screen shot of a dark room with a light shining on it :: a= ct) VO@@OOs
+  - 1315.0s rms=-28.75 delta=19.64 ev=3 menu=0 :: a screenshot of a person in a dark room :: — aan [crn °N9@@OOOO
+  - 1317.0s rms=-38.88 delta=19.64 ev=2 menu=0 :: a screenshot of a dark room with a light shining on it :: lie a | is Sie ¥ cH) YPO@@@OOs
+  - 1319.0s rms=-17.56 delta=8.69 ev=2 menu=0 :: a screenshot of a dark room with a light shining on the floor :: a oun 188K) lee | Cc) YPO@@@OOs *
+  - 1321.0s rms=-35.09 delta=7.29 ev=2 menu=0 :: a screenshot of a dark room with a light shining on the floor :: a F Sol é oe * YPO@@OOOs
+  - 1323.0s rms=-19.46 delta=20.44 ev=3 menu=0 :: a screenshot of a person in a dark room :: a}, Ugh. Em [| 2 = =| im |SSEESS' ran-conce | ewe 3 E. = 7 a IIL [crn 2N9@@GOOOO
+  - 1325.0s rms=-27.97 delta=21.33 ev=2 menu=0 :: a screen shot of a dark room with a black background :: ae J hi oe ct) Y\O@@OOs
+  - 1327.0s rms=-32.85 delta=9.07 ev=2 menu=0 :: a screenshot of a dark room with a black background :: die ~ oe =k oe Cc) P\O@@OOs
+  - 1329.0s rms=-28.12 delta=5.83 ev=2 menu=0 :: a screenshot of a dark room with a black background :: pe ~ ¢ a ice ct) Vl@@@@s
+  - 1331.0s rms=-31.6 delta=4.52 ev=2 menu=0 :: a screen shot of a dark room with a black background :: fe ae Cc) V\@@@O@s
+  - 1333.0s rms=-32.12 delta=2.9 ev=2 menu=0 :: a screenshot of a dark room with a light shining on the floor :: ~ ae: a Y\@@@@s
+  - 1335.0s rms=-32.67 delta=3.89 ev=2 menu=0 :: a screen shot of a dark room with a black background :: ~ oe yew mn ft cet V\@@@O@s
+  - 1337.0s rms=-28.38 delta=4.63 ev=2 menu=0 :: a screen shot of a dark room with a light shining on it :: Sear ae - = all P\@@@O@s +
+
