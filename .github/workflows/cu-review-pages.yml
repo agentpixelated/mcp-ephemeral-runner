@@ -1,0 +1,36 @@
+name: CU review pages
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'review/cu-review.pdf'
+      - '.github/workflows/cu-review-pages.yml'
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: true
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - name: Prepare static review site
+        run: |
+          mkdir -p _site
+          cp review/cu-review.pdf _site/cu-review.pdf
+          cat > _site/index.html <<'EOF'
+          <!doctype html><html><body><h1>C:U temporary visual review</h1><p><a href="cu-review.pdf">Open review PDF</a></p></body></html>
+          EOF
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
