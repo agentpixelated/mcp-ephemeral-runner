@@ -1,24 +1,70 @@
-name: CU probe with ffmpeg
+name: CU full navigation pass
 on:
   push:
     paths: ['.github/workflows/cu-transfer-probe.yml']
 permissions:
-  contents: read
+  contents: write
 jobs:
-  probe:
+  navigate:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 45
     steps:
-      - name: Install FFmpeg
-        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
-      - name: Download exact source
+      - uses: actions/checkout@v4
+      - name: Install media tools
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg python3-pil
+      - name: Download and verify exact source
         run: |
           set -euo pipefail
           u='https://drive.usercontent.google.com/download?id=1E5vu4m9WlSX8q4QYnCrx4boVRnYaBy3h&export=download&confirm=t'
           curl -fL --retry 3 --retry-all-errors "$u" -o source.mp4
           test "$(stat -c %s source.mp4)" = 4594320879
           test "$(md5sum source.mp4 | cut -d' ' -f1)" = 536fd423ff1733d868e7e1528b342966
-      - name: Probe source
+      - name: Generate 15-second navigation frames
         run: |
-          echo '=== FFPROBE SUMMARY ==='
-          ffprobe -v error -show_entries format=duration,size,bit_rate:stream=index,codec_type,codec_name,width,height,r_frame_rate,avg_frame_rate,sample_rate,channels -of default=noprint_wrappers=1 source.mp4
+          rm -rf review/cu-nav
+          mkdir -p review/cu-nav/frames
+          ffmpeg -hide_banner -loglevel error -i source.mp4 -vf 'fps=1/15,scale=512:-2' -q:v 4 review/cu-nav/frames/frame_%04d.jpg
+      - name: Build timestamped contact sheets
+        run: |
+          python3 - <<'PY'
+          from PIL import Image, ImageDraw, ImageFont
+          from pathlib import Path
+          import math
+          frames=sorted(Path('review/cu-nav/frames').glob('frame_*.jpg'))
+          cols,rows=4,5
+          tw,th=512,216
+          label_h=34
+          sheet_w,sheet_h=cols*tw,rows*(th+label_h)
+          font=ImageFont.load_default(size=22)
+          def hms(sec):
+              h=int(sec//3600); m=int((sec%3600)//60); s=int(sec%60)
+              return f'{h:02d}:{m:02d}:{s:02d}'
+          for si in range(math.ceil(len(frames)/(cols*rows))):
+              batch=frames[si*cols*rows:(si+1)*cols*rows]
+              sheet=Image.new('RGB',(sheet_w,sheet_h),'black')
+              d=ImageDraw.Draw(sheet)
+              for j,p in enumerate(batch):
+                  im=Image.open(p).convert('RGB').resize((tw,th))
+                  x=(j%cols)*tw; y=(j//cols)*(th+label_h)
+                  sheet.paste(im,(x,y))
+                  sec=(si*cols*rows+j)*15
+                  d.rectangle([x,y+th,x+tw,y+th+label_h],fill='black')
+                  d.text((x+8,y+th+5),hms(sec),fill='white',font=font)
+              sheet.save(f'review/cu-nav/sheet_{si:02d}.jpg',quality=88)
+          Path('review/cu-nav/README.md').write_text(
+              f'# C:U navigation\n\nSource: 50:37.22, 2560x1080 HEVC. Frames every 15 seconds. Total frames: {len(frames)}.\n',encoding='utf-8')
+          PY
+      - name: Analyze scene changes and silence
+        run: |
+          ffmpeg -hide_banner -v info -i source.mp4 -vf "scale=320:-2,select='gt(scene,0.45)',showinfo" -an -f null - 2> review/cu-nav/scene_raw.log || true
+          grep 'showinfo.*pts_time:' review/cu-nav/scene_raw.log | sed -E 's/.*pts_time:([0-9.]+).*/\1/' > review/cu-nav/scene_times.txt || true
+          ffmpeg -hide_banner -v info -i source.mp4 -vn -af 'silencedetect=noise=-32dB:d=2' -f null - 2> review/cu-nav/silence_raw.log || true
+          grep -E 'silence_(start|end|duration)' review/cu-nav/silence_raw.log > review/cu-nav/silence_events.txt || true
+          rm -rf review/cu-nav/frames review/cu-nav/scene_raw.log review/cu-nav/silence_raw.log
+      - name: Commit navigation evidence
+        run: |
+          git config user.name 'agentic-video-bot'
+          git config user.email 'agentic-video-bot@users.noreply.github.com'
+          git add review/cu-nav
+          git commit -m 'add C:U full-session navigation evidence' || exit 0
+          git push
