@@ -16,7 +16,7 @@ jobs:
           set -euo pipefail
           sudo apt-get update -qq
           sudo apt-get install -y -qq ffmpeg
-          python -m pip install --quiet pillow
+          python -m pip install --quiet pillow gdown
           curl -fL https://github.com/WyattBlue/auto-editor/releases/download/31.6.0/auto-editor-linux-x86_64 -o /tmp/auto-editor
           echo 'ad38d62dda324bf5adf820e7c49fd982c30e4b9b89682a6f9a441b6485edd29a  /tmp/auto-editor' | sha256sum -c -
           chmod +x /tmp/auto-editor
@@ -25,8 +25,7 @@ jobs:
       - name: Download and verify source
         run: |
           set -euo pipefail
-          u='https://drive.usercontent.google.com/download?id=1E5vu4m9WlSX8q4QYnCrx4boVRnYaBy3h&export=download&confirm=t'
-          curl -fL --retry 3 --retry-all-errors "$u" -o source.mp4
+          gdown 'https://drive.google.com/uc?id=1E5vu4m9WlSX8q4QYnCrx4boVRnYaBy3h' -O source.mp4
           test "$(stat -c %s source.mp4)" = 4594320879
           test "$(md5sum source.mp4 | cut -d' ' -f1)" = 536fd423ff1733d868e7e1528b342966
       - name: Preview explicit editorial ranges
@@ -94,7 +93,7 @@ jobs:
             'clip_06,2332,2360,28,C21 gun-visible interaction' > output/edit_ledger.csv
       - uses: actions/upload-artifact@v4
         with:
-          name: cu-edit-draft-v3
+          name: cu-edit-draft-v4
           path: output
           retention-days: 1
           compression-level: 0
