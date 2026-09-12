@@ -1,4 +1,4 @@
-name: CU publish visual review PDF
+name: CU publish visual review JPGs
 on:
   push:
     paths: ['.github/workflows/cu-transfer-probe.yml']
@@ -6,48 +6,24 @@ permissions:
   contents: write
   actions: read
 jobs:
-  publish-review:
+  publish-review-images:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Install PDF image support
-        run: sudo apt-get update -qq && sudo apt-get install -y -qq python3-pil
       - name: Download completed review artifact
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          rm -rf _review review/cu-review.pdf review/cu-candidates.csv review/cu-probe.json
-          mkdir -p _review review
+          rm -rf _review review/images
+          mkdir -p _review review/images/overview review/images/candidates
           gh run download 34686298310 -n cu-visual-review-parallel -D _review
-          cp _review/candidates.csv review/cu-candidates.csv
-          cp _review/probe.json review/cu-probe.json
-      - name: Build direct-inspection PDF
-        run: |
-          python3 - <<'PY'
-          from PIL import Image,ImageOps,ImageDraw,ImageFont
-          from pathlib import Path
-          nav=sorted(Path('_review').glob('nav_*.jpg'))
-          cand=sorted(Path('_review/candidates').glob('*.jpg'))
-          pages=[]
-          for label,paths in [('OVERVIEW',nav),('CANDIDATE',cand)]:
-              for i,p in enumerate(paths):
-                  im=Image.open(p).convert('RGB')
-                  # White title band so page identity survives PDF rendering.
-                  band=70
-                  canvas=Image.new('RGB',(im.width,im.height+band),'white')
-                  canvas.paste(im,(0,band))
-                  d=ImageDraw.Draw(canvas)
-                  d.text((18,20),f'{label} {i:02d} | {p.name}',fill='black',font=ImageFont.load_default(size=26))
-                  pages.append(canvas)
-          assert pages
-          pages[0].save('review/cu-review.pdf',save_all=True,append_images=pages[1:],resolution=120.0)
-          print('pages',len(pages),'overview',len(nav),'candidates',len(cand))
-          PY
-      - name: Commit review evidence
+          cp _review/nav_*.jpg review/images/overview/
+          cp _review/candidates/*.jpg review/images/candidates/
+      - name: Commit temporary visual evidence
         run: |
           rm -rf _review
           git config user.name 'agentic-video-bot'
           git config user.email 'agentic-video-bot@users.noreply.github.com'
-          git add review/cu-review.pdf review/cu-candidates.csv review/cu-probe.json
-          git commit -m 'publish C:U visual review evidence' || exit 0
+          git add review/images
+          git commit -m 'temporarily publish C:U review JPGs' || exit 0
           git push
