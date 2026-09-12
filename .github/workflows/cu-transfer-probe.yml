@@ -1,30 +1,24 @@
-name: CU source metadata
+name: CU probe with ffmpeg
 on:
   push:
     paths: ['.github/workflows/cu-transfer-probe.yml']
 permissions:
-  actions: write
   contents: read
 jobs:
-  inspect:
+  probe:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
-      - name: Clear relay artifact
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          gh api "repos/${GITHUB_REPOSITORY}/actions/artifacts?name=cu-pair-016-017" --jq '.artifacts[].id' | xargs -r -I{} gh api --method DELETE "repos/${GITHUB_REPOSITORY}/actions/artifacts/{}"
+      - name: Install FFmpeg
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
       - name: Download exact source
         run: |
           set -euo pipefail
           u='https://drive.usercontent.google.com/download?id=1E5vu4m9WlSX8q4QYnCrx4boVRnYaBy3h&export=download&confirm=t'
           curl -fL --retry 3 --retry-all-errors "$u" -o source.mp4
           test "$(stat -c %s source.mp4)" = 4594320879
-          echo '=== SOURCE CHECK ==='
-          stat -c 'bytes=%s' source.mp4
-          md5sum source.mp4
-      - name: Probe media
+          test "$(md5sum source.mp4 | cut -d' ' -f1)" = 536fd423ff1733d868e7e1528b342966
+      - name: Probe source
         run: |
           echo '=== FFPROBE SUMMARY ==='
           ffprobe -v error -show_entries format=duration,size,bit_rate:stream=index,codec_type,codec_name,width,height,r_frame_rate,avg_frame_rate,sample_rate,channels -of default=noprint_wrappers=1 source.mp4
