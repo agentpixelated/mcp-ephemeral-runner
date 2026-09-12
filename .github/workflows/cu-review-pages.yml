@@ -4,6 +4,7 @@ on:
     branches: [main]
     paths:
       - 'review/cu-review.pdf'
+      - 'review/images/**'
       - '.github/workflows/cu-review-pages.yml'
 permissions:
   contents: read
@@ -25,10 +26,11 @@ jobs:
           enablement: true
       - name: Prepare static review site
         run: |
-          mkdir -p _site
-          cp review/cu-review.pdf _site/cu-review.pdf
+          mkdir -p _site/review
+          cp review/cu-review.pdf _site/review/cu-review.pdf
+          cp -r review/images _site/review/images
           cat > _site/index.html <<'EOF'
-          <!doctype html><html><body><h1>C:U temporary visual review</h1><p><a href="cu-review.pdf">Open review PDF</a></p></body></html>
+          <!doctype html><html><body><h1>C:U temporary visual review</h1><p><a href="review/cu-review.pdf">Open review PDF</a></p><p><a href="review/images/overview/nav_00.jpg">Overview image</a></p></body></html>
           EOF
       - uses: actions/upload-pages-artifact@v3
         with:
