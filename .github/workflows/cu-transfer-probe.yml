@@ -1,4 +1,4 @@
-name: CU visual review pass
+name: CU visual review fast pass
 on:
   push:
     paths: ['.github/workflows/cu-transfer-probe.yml']
@@ -7,7 +7,7 @@ permissions:
 jobs:
   review:
     runs-on: ubuntu-latest
-    timeout-minutes: 50
+    timeout-minutes: 35
     steps:
       - uses: actions/checkout@v4
       - name: Install media tools
@@ -22,82 +22,84 @@ jobs:
           test "$(stat -c %s source.mp4)" = 4594320879
           test "$(md5sum source.mp4 | cut -d' ' -f1)" = 536fd423ff1733d868e7e1528b342966
           ffprobe -v error -show_format -show_streams -of json source.mp4 > probe.json
-      - name: Generate 15-second navigation frames
+      - name: Fast-seek overview frames every 15 seconds
         run: |
           rm -rf review && mkdir -p review/nav_frames review/candidates
-          ffmpeg -hide_banner -loglevel error -i source.mp4 -vf 'fps=1/15,scale=512:-2' -q:v 4 review/nav_frames/frame_%04d.jpg
-      - name: Build timestamped navigation sheets
+          python3 - <<'PY'
+          import subprocess
+          from pathlib import Path
+          duration=3037.22
+          for i,t in enumerate(range(0,int(duration)+1,15)):
+              out=f'review/nav_frames/frame_{i:04d}.jpg'
+              subprocess.run(['ffmpeg','-hide_banner','-loglevel','error','-ss',str(t),'-i','source.mp4','-frames:v','1','-vf','scale=512:-2','-q:v','4',out],check=True)
+          PY
+      - name: Build timestamped overview sheets
         run: |
           python3 - <<'PY'
           from PIL import Image, ImageDraw, ImageFont
           from pathlib import Path
           import math
           frames=sorted(Path('review/nav_frames').glob('frame_*.jpg'))
-          cols,rows=4,5
-          tw,th=512,216
-          lh=32
+          cols,rows=4,5; tw,th=512,216; lh=32
           font=ImageFont.load_default(size=20)
-          def hms(sec):
-              h=int(sec//3600);m=int(sec%3600//60);s=int(sec%60)
-              return f'{h:02d}:{m:02d}:{s:02d}'
-          for si in range(math.ceil(len(frames)/(cols*rows))):
-              batch=frames[si*cols*rows:(si+1)*cols*rows]
-              sh=Image.new('RGB',(cols*tw,rows*(th+lh)),'black')
-              d=ImageDraw.Draw(sh)
-              for j,p in enumerate(batch):
-                  im=Image.open(p).convert('RGB').resize((tw,th))
-                  x=(j%cols)*tw;y=(j//cols)*(th+lh)
-                  sh.paste(im,(x,y))
-                  sec=(si*cols*rows+j)*15
-                  d.text((x+8,y+th+5),hms(sec),fill='white',font=font)
+          def hms(sec): return f'{int(sec//3600):02d}:{int(sec%3600//60):02d}:{int(sec%60):02d}'
+          for si in range(math.ceil(len(frames)/20)):
+              sh=Image.new('RGB',(cols*tw,rows*(th+lh)),'black'); d=ImageDraw.Draw(sh)
+              for j,p in enumerate(frames[si*20:(si+1)*20]):
+                  im=Image.open(p).convert('RGB').resize((tw,th)); x=j%cols*tw; y=j//cols*(th+lh)
+                  sh.paste(im,(x,y)); d.text((x+8,y+th+5),hms((si*20+j)*15),fill='white',font=font)
               sh.save(f'review/nav_{si:02d}.jpg',quality=88)
           Path('review/navigation.txt').write_text(f'frames={len(frames)}\nsheets={math.ceil(len(frames)/20)}\n',encoding='utf-8')
           PY
-      - name: Analyze scene changes, silence, and 1-second audio RMS
+      - name: Analyze audio activity at one-second grain
         run: |
-          ffmpeg -hide_banner -v info -i source.mp4 -vf "scale=320:-2,select='gt(scene,0.42)',showinfo" -an -f null - 2> review/scene.log || true
-          grep 'showinfo.*pts_time:' review/scene.log | sed -E 's/.*pts_time:([0-9.]+).*/\1/' > review/scene_times.txt || true
+          ffmpeg -hide_banner -loglevel error -i source.mp4 -vn -af "asetnsamples=n=48000:p=1,astats=metadata=1:reset=1,ametadata=print:key=lavfi.astats.Overall.RMS_level:file=review/rms_raw.txt" -f null -
           ffmpeg -hide_banner -v info -i source.mp4 -vn -af 'silencedetect=noise=-32dB:d=2' -f null - 2> review/silence.log || true
           grep -E 'silence_(start|end|duration)' review/silence.log > review/silence_events.txt || true
-          ffmpeg -hide_banner -loglevel error -i source.mp4 -vn -af "asetnsamples=n=48000:p=1,astats=metadata=1:reset=1,ametadata=print:key=lavfi.astats.Overall.RMS_level:file=review/rms_raw.txt" -f null -
-      - name: Pick non-overlapping audio-intense candidates
+      - name: Pick and render 30 audio-intense visual candidate strips
         run: |
           python3 - <<'PY'
           from pathlib import Path
-          import re, math, subprocess
-          lines=Path('review/rms_raw.txt').read_text(errors='ignore').splitlines()
-          vals=[]; t=None
+          import re,math,subprocess
+          lines=Path('review/rms_raw.txt').read_text(errors='ignore').splitlines(); vals=[]; t=None
           for line in lines:
               m=re.search(r'pts_time:([0-9.]+)',line)
               if m: t=float(m.group(1))
               m=re.search(r'lavfi\.astats\.Overall\.RMS_level=([-0-9.inf]+)',line)
               if m and t is not None:
-                  try: v=float(m.group(1))
-                  except: continue
+                  try:v=float(m.group(1))
+                  except:continue
                   if math.isfinite(v): vals.append((v,t))
-          vals.sort(reverse=True)
-          chosen=[]
+          vals.sort(reverse=True); chosen=[]
           for v,t in vals:
-              if t<20 or t>3015: continue
-              if all(abs(t-u)>28 for _,u in chosen):
-                  chosen.append((v,t))
-              if len(chosen)>=24: break
+              if t<15 or t>3022: continue
+              if all(abs(t-u)>24 for _,u in chosen): chosen.append((v,t))
+              if len(chosen)>=30: break
           chosen.sort(key=lambda x:x[1])
           Path('review/candidates.csv').write_text('id,time_sec,rms_db\n'+''.join(f'C{i:02d},{t:.3f},{v:.2f}\n' for i,(v,t) in enumerate(chosen)),encoding='utf-8')
           for i,(v,t) in enumerate(chosen):
+              frames=[]
               start=max(0,t-12)
-              out=f'review/candidates/C{i:02d}_{t:.1f}.jpg'
-              vf="fps=1/3,scale=480:-2,tile=4x2:padding=4:margin=4"
-              subprocess.run(['ffmpeg','-hide_banner','-loglevel','error','-ss',str(start),'-t','24','-i','source.mp4','-vf',vf,'-frames:v','1','-q:v','3',out],check=True)
+              for j in range(8):
+                  ts=start+j*(24/7)
+                  p=f'review/candidates/tmp_{i:02d}_{j}.jpg'; frames.append(p)
+                  subprocess.run(['ffmpeg','-hide_banner','-loglevel','error','-ss',f'{ts:.3f}','-i','source.mp4','-frames:v','1','-vf','scale=480:-2','-q:v','3',p],check=True)
+              from PIL import Image,ImageDraw,ImageFont
+              ims=[Image.open(p).convert('RGB') for p in frames]; w,h=ims[0].size; pad=4; lh=28
+              sh=Image.new('RGB',(4*w+5*pad,2*(h+lh)+3*pad),'black'); d=ImageDraw.Draw(sh); font=ImageFont.load_default(size=18)
+              for j,im in enumerate(ims):
+                  x=pad+(j%4)*(w+pad); y=pad+(j//4)*(h+lh+pad); sh.paste(im,(x,y)); d.text((x+5,y+h+3),f'{start+j*(24/7):.1f}s',fill='white',font=font)
+              sh.save(f'review/candidates/C{i:02d}_{t:.1f}.jpg',quality=90)
+              for p in frames: Path(p).unlink()
           PY
       - name: Package visual evidence
         run: |
-          rm -rf review/nav_frames review/scene.log review/silence.log review/rms_raw.txt
+          rm -rf review/nav_frames review/rms_raw.txt review/silence.log
           cp probe.json review/probe.json
           du -sh review
       - uses: actions/upload-artifact@v4
         with:
-          name: cu-visual-review
+          name: cu-visual-review-fast
           path: review
           retention-days: 1
           compression-level: 6
