@@ -84,18 +84,17 @@ jobs:
               x=(j%cols)*w; y=(j//cols)*(h+lh); sh.paste(im,(x,y)); ts=path.stem.split('_')[-1]; dr.text((x+5,y+h+3),ts+'s',fill='white',font=font)
             sh.save(f'output/review_sheet_{si:02d}.jpg',quality=90)
           PY
-          cat > output/edit_ledger.csv <<'EOF'
-clip_id,source_in,source_out,planned_duration,event_basis
-clip_01,1111,1137,26,C09 early high-activity candidate
-clip_02,1570,1595,25,C12 red/damage-like event
-clip_03,1826,1880,54,C14-C15 strongest incident chain
-clip_04,2029,2058,29,C18 injury/interaction-like event
-clip_05,2265,2295,30,C20 red-suit/person encounter
-clip_06,2332,2360,28,C21 gun-visible interaction
-EOF
+          printf '%s\n' \
+            'clip_id,source_in,source_out,planned_duration,event_basis' \
+            'clip_01,1111,1137,26,C09 early high-activity candidate' \
+            'clip_02,1570,1595,25,C12 red/damage-like event' \
+            'clip_03,1826,1880,54,C14-C15 strongest incident chain' \
+            'clip_04,2029,2058,29,C18 injury/interaction-like event' \
+            'clip_05,2265,2295,30,C20 red-suit/person encounter' \
+            'clip_06,2332,2360,28,C21 gun-visible interaction' > output/edit_ledger.csv
       - uses: actions/upload-artifact@v4
         with:
-          name: cu-edit-draft-v2
+          name: cu-edit-draft-v3
           path: output
           retention-days: 1
           compression-level: 0
