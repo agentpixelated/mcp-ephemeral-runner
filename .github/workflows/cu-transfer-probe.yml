@@ -1,4 +1,4 @@
-name: CU visual review fast pass
+name: CU visual review parallel pass
 on:
   push:
     paths: ['.github/workflows/cu-transfer-probe.yml']
@@ -7,7 +7,7 @@ permissions:
 jobs:
   review:
     runs-on: ubuntu-latest
-    timeout-minutes: 35
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
       - name: Install media tools
@@ -22,25 +22,25 @@ jobs:
           test "$(stat -c %s source.mp4)" = 4594320879
           test "$(md5sum source.mp4 | cut -d' ' -f1)" = 536fd423ff1733d868e7e1528b342966
           ffprobe -v error -show_format -show_streams -of json source.mp4 > probe.json
-      - name: Fast-seek overview frames every 15 seconds
+      - name: Parallel fast-seek overview frames every 15 seconds
         run: |
           rm -rf review && mkdir -p review/nav_frames review/candidates
           python3 - <<'PY'
           import subprocess
-          from pathlib import Path
-          duration=3037.22
-          for i,t in enumerate(range(0,int(duration)+1,15)):
-              out=f'review/nav_frames/frame_{i:04d}.jpg'
-              subprocess.run(['ffmpeg','-hide_banner','-loglevel','error','-ss',str(t),'-i','source.mp4','-frames:v','1','-vf','scale=512:-2','-q:v','4',out],check=True)
+          from concurrent.futures import ThreadPoolExecutor
+          times=list(range(0,3038,15))
+          def grab(item):
+              i,t=item
+              subprocess.run(['ffmpeg','-hide_banner','-loglevel','error','-ss',str(t),'-i','source.mp4','-frames:v','1','-vf','scale=512:-2','-q:v','4',f'review/nav_frames/frame_{i:04d}.jpg'],check=True)
+          with ThreadPoolExecutor(max_workers=8) as ex: list(ex.map(grab,enumerate(times)))
           PY
       - name: Build timestamped overview sheets
         run: |
           python3 - <<'PY'
-          from PIL import Image, ImageDraw, ImageFont
+          from PIL import Image,ImageDraw,ImageFont
           from pathlib import Path
           import math
-          frames=sorted(Path('review/nav_frames').glob('frame_*.jpg'))
-          cols,rows=4,5; tw,th=512,216; lh=32
+          frames=sorted(Path('review/nav_frames').glob('frame_*.jpg')); cols,rows=4,5; tw,th=512,216; lh=32
           font=ImageFont.load_default(size=20)
           def hms(sec): return f'{int(sec//3600):02d}:{int(sec%3600//60):02d}:{int(sec%60):02d}'
           for si in range(math.ceil(len(frames)/20)):
@@ -56,41 +56,44 @@ jobs:
           ffmpeg -hide_banner -loglevel error -i source.mp4 -vn -af "asetnsamples=n=48000:p=1,astats=metadata=1:reset=1,ametadata=print:key=lavfi.astats.Overall.RMS_level:file=review/rms_raw.txt" -f null -
           ffmpeg -hide_banner -v info -i source.mp4 -vn -af 'silencedetect=noise=-32dB:d=2' -f null - 2> review/silence.log || true
           grep -E 'silence_(start|end|duration)' review/silence.log > review/silence_events.txt || true
-      - name: Pick and render 30 audio-intense visual candidate strips
+      - name: Pick and parallel-render 30 audio-intense candidate strips
         run: |
           python3 - <<'PY'
           from pathlib import Path
+          from concurrent.futures import ThreadPoolExecutor
+          from PIL import Image,ImageDraw,ImageFont
           import re,math,subprocess
           lines=Path('review/rms_raw.txt').read_text(errors='ignore').splitlines(); vals=[]; t=None
           for line in lines:
               m=re.search(r'pts_time:([0-9.]+)',line)
-              if m: t=float(m.group(1))
+              if m:t=float(m.group(1))
               m=re.search(r'lavfi\.astats\.Overall\.RMS_level=([-0-9.inf]+)',line)
               if m and t is not None:
                   try:v=float(m.group(1))
                   except:continue
-                  if math.isfinite(v): vals.append((v,t))
+                  if math.isfinite(v):vals.append((v,t))
           vals.sort(reverse=True); chosen=[]
           for v,t in vals:
-              if t<15 or t>3022: continue
-              if all(abs(t-u)>24 for _,u in chosen): chosen.append((v,t))
-              if len(chosen)>=30: break
+              if 15<t<3022 and all(abs(t-u)>24 for _,u in chosen):chosen.append((v,t))
+              if len(chosen)>=30:break
           chosen.sort(key=lambda x:x[1])
           Path('review/candidates.csv').write_text('id,time_sec,rms_db\n'+''.join(f'C{i:02d},{t:.3f},{v:.2f}\n' for i,(v,t) in enumerate(chosen)),encoding='utf-8')
+          jobs=[]
           for i,(v,t) in enumerate(chosen):
-              frames=[]
               start=max(0,t-12)
-              for j in range(8):
-                  ts=start+j*(24/7)
-                  p=f'review/candidates/tmp_{i:02d}_{j}.jpg'; frames.append(p)
-                  subprocess.run(['ffmpeg','-hide_banner','-loglevel','error','-ss',f'{ts:.3f}','-i','source.mp4','-frames:v','1','-vf','scale=480:-2','-q:v','3',p],check=True)
-              from PIL import Image,ImageDraw,ImageFont
-              ims=[Image.open(p).convert('RGB') for p in frames]; w,h=ims[0].size; pad=4; lh=28
-              sh=Image.new('RGB',(4*w+5*pad,2*(h+lh)+3*pad),'black'); d=ImageDraw.Draw(sh); font=ImageFont.load_default(size=18)
+              for j in range(8):jobs.append((i,j,start+j*(24/7)))
+          def grab(job):
+              i,j,ts=job; p=f'review/candidates/tmp_{i:02d}_{j}.jpg'
+              subprocess.run(['ffmpeg','-hide_banner','-loglevel','error','-ss',f'{ts:.3f}','-i','source.mp4','-frames:v','1','-vf','scale=480:-2','-q:v','3',p],check=True)
+          with ThreadPoolExecutor(max_workers=8) as ex:list(ex.map(grab,jobs))
+          font=ImageFont.load_default(size=18)
+          for i,(v,t) in enumerate(chosen):
+              start=max(0,t-12); frames=[Path(f'review/candidates/tmp_{i:02d}_{j}.jpg') for j in range(8)]; ims=[Image.open(p).convert('RGB') for p in frames]
+              w,h=ims[0].size; pad=4; lh=28; sh=Image.new('RGB',(4*w+5*pad,2*(h+lh)+3*pad),'black'); d=ImageDraw.Draw(sh)
               for j,im in enumerate(ims):
                   x=pad+(j%4)*(w+pad); y=pad+(j//4)*(h+lh+pad); sh.paste(im,(x,y)); d.text((x+5,y+h+3),f'{start+j*(24/7):.1f}s',fill='white',font=font)
               sh.save(f'review/candidates/C{i:02d}_{t:.1f}.jpg',quality=90)
-              for p in frames: Path(p).unlink()
+              for p in frames:p.unlink()
           PY
       - name: Package visual evidence
         run: |
@@ -99,7 +102,7 @@ jobs:
           du -sh review
       - uses: actions/upload-artifact@v4
         with:
-          name: cu-visual-review-fast
+          name: cu-visual-review-parallel
           path: review
           retention-days: 1
           compression-level: 6
