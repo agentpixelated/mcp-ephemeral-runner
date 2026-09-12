@@ -1,17 +1,19 @@
-name: CU full navigation pass
+name: CU visual review pass
 on:
   push:
     paths: ['.github/workflows/cu-transfer-probe.yml']
 permissions:
-  contents: write
+  contents: read
 jobs:
-  navigate:
+  review:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 50
     steps:
       - uses: actions/checkout@v4
       - name: Install media tools
-        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg python3-pil
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg python3-pil
       - name: Download and verify exact source
         run: |
           set -euo pipefail
@@ -19,52 +21,83 @@ jobs:
           curl -fL --retry 3 --retry-all-errors "$u" -o source.mp4
           test "$(stat -c %s source.mp4)" = 4594320879
           test "$(md5sum source.mp4 | cut -d' ' -f1)" = 536fd423ff1733d868e7e1528b342966
+          ffprobe -v error -show_format -show_streams -of json source.mp4 > probe.json
       - name: Generate 15-second navigation frames
         run: |
-          rm -rf review/cu-nav
-          mkdir -p review/cu-nav/frames
-          ffmpeg -hide_banner -loglevel error -i source.mp4 -vf 'fps=1/15,scale=512:-2' -q:v 4 review/cu-nav/frames/frame_%04d.jpg
-      - name: Build timestamped contact sheets
+          rm -rf review && mkdir -p review/nav_frames review/candidates
+          ffmpeg -hide_banner -loglevel error -i source.mp4 -vf 'fps=1/15,scale=512:-2' -q:v 4 review/nav_frames/frame_%04d.jpg
+      - name: Build timestamped navigation sheets
         run: |
           python3 - <<'PY'
           from PIL import Image, ImageDraw, ImageFont
           from pathlib import Path
           import math
-          frames=sorted(Path('review/cu-nav/frames').glob('frame_*.jpg'))
+          frames=sorted(Path('review/nav_frames').glob('frame_*.jpg'))
           cols,rows=4,5
           tw,th=512,216
-          label_h=34
-          sheet_w,sheet_h=cols*tw,rows*(th+label_h)
-          font=ImageFont.load_default(size=22)
+          lh=32
+          font=ImageFont.load_default(size=20)
           def hms(sec):
-              h=int(sec//3600); m=int((sec%3600)//60); s=int(sec%60)
+              h=int(sec//3600);m=int(sec%3600//60);s=int(sec%60)
               return f'{h:02d}:{m:02d}:{s:02d}'
           for si in range(math.ceil(len(frames)/(cols*rows))):
               batch=frames[si*cols*rows:(si+1)*cols*rows]
-              sheet=Image.new('RGB',(sheet_w,sheet_h),'black')
-              d=ImageDraw.Draw(sheet)
+              sh=Image.new('RGB',(cols*tw,rows*(th+lh)),'black')
+              d=ImageDraw.Draw(sh)
               for j,p in enumerate(batch):
                   im=Image.open(p).convert('RGB').resize((tw,th))
-                  x=(j%cols)*tw; y=(j//cols)*(th+label_h)
-                  sheet.paste(im,(x,y))
+                  x=(j%cols)*tw;y=(j//cols)*(th+lh)
+                  sh.paste(im,(x,y))
                   sec=(si*cols*rows+j)*15
-                  d.rectangle([x,y+th,x+tw,y+th+label_h],fill='black')
                   d.text((x+8,y+th+5),hms(sec),fill='white',font=font)
-              sheet.save(f'review/cu-nav/sheet_{si:02d}.jpg',quality=88)
-          Path('review/cu-nav/README.md').write_text(
-              f'# C:U navigation\n\nSource: 50:37.22, 2560x1080 HEVC. Frames every 15 seconds. Total frames: {len(frames)}.\n',encoding='utf-8')
+              sh.save(f'review/nav_{si:02d}.jpg',quality=88)
+          Path('review/navigation.txt').write_text(f'frames={len(frames)}\nsheets={math.ceil(len(frames)/20)}\n',encoding='utf-8')
           PY
-      - name: Analyze scene changes and silence
+      - name: Analyze scene changes, silence, and 1-second audio RMS
         run: |
-          ffmpeg -hide_banner -v info -i source.mp4 -vf "scale=320:-2,select='gt(scene,0.45)',showinfo" -an -f null - 2> review/cu-nav/scene_raw.log || true
-          grep 'showinfo.*pts_time:' review/cu-nav/scene_raw.log | sed -E 's/.*pts_time:([0-9.]+).*/\1/' > review/cu-nav/scene_times.txt || true
-          ffmpeg -hide_banner -v info -i source.mp4 -vn -af 'silencedetect=noise=-32dB:d=2' -f null - 2> review/cu-nav/silence_raw.log || true
-          grep -E 'silence_(start|end|duration)' review/cu-nav/silence_raw.log > review/cu-nav/silence_events.txt || true
-          rm -rf review/cu-nav/frames review/cu-nav/scene_raw.log review/cu-nav/silence_raw.log
-      - name: Commit navigation evidence
+          ffmpeg -hide_banner -v info -i source.mp4 -vf "scale=320:-2,select='gt(scene,0.42)',showinfo" -an -f null - 2> review/scene.log || true
+          grep 'showinfo.*pts_time:' review/scene.log | sed -E 's/.*pts_time:([0-9.]+).*/\1/' > review/scene_times.txt || true
+          ffmpeg -hide_banner -v info -i source.mp4 -vn -af 'silencedetect=noise=-32dB:d=2' -f null - 2> review/silence.log || true
+          grep -E 'silence_(start|end|duration)' review/silence.log > review/silence_events.txt || true
+          ffmpeg -hide_banner -loglevel error -i source.mp4 -vn -af "asetnsamples=n=48000:p=1,astats=metadata=1:reset=1,ametadata=print:key=lavfi.astats.Overall.RMS_level:file=review/rms_raw.txt" -f null -
+      - name: Pick non-overlapping audio-intense candidates
         run: |
-          git config user.name 'agentic-video-bot'
-          git config user.email 'agentic-video-bot@users.noreply.github.com'
-          git add review/cu-nav
-          git commit -m 'add C:U full-session navigation evidence' || exit 0
-          git push
+          python3 - <<'PY'
+          from pathlib import Path
+          import re, math, subprocess
+          lines=Path('review/rms_raw.txt').read_text(errors='ignore').splitlines()
+          vals=[]; t=None
+          for line in lines:
+              m=re.search(r'pts_time:([0-9.]+)',line)
+              if m: t=float(m.group(1))
+              m=re.search(r'lavfi\.astats\.Overall\.RMS_level=([-0-9.inf]+)',line)
+              if m and t is not None:
+                  try: v=float(m.group(1))
+                  except: continue
+                  if math.isfinite(v): vals.append((v,t))
+          vals.sort(reverse=True)
+          chosen=[]
+          for v,t in vals:
+              if t<20 or t>3015: continue
+              if all(abs(t-u)>28 for _,u in chosen):
+                  chosen.append((v,t))
+              if len(chosen)>=24: break
+          chosen.sort(key=lambda x:x[1])
+          Path('review/candidates.csv').write_text('id,time_sec,rms_db\n'+''.join(f'C{i:02d},{t:.3f},{v:.2f}\n' for i,(v,t) in enumerate(chosen)),encoding='utf-8')
+          for i,(v,t) in enumerate(chosen):
+              start=max(0,t-12)
+              out=f'review/candidates/C{i:02d}_{t:.1f}.jpg'
+              vf="fps=1/3,scale=480:-2,tile=4x2:padding=4:margin=4"
+              subprocess.run(['ffmpeg','-hide_banner','-loglevel','error','-ss',str(start),'-t','24','-i','source.mp4','-vf',vf,'-frames:v','1','-q:v','3',out],check=True)
+          PY
+      - name: Package visual evidence
+        run: |
+          rm -rf review/nav_frames review/scene.log review/silence.log review/rms_raw.txt
+          cp probe.json review/probe.json
+          du -sh review
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cu-visual-review
+          path: review
+          retention-days: 1
+          compression-level: 6
