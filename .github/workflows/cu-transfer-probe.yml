@@ -1,4 +1,4 @@
-name: CU transfer probe
+name: CU transfer chunk 000
 
 on:
   push:
@@ -6,29 +6,42 @@ on:
       - '.github/workflows/cu-transfer-probe.yml'
   workflow_dispatch:
 
+permissions:
+  actions: write
+  contents: read
+
 jobs:
-  probe:
+  transfer:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
-      - name: Fetch 8 MiB public Drive range
+      - name: Delete previous probe artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method DELETE /repos/${{ github.repository }}/actions/artifacts/10294767951 || true
+
+      - name: Fetch chunk 000
         shell: bash
         run: |
           set -euo pipefail
           URL='https://drive.usercontent.google.com/download?id=1E5vu4m9WlSX8q4QYnCrx4boVRnYaBy3h&export=download&confirm=t'
+          START=0
+          END=251658239
+          EXPECTED=251658240
           curl --fail --location --retry 3 --retry-all-errors \
-            -H 'Range: bytes=0-8388607' "$URL" -o probe.bin
-          SIZE=$(stat -c '%s' probe.bin)
+            -H "Range: bytes=${START}-${END}" "$URL" -o part_000.bin
+          SIZE=$(stat -c '%s' part_000.bin)
           echo "size=$SIZE"
-          test "$SIZE" -eq 8388608
-          sha256sum probe.bin | tee probe.sha256
-      - name: Upload probe artifact
+          test "$SIZE" -eq "$EXPECTED"
+          sha256sum part_000.bin | tee part_000.sha256
+
+      - name: Upload chunk 000
         uses: actions/upload-artifact@v4
         with:
-          name: cu-drive-probe-8m
+          name: cu-part-000
           path: |
-            probe.bin
-            probe.sha256
+            part_000.bin
+            part_000.sha256
           compression-level: 0
           retention-days: 1
           if-no-files-found: error
