@@ -1,0 +1,10 @@
+{
+  "name": "Nb Agent Codespace Worker",
+  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  "postStartCommand": "bash .devcontainer/start-agent-worker.sh",
+  "remoteEnv": {
+    "AGENT_RUNTIME_URL": "https://jlvozmgxxojvljxuhywv.supabase.co/functions/v1/agent-runtime",
+    "AGENT_WORKER_ID": "github-codespace",
+    "AGENT_DATA_DIR": "${containerEnv:HOME}/.local/share/nb-agent"
+  }
+}
