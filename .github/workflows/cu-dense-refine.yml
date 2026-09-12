@@ -1,0 +1,138 @@
+name: CU dense candidate refinement
+on:
+  push:
+    paths:
+      - '.github/workflows/cu-dense-refine.yml'
+permissions:
+  contents: write
+jobs:
+  refine:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg tesseract-ocr
+          python -m pip install --quiet torch torchvision --index-url https://download.pytorch.org/whl/cpu
+          pip install --quiet pillow numpy opencv-python-headless pytesseract transformers scenedetect
+      - name: Download and verify source
+        run: |
+          set -euo pipefail
+          u='https://drive.usercontent.google.com/download?id=1E5vu4m9WlSX8q4QYnCrx4boVRnYaBy3h&export=download&confirm=t'
+          curl -fL --retry 3 --retry-all-errors "$u" -o source.mp4
+          test "$(stat -c %s source.mp4)" = 4594320879
+          test "$(md5sum source.mp4 | cut -d' ' -f1)" = 536fd423ff1733d868e7e1528b342966
+      - name: Refine candidate clusters from actual frames and scene changes
+        run: |
+          cat > /tmp/refine.py <<'PY'
+          import os, subprocess, csv, re, math
+          from pathlib import Path
+          import cv2, numpy as np, pytesseract, torch
+          from PIL import Image
+          from transformers import BlipProcessor, BlipForConditionalGeneration
+
+          clusters=[
+            ('A_C12',1565,1597),
+            ('B_C14_C15',1818,1880),
+            ('C_C16_C17',1895,1955),
+            ('D_C18',2025,2060),
+            ('E_C20',2260,2298),
+            ('F_C21',2328,2362),
+            ('G_C09',1107,1142),
+            ('H_C10',1303,1338),
+          ]
+          processor=BlipProcessor.from_pretrained('Salesforce/blip-image-captioning-base')
+          model=BlipForConditionalGeneration.from_pretrained('Salesforce/blip-image-captioning-base'); model.eval()
+          event_words=['gun','rifle','weapon','person','man','blood','red','shoot','fire','body','cross','dead','dark','cave','room']
+          menu_words=['menu','settings','inventory','map','rope','fruit','ingredient','craft']
+          Path('review/dense').mkdir(parents=True,exist_ok=True)
+          summary=[]
+          for name,start,end in clusters:
+            cdir=Path('review/dense')/name; cdir.mkdir(parents=True,exist_ok=True)
+            # scene detection for local clip
+            local=cdir/'segment.mp4'
+            subprocess.run(['ffmpeg','-hide_banner','-loglevel','error','-ss',str(start),'-i','source.mp4','-t',str(end-start),'-c','copy',str(local)],check=True)
+            scene_log=cdir/'scenes.txt'
+            p=subprocess.run(['ffmpeg','-hide_banner','-i',str(local),'-vf',"select='gt(scene,0.28)',showinfo",'-f','null','-'],stderr=subprocess.PIPE,text=True)
+            scenes=[]
+            for m in re.finditer(r'pts_time:([0-9.]+)',p.stderr):
+              scenes.append(start+float(m.group(1)))
+            scene_log.write_text('\n'.join(f'{x:.3f}' for x in scenes))
+
+            # 2-second dense frames
+            times=list(np.arange(start,end+0.01,2.0))
+            paths=[]
+            for i,t in enumerate(times):
+              out=cdir/f'f{i:03d}_{t:.1f}.jpg'; paths.append(out)
+              subprocess.run(['ffmpeg','-hide_banner','-loglevel','error','-ss',f'{t:.3f}','-i','source.mp4','-frames:v','1','-vf','scale=640:-2','-q:v','3',str(out)],check=True)
+            imgs=[Image.open(p).convert('RGB') for p in paths]
+            rows=[]
+            for i in range(0,len(imgs),8):
+              batch=imgs[i:i+8]
+              inp=processor(images=batch,return_tensors='pt',padding=True)
+              with torch.no_grad(): ids=model.generate(**inp,max_new_tokens=24,num_beams=2)
+              caps=[processor.decode(x,skip_special_tokens=True) for x in ids]
+              for j,cap in enumerate(caps):
+                k=i+j; im=np.array(imgs[k]); gray=cv2.cvtColor(im,cv2.COLOR_RGB2GRAY)
+                ocr=' '.join(pytesseract.image_to_string(im,config='--psm 11').split())[:180]
+                text=(cap+' '+ocr).lower()
+                ev=sum(w in text for w in event_words); mn=sum(w in text for w in menu_words)
+                rows.append({'time':round(times[k],1),'caption':cap,'ocr':ocr,'event_hits':ev,'menu_hits':mn,'brightness':round(float(gray.mean()),1)})
+            # visual delta between 2s frames
+            gr=[cv2.cvtColor(np.array(x),cv2.COLOR_RGB2GRAY) for x in imgs]
+            for i,r in enumerate(rows):
+              if i==0: r['delta']=0.0
+              else: r['delta']=round(float(cv2.absdiff(gr[i-1],gr[i]).mean()),2)
+            # audio RMS for cluster at 1s grain
+            af=cdir/'rms.txt'
+            subprocess.run(['ffmpeg','-hide_banner','-loglevel','error','-ss',str(start),'-i','source.mp4','-t',str(end-start),'-vn','-af',f'asetnsamples=n=48000:p=1,astats=metadata=1:reset=1,ametadata=print:key=lavfi.astats.Overall.RMS_level:file={af}','-f','null','-'],check=True)
+            vals=[]; tcur=None
+            for line in af.read_text(errors='ignore').splitlines():
+              m=re.search(r'pts_time:([0-9.]+)',line)
+              if m:tcur=start+float(m.group(1))
+              m=re.search(r'RMS_level=([-0-9.inf]+)',line)
+              if m and tcur is not None:
+                try:v=float(m.group(1))
+                except:continue
+                if math.isfinite(v):vals.append((tcur,v))
+            def nearest_rms(t):
+              return min(vals,key=lambda x:abs(x[0]-t))[1] if vals else -99
+            for r in rows:r['rms_db']=round(nearest_rms(r['time']),2)
+            with open(cdir/'frames.csv','w',newline='') as f:
+              w=csv.DictWriter(f,fieldnames=rows[0].keys());w.writeheader();w.writerows(rows)
+            # suggest activity envelope using events + visual delta + audio, but not final editorial decision
+            scores=[]
+            for r in rows:
+              audio=max(0,min(1,(r['rms_db']+28)/18)); motion=max(0,min(1,r['delta']/35));
+              s=30*audio+35*motion+12*r['event_hits']-15*r['menu_hits']
+              scores.append((s,r['time'],r))
+            top=sorted(scores,reverse=True)[:6]
+            summary.append((name,start,end,scenes,top,rows))
+
+          with open('review/cu-dense-refine.md','w') as f:
+            f.write('# C:U dense refinement report\n\n')
+            for name,start,end,scenes,top,rows in summary:
+              f.write(f'## {name} {start}-{end}s\n')
+              f.write('- scene changes: '+(', '.join(f'{x:.1f}' for x in scenes[:20]) or '(none)')+'\n')
+              f.write('- strongest 2s frames:\n')
+              for s,t,r in top:
+                f.write(f"  - {t:.1f}s score={s:.1f} rms={r['rms_db']} delta={r['delta']} event={r['event_hits']} menu={r['menu_hits']} :: {r['caption']} :: OCR {r['ocr']}\n")
+              f.write('- timeline:\n')
+              for r in rows:
+                f.write(f"  - {r['time']:.1f}s rms={r['rms_db']} delta={r['delta']} ev={r['event_hits']} menu={r['menu_hits']} :: {r['caption']} :: {r['ocr']}\n")
+              f.write('\n')
+          PY
+          python /tmp/refine.py
+          cat review/cu-dense-refine.md
+      - name: Commit report safely
+        run: |
+          rm -rf review/dense source.mp4
+          git config user.name 'agentic-video-bot'
+          git config user.email 'agentic-video-bot@users.noreply.github.com'
+          git add review/cu-dense-refine.md
+          git commit -m 'dense-refine C:U candidate clusters' || exit 0
+          git fetch origin main
+          git rebase origin/main
+          git push origin main
