@@ -1,4 +1,4 @@
-name: CU transfer 016-017
+name: CU source metadata
 on:
   push:
     paths: ['.github/workflows/cu-transfer-probe.yml']
@@ -6,28 +6,25 @@ permissions:
   actions: write
   contents: read
 jobs:
-  transfer:
+  inspect:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
-      - name: Clear previous relay artifact
+      - name: Clear relay artifact
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh api "repos/${GITHUB_REPOSITORY}/actions/artifacts?name=cu-pair-014-015" --jq '.artifacts[].id' | xargs -r -I{} gh api --method DELETE "repos/${GITHUB_REPOSITORY}/actions/artifacts/{}"
-      - name: Read public source ranges
+          gh api "repos/${GITHUB_REPOSITORY}/actions/artifacts?name=cu-pair-016-017" --jq '.artifacts[].id' | xargs -r -I{} gh api --method DELETE "repos/${GITHUB_REPOSITORY}/actions/artifacts/{}"
+      - name: Download exact source
         run: |
+          set -euo pipefail
           u='https://drive.usercontent.google.com/download?id=1E5vu4m9WlSX8q4QYnCrx4boVRnYaBy3h&export=download&confirm=t'
-          curl -fL -H 'Range: bytes=3732930560-3963617279' "$u" -o part_016.bin
-          curl -fL -H 'Range: bytes=3963617280-4194303999' "$u" -o part_017.bin
-          test "$(stat -c %s part_016.bin)" = 230686720
-          test "$(stat -c %s part_017.bin)" = 230686720
-          sha256sum part_016.bin part_017.bin > hashes.sha256
-      - uses: actions/upload-artifact@v4
-        with:
-          name: cu-pair-016-017
-          path: |
-            part_016.bin
-            part_017.bin
-            hashes.sha256
-          compression-level: 0
-          retention-days: 1
+          curl -fL --retry 3 --retry-all-errors "$u" -o source.mp4
+          test "$(stat -c %s source.mp4)" = 4594320879
+          echo '=== SOURCE CHECK ==='
+          stat -c 'bytes=%s' source.mp4
+          md5sum source.mp4
+      - name: Probe media
+        run: |
+          echo '=== FFPROBE SUMMARY ==='
+          ffprobe -v error -show_entries format=duration,size,bit_rate:stream=index,codec_type,codec_name,width,height,r_frame_rate,avg_frame_rate,sample_rate,channels -of default=noprint_wrappers=1 source.mp4
