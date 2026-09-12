@@ -1,0 +1,19 @@
+name: CU temporary review release
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/cu-review-release.yml']
+permissions:
+  contents: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Publish temporary review asset
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh release delete cu-review-temp --cleanup-tag -y || true
+          gh release create cu-review-temp review/cu-review.pdf --title 'Temporary C:U visual review' --notes 'Temporary visual evidence for editing QA.'
