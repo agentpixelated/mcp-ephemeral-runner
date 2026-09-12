@@ -1,108 +1,53 @@
-name: CU visual review parallel pass
+name: CU publish visual review PDF
 on:
   push:
     paths: ['.github/workflows/cu-transfer-probe.yml']
 permissions:
-  contents: read
+  contents: write
+  actions: read
 jobs:
-  review:
+  publish-review:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
-      - name: Install media tools
+      - name: Install PDF image support
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq python3-pil
+      - name: Download completed review artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
-          sudo apt-get update -qq
-          sudo apt-get install -y -qq ffmpeg python3-pil
-      - name: Download and verify exact source
-        run: |
-          set -euo pipefail
-          u='https://drive.usercontent.google.com/download?id=1E5vu4m9WlSX8q4QYnCrx4boVRnYaBy3h&export=download&confirm=t'
-          curl -fL --retry 3 --retry-all-errors "$u" -o source.mp4
-          test "$(stat -c %s source.mp4)" = 4594320879
-          test "$(md5sum source.mp4 | cut -d' ' -f1)" = 536fd423ff1733d868e7e1528b342966
-          ffprobe -v error -show_format -show_streams -of json source.mp4 > probe.json
-      - name: Parallel fast-seek overview frames every 15 seconds
-        run: |
-          rm -rf review && mkdir -p review/nav_frames review/candidates
-          python3 - <<'PY'
-          import subprocess
-          from concurrent.futures import ThreadPoolExecutor
-          times=list(range(0,3038,15))
-          def grab(item):
-              i,t=item
-              subprocess.run(['ffmpeg','-hide_banner','-loglevel','error','-ss',str(t),'-i','source.mp4','-frames:v','1','-vf','scale=512:-2','-q:v','4',f'review/nav_frames/frame_{i:04d}.jpg'],check=True)
-          with ThreadPoolExecutor(max_workers=8) as ex: list(ex.map(grab,enumerate(times)))
-          PY
-      - name: Build timestamped overview sheets
+          rm -rf _review review/cu-review.pdf review/cu-candidates.csv review/cu-probe.json
+          mkdir -p _review review
+          gh run download 34686298310 -n cu-visual-review-parallel -D _review
+          cp _review/candidates.csv review/cu-candidates.csv
+          cp _review/probe.json review/cu-probe.json
+      - name: Build direct-inspection PDF
         run: |
           python3 - <<'PY'
-          from PIL import Image,ImageDraw,ImageFont
+          from PIL import Image,ImageOps,ImageDraw,ImageFont
           from pathlib import Path
-          import math
-          frames=sorted(Path('review/nav_frames').glob('frame_*.jpg')); cols,rows=4,5; tw,th=512,216; lh=32
-          font=ImageFont.load_default(size=20)
-          def hms(sec): return f'{int(sec//3600):02d}:{int(sec%3600//60):02d}:{int(sec%60):02d}'
-          for si in range(math.ceil(len(frames)/20)):
-              sh=Image.new('RGB',(cols*tw,rows*(th+lh)),'black'); d=ImageDraw.Draw(sh)
-              for j,p in enumerate(frames[si*20:(si+1)*20]):
-                  im=Image.open(p).convert('RGB').resize((tw,th)); x=j%cols*tw; y=j//cols*(th+lh)
-                  sh.paste(im,(x,y)); d.text((x+8,y+th+5),hms((si*20+j)*15),fill='white',font=font)
-              sh.save(f'review/nav_{si:02d}.jpg',quality=88)
-          Path('review/navigation.txt').write_text(f'frames={len(frames)}\nsheets={math.ceil(len(frames)/20)}\n',encoding='utf-8')
+          nav=sorted(Path('_review').glob('nav_*.jpg'))
+          cand=sorted(Path('_review/candidates').glob('*.jpg'))
+          pages=[]
+          for label,paths in [('OVERVIEW',nav),('CANDIDATE',cand)]:
+              for i,p in enumerate(paths):
+                  im=Image.open(p).convert('RGB')
+                  # White title band so page identity survives PDF rendering.
+                  band=70
+                  canvas=Image.new('RGB',(im.width,im.height+band),'white')
+                  canvas.paste(im,(0,band))
+                  d=ImageDraw.Draw(canvas)
+                  d.text((18,20),f'{label} {i:02d} | {p.name}',fill='black',font=ImageFont.load_default(size=26))
+                  pages.append(canvas)
+          assert pages
+          pages[0].save('review/cu-review.pdf',save_all=True,append_images=pages[1:],resolution=120.0)
+          print('pages',len(pages),'overview',len(nav),'candidates',len(cand))
           PY
-      - name: Analyze audio activity at one-second grain
+      - name: Commit review evidence
         run: |
-          ffmpeg -hide_banner -loglevel error -i source.mp4 -vn -af "asetnsamples=n=48000:p=1,astats=metadata=1:reset=1,ametadata=print:key=lavfi.astats.Overall.RMS_level:file=review/rms_raw.txt" -f null -
-          ffmpeg -hide_banner -v info -i source.mp4 -vn -af 'silencedetect=noise=-32dB:d=2' -f null - 2> review/silence.log || true
-          grep -E 'silence_(start|end|duration)' review/silence.log > review/silence_events.txt || true
-      - name: Pick and parallel-render 30 audio-intense candidate strips
-        run: |
-          python3 - <<'PY'
-          from pathlib import Path
-          from concurrent.futures import ThreadPoolExecutor
-          from PIL import Image,ImageDraw,ImageFont
-          import re,math,subprocess
-          lines=Path('review/rms_raw.txt').read_text(errors='ignore').splitlines(); vals=[]; t=None
-          for line in lines:
-              m=re.search(r'pts_time:([0-9.]+)',line)
-              if m:t=float(m.group(1))
-              m=re.search(r'lavfi\.astats\.Overall\.RMS_level=([-0-9.inf]+)',line)
-              if m and t is not None:
-                  try:v=float(m.group(1))
-                  except:continue
-                  if math.isfinite(v):vals.append((v,t))
-          vals.sort(reverse=True); chosen=[]
-          for v,t in vals:
-              if 15<t<3022 and all(abs(t-u)>24 for _,u in chosen):chosen.append((v,t))
-              if len(chosen)>=30:break
-          chosen.sort(key=lambda x:x[1])
-          Path('review/candidates.csv').write_text('id,time_sec,rms_db\n'+''.join(f'C{i:02d},{t:.3f},{v:.2f}\n' for i,(v,t) in enumerate(chosen)),encoding='utf-8')
-          jobs=[]
-          for i,(v,t) in enumerate(chosen):
-              start=max(0,t-12)
-              for j in range(8):jobs.append((i,j,start+j*(24/7)))
-          def grab(job):
-              i,j,ts=job; p=f'review/candidates/tmp_{i:02d}_{j}.jpg'
-              subprocess.run(['ffmpeg','-hide_banner','-loglevel','error','-ss',f'{ts:.3f}','-i','source.mp4','-frames:v','1','-vf','scale=480:-2','-q:v','3',p],check=True)
-          with ThreadPoolExecutor(max_workers=8) as ex:list(ex.map(grab,jobs))
-          font=ImageFont.load_default(size=18)
-          for i,(v,t) in enumerate(chosen):
-              start=max(0,t-12); frames=[Path(f'review/candidates/tmp_{i:02d}_{j}.jpg') for j in range(8)]; ims=[Image.open(p).convert('RGB') for p in frames]
-              w,h=ims[0].size; pad=4; lh=28; sh=Image.new('RGB',(4*w+5*pad,2*(h+lh)+3*pad),'black'); d=ImageDraw.Draw(sh)
-              for j,im in enumerate(ims):
-                  x=pad+(j%4)*(w+pad); y=pad+(j//4)*(h+lh+pad); sh.paste(im,(x,y)); d.text((x+5,y+h+3),f'{start+j*(24/7):.1f}s',fill='white',font=font)
-              sh.save(f'review/candidates/C{i:02d}_{t:.1f}.jpg',quality=90)
-              for p in frames:p.unlink()
-          PY
-      - name: Package visual evidence
-        run: |
-          rm -rf review/nav_frames review/rms_raw.txt review/silence.log
-          cp probe.json review/probe.json
-          du -sh review
-      - uses: actions/upload-artifact@v4
-        with:
-          name: cu-visual-review-parallel
-          path: review
-          retention-days: 1
-          compression-level: 6
+          rm -rf _review
+          git config user.name 'agentic-video-bot'
+          git config user.email 'agentic-video-bot@users.noreply.github.com'
+          git add review/cu-review.pdf review/cu-candidates.csv review/cu-probe.json
+          git commit -m 'publish C:U visual review evidence' || exit 0
+          git push
