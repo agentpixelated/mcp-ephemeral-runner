@@ -1,0 +1,112 @@
+name: CU open-source vision analysis
+on:
+  push:
+    paths:
+      - '.github/workflows/cu-vision-analyze.yml'
+permissions:
+  contents: write
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install media and vision stack
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg tesseract-ocr
+          python -m pip install --upgrade pip
+          pip install --quiet pillow numpy opencv-python-headless pytesseract scenedetect transformers accelerate
+          pip install --quiet torch torchvision --index-url https://download.pytorch.org/whl/cpu
+      - name: Download exact public temporary source
+        env:
+          FILE_ID: 1E5vu4m9WlSX8q4QYnCrx4boVRnYaBy3h
+        run: |
+          python - <<'PY'
+          import requests, os, sys
+          fid=os.environ['FILE_ID']
+          s=requests.Session()
+          url=f'https://drive.usercontent.google.com/download?id={fid}&export=download&confirm=t'
+          with s.get(url, stream=True, timeout=120, allow_redirects=True) as r:
+              r.raise_for_status()
+              with open('source.mp4','wb') as f:
+                  for chunk in r.iter_content(chunk_size=8*1024*1024):
+                      if chunk: f.write(chunk)
+          PY
+          test "$(stat -c%s source.mp4)" = "4594320879"
+          echo '536fd423ff1733d868e7e1528b342966  source.mp4' | md5sum -c -
+      - name: Extract dense visual frames around all candidate moments
+        run: |
+          rm -rf vision_frames
+          mkdir -p vision_frames
+          python - <<'PY'
+          import csv, subprocess, os
+          rows=list(csv.DictReader(open('review/cu-candidates.csv')))
+          offsets=[-9,-4,0,4,9]
+          for row in rows:
+              cid=row['id']; t=float(row['time_sec'])
+              d=f'vision_frames/{cid}'; os.makedirs(d,exist_ok=True)
+              for j,off in enumerate(offsets):
+                  ts=max(0,t+off)
+                  out=f'{d}/f{j}_{ts:.3f}.jpg'
+                  subprocess.run(['ffmpeg','-hide_banner','-loglevel','error','-ss',f'{ts:.3f}','-i','source.mp4','-frames:v','1','-vf','scale=768:-2', '-q:v','3',out],check=True)
+          PY
+      - name: Caption actual frames with BLIP and score visual change
+        run: |
+          cat > /tmp/analyze.py <<'PY'
+          import csv, os, re, math
+          import numpy as np
+          import cv2, pytesseract, torch
+          from PIL import Image
+          from transformers import BlipProcessor, BlipForConditionalGeneration
+
+          processor=BlipProcessor.from_pretrained('Salesforce/blip-image-captioning-base')
+          model=BlipForConditionalGeneration.from_pretrained('Salesforce/blip-image-captioning-base')
+          model.eval()
+          rows=list(csv.DictReader(open('review/cu-candidates.csv')))
+          out=[]
+          keywords=['gun','rifle','weapon','shoot','shooting','blood','injured','wound','fight','fighting','explosion','fire','body','person','man','enemy','soldier','medical','hospital','vehicle','car','truck','knife','dead','corpse']
+          for row in rows:
+              cid=row['id']; t=float(row['time_sec']); rms=float(row['rms_db'])
+              paths=sorted([os.path.join('vision_frames',cid,x) for x in os.listdir(os.path.join('vision_frames',cid)) if x.endswith('.jpg')])
+              imgs=[Image.open(p).convert('RGB') for p in paths]
+              inputs=processor(images=imgs, return_tensors='pt', padding=True)
+              with torch.no_grad():
+                  ids=model.generate(**inputs,max_new_tokens=28,num_beams=3)
+              caps=[processor.decode(x,skip_special_tokens=True) for x in ids]
+              grays=[cv2.cvtColor(np.array(im),cv2.COLOR_RGB2GRAY) for im in imgs]
+              diffs=[]
+              for a,b in zip(grays,grays[1:]):
+                  diffs.append(float(cv2.absdiff(a,b).mean()))
+              motion=float(np.mean(diffs)) if diffs else 0.0
+              center=np.array(imgs[len(imgs)//2])
+              ocr=pytesseract.image_to_string(center, config='--psm 11')
+              ocr=' '.join(ocr.split())[:350]
+              text=(' '.join(caps)+' '+ocr).lower()
+              hits=sum(1 for k in keywords if k in text)
+              audio=max(0.0,min(1.0,(rms+24)/14))
+              motion_n=max(0.0,min(1.0,motion/35.0))
+              score=round(40*audio+40*motion_n+8*min(hits,3),2)
+              out.append({'id':cid,'time_sec':t,'rms_db':rms,'motion':round(motion,2),'keyword_hits':hits,'score':score,'captions':' | '.join(caps),'ocr':ocr})
+              print(cid,score,caps,ocr[:80])
+          out.sort(key=lambda x:x['score'], reverse=True)
+          with open('review/cu-vision-report.csv','w',newline='') as f:
+              w=csv.DictWriter(f,fieldnames=out[0].keys()); w.writeheader(); w.writerows(out)
+          with open('review/cu-vision-report.md','w') as f:
+              f.write('# C:U open-source vision report\n\n')
+              f.write('BLIP captions actual frames at t-9,t-4,t,t+4,t+9; OCR is center frame; score combines audio, visual change, and event-keyword hits. Selection still requires editorial judgment.\n\n')
+              for x in out:
+                  f.write(f"## {x['id']} — {x['time_sec']:.1f}s — score {x['score']}\n")
+                  f.write(f"- RMS: {x['rms_db']} dB; mean visual delta: {x['motion']}; keyword hits: {x['keyword_hits']}\n")
+                  f.write(f"- Frames: {x['captions']}\n")
+                  f.write(f"- OCR: {x['ocr'] or '(none)'}\n\n")
+          PY
+          python /tmp/analyze.py
+      - name: Commit vision report only
+        run: |
+          rm -rf vision_frames source.mp4
+          git config user.name 'agentic-video-bot'
+          git config user.email 'agentic-video-bot@users.noreply.github.com'
+          git add review/cu-vision-report.csv review/cu-vision-report.md
+          git commit -m 'analyze C:U candidate frames with open-source vision' || exit 0
+          git push
