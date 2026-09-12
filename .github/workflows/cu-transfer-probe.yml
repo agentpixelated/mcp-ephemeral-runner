@@ -1,4 +1,4 @@
-name: CU transfer chunk 000
+name: CU transfer chunk 001
 
 on:
   push:
@@ -15,33 +15,32 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - name: Delete previous probe artifact
+      - name: Delete previous artifact
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh api --method DELETE /repos/${{ github.repository }}/actions/artifacts/10294767951 || true
+        run: gh api --method DELETE /repos/${{ github.repository }}/actions/artifacts/10294693436 || true
 
-      - name: Fetch chunk 000
+      - name: Fetch chunk 001
         shell: bash
         run: |
           set -euo pipefail
           URL='https://drive.usercontent.google.com/download?id=1E5vu4m9WlSX8q4QYnCrx4boVRnYaBy3h&export=download&confirm=t'
-          START=0
-          END=251658239
+          START=251658240
+          END=503316479
           EXPECTED=251658240
-          curl --fail --location --retry 3 --retry-all-errors \
-            -H "Range: bytes=${START}-${END}" "$URL" -o part_000.bin
-          SIZE=$(stat -c '%s' part_000.bin)
+          curl --fail --location --retry 3 --retry-all-errors -H "Range: bytes=${START}-${END}" "$URL" -o part_001.bin
+          SIZE=$(stat -c '%s' part_001.bin)
           echo "size=$SIZE"
           test "$SIZE" -eq "$EXPECTED"
-          sha256sum part_000.bin | tee part_000.sha256
+          sha256sum part_001.bin | tee part_001.sha256
 
-      - name: Upload chunk 000
+      - name: Upload chunk 001
         uses: actions/upload-artifact@v4
         with:
-          name: cu-part-000
+          name: cu-part-001
           path: |
-            part_000.bin
-            part_000.sha256
+            part_001.bin
+            part_001.sha256
           compression-level: 0
           retention-days: 1
           if-no-files-found: error
