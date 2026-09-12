@@ -1,0 +1,97 @@
+name: CU repo editor render draft
+on:
+  push:
+    paths:
+      - '.github/workflows/cu-render-draft.yml'
+permissions:
+  contents: read
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Auto-Editor and FFmpeg
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+          python -m pip install --upgrade pip
+          pip install auto-editor
+          auto-editor --version
+      - name: Download and verify source
+        run: |
+          set -euo pipefail
+          u='https://drive.usercontent.google.com/download?id=1E5vu4m9WlSX8q4QYnCrx4boVRnYaBy3h&export=download&confirm=t'
+          curl -fL --retry 3 --retry-all-errors "$u" -o source.mp4
+          test "$(stat -c %s source.mp4)" = 4594320879
+          test "$(md5sum source.mp4 | cut -d' ' -f1)" = 536fd423ff1733d868e7e1528b342966
+      - name: Preview explicit editorial ranges
+        run: |
+          auto-editor source.mp4 --edit 0 \
+            --keep 1111sec,1137sec 1570sec,1595sec 1826sec,1880sec 2029sec,2058sec 2265sec,2295sec 2332sec,2360sec \
+            --preview | tee preview.txt
+      - name: Render highlight with Auto-Editor
+        run: |
+          mkdir -p output/clips
+          auto-editor source.mp4 --edit 0 \
+            --keep 1111sec,1137sec 1570sec,1595sec 1826sec,1880sec 2029sec,2058sec 2265sec,2295sec 2332sec,2360sec \
+            --scale 0.75 -crf 21 -preset fast -c:v h264 -c:a aac -anorm peak:-2 \
+            -o output/CU_2026-09-12_highlight_draft.mp4
+      - name: Export individual clips using Auto-Editor clip-sequence
+        run: |
+          cd output/clips
+          auto-editor ../../source.mp4 --edit 0 \
+            --keep 1111sec,1137sec 1570sec,1595sec 1826sec,1880sec 2029sec,2058sec 2265sec,2295sec 2332sec,2360sec \
+            --scale 0.75 -crf 21 -preset fast -c:v h264 -c:a aac -anorm peak:-2 \
+            --export clip-sequence -o CU_clips.mp4
+      - name: Export Auto-Editor v3 timeline
+        run: |
+          auto-editor source.mp4 --edit 0 \
+            --keep 1111sec,1137sec 1570sec,1595sec 1826sec,1880sec 2029sec,2058sec 2265sec,2295sec 2332sec,2360sec \
+            --export v3 -o output/CU_2026-09-12_timeline.v3
+      - name: Technical QA and visual review strips
+        run: |
+          set -euo pipefail
+          final=output/CU_2026-09-12_highlight_draft.mp4
+          ffprobe -v error -show_format -show_streams -of json "$final" > output/final_probe.json
+          ffmpeg -v error -i "$final" -f null - 2> output/decode_errors.txt
+          test ! -s output/decode_errors.txt
+          ffmpeg -hide_banner -i "$final" -vf blackdetect=d=0.3:pix_th=0.08 -an -f null - 2> output/blackdetect.log || true
+          ffmpeg -hide_banner -i "$final" -vf freezedetect=n=-55dB:d=1.0 -an -f null - 2> output/freezedetect.log || true
+          mkdir -p output/review
+          dur=$(ffprobe -v error -show_entries format=duration -of csv=p=0 "$final")
+          python - "$dur" <<'PY'
+          import sys,subprocess,os
+          d=float(sys.argv[1]); times=[]; t=0
+          while t<d: times.append(t); t+=5
+          for i,t in enumerate(times):
+            subprocess.run(['ffmpeg','-hide_banner','-loglevel','error','-ss',str(t),'-i','output/CU_2026-09-12_highlight_draft.mp4','-frames:v','1','-vf','scale=640:-2',f'output/review/f{i:03d}_{t:.1f}.jpg'],check=True)
+          PY
+          python - <<'PY'
+          from PIL import Image,ImageDraw,ImageFont
+          from pathlib import Path
+          import math,re
+          p=sorted(Path('output/review').glob('f*.jpg')); cols=4; rows=4; font=ImageFont.load_default(size=18)
+          for si in range(math.ceil(len(p)/16)):
+            batch=p[si*16:(si+1)*16]; ims=[Image.open(x).convert('RGB') for x in batch]
+            w,h=ims[0].size; lh=26; sh=Image.new('RGB',(cols*w,rows*(h+lh)),'black'); dr=ImageDraw.Draw(sh)
+            for j,(im,path) in enumerate(zip(ims,batch)):
+              x=(j%cols)*w; y=(j//cols)*(h+lh); sh.paste(im,(x,y));
+              ts=path.stem.split('_')[-1]; dr.text((x+5,y+h+3),ts+'s',fill='white',font=font)
+            sh.save(f'output/review_sheet_{si:02d}.jpg',quality=90)
+          PY
+          cat > output/edit_ledger.csv <<'EOF'
+          clip_id,source_in,source_out,planned_duration,event_basis
+          clip_01,1111,1137,26,C09 early high-activity candidate
+          clip_02,1570,1595,25,C12 red/damage-like event
+          clip_03,1826,1880,54,C14-C15 strongest incident chain
+          clip_04,2029,2058,29,C18 injury/interaction-like event
+          clip_05,2265,2295,30,C20 red-suit/person encounter
+          clip_06,2332,2360,28,C21 gun-visible interaction
+          EOF
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cu-edit-draft
+          path: output
+          retention-days: 1
+          compression-level: 0
