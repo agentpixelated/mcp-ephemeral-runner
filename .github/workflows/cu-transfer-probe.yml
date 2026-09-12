@@ -1,4 +1,4 @@
-name: CU transfer chunk 001
+name: CU transfer chunks 002-003
 
 on:
   push:
@@ -13,34 +13,47 @@ permissions:
 jobs:
   transfer:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - name: Delete previous artifact
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh api --method DELETE /repos/${{ github.repository }}/actions/artifacts/10294693436 || true
+        run: gh api --method DELETE /repos/${{ github.repository }}/actions/artifacts/10294908227 || true
 
-      - name: Fetch chunk 001
+      - name: Fetch chunks 002 and 003
         shell: bash
         run: |
           set -euo pipefail
           URL='https://drive.usercontent.google.com/download?id=1E5vu4m9WlSX8q4QYnCrx4boVRnYaBy3h&export=download&confirm=t'
-          START=251658240
-          END=503316479
-          EXPECTED=251658240
-          curl --fail --location --retry 3 --retry-all-errors -H "Range: bytes=${START}-${END}" "$URL" -o part_001.bin
-          SIZE=$(stat -c '%s' part_001.bin)
-          echo "size=$SIZE"
-          test "$SIZE" -eq "$EXPECTED"
-          sha256sum part_001.bin | tee part_001.sha256
+          fetch_part() {
+            NAME="$1"; START="$2"; END="$3"; EXPECTED="$4"
+            curl --fail --location --retry 3 --retry-all-errors -H "Range: bytes=${START}-${END}" "$URL" -o "${NAME}.bin"
+            SIZE=$(stat -c '%s' "${NAME}.bin")
+            echo "${NAME} size=${SIZE}"
+            test "$SIZE" -eq "$EXPECTED"
+            sha256sum "${NAME}.bin" | tee "${NAME}.sha256"
+          }
+          fetch_part part_002 503316480 734003199 230686720
+          fetch_part part_003 734003200 964689919 230686720
 
-      - name: Upload chunk 001
+      - name: Upload chunk 002
         uses: actions/upload-artifact@v4
         with:
-          name: cu-part-001
+          name: cu-part-002
           path: |
-            part_001.bin
-            part_001.sha256
+            part_002.bin
+            part_002.sha256
+          compression-level: 0
+          retention-days: 1
+          if-no-files-found: error
+
+      - name: Upload chunk 003
+        uses: actions/upload-artifact@v4
+        with:
+          name: cu-part-003
+          path: |
+            part_003.bin
+            part_003.sha256
           compression-level: 0
           retention-days: 1
           if-no-files-found: error
