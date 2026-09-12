@@ -1,55 +1,33 @@
-name: CU transfer pair 008-009
-
+name: CU transfer 010-011
 on:
   push:
-    paths:
-      - '.github/workflows/cu-transfer-probe.yml'
-  workflow_dispatch:
-
+    paths: ['.github/workflows/cu-transfer-probe.yml']
 permissions:
   actions: write
   contents: read
-
 jobs:
   transfer:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
     steps:
-      - name: Delete previous artifacts
+      - name: Clear previous relay artifact
         env:
           GH_TOKEN: ${{ github.token }}
-        shell: bash
         run: |
-          set -euo pipefail
-          for name in cu-part-006 cu-part-007; do
-            ids=$(gh api "repos/${GITHUB_REPOSITORY}/actions/artifacts?name=${name}" --jq '.artifacts[].id' || true)
-            for id in $ids; do gh api --method DELETE "repos/${GITHUB_REPOSITORY}/actions/artifacts/${id}"; done
-          done
-
-      - name: Fetch chunks 008 and 009
-        shell: bash
+          gh api "repos/${GITHUB_REPOSITORY}/actions/artifacts?name=cu-pair-008-009" --jq '.artifacts[].id' | xargs -r -I{} gh api --method DELETE "repos/${GITHUB_REPOSITORY}/actions/artifacts/{}"
+      - name: Read public source ranges
         run: |
-          set -euo pipefail
-          URL='https://drive.usercontent.google.com/download?id=1E5vu4m9WlSX8q4QYnCrx4boVRnYaBy3h&export=download&confirm=t'
-          curl --fail --location --retry 3 --retry-all-errors -H 'Range: bytes=1887436800-2118123519' "$URL" -o part_008.bin &
-          p1=$!
-          curl --fail --location --retry 3 --retry-all-errors -H 'Range: bytes=2118123520-2348810239' "$URL" -o part_009.bin &
-          p2=$!
-          wait "$p1"; wait "$p2"
-          test "$(stat -c '%s' part_008.bin)" -eq 230686720
-          test "$(stat -c '%s' part_009.bin)" -eq 230686720
-          sha256sum part_008.bin > part_008.sha256
-          sha256sum part_009.bin > part_009.sha256
-
-      - name: Upload pair artifact
-        uses: actions/upload-artifact@v4
+          u='https://drive.usercontent.google.com/download?id=1E5vu4m9WlSX8q4QYnCrx4boVRnYaBy3h&export=download&confirm=t'
+          curl -fL -H 'Range: bytes=2348810240-2579496959' "$u" -o part_010.bin
+          curl -fL -H 'Range: bytes=2579496960-2810183679' "$u" -o part_011.bin
+          test "$(stat -c %s part_010.bin)" = 230686720
+          test "$(stat -c %s part_011.bin)" = 230686720
+          sha256sum part_010.bin part_011.bin > hashes.sha256
+      - uses: actions/upload-artifact@v4
         with:
-          name: cu-pair-008-009
+          name: cu-pair-010-011
           path: |
-            part_008.bin
-            part_008.sha256
-            part_009.bin
-            part_009.sha256
+            part_010.bin
+            part_011.bin
+            hashes.sha256
           compression-level: 0
           retention-days: 1
-          if-no-files-found: error
