@@ -1,4 +1,4 @@
-name: CU transfer 014-015
+name: CU transfer 016-017
 on:
   push:
     paths: ['.github/workflows/cu-transfer-probe.yml']
@@ -13,21 +13,21 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh api "repos/${GITHUB_REPOSITORY}/actions/artifacts?name=cu-pair-012-013" --jq '.artifacts[].id' | xargs -r -I{} gh api --method DELETE "repos/${GITHUB_REPOSITORY}/actions/artifacts/{}"
+          gh api "repos/${GITHUB_REPOSITORY}/actions/artifacts?name=cu-pair-014-015" --jq '.artifacts[].id' | xargs -r -I{} gh api --method DELETE "repos/${GITHUB_REPOSITORY}/actions/artifacts/{}"
       - name: Read public source ranges
         run: |
           u='https://drive.usercontent.google.com/download?id=1E5vu4m9WlSX8q4QYnCrx4boVRnYaBy3h&export=download&confirm=t'
-          curl -fL -H 'Range: bytes=3271557120-3502243839' "$u" -o part_014.bin
-          curl -fL -H 'Range: bytes=3502243840-3732930559' "$u" -o part_015.bin
-          test "$(stat -c %s part_014.bin)" = 230686720
-          test "$(stat -c %s part_015.bin)" = 230686720
-          sha256sum part_014.bin part_015.bin > hashes.sha256
+          curl -fL -H 'Range: bytes=3732930560-3963617279' "$u" -o part_016.bin
+          curl -fL -H 'Range: bytes=3963617280-4194303999' "$u" -o part_017.bin
+          test "$(stat -c %s part_016.bin)" = 230686720
+          test "$(stat -c %s part_017.bin)" = 230686720
+          sha256sum part_016.bin part_017.bin > hashes.sha256
       - uses: actions/upload-artifact@v4
         with:
-          name: cu-pair-014-015
+          name: cu-pair-016-017
           path: |
-            part_014.bin
-            part_015.bin
+            part_016.bin
+            part_017.bin
             hashes.sha256
           compression-level: 0
           retention-days: 1
