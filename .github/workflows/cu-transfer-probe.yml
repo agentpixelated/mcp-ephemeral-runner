@@ -1,4 +1,4 @@
-name: CU transfer chunks 006-007
+name: CU transfer pair 008-009
 
 on:
   push:
@@ -13,49 +13,43 @@ permissions:
 jobs:
   transfer:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 15
     steps:
       - name: Delete previous artifacts
         env:
           GH_TOKEN: ${{ github.token }}
+        shell: bash
         run: |
-          gh api --method DELETE /repos/${{ github.repository }}/actions/artifacts/10295291676 || true
-          gh api --method DELETE /repos/${{ github.repository }}/actions/artifacts/10295306691 || true
+          set -euo pipefail
+          for name in cu-part-006 cu-part-007; do
+            ids=$(gh api "repos/${GITHUB_REPOSITORY}/actions/artifacts?name=${name}" --jq '.artifacts[].id' || true)
+            for id in $ids; do gh api --method DELETE "repos/${GITHUB_REPOSITORY}/actions/artifacts/${id}"; done
+          done
 
-      - name: Fetch chunks 006 and 007
+      - name: Fetch chunks 008 and 009
         shell: bash
         run: |
           set -euo pipefail
           URL='https://drive.usercontent.google.com/download?id=1E5vu4m9WlSX8q4QYnCrx4boVRnYaBy3h&export=download&confirm=t'
-          fetch_part() {
-            NAME="$1"; START="$2"; END="$3"; EXPECTED="$4"
-            curl --fail --location --retry 3 --retry-all-errors -H "Range: bytes=${START}-${END}" "$URL" -o "${NAME}.bin"
-            SIZE=$(stat -c '%s' "${NAME}.bin")
-            echo "${NAME} size=${SIZE}"
-            test "$SIZE" -eq "$EXPECTED"
-            sha256sum "${NAME}.bin" | tee "${NAME}.sha256"
-          }
-          fetch_part part_006 1426063360 1656750079 230686720
-          fetch_part part_007 1656750080 1887436799 230686720
+          curl --fail --location --retry 3 --retry-all-errors -H 'Range: bytes=1887436800-2118123519' "$URL" -o part_008.bin &
+          p1=$!
+          curl --fail --location --retry 3 --retry-all-errors -H 'Range: bytes=2118123520-2348810239' "$URL" -o part_009.bin &
+          p2=$!
+          wait "$p1"; wait "$p2"
+          test "$(stat -c '%s' part_008.bin)" -eq 230686720
+          test "$(stat -c '%s' part_009.bin)" -eq 230686720
+          sha256sum part_008.bin > part_008.sha256
+          sha256sum part_009.bin > part_009.sha256
 
-      - name: Upload chunk 006
+      - name: Upload pair artifact
         uses: actions/upload-artifact@v4
         with:
-          name: cu-part-006
+          name: cu-pair-008-009
           path: |
-            part_006.bin
-            part_006.sha256
-          compression-level: 0
-          retention-days: 1
-          if-no-files-found: error
-
-      - name: Upload chunk 007
-        uses: actions/upload-artifact@v4
-        with:
-          name: cu-part-007
-          path: |
-            part_007.bin
-            part_007.sha256
+            part_008.bin
+            part_008.sha256
+            part_009.bin
+            part_009.sha256
           compression-level: 0
           retention-days: 1
           if-no-files-found: error
